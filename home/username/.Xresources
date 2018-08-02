@@ -1,0 +1,37 @@
+! color scheme by PunishedBois
+! check me out for stuff in: github.com/PunishedBois
+
+! special
+*.foreground:   #f3f4f5
+*.background:   #1d1f21
+*.cursorColor:  #f3f4f5
+
+! Urxvt config
+
+URxvt.geometry: 87x24
+URxvt.font: xft:Monospace:size=12
+URxvt.letterSpace: -1
+URxvt.boldFont:
+URxvt.scrollBar: false
+URxvt.cursorBlink: true
+URxvt.internalBorder: 7
+URxvt.visualBell: false
+URxvt.depth: 32
+URxvt.lineSpace: 2
+URxvt.intensityStyles: false
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.keysym.Home: \033[1~
+URxvt.keysym.End: \033[4~
+URxvt.keysym.KP_Home: \033[1~
+URxvt.keysym.KP_End:  \033[4~
+
+! Font configs
+
+Xft.autohint: 1
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
