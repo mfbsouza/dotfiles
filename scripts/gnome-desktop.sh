@@ -3,7 +3,7 @@
 echo "Installing GNOME Desktop..."
 
 echo "Installing Desktop Environment..."
-sudo pacman -S cheese eog evince file-roller\
+sudo pacman -S cheese eog epiphany evince file-roller\
        	gdm gedit gnome-backgrounds gnome-calculator\
        	gnome-color-manager gnome-control-center\
        	gnome-disk-utility gnome-keyring gnome-logs gnome-menus\
