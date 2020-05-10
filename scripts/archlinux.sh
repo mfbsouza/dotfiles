@@ -7,7 +7,7 @@ echo "Installing Console Compression Tools"
 sudo pacman -S zip unzip unrar --noconfirm
 
 echo "Installing Console Network Tools"
-sudo pacman -S rsync traceroute bind-tools --noconfirm
+sudo pacman -S rsync traceroute bind-tools net-tools --noconfirm
 
 echo "Installing Services"
 sudo pacman -S openssh xdg-user-dirs --noconfirm
@@ -60,16 +60,20 @@ makepkg -si
 cd ..
 rm -rf yay
 
-echo "Installing Openbox & Desktop Applications"
-sudo pacman -S openbox obconf lxinput lxrandr lxappearance tint2 --noconfirm
+echo "Installing Cinnamon Desktop"
+sudo pacman -S cinnamon blueberry ffmpegthumbnailer nemo-fileroller gnome-keyring xed\
+	evince --noconfirm
+
+## echo "Installing Openbox & Desktop Applications"
+#sudo pacman -S openbox obconf lxinput lxrandr lxappearance tint2 --noconfirm
 #mkdir -p ~/.config/openbox
 #cp -a /etc/xdg/openbox/. ~/.config/openbox/
 
-sudo pacman -S pcmanfm xarchiver\
-	termite leafpad nitrogen\
-	nm-connection-editor network-manager-applet\
-	pasystray pavucontrol\
-	blueman --noconfirm
+#sudo pacman -S pcmanfm xarchiver\
+#	termite leafpad nitrogen\
+#	nm-connection-editor network-manager-applet\
+#	pasystray pavucontrol\
+#	blueman --noconfirm
 
 echo "Installing Personal Programs"
 sudo pacman -S telegram-desktop vlc mpv obs-studio transmission-gtk discord blender --noconfirm
