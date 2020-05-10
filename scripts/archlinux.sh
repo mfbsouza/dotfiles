@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Installing Console Tools"
-sudo pacman -S bash-completion dmidecode vim neofetch wget picocom --noconfirm
+sudo pacman -S bash-completion dmidecode vim neofetch wget picocom htop --noconfirm
 
 echo "Installing Console Compression Tools"
 sudo pacman -S zip unzip unrar --noconfirm
@@ -62,7 +62,7 @@ rm -rf yay
 
 echo "Installing Cinnamon Desktop"
 sudo pacman -S cinnamon blueberry ffmpegthumbnailer nemo-fileroller gnome-keyring xed\
-	evince --noconfirm
+	evince termite system-config-printer --noconfirm
 
 ## echo "Installing Openbox & Desktop Applications"
 #sudo pacman -S openbox obconf lxinput lxrandr lxappearance tint2 --noconfirm
