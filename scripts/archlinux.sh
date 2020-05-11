@@ -21,7 +21,7 @@ echo "Installing File System Support"
 sudo pacman -S gvfs --noconfirm
 
 echo "Installing System Sound Packages"
-sudo pacman -S alsa-utils alsa-plugins pulseaudio-alsa pulseaudio-bluetooth --noconfirm
+sudo pacman -S alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pulseaudio-bluetooth --noconfirm
 
 echo "Installing X11 Packages"
 sudo pacman -S xorg xorg-xinit --noconfirm
