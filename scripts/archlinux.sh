@@ -61,13 +61,16 @@ cd ..
 rm -rf yay
 
 echo "Installing Openbox & Desktop Applications"
-sudo pacman -S openbox obconf lxappearance tint2 --noconfirm
+sudo pacman -S openbox obconf lxappearance lxhotkey tint2\
+	pcmanfm xarchiver termite leafpad nitrogen blueman gnome-keyring\
+	nm-connection-editor network-manager-applet pasystray pavucontrol --noconfirm
 
 #mkdir -p ~/.config/openbox
 #cp -a /etc/xdg/openbox/. ~/.config/openbox/
 
-sudo pacman -S pcmanfm xarchiver termite leafpad nitrogen blueman\
-	nm-connection-editor network-manager-applet pasystray pavucontrol --noconfirm
+yay -S powerkit --noconfirm
+sudo systemctl enable upower.service
+sudo usermod -aG video $USER
 
 echo "Configuring X11 Keyboard and Touchpad"
 sudo localectl set-x11-keymap br abnt2
