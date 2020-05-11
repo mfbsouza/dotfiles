@@ -60,20 +60,18 @@ makepkg -si
 cd ..
 rm -rf yay
 
-echo "Installing Cinnamon Desktop"
-sudo pacman -S cinnamon blueberry ffmpegthumbnailer nemo-fileroller gnome-keyring xed\
-	evince termite system-config-printer --noconfirm
+echo "Installing Openbox & Desktop Applications"
+sudo pacman -S openbox obconf lxappearance tint2 --noconfirm
 
-## echo "Installing Openbox & Desktop Applications"
-#sudo pacman -S openbox obconf lxinput lxrandr lxappearance tint2 --noconfirm
 #mkdir -p ~/.config/openbox
 #cp -a /etc/xdg/openbox/. ~/.config/openbox/
 
-#sudo pacman -S pcmanfm xarchiver\
-#	termite leafpad nitrogen\
-#	nm-connection-editor network-manager-applet\
-#	pasystray pavucontrol\
-#	blueman --noconfirm
+sudo pacman -S pcmanfm xarchiver termite leafpad nitrogen blueman\
+	nm-connection-editor network-manager-applet pasystray pavucontrol --noconfirm
+
+echo "Configuring X11 Keyboard and Touchpad"
+sudo localectl set-x11-keymap br abnt2
+sudo cp ../etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
 
 echo "Installing Personal Programs"
 sudo pacman -S telegram-desktop vlc mpv obs-studio transmission-gtk discord blender --noconfirm
