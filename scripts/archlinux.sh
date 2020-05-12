@@ -1,4 +1,8 @@
 #!/bin/bash
+read -p "Arch Linux Pos Install Script by github.com/mfbsouza. Continue? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "n" ]; then
+	exit
+fi
 
 echo "Installing Console Tools"
 sudo pacman -S bash-completion dmidecode vim neofetch wget picocom htop --noconfirm
@@ -10,18 +14,22 @@ echo "Installing Console Network Tools"
 sudo pacman -S rsync traceroute bind-tools net-tools --noconfirm
 
 echo "Installing Services"
-sudo pacman -S openssh xdg-user-dirs --noconfirm
+sudo pacman -S openssh xdg-utils xdg-user-dirs --noconfirm
 sudo systemctl enable sshd.service
 
-echo "Installing Bluetooth Service"
-sudo pacman -S bluez bluez-libs bluez-utils --noconfirm
-sudo systemctl enable bluetooth.service
+read -p "Install Blutooth Services? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	sudo pacman -S bluez bluez-libs bluez-utils blueman --noconfirm
+	sudo systemctl enable bluetooth.service
+fi
 
 echo "Installing File System Support"
 sudo pacman -S gvfs --noconfirm
 
 echo "Installing System Sound Packages"
-sudo pacman -S alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pulseaudio-bluetooth --noconfirm
+sudo pacman -S alsa-utils alsa-plugins\
+	pulseaudio pulseaudio-alsa pulseaudio-bluetooth\
+       libcanberra libcanberra-pulse --noconfirm
 
 echo "Installing X11 Packages"
 sudo pacman -S xorg xorg-xinit --noconfirm
@@ -37,17 +45,40 @@ sudo pacman -S noto-fonts ttf-hack ttf-ubuntu-font-family adobe-source-sans-pro-
 sudo ln -s /etc/fonts/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d
 sudo ln -s /etc/fonts/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d
 
-echo "Installing Intel Graphics drivers..."
-sudo pacman -S mesa lib32-mesa mesa-demos vulkan-intel libva-intel-driver libva-utils\
-	intel-compute-runtime --noconfirm
+read -p "Install Intel Graphics drivers? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	sudo pacman -S mesa lib32-mesa mesa-demos vulkan-intel libva-intel-driver\
+	libva-utils intel-compute-runtime --noconfirm
+fi
 
-echo "Installing Nvidia Graphics drivers..."
-sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings\
-	opencl-nvidia ocl-icd opencl-headers --noconfirm
+read -p "Install AMD Open Source Graphics Drivers? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	sudo pacman -S mesa lib32-mesa mesa-demos xf86-video-amdgpu\
+	vulkan-radeon lib32-vulkan-radeon vulkan-mesa-layer\
+	libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau --noconfirm
+fi
 
-echo "Installing Vulkan Support"
-sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader\
+read -p "Install AMD OpenCL Drivers? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	yay -S opencl-amd --noconfirm
+	sudo pacman -S ocl-icd opencl-headers --noconfirm
+fi
+
+read -p "Install Nvidia Graphics drivers? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings --noconfirm
+fi
+
+read -p "Install Nvidia CUDA Packages? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	sudo pacman -S opencl-nvidia ocl-icd opencl-headers cuda --noconfirm
+fi
+
+read -p "Install Vulkan Support? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader\
 	vulkan-headers vulkan-validation-layers vulkan-tools --noconfirm
+fi
 
 echo "Installing Developer Packages"
 sudo pacman -S go clang cmake llvm openmp python-pip linux-headers sdl2 sdl2_gfx\
@@ -60,17 +91,16 @@ makepkg -si
 cd ..
 rm -rf yay
 
-echo "Installing Openbox & Desktop Applications"
-sudo pacman -S openbox obconf lxappearance lxhotkey tint2\
-	pcmanfm xarchiver termite leafpad nitrogen blueman gnome-keyring\
+read -p "Install Openbox & Desktop Applications? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	sudo pacman -S openbox obconf lxappearance lxhotkey tint2\
+	pcmanfm xarchiver termite leafpad nitrogen gnome-keyring\
 	nm-connection-editor network-manager-applet pasystray pavucontrol --noconfirm
-
-#mkdir -p ~/.config/openbox
-#cp -a /etc/xdg/openbox/. ~/.config/openbox/
-
-yay -S powerkit --noconfirm
-sudo systemctl enable upower.service
-sudo usermod -aG video $USER
+	
+	yay -S powerkit --noconfirm
+	sudo systemctl enable upower.service
+	sudo usermod -aG video $USER
+fi
 
 echo "Configuring X11 Keyboard and Touchpad"
 sudo localectl set-x11-keymap br abnt2
