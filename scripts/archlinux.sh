@@ -122,7 +122,7 @@ if [ "$USER_INPUT" == "y" ]; then
 	read -p "Install SDDM? [y,n]: " USER_INPUT
 	if [ "$USER_INPUT" == "y" ]; then
 		sudo pacman -S sddm sddm-kcm --noconfirm
-		sudo systemctl enable sddm.service
+		#sudo systemctl enable sddm
 	fi
 fi
 
