@@ -19,7 +19,7 @@ sudo systemctl enable sshd.service
 
 read -p "Install Blutooth Services? [y,n]: " USER_INPUT
 if [ "$USER_INPUT" == "y" ]; then
-	sudo pacman -S bluez bluez-libs bluez-utils blueman --noconfirm
+	sudo pacman -S bluez bluez-libs bluez-utils --noconfirm
 	sudo systemctl enable bluetooth.service
 fi
 
@@ -29,7 +29,7 @@ sudo pacman -S gvfs --noconfirm
 echo "Installing System Sound Packages"
 sudo pacman -S alsa-utils alsa-plugins\
 	pulseaudio pulseaudio-alsa pulseaudio-bluetooth\
-       libcanberra libcanberra-pulse --noconfirm
+	libcanberra libcanberra-pulse --noconfirm
 
 echo "Installing X11 Packages"
 sudo pacman -S xorg xorg-xinit --noconfirm
@@ -96,19 +96,54 @@ if [ "$USER_INPUT" == "y" ]; then
 	sudo pacman -S openbox obconf lxappearance lxhotkey tint2\
 	pcmanfm xarchiver termite leafpad nitrogen gnome-keyring\
 	nm-connection-editor network-manager-applet pasystray pavucontrol --noconfirm
-	
+
+	read -p "Install bluetooth front-end? [y,n]: " USER_INPUT
+	if [ "$USER_INPUT" == "y" ]; then
+		sudo pacman -S blueman --noconfirm
+	fi
+
 	yay -S powerkit --noconfirm
 	sudo systemctl enable upower.service
 	sudo usermod -aG video $USER
 fi
 
-echo "Configuring X11 Keyboard and Touchpad"
+read -p "Install Plasma Desktop? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	sudo pacman -S plasma-desktop powerdevil plasma-nm plasma-pa\
+		ark konsole dolphin kinfocenter spectacle okular gwenview\
+		kwrite dolphin-plugins kdegraphics-thumbnailers ffmpegthumbs\
+		user-manager xdg-desktop-portal-kde kde-gtk-config breeze-gtk kscreen kcalc --noconfirm
+	
+	read -p "Install bluetooth front-end? [y,n]: " USER_INPUT
+	if [ "$USER_INPUT" == "y" ]; then
+		sudo pacman -S bluedevil --noconfirm
+	fi
+
+	read -p "Install SDDM? [y,n]: " USER_INPUT
+	if [ "$USER_INPUT" == "y" ]; then
+		sudo pacman -S sddm sddm-kcm --noconfirm
+		sudo systemctl enable sddm.service
+	fi
+fi
+
+echo "Configuring X11 Keyboard"
 sudo localectl set-x11-keymap br abnt2
-sudo cp ../etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
+
+read -p "Configure touchpad Tap-to-click in X11? [y,n]: " USER_INPUT
+if [ "$USER_INPUT" == "y" ]; then
+	sudo cp ../etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
+fi
 
 echo "Installing Personal Programs"
-sudo pacman -S telegram-desktop vlc mpv obs-studio transmission-gtk discord blender --noconfirm
+sudo pacman -S telegram-desktop vlc mpv obs-studio discord blender kdenlive --noconfirm
 yay -S visual-studio-code-bin spotify --noconfirm
+
+read -p "Install Transmission GTK or QT? [gtk,qt]: " USER_INPUT
+if [ "$USER_INPUT" == "gtk" ]; then
+	sudo pacman -S transmission-gtk --noconfirm
+else
+	sudo pacman -S transmission-qt --noconfirm
+fi
 
 echo "Installing JAVA 8"
 sudo pacman -S jre8-openjdk jdk8-openjdk --noconfirm
