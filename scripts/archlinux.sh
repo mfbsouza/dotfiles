@@ -40,7 +40,7 @@ sudo pacman -S font-bh-ttf font-bitstream-speedo gsfonts ttf-bitstream-vera\
 
 echo "Installing TTF Fonts"
 sudo pacman -S noto-fonts ttf-hack ttf-ubuntu-font-family adobe-source-sans-pro-fonts\
-	cantarell-fonts terminus-font ttf-droid ttf-inconsolata ttf-roboto ttf-opensans --noconfirm
+	cantarell-fonts terminus-font ttf-droid ttf-inconsolata ttf-roboto ttf-roboto-mono ttf-opensans --noconfirm
 
 sudo ln -s /etc/fonts/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d
 sudo ln -s /etc/fonts/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d
