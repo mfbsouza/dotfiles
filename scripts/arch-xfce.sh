@@ -1,7 +1,7 @@
 sudo pacman -S bash-completion dmidecode vim neofetch wget picocom htop zip\
        unzip unrar net-tools openssh xdg-user-dirs bluez bluez-libs bluez-utils\
        gvfs alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pulseaudio-bluetooth\
-       libcanberra libcaberra-pulse xorg xorg-xinit ttf-bitstream-vera ttf-dejavu\
+       libcanberra libcanberra-pulse xorg xorg-xinit ttf-bitstream-vera ttf-dejavu\
        ttf-liberation noto-fonts ttf-hack ttf-ubuntu-font-family adobe-source-sans-pro-fonts\
        cantarell-fonts ttf-droid ttf-inconsolata ttf-roboto ttf-roboto-mono ttf-opensans\
        mesa lib32-mesa mesa-demos vulkan-intel libva-intel-driver libva-utils\
