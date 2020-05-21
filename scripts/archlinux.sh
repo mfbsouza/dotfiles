@@ -5,10 +5,10 @@ COMPRESSION_TOOLS="zip unzip unrar"
 SERVICES="openssh xdg-user-dirs gvfs"
 BLUE_SERVICE="bluez bluez-libs bluez-utils pulseaudio-bluetooth"
 SOUND_SYSTEM="alsa-utils alsa-plugins pulseaudio pulseaudio-alsa libcanberra libcanberra-pulse"
-XORG="xorg"
+XORG="xorg-server"
 FONTS="ttf-bitstream-vera ttf-dejavu ttf-liberation noto-fonts ttf-hack ttf-ubuntu-font-family adobe-source-sans-pro-fonts cantarell-fonts ttf-droid ttf-inconsolata ttf-roboto ttf-roboto-mono ttf-opensans"
 INTEL="mesa lib32-mesa mesa-demos vulkan-intel lib32-vulkan-intel libva-intel-driver libva-utils intel-gpu-tools"
-AMD="mesa lib32-mesa mesa-demos xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon libva-mesa-driver libva-utils"
+AMD="mesa lib32-mesa mesa-demos vulkan-radeon lib32-vulkan-radeon libva-mesa-driver libva-utils"
 NVIDIA="nvidia nvidia-utils lib32-nvidia-utils nvidia-settings"
 VULKAN_SUPPORT="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-headers vulkan-validation-layers vulkan-tools"
 DEV="go clang llvm cmake openmp python-pip linux-headers sdl2 sdl2_gfx sdl2_image sdl2_mixer sdl2_net sdl2_ttf"
@@ -32,17 +32,15 @@ if [ "$IN" == "n" ]; then
 	exit
 fi
 
-read -p "Install bluetooth packages? [y,n]: " IN
-if [ "$IN" == "n" ]; then
+read -p "Install Bluetooth packages and front-end? [blueman,blueberry,bluedevil,none,n]: " IN
+if [ "$IN" == "blueman" ]; then
+	BLUE_SERVICE="${BLUE_SERVICE} blueman"
+elif [ "$IN" == "blueberry" ]; then
+	BLUE_SERVICE="${BLUE_SERVICE} blueberry"
+elif [ "$IN" == "bluedevil" ]; then
+	BLUE_SERVICE="${BLUE_SERVICE} bluedevil"
+elif [ "$IN" == "n" ]; then
 	BLUE_SERVICE=""
-else
-	read -p "Install Bluetooth front-end? [blueman,blueberry,bluedevil,none]" IN_2
-	if [ "$IN_2" == "blueman" ]; then
-		BLUE_SERVICE="${BLUE_SERVICE} blueman"
-	elif [ "$IN_2" == "blueberry" ]; then
-		BLUE_SERVICE="${BLUE_SERVICE} blueberry"
-	elif [ "$IN_2" == "bluedevil" ]; then
-		BLUE_SERVICE="${BLUE_SERVICE} bluedevil"
 fi
 
 read -p "Install Intel GPU Drivers? [y,n]: " IN
