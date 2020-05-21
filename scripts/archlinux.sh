@@ -16,7 +16,7 @@ PLASMA="plasma-desktop powerdevil plasma-nm plasma-pa ark konsole dolphin kinfoc
 XFCE="xfce4 mousepad ristretto file-roller thunar-archive-plugin thunar-media-tags-plugin xfce4-battery-plugin xfce4-datetime-plugin xfce4-notifyd xfce4-pulseaudio-plugin pavucontrol xfce4-screensaver xfce4-screenshooter xfce4-sensors-plugin xfce4-taskmanager xfce4-xkb-plugin gnome-keyring network-manager-applet nm-connection-editor xfce4-whiskermenu-plugin"
 MATE="mate mate-extra mate-media system-config-printer gtk-engines gtk-engine-murrine network-manager-applet nm-connection-editor gnome-keyring"
 OPENBOX="openbox obconf lxappearance lxhotkey tint2 pcmanfm xarchiver termite leafpad nitrogen gnome-keyring nm-connection-editor network-manager-applet pasystray pavucontrol"
-GNOME="cheese eog evince file-roller gedit gnome-backgrounds gnome-calculator gnome-color-manager gnome-control-center gnome-disk-utility gnome-keyring gnome-logs gnome-menus gnome-screenshot gnome-session gnome-settings-daemon gnome-shell gnome-system-monitor gnome-terminal gnome-todo gnome-user-share gnome-video-effects grilo-plugins mousetweaks mutter nautilus rygel sushi totem xdg-user-dirs-gtk dconf-editor gnome-tweaks gst-libva gst-plugins-good gst-plugins-base gst-plugins-bad gst-plugins-ugly gstreamer-vaapi gtk-engines gtk-engine-murrine"
+GNOME="cheese eog evince file-roller gedit gnome-backgrounds gnome-calculator gnome-color-manager gnome-control-center gnome-disk-utility gnome-keyring gnome-logs gnome-menus gnome-screenshot gnome-session gnome-settings-daemon gnome-shell gnome-system-monitor gnome-terminal gnome-todo gnome-user-share gnome-video-effects grilo-plugins gvfs-google gvfs-nfs mutter nautilus rygel sushi xdg-user-dirs-gtk dconf-editor gnome-tweaks gtk-engines gtk-engine-murrine"
 SDDM="sddm sddm-kcm"
 LIGHTDM="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
 PROGRAMS="firefox telegram-desktop vlc mpv obs-studio discord blender"
@@ -122,3 +122,4 @@ if [ "$IN" == "y" ]; then
 fi
 
 echo "Remeber to systemd enable your DM and Bluetooth"
+echo "If using gdm remeber to /etc/gdm/custom"
