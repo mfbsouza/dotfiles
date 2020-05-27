@@ -19,27 +19,27 @@ OPENBOX="openbox obconf lxappearance lxhotkey tint2 pcmanfm xarchiver termite le
 GNOME="cheese eog evince file-roller gedit gnome-backgrounds gnome-calculator gnome-color-manager gnome-control-center gnome-disk-utility gnome-keyring gnome-logs gnome-menus gnome-screenshot gnome-session gnome-settings-daemon gnome-shell gnome-system-monitor gnome-terminal gnome-todo gnome-user-share gnome-video-effects grilo-plugins gvfs-google gvfs-nfs mutter nautilus rygel sushi xdg-user-dirs-gtk dconf-editor gnome-tweaks gtk-engines gtk-engine-murrine"
 SDDM="sddm sddm-kcm"
 LIGHTDM="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
-PROGRAMS="firefox telegram-desktop vlc mpv obs-studio discord blender"
-JAVA="jre8-openjdk jdk8-openjdk"
+JAVA="jre8-openjdk"
 VIRT="qemu libvirt virt-manager ebtables dnsmasq"
 
 VIDEO=""
 DM=""
 DE=""
+PROGRAMS=""
 
 read -p "Arch Linux Pos install Script by github.com/mfbsouza. Continue [y,n]: " IN
 if [ "$IN" == "n" ]; then
 	exit
 fi
 
-read -p "Install Bluetooth packages and front-end? [blueman,blueberry,bluedevil,none,n]: " IN
+read -p "Install Bluetooth packages and front-end? [blueman,blueberry,bluedevil,nofront,noblue]: " IN
 if [ "$IN" == "blueman" ]; then
 	BLUE_SERVICE="${BLUE_SERVICE} blueman"
 elif [ "$IN" == "blueberry" ]; then
 	BLUE_SERVICE="${BLUE_SERVICE} blueberry"
 elif [ "$IN" == "bluedevil" ]; then
 	BLUE_SERVICE="${BLUE_SERVICE} bluedevil"
-elif [ "$IN" == "n" ]; then
+elif [ "$IN" == "noblue" ]; then
 	BLUE_SERVICE=""
 fi
 
@@ -82,10 +82,56 @@ elif [ "$IN" == "gdm" ]; then
 	DM="gdm"
 fi
 
-read -p "Install Transmissioon QT or GTK [qt,gtk]: " IN
+read -p "Install Virtualization Tools? [y,n]: " IN
+if [ "$IN" == "n" ]; then
+	VIRT=""
+fi
+
+echo "Some desktop applications:"
+read -p "Install Mozilla Firefox? [y,n]: " IN
+if [ "$IN" == "y" ]; then
+	PROGRAMS="${PROGRAMS} firefox"
+fi
+
+read -p "Install Chromium Web Browser? [y,n]: " IN
+if [ "$IN" == "y" ]; then
+	PROGRAMS="${PROGRAMS} chromium"
+fi
+
+read -p "Install Telegram Desktop? [y,n]: " IN
+if [ "$IN" == "y" ]; then
+	PROGRAMS="${PROGRAMS} telegram-desktop"
+fi
+
+read -p "Install VLC? [y,n]: " IN
+if [ "$IN" == "y" ]; then
+	PROGRAMS="${PROGRAMS} vlc"
+fi
+
+read -p "Install MPV? [y,n]: " IN
+if [ "$IN" == "y" ]; then
+	PROGRAMS="${PROGRAMS} mpv"
+fi
+
+read -p "Install OBS Studio? [y,n]: " IN
+if [ "$IN" == "y" ]; then
+	PROGRAMS="${PROGRAMS} obs-studio"
+fi
+
+read -p "Install Discord? [y,n]: " IN
+if [ "$IN" == "y" ]; then
+	PROGRAMS="${PROGRAMS} discord"
+fi
+
+read -p "Install Blender? [y,n]: " IN
+if [ "$IN" == "y" ]; then
+	PROGRAMS="${PROGRAMS} blender"
+fi
+
+read -p "Install Transmissioon QT or GTK [qt,gtk,none]: " IN
 if [ "$IN" == "qt" ]; then
 	PROGRAMS="${PROGRAMS} transmission-qt"
-else
+elif [ "$IN" == "gtk" ]; then
 	PROGRAMS="${PROGRAMS} transmission-gtk"
 fi
 
@@ -106,15 +152,13 @@ if [ "$IN" == "y" ]; then
 fi
 
 sudo systemctl enable sshd.service
-sudo ln -s /etc/fonts/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d
-sudo ln -s /etc/fonts/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d
 
 read -p "Set xkbmap to BR ABNT2? [y,n]: " IN
 if [ "$IN" == "y" ]; then
 	sudo localectl set-x11-keymap br abnt2
 fi
 
-read -p "Configure touchpad tap-to-click in X11? [y,n]: " IN
+read -p "Configure touchpad tap-to-click in X11? (recomend only for WM users) [y,n]: " IN
 if [ "$IN" == "y" ]; then
 	sudo cp ../etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
 fi
