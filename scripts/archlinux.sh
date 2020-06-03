@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONSOLE_TOOLS="bash-completion dmidecode vim neofetch wget picocom htop net-tools"
+CONSOLE_TOOLS="bash-completion dmidecode wget picocom net-tools"
 COMPRESSION_TOOLS="zip unzip unrar"
 SERVICES="openssh xdg-user-dirs gvfs"
 BLUE_SERVICE="bluez bluez-libs bluez-utils pulseaudio-bluetooth"
@@ -165,3 +165,4 @@ fi
 
 echo "Remeber to systemd enable your DM and Bluetooth"
 echo "If using gdm remeber to /etc/gdm/custom"
+echo "set libva driver name"
