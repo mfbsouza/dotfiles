@@ -158,11 +158,6 @@ if [ "$IN" == "y" ]; then
 	sudo localectl set-x11-keymap br abnt2
 fi
 
-read -p "Configure touchpad tap-to-click in X11? (recomend only for WM users) [y,n]: " IN
-if [ "$IN" == "y" ]; then
-	sudo cp ../etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
-fi
-
 echo "Remeber to systemd enable your DM and Bluetooth"
 echo "If using gdm remeber to /etc/gdm/custom"
 echo "set libva driver name"
