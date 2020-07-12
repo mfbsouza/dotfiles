@@ -2,8 +2,8 @@
 
 #mfbsouza's shell script for setting up dotfiles
 
-dotfiles=(".bashrc" ".alsoftrc" ".openalrc")
-configs=("chromium-flags.conf")
+dotfiles=(".bashrc")
+configs=()
 
 config_dir="${PWD}/.config"
 dir="${PWD}"
