@@ -3,7 +3,7 @@
 #mfbsouza's shell script for setting up dotfiles
 
 dotfiles=(".bashrc")
-configs=()
+configs=("mpv" "MangoHud")
 
 config_dir="${PWD}/.config"
 dir="${PWD}"
