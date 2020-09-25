@@ -2,7 +2,7 @@
 
 #mfbsouza's shell script for setting up dotfiles
 
-dotfiles=(".bashrc")
+dotfiles=(".bashrc .bash_profile")
 configs=("mpv" "MangoHud")
 
 config_dir="${PWD}/.config"
