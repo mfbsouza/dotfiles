@@ -6,5 +6,5 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-export MANGOHUD=1
+# export MANGOHUD=1
 export MOZ_X11_EGL=1
