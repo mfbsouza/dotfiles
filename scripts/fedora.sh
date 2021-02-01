@@ -47,7 +47,7 @@ sudo dnf install $PROG $TOOLS $WINE
 
 # Ligando serviços
 
-sudo systemctl enable sshd
+#sudo systemctl enable sshd
 
 # Lembretes
 
@@ -61,3 +61,5 @@ echo ""
 echo "sudo dnf install C development Tools and Libraries "
 echo "sudo dnf install Development Tools"
 echo "sudo dnf install wine"
+echo ""
+echo "atualizar os programas default"
