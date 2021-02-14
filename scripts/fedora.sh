@@ -15,7 +15,7 @@ PROG="steam blender obs-studio telegram-desktop discord mpv lutris transmission-
 
 # Ferramentas
 
-TOOLS="vulkan-tools lm-sensors kernel-tools neofetch lshw procinfo android-tools"
+TOOLS="vulkan-tools lm_sensors kernel-tools neofetch lshw procinfo android-tools"
 
 # Programming
 

@@ -10,7 +10,7 @@ current_config_path = join(current_path, '.config')
 home_path = environ['HOME']
 default_config_path = join(home_path, '.config')
 
-ignore = ['README.md', 'setup.py', '.git']
+ignore = ['README.md', 'setup.py', '.git', 'scripts']
 
 for element in listdir(current_path):
     if isfile(join(current_path, element)) and element not in ignore:
