@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Pre requisitos:
-# fastestmirror=1 e max_parallel_downloads=10 em dnf.conf
+# max_parallel_downloads=10 em dnf.conf
 # Update automaticos desativados no Software
 # RPM FUSION ativado
 # Sistema atualizado
@@ -11,7 +11,7 @@
 
 # Programas
 
-PROG="steam blender obs-studio telegram-desktop discord mpv lutris transmission-gtk mangohud audacity"
+PROG="steam blender obs-studio telegram-desktop discord mpv lutris transmission-gtk mangohud audacity gimp vim"
 
 # Ferramentas
 
@@ -44,22 +44,26 @@ fi
 # Instalando
 
 sudo dnf install $PROG $TOOLS $WINE $FONTS
+sudo dnf groupinstall "C development Tool and Libraries"
+sudo dnf groupinstall "Development Tools"
+sudo dnf install wine
 
 # Ligando serviços
 
-#sudo systemctl enable sshd
+echo "Ligando SSH Deamon"
+
+sudo systemctl enable sshd
+sudo systemctl start sshd
+
+echo "Adiocionando usuario para o dialout"
+
+sudo usermod -a -G dialout $USER
+
+echo "Instalando pacotes de virtualização"
+
+sudo dnf install @virtualization
 
 # Lembretes
 
-echo "ativar SSHD"
-echo "ativar e ligar cpupower.service"
-echo "como root cpupower frequency-set -g performance"
-echo "sudo usermod -a -G dialout $USER"
-echo "sudo dnf install @virtualization"
 echo "disable nvidia-fallback"
-echo ""
-echo "sudo dnf install C development Tools and Libraries "
-echo "sudo dnf install Development Tools"
-echo "sudo dnf install wine"
-echo ""
 echo "atualizar os programas default"
