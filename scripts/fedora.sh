@@ -43,7 +43,7 @@ fi
 
 # Instalando
 
-sudo dnf install $PROG $TOOLS $WINE
+sudo dnf install $PROG $TOOLS $WINE $FONTS
 
 # Ligando serviços
 
