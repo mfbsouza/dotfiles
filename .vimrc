@@ -8,5 +8,4 @@ set wildmenu
 set number
 set hlsearch
 
-set nowrap "dont break line
 set noswapfile

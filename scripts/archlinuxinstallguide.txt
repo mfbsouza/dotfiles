@@ -1,0 +1,213 @@
+Pre-install setup
+
+    # loadkeys br-abnt2
+    # ping -c3 google.com
+
+    Configuring pacman mirrorlist
+    
+    # wget pastebin.com/raw/CYpGGTFW
+    # mv CYpGGTFW /etc/pacman.d/mirrorlist
+    # pacman -Syy
+    
+    OR
+    
+    # pacman -Sy reflector
+    # cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+    # reflector --verbose --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+    # pacman -Syy
+    
+    (Optional) Change font
+        
+    # pacman -S terminus-font
+    # setfont ter-v24n
+    
+    Update the system clock
+    
+    # timedatectl status
+    # timedatectl set-local-rtc 1
+    # timedatectl set-ntp true
+    
+    Partitioning and formatting
+    
+    # lsblk           (to check block devices on the PC)
+    # gdisk /dev/sdX  (o Y n <enter> <enter> +300M ef00 n <enter> <enter> <enter> <enter> w Y)
+    # mkfs.fat -F32 /dev/sdX1
+    # mkfs.xfs -L "Root" /dev/sdX2
+    # mount /dev/sdX2 /mnt
+    # mkdir /mnt/boot
+    # mount /dev/sdX1 /mnt/boot
+    
+Installing base system
+
+    # pacstrap /mnt base base-devel linux OR linux-zen linux-firmware
+    # genfstab -U /mnt >> /mnt/etc/fstab
+
+Configuring base system    
+
+    # arch-chroot /mnt
+    # pacman -S networkmanager terminus-font
+    
+    Time zone
+    
+    # ln -sf /usr/share/zoneinfo/America/Recife /etc/localtime
+    # timedatectl status
+    # timedatectl set-local-rtc 1
+    # timedatectl set-ntp true
+    # hwclock --systohc --localtime
+    
+    Localization
+    
+    # nano /etc/locale.gen
+    # locale-gen
+    # echo "LANG=en_US.UTF-8" > /etc/locale.conf
+    
+    Console configuration
+    
+    # echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
+    # echo "FONT=ter-v24n" >> /etc/vconsole.conf
+    
+    Network configuration
+    
+    # echo "HOSTNAME" > /etc/hostname
+    # nano /etc/hosts
+        127.0.0.1   localhost
+        ::1         localhost
+        127.0.1.1   HOSTNAME.localdomain    HOSTNAME
+    # systemctl enable NetworkManager
+    
+    Secure Shell
+    
+    # pacman -S openssh
+    # systemctl enable sshd
+        
+    Multilib configuration
+    
+    # nano /etc/pacman.conf
+    # pacman -Syy
+    
+    User configuration
+    
+    # passwd
+    # useradd -m -g users -G wheel,storage,power,rfkill,uucp -s /bin/bash USER
+    # passwd USER
+    # usermod -c 'NAME LASTNAME' USER
+    # EDITOR=nano visudo
+    
+    Ativando ZRAM
+    
+    echo 'zram' | tee /etc/modules-load.d/zram.conf
+    echo 'options zram num_devices=1' | tee /etc/modprobe.d/zram.conf
+    echo -e 'KERNEL=="zram0", ATTR{disksize}="4G" RUN="/usr/bin/mkswap /dev/zram0", TAG+="systemd"' | tee /etc/udev/rules.d/99-zram.rules
+    echo -e '/dev/zram0 none swap defaults 0 0' | tee -a /etc/fstab
+    
+    Boot configuration
+    
+    # pacman -S efibootmgr amd-ucode vim ntfs-3g
+    # bootctl --path=/boot install
+    # vim /boot/loader/loader.conf
+        default arch-*
+        
+    # /boot/loader/entries/arch.conf
+        title   ArchLinux
+        linux   /vmlinuz-linux-zen
+        initrd  /amd-ucode.img
+        initrd  /initramfs-linux-zen.img
+        options root=UUID="(r! blkid)" rw quiet amdgpu.ppfeaturemask=0xffffffff
+        
+    # vim /etc/mkinitcpio.conf
+        MODULES=(... amdgpu ...)
+        HOOKS=... consolefont
+        
+    # mkinitcpio -p linux
+    
+Reboot
+    
+    # exit
+    # umount -R /mnt
+    # poweroff
+    
+Building up the system
+
+    Console tools
+    
+    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch lshw procinfo-ng android-tools
+
+    Git
+    
+    $ sudo pacman -S git
+    $ git config --global user.name "USERNAME"
+    $ git config --global user.email "EMAIL"
+    
+    AUR Helper
+    
+    $ git clone https://aur.archlinux.org/yay.git
+    $ cd yay
+    $ makepkg -si
+    
+    Desktop Enviroment
+    
+    $ sudo pacman -S gnome dconf-editor gnome-tweaks chrome-gnome-shell
+    $ sudo vim /etc/gdm/custom.conf (disable wayland)
+    $ sudo systemctl enable gdm
+    
+    AMDGPU Drivers
+    
+    $ sudo vim /etc/pacman.conf
+        [mesa-git]
+        SigLevel = PackageOptional
+        Server = https://pkgbuild.com/~lcarlier/$repo/$arch
+    $ sudo pacman -Syy
+    $ sudo pacman -S mesa-git lib32-mesa-git xf86-video-amdgpu-git
+    
+    AMD Vulkan Drviers
+    
+    $ sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon-git lib32-vulkan-radeon-git
+    
+    Vulakn Tools
+    
+    $ sudo pacman -S vulkan-validation-layers vulkan-headers vulkan-tools mesa-demos
+    
+    AMD Proprietary OpenCL Drivers
+    
+    $ yay -S opencl-amd
+    
+    AMD Hardware Video Acceleration
+    
+    $ sudo pacman -S libva-utils
+    
+    Fonts
+    
+    $ sudo pacman -S ttf-bitstream-vera ttf-fira-mono ttf-dejavu tff-liberation noto-fonts ttf-hack adobe-source-sans-pro-fonts cantarell-fonts ttf-droid ttf-inconsolata ttf-roboto ttf-roboto-mono ttf-opensans
+    
+    Deveveloper packages
+    
+    $ sudo pacman -S go clang llvm cmake openmp python-pip linux-headers sdl2 sdl2_image arm-none-eabi-gcc
+    
+    JAVA
+    
+    $ sudo pacman -S jre8-openjdk
+    
+    Programs
+    
+    $ sudo pacman -S firefox blender telegram-desktop steam mpv trasmission-gtk obs-studio discord gimp gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ yay -S mangohud
+    $ yay -S corectrl
+    $ yay -S visual-studio-code-bin
+    $ yay -S spotify
+    
+    Restart the computer
+    configure the setings (microphone volume, region language, time, terminal color)
+    cd /usr/share/applications
+    sudo rm assistant.desktop avahi-discover.desktop bssh.desktop bvnc.desktop cmake-gui.desktop designer.desktop evolution-calendar.desktop gtk-lshw.desktop linguist.desktop lstopo.desktop qdbusviewer.desktop qv4l2.desktop qvidcap.desktop vim.desktop
+    sudo vim steam.desktop
+    Restart again
+    configure gnome tweaks
+    
+    Wine
+    
+    sudo pacman -Sy
+    sudo pacman -S wine-staging winetricks
+    sudo pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs cups samba dosbox
+    sudo pacman -S lutris
+    
+    
