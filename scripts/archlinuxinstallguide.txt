@@ -32,7 +32,7 @@ Pre-install setup
     # lsblk           (to check block devices on the PC)
     # gdisk /dev/sdX  (o Y n <enter> <enter> +300M ef00 n <enter> <enter> <enter> <enter> w Y)
     # mkfs.fat -F32 /dev/sdX1
-    # mkfs.xfs -L "Root" /dev/sdX2
+    # mkfs.xfs -L "ArchRoot" /dev/sdX2
     # mount /dev/sdX2 /mnt
     # mkdir /mnt/boot
     # mount /dev/sdX1 /mnt/boot
@@ -105,10 +105,10 @@ Configuring base system
     # pacman -S efibootmgr amd-ucode vim ntfs-3g
     # bootctl --path=/boot install
     # vim /boot/loader/loader.conf
-        default arch-*
+        default arch-zen.conf
         
     # /boot/loader/entries/arch.conf
-        title   ArchLinux
+        title   Arch Linux
         linux   /vmlinuz-linux-zen
         initrd  /amd-ucode.img
         initrd  /initramfs-linux-zen.img
@@ -156,6 +156,7 @@ Building up the system
         [mesa-git]
         SigLevel = PackageOptional
         Server = https://pkgbuild.com/~lcarlier/$repo/$arch
+
     $ sudo pacman -Syy
     $ sudo pacman -S mesa-git lib32-mesa-git xf86-video-amdgpu-git
     
@@ -163,15 +164,19 @@ Building up the system
     
     $ sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon-git lib32-vulkan-radeon-git
     
-    Vulakn Tools
+    Vulkan and Mesa Tools
     
-    $ sudo pacman -S vulkan-validation-layers vulkan-headers vulkan-tools mesa-demos
+    $ sudo pacman -S vulkan-tools mesa-demos
     
-    AMD Proprietary OpenCL Drivers
+    Mesa OpenCL Drivers
     
-    $ yay -S opencl-amd
-    
-    AMD Hardware Video Acceleration
+    $ sudo pacman -S opencl-mesa-git
+   
+	OpenCL Tools
+
+	$ sudo pacman -S clinfo
+ 
+    Hardware Video Acceleration Utils
     
     $ sudo pacman -S libva-utils
     
@@ -181,7 +186,7 @@ Building up the system
     
     Deveveloper packages
     
-    $ sudo pacman -S go clang llvm cmake openmp python-pip linux-headers sdl2 sdl2_image arm-none-eabi-gcc
+    $ sudo pacman -S openmp python-pip linux-headers vulkan-headers sdl2_image arm-none-eabi-gcc
     
     JAVA
     
@@ -189,7 +194,7 @@ Building up the system
     
     Programs
     
-    $ sudo pacman -S firefox blender telegram-desktop steam mpv trasmission-gtk obs-studio discord gimp gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S firefox telegram-desktop steam mpv trasmission-gtk obs-studio discord gimp gamemode lib32-gamemode kdenlive breeze breeze-gtk
     $ yay -S mangohud
     $ yay -S corectrl
     $ yay -S visual-studio-code-bin
@@ -200,8 +205,9 @@ Building up the system
     cd /usr/share/applications
     sudo rm assistant.desktop avahi-discover.desktop bssh.desktop bvnc.desktop cmake-gui.desktop designer.desktop evolution-calendar.desktop gtk-lshw.desktop linguist.desktop lstopo.desktop qdbusviewer.desktop qv4l2.desktop qvidcap.desktop vim.desktop
     sudo vim steam.desktop
+	tweaks
+	dconf
     Restart again
-    configure gnome tweaks
     
     Wine
     
