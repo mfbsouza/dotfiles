@@ -39,7 +39,7 @@ Pre-install setup
     
 Installing base system
 
-    # pacstrap /mnt base base-devel (linux AND/OR linux-zen) linux-firmware (xfsprogs if using xfs)
+    # pacstrap /mnt base base-devel (linux AND/OR linux-zen AND -headers) linux-firmware (xfsprogs if using xfs)
     # genfstab -U /mnt >> /mnt/etc/fstab
 
 Configuring base system    
@@ -142,22 +142,22 @@ Building up the system
     $ git clone https://aur.archlinux.org/yay.git
     $ cd yay
     $ makepkg -si
-    
-    Desktop Enviroment
-    
-    $ sudo pacman -S gnome dconf-editor gnome-tweaks chrome-gnome-shell
-    $ sudo vim /etc/gdm/custom.conf (disable wayland)
-    $ sudo systemctl enable gdm
+
+	Chaotic AUR repo
+	$ yay -S chaotic-keyring chaotic-mirrorlist --noconfirm
+	$ sudo /etc/pacman.conf
+		[chaotic-aur]
+		Include = /etc/pacman.d/chaotic-mirrorlist
     
     AMDGPU Drivers
     
-    $ sudo vim /etc/pacman.conf
-        [mesa-git]
-        SigLevel = PackageOptional
-        Server = https://pkgbuild.com/~lcarlier/$repo/$arch
+	$ sudo vim /etc/pacman.conf
+		[mesa-git]
+		SigLevel = PackageOptional
+		Server = https://pkgbuild.com/~lcarlier/$repo/$arch
 
     $ sudo pacman -Syy
-    $ sudo pacman -S mesa-git lib32-mesa-git xf86-video-amdgpu-git
+    $ sudo pacman -S mesa-git lib32-mesa-git
     
     AMD Vulkan Drviers
     
@@ -179,13 +179,19 @@ Building up the system
     
     $ sudo pacman -S libva-utils
     
+	Desktop Enviroment
+    
+    $ sudo pacman -S gnome dconf-editor gnome-tweaks chrome-gnome-shell
+    $ sudo vim /etc/gdm/custom.conf (disable wayland)
+    $ sudo systemctl enable gdm
+
     Fonts
     
     $ sudo pacman -S ttf-bitstream-vera ttf-fira-mono ttf-dejavu tff-liberation noto-fonts ttf-hack adobe-source-sans-pro-fonts ttf-droid ttf-inconsolata ttf-roboto ttf-roboto-mono ttf-opensans
     
     Deveveloper packages
     
-    $ sudo pacman -S openmp python-pip linux-headers vulkan-headers sdl2_image arm-none-eabi-gcc
+    $ sudo pacman -S openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc
     
     JAVA
     
@@ -193,11 +199,7 @@ Building up the system
     
     Programs
     
-    $ sudo pacman -S firefox telegram-desktop steam mpv trasmission-gtk obs-studio discord gimp gamemode lib32-gamemode kdenlive breeze breeze-gtk
-    $ yay -S mangohud
-    $ yay -S corectrl
-    $ yay -S visual-studio-code-bin
-    $ yay -S spotify
+    $ sudo pacman -S firefox telegram-desktop steam mpv trasmission-gtk obs-studio discord gimp gamemode lib32-gamemode kdenlive breeze breeze-gtk mangohud corectrl visual-studio-code-bin spotify
     
     Removing some program icons
     
