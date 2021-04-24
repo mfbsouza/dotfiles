@@ -2,6 +2,7 @@ Pre-install setup
 
     # loadkeys br-abnt2
     # ping -c3 google.com
+	# setfont ter-v24n
 
     Configuring pacman mirrorlist
     
@@ -16,11 +17,6 @@ Pre-install setup
     # reflector --verbose --latest 50 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
     # pacman -Syy
     
-    (Optional) Change font
-        
-    # pacman -S terminus-font
-    # setfont ter-v24n
-    
     Update the system clock
     
     # timedatectl status
@@ -30,16 +26,16 @@ Pre-install setup
     Partitioning and formatting
     
     # lsblk           (to check block devices on the PC)
-    # gdisk /dev/sdX  (o Y n <enter> <enter> +300M ef00 n <enter> <enter> <enter> <enter> w Y)
+    # gdisk /dev/sdX  (o Y n <enter> <enter> +500M ef00 n <enter> <enter> <enter> <enter> w Y)
     # mkfs.fat -F32 /dev/sdX1
-    # mkfs.xfs -L "ArchRoot" /dev/sdX2
+    # mkfs.ext4 -L "ArchRoot" /dev/sdX2
     # mount /dev/sdX2 /mnt
     # mkdir /mnt/boot
     # mount /dev/sdX1 /mnt/boot
     
 Installing base system
 
-    # pacstrap /mnt base base-devel (linux AND/OR linux-zen AND -headers) linux-firmware (xfsprogs if using xfs)
+    # pacstrap /mnt base base-devel linux AND/OR linux-zen AND -headers linux-firmware (xfsprogs if using xfs)
     # genfstab -U /mnt >> /mnt/etc/fstab
 
 Configuring base system    
@@ -117,7 +113,7 @@ Configuring base system
         MODULES=(... amdgpu ...)
         HOOKS=... consolefont
         
-    # mkinitcpio -p linux
+    # mkinitcpio -p linux-zen
     
 Reboot
     
@@ -143,33 +139,22 @@ Building up the system
     $ cd yay
     $ makepkg -si
 
-	Chaotic AUR repo
-	$ yay -S chaotic-keyring chaotic-mirrorlist --noconfirm
-	$ sudo /etc/pacman.conf
-		[chaotic-aur]
-		Include = /etc/pacman.d/chaotic-mirrorlist
+	AMDGPU Drivers
     
-    AMDGPU Drivers
-    
-	$ sudo vim /etc/pacman.conf
-		[mesa-git]
-		SigLevel = PackageOptional
-		Server = https://pkgbuild.com/~lcarlier/$repo/$arch
-
     $ sudo pacman -Syy
-    $ sudo pacman -S mesa-git lib32-mesa-git
+    $ sudo pacman -S mesa lib32-mesa libva-mesa-driver lib32-libva-mesa-driver
     
-    AMD Vulkan Drviers
+    AMD Vulkan Drivers
     
-    $ sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon-git lib32-vulkan-radeon-git
+    $ sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon
     
     Vulkan and Mesa Tools
     
     $ sudo pacman -S vulkan-tools mesa-demos
     
-    Mesa OpenCL Drivers
+    AMD OpenCL Propietary Driver
     
-    $ sudo pacman -S opencl-mesa-git
+    $ yay -S opencl-amd --noconfirm 
    
     OpenCL Tools
 
@@ -193,22 +178,15 @@ Building up the system
     
     $ sudo pacman -S openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc
     
-    JAVA
+    JAVA basic support
     
     $ sudo pacman -S jre8-openjdk
     
     Programs
     
-    $ sudo pacman -S firefox telegram-desktop steam mpv trasmission-gtk obs-studio discord gimp gamemode lib32-gamemode kdenlive breeze breeze-gtk mangohud corectrl visual-studio-code-bin spotify
-    
-    Removing some program icons
-    
-    cd /usr/share/applications
-    sudo rm assistant.desktop avahi-discover.desktop bssh.desktop bvnc.desktop cmake-gui.desktop designer.desktop evolution-calendar.desktop gtk-lshw.desktop linguist.desktop lstopo.desktop qdbusviewer.desktop qv4l2.desktop qvidcap.desktop vim.desktop
-    
-    Edit steam name
-    
-    sudo vim steam.desktop
+    $ sudo pacman -S firefox chromium code telegram-desktop steam mpv trasmission-gtk obs-studio discord gimp gamemode lib32-gamemode kdenlive breeze breeze-gtk
+
+	$ yay -S manoghud corectrl --noconfirm
     
     Restart the computer
     configure the setings (microphone volume, region language, time, terminal color, tweaks, dconf)
@@ -216,7 +194,4 @@ Building up the system
     
     Wine
     
-    sudo pacman -Sy
-    sudo pacman -S wine-staging winetricks
-    sudo pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs cups samba dosbox
-    sudo pacman -S lutris
+    sudo pacman -S wine-staging winetricks giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs cups samba dosbox lutris
