@@ -1,6 +1,4 @@
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=4 shiftwidth=4 expandtab
 
 syntax enable
 filetype indent on
