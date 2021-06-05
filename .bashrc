@@ -95,3 +95,4 @@ PS1+="\n";
 PS1+="\[${bold}\]\$ \[${reset}\]"
 
 export PS1;
+. "$HOME/.cargo/env"

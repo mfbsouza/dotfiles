@@ -4,30 +4,55 @@ from os import getcwd, listdir, environ, symlink, remove
 from os.path import isfile, isdir, join
 from shutil import rmtree
 
-current_path = getcwd()
-current_config_path = join(current_path, '.config')
+# Variables to the PATH of the ""home""" and "".config"" dir
 
-home_path = environ['HOME']
-default_config_path = join(home_path, '.config')
+src_path = getcwd()
+src_config_path = join(src_path, '.config')
 
-ignore = ['README.md', 'setup.py', '.git', 'scripts', 'Code', '.bash_profile']
+# Variables to the PATH of the real home and .condig dir
 
-for element in listdir(current_path):
-    if isfile(join(current_path, element)) and element not in ignore:
+dest_home_path = environ['HOME']
+dest_config_path = join(dest_home_path, '.config')
+
+# List of files and folder to be ignored (not installed)
+
+ignore = ['README.md', 'setup.py', 'Code']
+
+# main code
+
+print("setting up config files for the home directory")
+
+for element in listdir(src_path):
+    
+    if isfile(join(src_path, element)) and element not in ignore:
         try:
-            symlink(join(current_path, element), join(home_path, element))
+            symlink(join(src_path, element), join(dest_home_path, element))
+            print("installed: " + str(element))
+        
         except FileExistsError:
-            remove(join(home_path, element))
-            symlink(join(current_path, element), join(home_path, element))
+            remove(join(dest_home_path, element))
+            symlink(join(src_path, element), join(dest_home_path, element))
+            print("updated: " + str(element))
 
+print("setting .config files and folders")
 
-for element in listdir(current_config_path):
-    if isdir(join(current_config_path, element)) and element not in ignore:
+for element in listdir(src_config_path):
+    
+    if element not in ignore:
         try:
-            symlink(join(current_config_path, element), join(default_config_path, element))
+            symlink(join(src_config_path, element), join(dest_config_path, element))
+            print("installed: " + str(element))
+        
         except FileExistsError:
-            rmtree(join(default_config_path, element))
-            symlink(join(current_config_path, element), join(default_config_path, element))
+            if isdir(join(src_config_path, element)):
+                rmtree(join(dest_config_path, element))
+                symlink(join(src_config_path, element), join(dest_config_path, element))
+                print("updated: " + str(element))
+            
+            elif isfile(join(src_config_path, element)):
+                remove(join(dest_config_path, element))
+                symlink(join(src_config_path, element), join(dest_config_path, element))
+                print("updated: " + str(element))
 
 
-print("finished...")
+print("done")
