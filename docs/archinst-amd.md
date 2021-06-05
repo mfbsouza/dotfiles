@@ -105,13 +105,14 @@ Note that i am using the ZEN kernel
     
     # echo 'zram' | tee /etc/modules-load.d/zram.conf
     # echo 'options zram num_devices=1' | tee /etc/modprobe.d/zram.conf
-    # echo -e 'KERNEL=="zram0", ATTR{disksize}="4G" RUN="/usr/bin/mkswap /dev/# zram0", TAG+="systemd"' | tee /etc/udev/rules.d/99-zram.rules
+    # echo -e 'KERNEL=="zram0", ATTR{disksize}="4G" RUN="/usr/bin/mkswap /dev/zram0", TAG+="systemd"' | tee /etc/udev/rules.d/99-zram.rules
     # echo -e '/dev/zram0 none swap defaults 0 0' | tee -a /etc/fstab
 
 ### Boot
     
     # pacman -S efibootmgr amd-ucode ntfs-3g
     # bootctl --path=/boot install
+    
     # vim /boot/loader/loader.conf
         default arch-zen.conf
         
@@ -138,7 +139,7 @@ Note that i am using the ZEN kernel
 
 ### Console tools
 
-    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch lshw procinfo-ng android-tools
+    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch lshw procinfo-ng android-tools man-db
 
 ### Git
 
@@ -181,7 +182,7 @@ Note that i am using the ZEN kernel
 
 ### Desktop Enviroment
     
-    $ sudo pacman -S gnome (^3^33^34) dconf-editor gnome-tweaks gtk-engine-murrine chrome-gnome-shell
+    $ sudo pacman -S gnome (^3 ^33 ^34) dconf-editor gnome-tweaks gtk-engine-murrine chrome-gnome-shell
     $ sudo vim /etc/gdm/custom.conf (disable wayland)
     $ sudo systemctl enable gdm
 
@@ -205,8 +206,9 @@ Note that i am using the ZEN kernel
 
 ### Programs
     
-    $ sudo pacman -S firefox chromium code telegram-desktop steam mpv trasmission-gtk obs-studio discord gimp gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S firefox chromium telegram-desktop steam mpv trasmission-gtk obs-studio discord krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
+    $ yay -S visual-studio-code-bin --noconfirm
     $ yay -S manoghud corectrl --noconfirm
 
 ### Restart the computer
