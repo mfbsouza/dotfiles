@@ -198,7 +198,7 @@ Note that i am using the ZEN kernel
 
 ### Deveveloper packages
     
-    $ sudo pacman -S openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc
+    $ sudo pacman -S electron openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc
 
 ### JAVA basic support
     
@@ -206,9 +206,10 @@ Note that i am using the ZEN kernel
 
 ### Programs
     
-    $ sudo pacman -S firefox chromium telegram-desktop steam mpv trasmission-gtk obs-studio discord krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-gtk obs-studio krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
     $ yay -S visual-studio-code-bin --noconfirm
+    $ yay -S discord_arch_electron --noconfirm
     $ yay -S manoghud corectrl --noconfirm
 
 ### Virtualization
@@ -223,7 +224,7 @@ Enable services
 
     $ sudo systemctl enable libvirtd.service
 
-### Firefox VAAPI flags on Wayland
+### Firefox VAAPI flags
 
     media.ffmpeg.vaapi.enabled to true
     media.ffvpx.enabled to false

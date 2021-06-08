@@ -16,7 +16,7 @@ dest_config_path = join(dest_home_path, '.config')
 
 # List of files and folder to be ignored (not installed)
 
-ignore = ['README.md', 'setup.py', 'Code', 'chromium-flags.conf']
+ignore = ['README.md', 'setup.py', 'Code', '.bash_profile']
 
 # main code
 
