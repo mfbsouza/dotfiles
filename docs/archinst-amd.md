@@ -211,6 +211,26 @@ Note that i am using the ZEN kernel
     $ yay -S visual-studio-code-bin --noconfirm
     $ yay -S manoghud corectrl --noconfirm
 
+### Virtualization
+
+    $ sudo pacman -S libvirt virt-manager qemu qemu-arch-extra ovmf
+
+Networking packages
+
+    $ sudo pacman -S iptables-nft dnsmasq bridge-utils openbsd-netcat
+
+Enable services
+
+    $ sudo systemctl enable libvirtd.service
+
+### Firefox VAAPI flags on Wayland
+
+    media.ffmpeg.vaapi.enabled to true
+    media.ffvpx.enabled to false
+    media.rdd-vpx.enabled to false
+    media.navigator.mediadatadecoder_vpx_enabled to true
+
+
 ### Restart the computer
 
     configure the setings (microphone volume, region language, time, terminal color, tweaks, dconf)
