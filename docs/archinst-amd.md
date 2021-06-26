@@ -190,7 +190,7 @@ Note that i am using the ZEN kernel
 
     $ sudo pacman -S pipewire lib32-pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack
 
-    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk
+    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk gstreamer-vaapi
 
 ### Fonts
     
