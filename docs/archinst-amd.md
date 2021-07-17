@@ -53,7 +53,7 @@ Note that i am using the ZEN kernel
 ### Chroot and some basic packages (for know)
 
     # arch-chroot /mnt
-    # pacman -Sy networkmanager terminus-font vim nano
+    # pacman -Sy networkmanager terminus-font neovim nano
 
 ### Time zone
 
@@ -108,22 +108,28 @@ Note that i am using the ZEN kernel
     # echo -e 'KERNEL=="zram0", ATTR{disksize}="4G" RUN="/usr/bin/mkswap /dev/zram0", TAG+="systemd"' | tee /etc/udev/rules.d/99-zram.rules
     # echo -e '/dev/zram0 none swap defaults 0 0' | tee -a /etc/fstab
 
+### CPUPOWER
+
+    # pacman -S cpupower
+    # nvim /etc/default/cpupower (governor='performance')
+    # sysmtectl enable cpupower.service
+
 ### Boot
     
     # pacman -S efibootmgr amd-ucode ntfs-3g
     # bootctl --path=/boot install
     
-    # vim /boot/loader/loader.conf
+    # nvim /boot/loader/loader.conf
         default arch-zen.conf
         
-    # vim /boot/loader/entries/arch.conf
+    # nvim /boot/loader/entries/arch.conf
         title   Arch Linux (with the ZEN Kernel)
         linux   /vmlinuz-linux-zen
         initrd  /amd-ucode.img
         initrd  /initramfs-linux-zen.img
-        options root=UUID="(r! blkid)" rw quiet amdgpu.ppfeaturemask=0xffffffff
+        options root=UUID="(r! blkid)" rw quiet audit=0 amdgpu.ppfeaturemask=0xffffffff
 
-    # vim /etc/mkinitcpio.conf
+    # nvim /etc/mkinitcpio.conf
         MODULES=(... amdgpu ...)
         HOOKS=... consolefont
         
@@ -139,7 +145,7 @@ Note that i am using the ZEN kernel
 
 ### Console tools
 
-    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch lshw procinfo-ng android-tools man-db
+    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch lshw procinfo-ng android-tools tree man-db
 
 ### Git
 
@@ -180,17 +186,24 @@ Note that i am using the ZEN kernel
     
     $ sudo pacman -S libva-utils
 
-### Desktop Enviroment
-    
-    $ sudo pacman -S gnome (^3 ^33 ^34) dconf-editor gnome-tweaks gtk-engine-murrine chrome-gnome-shell
-    $ sudo vim /etc/gdm/custom.conf (disable wayland)
+### Desktop Enviroment (Gnome)
+
+    $ sudo pacman -S xorg gnome dconf-editor gnome-tweaks gtk-engine-murrine
+    $ sudo nvim /etc/gdm/custom.conf (disable wayland)
     $ sudo systemctl enable gdm
+
+### Desktop Enviroment (KDE)
+
+    $ sudo pacman -S xorg plasma plasma-wayland-session
+    $ sudo pacman -S ark dolphin dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers kdenetwork-filesharing
+    $ sudo pacman -S konsole kwrite kcalc gwenview okular spectacle partitionmanager kamoso ksysmtelog sweeper
+    $ sudo systemctl enable sddm
 
 ### Pirewire
 
     $ sudo pacman -S pipewire lib32-pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack
 
-    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk gstreamer-vaapi
+    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-(gtk/kde) gstreamer-vaapi
 
 ### Fonts
     
@@ -198,7 +211,7 @@ Note that i am using the ZEN kernel
 
 ### Deveveloper packages
     
-    $ sudo pacman -S electron openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc
+    $ sudo pacman -S ccls nodejs xclip electron openmp python-pip python-pynvim vulkan-headers sdl2_image arm-none-eabi-gcc
 
 ### JAVA basic support
     
@@ -206,11 +219,11 @@ Note that i am using the ZEN kernel
 
 ### Programs
     
-    $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-gtk obs-studio krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-(gtk/qt) obs-studio krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
-    $ yay -S visual-studio-code-bin --noconfirm
     $ yay -S discord_arch_electron --noconfirm
     $ yay -S manoghud corectrl --noconfirm
+    $ yay -S bear --noconfirm
 
 ### Virtualization
 

@@ -34,7 +34,7 @@ for element in listdir(src_path):
             symlink(join(src_path, element), join(dest_home_path, element))
             print("updated: " + str(element))
 
-print("setting .config files and folders")
+print("setting up .config files and folders")
 
 for element in listdir(src_config_path):
     
