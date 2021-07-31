@@ -13,7 +13,7 @@
 download a pre-build mirrorlist
 
     # curl https://pastebin.com/raw/CYpGGTFW --output test.txt
-    # mv test.txt /etc/pacman.d/mirrorlist
+    # cat test.txt > /etc/pacman.d/mirrorlist
     # pacman -Syy
 
 or generate a new mirrorlist
@@ -27,7 +27,7 @@ or generate a new mirrorlist
 
     # timedatectl status
     # timedatectl set-local-rtc 1
-    # timedatectl set-ntp true
+    # timedatectl set-ntp 1
 
 ## Installing the base system
 
@@ -53,17 +53,19 @@ Note that i am using the ZEN kernel
 ### Chroot and some basic packages (for know)
 
     # arch-chroot /mnt
-    # pacman -Sy networkmanager terminus-font neovim nano
+    # pacman -Sy networkmanager terminus-font vim nano
 
 ### Time zone
 
     # ln -sf /usr/share/zoneinfo/America/Recife /etc/localtime
+    # timedatectl set-local-rtc 1
+    # timedatectl set-ntp 1
     # timedatectl status
     # hwclock --systohc --localtime
 
 ### Locale
 
-    # nano /etc/locale.gen
+    # nano /etc/locale.gen (uncomment en_US and pt_BR)
     # locale-gen
     # echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
@@ -111,7 +113,7 @@ Note that i am using the ZEN kernel
 ### CPUPOWER
 
     # pacman -S cpupower
-    # nvim /etc/default/cpupower (governor='performance')
+    # vim /etc/default/cpupower (governor='performance')
     # sysmtectl enable cpupower.service
 
 ### Boot
@@ -119,17 +121,17 @@ Note that i am using the ZEN kernel
     # pacman -S efibootmgr amd-ucode ntfs-3g
     # bootctl --path=/boot install
     
-    # nvim /boot/loader/loader.conf
+    # vim /boot/loader/loader.conf
         default arch-zen.conf
         
-    # nvim /boot/loader/entries/arch.conf
+    # vim /boot/loader/entries/arch.conf
         title   Arch Linux (with the ZEN Kernel)
         linux   /vmlinuz-linux-zen
         initrd  /amd-ucode.img
         initrd  /initramfs-linux-zen.img
         options root=UUID="(r! blkid)" rw quiet audit=0 amdgpu.ppfeaturemask=0xffffffff
 
-    # nvim /etc/mkinitcpio.conf
+    # vim /etc/mkinitcpio.conf
         MODULES=(... amdgpu ...)
         HOOKS=... consolefont
         
@@ -189,8 +191,9 @@ Note that i am using the ZEN kernel
 ### Desktop Enviroment (Gnome)
 
     $ sudo pacman -S xorg gnome dconf-editor gnome-tweaks gtk-engine-murrine
-    $ sudo nvim /etc/gdm/custom.conf (disable wayland)
+    $ sudo vim /etc/gdm/custom.conf (disable wayland)
     $ sudo systemctl enable gdm
+    $ yay -S chrome-gnome-shell --noconfirm
 
 ### Desktop Enviroment (KDE)
 
@@ -211,7 +214,7 @@ Note that i am using the ZEN kernel
 
 ### Deveveloper packages
     
-    $ sudo pacman -S ccls nodejs xclip electron openmp python-pip python-pynvim vulkan-headers sdl2_image arm-none-eabi-gcc
+    $ sudo pacman -S clang llvm nodejs electron openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc arm-none-eabi-newlib
 
 ### JAVA basic support
     
@@ -223,7 +226,6 @@ Note that i am using the ZEN kernel
 
     $ yay -S discord_arch_electron --noconfirm
     $ yay -S manoghud corectrl --noconfirm
-    $ yay -S bear --noconfirm
 
 ### Virtualization
 

@@ -1,12 +1,7 @@
 {
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "window.titleBarStyle": "custom",
-    "editor.minimap.enabled": false,
-    "editor.fontFamily": "'Fira Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "workbench.startupEditor": "newUntitledFile",
-    "C_Cpp.updateChannel": "Insiders",
-    "workbench.statusBar.visible": false,
-    "window.title": "",
-    "workbench.activityBar.visible": false
+    "window.menuBarVisibility": "toggle",
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": false
 }
