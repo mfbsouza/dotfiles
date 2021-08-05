@@ -13,7 +13,7 @@
 download a pre-build mirrorlist
 
     # curl https://pastebin.com/raw/CYpGGTFW --output test.txt
-    # mv test.txt /etc/pacman.d/mirrorlist
+    # cat test.txt > /etc/pacman.d/mirrorlist
     # pacman -Syy
 
 or generate a new mirrorlist
@@ -27,7 +27,7 @@ or generate a new mirrorlist
 
     # timedatectl status
     # timedatectl set-local-rtc 1
-    # timedatectl set-ntp true
+    # timedatectl set-ntp 1
 
 ## Installing the base system
 
@@ -36,7 +36,7 @@ or generate a new mirrorlist
     # lsblk           (to check block devices on the PC)
     # gdisk /dev/sdX  (o Y n <enter> <enter> +500M ef00 n <enter> <enter> <enter> <enter> w Y)
     # mkfs.fat -F32 /dev/sdX1
-    # mkfs.ext4 -L "Root" /dev/sdX2
+    # mkfs.ext4 -L "ARCHLINUX" /dev/sdX2
     # mount /dev/sdX2 /mnt
     # mkdir /mnt/boot
     # mount /dev/sdX1 /mnt/boot
@@ -53,11 +53,13 @@ Note that i am using the ZEN kernel
 ### Chroot and some basic packages (for know)
 
     # arch-chroot /mnt
-    # pacman -Sy networkmanager terminus-font vim nano
+    # pacman -Sy networkmanager networkmanager-openvpn terminus-font vim nano
 
 ### Time zone
 
     # ln -sf /usr/share/zoneinfo/America/Recife /etc/localtime
+    # timedatectl set-local-rtc 1
+    # timedatectl set-ntp 1
     # timedatectl status
     # hwclock --systohc --localtime
 
@@ -83,9 +85,9 @@ Note that i am using the ZEN kernel
     
     # systemctl enable NetworkManager
 
-### Secure Shell
+### Secure Shell and OpenVPN
     
-    # pacman -S openssh
+    # pacman -S openssh openvpn
     # systemctl enable sshd
 
 ### Multilib
@@ -127,14 +129,14 @@ Note that i am using the ZEN kernel
         linux   /vmlinuz-linux-zen
         initrd  /intel-ucode.img
         initrd  /initramfs-linux-zen.img
-        options root=UUID="(r! blkid)" rw quiet module_blacklist=nouveau,nvidia,nvidia-drm,nvidia-modeset,nvidia-uvm bbswitch.load_state=0 bbswitch.unload_state=1 
+        options root=UUID="(r! blkid)" rw quiet audit=0 pci=noaer module_blacklist=nouveau,nvidia,nvidia-drm,nvidia-modeset,nvidia-uvm bbswitch.load_state=0 bbswitch.unload_state=1 
      
     # vim /boot/loader/entries/arch-zen-nvidia.conf
         title   Arch Linux (with the ZEN Kernel & NVIDIA Optimus)
         linux   /vmlinuz-linux-zen
         initrd  /intel-ucode.img
         initrd  /initramfs-linux-zen-nvidia.img
-        options root=UUID="(r! blkid)" rw quiet nvidia-drm.modeset=1
+        options root=UUID="(r! blkid)" rw quiet audit=0 pci=noaer nvidia-drm.modeset=1
    
     # vim /etc/mkinitcpio.conf
         MODULES=(i915 bbswitch)
@@ -152,21 +154,23 @@ Note that i am using the ZEN kernel
         Type=Package
         Target=nvidia-dkms
         Target=bbswitch-dkms
-        Target=linux-zen
 
         [Action]
         Description=Update dkms modules in Linux initcpio
         Depends=mkinitcpio
         When=PostTransaction
-        NeedsTargets
-        Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /usr/bin/mkinitcpio -p linux-zen'
+        Exec=/usr/bin/mkinitcpio -P
    
     # vim /etc/mkinitcpio.d/linux-zen.preset
-        PRESETS=('default' 'default-nvidia' 'fallback')
+        PRESETS=('default' 'fallback' 'nvidia')
 
-        #default-nvidia_config="/etc/mkinitcpio-nvidia.conf"
-        #default-nvidia_image="/boot/initramfs-linux-zen-nvidia.img"
-        #default-nvidia_options=""
+        default_image="/boot/initramfs-linux-zen.img"
+        
+        fallback_image="/boot/initramfs-linux-zen-fallback.img"
+        fallback_options="-S autodetect"
+        
+        nvidia_config="/etc/mkinitcpio-nvidia.conf"
+        nvidia_image="/boot/initramfs-linux-zen-nvidia.img"
 
     # mkinitcpio -p linux-zen
 
@@ -180,7 +184,7 @@ Note that i am using the ZEN kernel
 
 ### Console tools
 
-    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch lshw procinfo-ng android-tools man-db
+    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch lshw procinfo-ng android-tools tree man-db
 
 ### Git
 
@@ -203,7 +207,7 @@ Note that i am using the ZEN kernel
 
 ### NVIDIA Drivers
     
-    $ sudo pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings nvidia-prime
+    $ sudo pacman -S nvidia-utils lib32-nvidia-utils opencl-nvidia nvidia-settings nvidia-prime
 
 ### Intel Vulkan Drivers
     
@@ -212,10 +216,6 @@ Note that i am using the ZEN kernel
 ### Vulkan and Mesa Tools
     
     $ sudo pacman -S vulkan-tools mesa-demos
-
-### AMD OpenCL Propietary Driver
-    
-    $ yay -S opencl-amd --noconfirm 
 
 ### OpenCL Tools
 
@@ -227,15 +227,16 @@ Note that i am using the ZEN kernel
 
 ### Desktop Enviroment
     
-    $ sudo pacman -S gnome (^3 ^33 ^34) dconf-editor gnome-tweaks gtk-engine-murrine chrome-gnome-shell
+    $ sudo pacman -S xorg gnome dconf-editor gnome-tweaks gtk-engine-murrine
     $ sudo vim /etc/gdm/custom.conf (disable wayland)
     $ sudo systemctl enable gdm
+    $ yay -S chrome-gnome-shell --noconfirm
 
 ### Pirewire
 
     $ sudo pacman -S pipewire lib32-pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack
 
-    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk
+    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk gstreamer-vaapi
 
 ### Fonts
     
@@ -243,7 +244,7 @@ Note that i am using the ZEN kernel
 
 ### Deveveloper packages
     
-    $ sudo pacman -S openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc
+    $ sudo pacman -S clang llvm nodejs electron openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc arm-none-eabi-newlib
 
 ### JAVA basic support
     
@@ -251,10 +252,19 @@ Note that i am using the ZEN kernel
 
 ### Programs
     
-    $ sudo pacman -S firefox chromium telegram-desktop steam mpv trasmission-gtk obs-studio discord krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-gtk obs-studio krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
     $ yay -S visual-studio-code-bin --noconfirm
-    $ yay -S manoghud corectrl --noconfirm
+    $ yay -S discord_arch_electron --noconfirm
+    $ yay -S manoghud --noconfirm
+
+### Virtualization
+
+    $ sudo pacman -S libvirt virt-manager qemu qemu-arch-extra ovmf
+
+Networking packages
+
+    $ sudo pacman -S iptables-nft dnsmasq bridge-utils openbsd-netcat
 
 ### Restart the computer
 

@@ -36,7 +36,7 @@ or generate a new mirrorlist
     # lsblk           (to check block devices on the PC)
     # gdisk /dev/sdX  (o Y n <enter> <enter> +500M ef00 n <enter> <enter> <enter> <enter> w Y)
     # mkfs.fat -F32 /dev/sdX1
-    # mkfs.ext4 -L "Root" /dev/sdX2
+    # mkfs.ext4 -L "ARCHLINUX" /dev/sdX2
     # mount /dev/sdX2 /mnt
     # mkdir /mnt/boot
     # mount /dev/sdX1 /mnt/boot
@@ -53,7 +53,7 @@ Note that i am using the ZEN kernel
 ### Chroot and some basic packages (for know)
 
     # arch-chroot /mnt
-    # pacman -Sy networkmanager terminus-font vim nano
+    # pacman -Sy networkmanager networkmanager-openvpn terminus-font vim nano
 
 ### Time zone
 
@@ -85,9 +85,9 @@ Note that i am using the ZEN kernel
     
     # systemctl enable NetworkManager
 
-### Secure Shell
+### Secure Shell and OpenVPN
     
-    # pacman -S openssh
+    # pacman -S openssh openvpn
     # systemctl enable sshd
 
 ### Multilib
@@ -124,7 +124,7 @@ Note that i am using the ZEN kernel
     # vim /boot/loader/loader.conf
         default arch-zen.conf
         
-    # vim /boot/loader/entries/arch.conf
+    # vim /boot/loader/entries/arch-zen.conf
         title   Arch Linux (with the ZEN Kernel)
         linux   /vmlinuz-linux-zen
         initrd  /amd-ucode.img
@@ -224,6 +224,7 @@ Note that i am using the ZEN kernel
     
     $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-(gtk/qt) obs-studio krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
+    $ yay -S visual-studio-code-bin --noconfirm
     $ yay -S discord_arch_electron --noconfirm
     $ yay -S manoghud corectrl --noconfirm
 
