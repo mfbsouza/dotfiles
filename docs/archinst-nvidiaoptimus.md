@@ -110,6 +110,10 @@ Note that i am using the ZEN kernel
     # echo -e 'KERNEL=="zram0", ATTR{disksize}="4G" RUN="/usr/bin/mkswap /dev/zram0", TAG+="systemd"' | tee /etc/udev/rules.d/99-zram.rules
     # echo -e '/dev/zram0 none swap defaults 0 0' | tee -a /etc/fstab
 
+### swappiness
+
+    # echo "vm.swappiness=10" > /etc/sysctl.d/99-swappiness.conf
+
 ### Kernel modules
 
     # pacman -S bbswitch-dkms nvidia-dkms (dkms status, dkms autoinstall)
