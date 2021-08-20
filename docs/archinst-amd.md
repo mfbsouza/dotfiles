@@ -230,7 +230,9 @@ Note that i am using the ZEN kernel
 
     $ yay -S visual-studio-code-bin --noconfirm
     $ yay -S discord_arch_electron --noconfirm
-    $ yay -S manoghud corectrl --noconfirm
+    $ yay -S manoghud --noconfirm 
+    $ yay -S corectrl --noconfirm
+    $ yay -S protontricks --noconfirm
 
 ### Virtualization
 
