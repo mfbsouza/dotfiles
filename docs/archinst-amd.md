@@ -33,13 +33,13 @@ or generate a new mirrorlist
 
 ### Partitioning and formatting
 
-    # lsblk           (to check block devices on the PC)
-    # gdisk /dev/sdX  (o Y n <enter> <enter> +500M ef00 n <enter> <enter> <enter> <enter> w Y)
-    # mkfs.fat -F32 /dev/sdX1
-    # mkfs.ext4 -L "ARCHLINUX" /dev/sdX2
-    # mount /dev/sdX2 /mnt
+    # lsblk               (to check block devices on the PC)
+    # gdisk /dev/nvme0n1  (o Y n <enter> <enter> +500M ef00 n <enter> <enter> <enter> <enter> w Y)
+    # mkfs.fat -F32 /dev/nvme0n1p1
+    # mkfs.ext4 -L "ARCHLINUX" /dev/nvme0n1p2
+    # mount /dev/nvme0n1p2 /mnt
     # mkdir /mnt/boot
-    # mount /dev/sdX1 /mnt/boot
+    # mount /dev/nvme0n1p1 /mnt/boot
 
 ### Installing
 
@@ -53,7 +53,7 @@ Note that i am using the ZEN kernel
 ### Chroot and some basic packages (for know)
 
     # arch-chroot /mnt
-    # pacman -Sy networkmanager networkmanager-openvpn terminus-font vim nano
+    # pacman -Sy networkmanager modemmanager usb_modeswitch terminus-font vim nano
 
 ### Time zone
 
@@ -84,6 +84,7 @@ Note that i am using the ZEN kernel
         127.0.1.1   HOSTNAME.localdomain    HOSTNAME
     
     # systemctl enable NetworkManager
+    # systemctl enable ModemManager
 
 ### Secure Shell and OpenVPN
     
@@ -103,12 +104,16 @@ Note that i am using the ZEN kernel
     # usermod -c 'NAME LASTNAME' USER
     # EDITOR=nano visudo
 
-### Ativando ZRAM
+### Ativando ZRAM como swap
     
-    # echo 'zram' | tee /etc/modules-load.d/zram.conf
-    # echo 'options zram num_devices=1' | tee /etc/modprobe.d/zram.conf
-    # echo -e 'KERNEL=="zram0", ATTR{disksize}="4G" RUN="/usr/bin/mkswap /dev/zram0", TAG+="systemd"' | tee /etc/udev/rules.d/99-zram.rules
-    # echo -e '/dev/zram0 none swap defaults 0 0' | tee -a /etc/fstab
+    # vim /etc/modules-load.d/zram.conf
+        zram
+    # vim /etc/modprobe.d/zram.conf
+        options zram num_devicees=1
+    # vim /etc/udev/rules.d/99-zram.rules
+        KERNEL=="zram0", ATTR{disksize}="4G" RUN="/usr/bin/mkswap /dev/zram0", TAG+="systemd"
+    # vim /etc/fstab
+        /dev/zram0 none swap defaults 0 0
 
 ### Swappiness
 
@@ -151,13 +156,14 @@ Note that i am using the ZEN kernel
 
 ### Console tools
 
-    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch lshw procinfo-ng android-tools tree man-db
+    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch procinfo-ng android-tools tree man-db
 
 ### Git
 
     $ sudo pacman -S git
     $ git config --global user.name "USERNAME"
     $ git config --global user.email "EMAIL"
+    $ git config --global core.editor "vim"
 
 ### AUR Helper
     
@@ -194,23 +200,25 @@ Note that i am using the ZEN kernel
 
 ### Desktop Enviroment (Gnome)
 
-    $ sudo pacman -S xorg gnome dconf-editor gnome-tweaks gtk-engine-murrine
-    $ sudo vim /etc/gdm/custom.conf (disable wayland)
+    $ sudo pacman -S gnome dconf-editor gnome-tweaks
+        (remove: ^ epiphany gnome-contacts gnome-documents gnome-maps gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan) 
+    
     $ sudo systemctl enable gdm
     $ yay -S chrome-gnome-shell --noconfirm
 
-### Desktop Enviroment (KDE)
+### Network Manager VPN front-ends
 
-    $ sudo pacman -S xorg plasma plasma-wayland-session
-    $ sudo pacman -S ark dolphin dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers kdenetwork-filesharing
-    $ sudo pacman -S konsole kwrite kcalc gwenview okular spectacle partitionmanager kamoso ksysmtelog sweeper
-    $ sudo systemctl enable sddm
+    $ sudo pacman -S networkmanager-openvpn networkmanager-l2tp strongswan
 
 ### Pirewire
 
-    $ sudo pacman -S pipewire lib32-pipewire pipewire-docs pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack
+    $ sudo pacman -S pipewire lib32-pipewire pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack
 
-    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-(gtk/kde) gstreamer-vaapi
+    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk gst-plugin-pipewire 
+
+### Gstreamer Hardware Acceleration
+
+    $ sudo pacman -S gstreamer-vaapi
 
 ### Fonts
     
@@ -218,7 +226,7 @@ Note that i am using the ZEN kernel
 
 ### Deveveloper packages
     
-    $ sudo pacman -S clang llvm nodejs electron openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc arm-none-eabi-newlib
+    $ sudo pacman -S clang llvm electron openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc arm-none-eabi-newlib
 
 ### JAVA basic support
     
@@ -226,25 +234,28 @@ Note that i am using the ZEN kernel
 
 ### Programs
     
-    $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-(gtk/qt) obs-studio krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S firefox chromium steam mpv trasmission-(gtk/qt) obs-studio krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
-    $ yay -S visual-studio-code-bin --noconfirm
-    $ yay -S discord_arch_electron --noconfirm
-    $ yay -S manoghud --noconfirm 
+    $ yay -S visual-studio-code-bin telegram-desktop-bin discord_arch_electron mangohud downgrade --noconfirm
     $ yay -S corectrl --noconfirm
     $ yay -S protontricks --noconfirm
 
 ### Virtualization
 
-    $ sudo pacman -S libvirt virt-manager qemu qemu-arch-extra ovmf
+    $ sudo pacman -S libvirt virt-manager qemu qemu-arch-extra edk2-ovmf
 
 Networking packages
 
-    $ sudo pacman -S iptables-nft dnsmasq bridge-utils openbsd-netcat
+    $ sudo pacman -S iptables-nft dnsmasq
 
 Enable services
 
     $ sudo systemctl enable libvirtd.service
+
+### Restart the computer
+
+    configure the setings (microphone volume, region language, time, terminal color, tweaks, dconf)
+    Restart again
 
 ### Firefox VAAPI flags
 
@@ -252,13 +263,9 @@ Enable services
     media.ffvpx.enabled to false
     media.rdd-vpx.enabled to false
     media.navigator.mediadatadecoder_vpx_enabled to true
-
-
-### Restart the computer
-
-    configure the setings (microphone volume, region language, time, terminal color, tweaks, dconf)
-    Restart again
+    If you experience page crashes, try setting security.sandbox.content.level to 0
 
 ### Wine
-    
-    sudo pacman -S wine-staging winetricks giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs cups samba dosbox lutris
+   
+    sudo pacman -S wine-staging winetricks lib32-giflib lib32-libpng lib32-gnutls lib32-mpg123 lib32-openal lib32-v4l-utils lib32-libpulse lib32-libjpeg-turbo lib32-libxcomposite lib32-libxinerama lib32-opencl-icd-loader lib32-libxslt lib32-libva lib32-gtk3 lib32-gst-plugins-base-libs cups samba dosbox lutris
+ 
