@@ -18,10 +18,10 @@ gwenview spectacle plasma-systemmonitor kinfocenter breeze-gtk \
 kde-gtk-config networkmanager-openvpn pipewire lib32-pipewire \
 pipewire-alsa pipewire-pulse pipewire-jack gst-plugin-pipewire \
 gstreamer-vaapi ttf-bitstream-vera ttf-fira-mono ttf-fira-code \
-ttf-fira-sans ttf-dejavu tff-liberation noto-fonts ttf-hack \
+ttf-fira-sans ttf-dejavu ttf-liberation noto-fonts ttf-hack \
 adobe-source-sans-pro-fonts ttf-droid ttf-inconsolata ttf-roboto \
 ttf-roboto-mono ttf-opensans clang llvm electron python-pip vulkan-headers \
-sdl2_image jdk8-openjdk jre8-openjdk firefox steam mpv trasmission-qt \
+sdl2_image jdk8-openjdk jre8-openjdk firefox steam mpv transmission-qt \
 obs-studio gamemode lib32-gamemode kdenlive libvirt virt-manager qemu \
 qemu-arch-extra edk2-ovmf iptables-nft dnsmasq wine-staging winetricks \
 lib32-giflib lib32-libpng lib32-gnutls lib32-mpg123 lib32-openal \
@@ -30,7 +30,7 @@ lib32-libxinerama lib32-opencl-icd-loader lib32-libxslt lib32-libva \
 lib32-gtk3 lib32-gst-plugins-base-libs cups samba dosbox lutris
 
 yay -S opencl-amd visual-studio-code-bin telegram-desktop-bin \
-discord_arch_electron mangohud downgrade--noconfirm
+discord_arch_electron mangohud downgrade --noconfirm
 
 sudo systemctl enable sddm
 sudo systemctl enable libvirtd.service

@@ -213,48 +213,6 @@ Note that i am using the ZEN kernel
 
     $ yay -S chrome-gnome-shell --noconfirm
 
-### Desktop Enviroment (Plasma)
-
-#### Basic desktop
-
-    $ sudo pacman -S xorg-server plasma-desktop (if using bluetooth: bluedevil) powerdevil plasma-nm plasma-pa kscreen xdg-desktop-portal xdg-desktop-portal-kde sddm-kcm
-
-#### Terminal
-
-    $ sudo pacman -S konsole
-
-#### File explorer
-
-    $ sudo pacman -S dolphin ark kdegraphics-thumbnailers ffmpegthumbs
-
-#### Simple text editor
-
-    $ sudo pacman -S kwrite
-
-#### Caculator
-
-    $ sudo pacman -S kcalc
-
-#### partition manager
-
-    $ sudo pacman -S partitionmanager
-
-#### screenshot and image viewer
-
-    $ sudo pacman -S gwenview spectacle
-
-#### system info
-
-    $ sudo pacman -S plasma-systemmonitor kinfocenter
-
-#### GTK compatibility
-
-    $ sudo pacman -S breeze-gtk kde-gtk-config
-
-#### enable sddm
-
-    $ sudo systemctl enable sddm
- 
 ### Network Manager VPN front-ends
 
     $ sudo pacman -S networkmanager-openvpn
