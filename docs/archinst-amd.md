@@ -58,9 +58,11 @@ Note that i am using the ZEN kernel
 ### Time zone
 
     # ln -sf /usr/share/zoneinfo/America/Recife /etc/localtime
+    
     # timedatectl set-ntp true
     # timedatectl set-local-rtc true
     # timedatectl status
+
     # hwclock --systohc --localtime
 
 ### Locale
@@ -99,9 +101,12 @@ Note that i am using the ZEN kernel
 ### User
     
     # passwd
+
     # useradd -m -g users -G wheel,storage,power,rfkill,uucp -s /bin/bash USER
     # passwd USER
+    
     # usermod -c 'NAME LASTNAME' USER
+    
     # EDITOR=nano visudo
 
 ### Ativando ZRAM como swap
@@ -128,6 +133,7 @@ Note that i am using the ZEN kernel
 ### Boot
     
     # pacman -S efibootmgr amd-ucode ntfs-3g
+    
     # bootctl --path=/boot install
     
     # vim /boot/loader/loader.conf
@@ -204,6 +210,7 @@ Note that i am using the ZEN kernel
         (remove: ^ epiphany gnome-contacts gnome-documents gnome-maps gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan) 
     
     $ sudo systemctl enable gdm
+
     $ yay -S chrome-gnome-shell --noconfirm
 
 ### Desktop Enviroment (Plasma)
@@ -274,7 +281,7 @@ Note that i am using the ZEN kernel
 
 ### Programs
     
-    $ sudo pacman -S firefox chromium steam mpv trasmission-(gtk/qt) obs-studio krita gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S firefox steam blender mpv trasmission-gtk obs-studio gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
     $ yay -S visual-studio-code-bin telegram-desktop-bin discord_arch_electron mangohud downgrade --noconfirm
     $ yay -S corectrl --noconfirm
@@ -308,4 +315,4 @@ Enable services
 ### Wine
    
     sudo pacman -S wine-staging winetricks lib32-giflib lib32-libpng lib32-gnutls lib32-mpg123 lib32-openal lib32-v4l-utils lib32-libpulse lib32-libjpeg-turbo lib32-libxcomposite lib32-libxinerama lib32-opencl-icd-loader lib32-libxslt lib32-libva lib32-gtk3 lib32-gst-plugins-base-libs cups samba dosbox lutris
- 
+
