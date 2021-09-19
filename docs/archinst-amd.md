@@ -25,9 +25,9 @@ or generate a new mirrorlist
 
 ### Update system clock
 
+    # timedatectl set-ntp true
+    # timedatectl set-local-rtc true
     # timedatectl status
-    # timedatectl set-local-rtc 1
-    # timedatectl set-ntp 1
 
 ## Installing the base system
 
@@ -58,8 +58,8 @@ Note that i am using the ZEN kernel
 ### Time zone
 
     # ln -sf /usr/share/zoneinfo/America/Recife /etc/localtime
-    # timedatectl set-local-rtc 1
-    # timedatectl set-ntp 1
+    # timedatectl set-ntp true
+    # timedatectl set-local-rtc true
     # timedatectl status
     # hwclock --systohc --localtime
 
@@ -154,16 +154,16 @@ Note that i am using the ZEN kernel
 
 ## Building up the system
 
-### Console tools
-
-    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch procinfo-ng android-tools tree man-db
-
 ### Git
 
     $ sudo pacman -S git
     $ git config --global user.name "USERNAME"
     $ git config --global user.email "EMAIL"
     $ git config --global core.editor "vim"
+
+### Console tools
+
+    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch procinfo-ng android-tools tree man-db
 
 ### AUR Helper
     
@@ -200,21 +200,61 @@ Note that i am using the ZEN kernel
 
 ### Desktop Enviroment (Gnome)
 
-    $ sudo pacman -S gnome dconf-editor gnome-tweaks
+    $ sudo pacman -S gnome dconf-editor gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk
         (remove: ^ epiphany gnome-contacts gnome-documents gnome-maps gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan) 
     
     $ sudo systemctl enable gdm
     $ yay -S chrome-gnome-shell --noconfirm
 
+### Desktop Enviroment (Plasma)
+
+#### Basic desktop
+
+    $ sudo pacman -S xorg-server plasma-desktop (if using bluetooth: bluedevil) powerdevil plasma-nm plasma-pa kscreen xdg-desktop-portal xdg-desktop-portal-kde sddm-kcm
+
+#### Terminal
+
+    $ sudo pacman -S konsole
+
+#### File explorer
+
+    $ sudo pacman -S dolphin ark kdegraphics-thumbnailers ffmpegthumbs
+
+#### Simple text editor
+
+    $ sudo pacman -S kwrite
+
+#### Caculator
+
+    $ sudo pacman -S kcalc
+
+#### partition manager
+
+    $ sudo pacman -S partitionmanager
+
+#### screenshot and image viewer
+
+    $ sudo pacman -S gwenview spectacle
+
+#### system info
+
+    $ sudo pacman -S plasma-systemmonitor kinfocenter
+
+#### GTK compatibility
+
+    $ sudo pacman -S breeze-gtk kde-gtk-config
+
+#### enable sddm
+
+    $ sudo systemctl enable sddm
+ 
 ### Network Manager VPN front-ends
 
-    $ sudo pacman -S networkmanager-openvpn networkmanager-l2tp strongswan
+    $ sudo pacman -S networkmanager-openvpn
 
 ### Pirewire
 
-    $ sudo pacman -S pipewire lib32-pipewire pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack
-
-    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk gst-plugin-pipewire 
+    $ sudo pacman -S pipewire lib32-pipewire pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack gst-plugin-pipewire 
 
 ### Gstreamer Hardware Acceleration
 
