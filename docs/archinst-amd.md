@@ -12,8 +12,8 @@
 
 download a pre-build mirrorlist
 
-    # curl https://pastebin.com/raw/CYpGGTFW --output test.txt
-    # cat test.txt > /etc/pacman.d/mirrorlist
+    # curl https://pastebin.com/raw/CYpGGTFW --output temp
+    # cat temp > /etc/pacman.d/mirrorlist
     # pacman -Syy
 
 or generate a new mirrorlist
@@ -26,8 +26,6 @@ or generate a new mirrorlist
 ### Update system clock
 
     # timedatectl set-ntp true
-    # timedatectl set-local-rtc true
-    # timedatectl status
 
 ## Installing the base system
 
@@ -53,17 +51,12 @@ Note that i am using the ZEN kernel
 ### Chroot and some basic packages (for know)
 
     # arch-chroot /mnt
-    # pacman -Sy networkmanager modemmanager usb_modeswitch terminus-font vim nano
+    # pacman -Sy networkmanager terminus-font vim nano bash-completion
 
 ### Time zone
 
     # ln -sf /usr/share/zoneinfo/America/Recife /etc/localtime
-    
-    # timedatectl set-ntp true
-    # timedatectl set-local-rtc true
-    # timedatectl status
-
-    # hwclock --systohc --localtime
+    # hwclock --systohc
 
 ### Locale
 
@@ -71,7 +64,7 @@ Note that i am using the ZEN kernel
     # locale-gen
     # echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-### Console
+### TTY
     
     # echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
     # echo "FONT=ter-v24n" >> /etc/vconsole.conf
@@ -85,8 +78,7 @@ Note that i am using the ZEN kernel
         ::1         localhost
         127.0.1.1   HOSTNAME.localdomain    HOSTNAME
     
-    # systemctl enable NetworkManager
-    # systemctl enable ModemManager
+    # systemctl enable NetworkManager   
 
 ### Secure Shell and OpenVPN
     
@@ -102,29 +94,30 @@ Note that i am using the ZEN kernel
     
     # passwd
 
-    # useradd -m -g users -G wheel,storage,power,rfkill,uucp -s /bin/bash USER
+    # useradd -m -g users -G wheel,uucp -s /bin/bash USER
     # passwd USER
     
     # usermod -c 'NAME LASTNAME' USER
     
     # EDITOR=nano visudo
 
-### Ativando ZRAM como swap
+### Ativando ZRAM como swap e ligando OOM handling
     
-    # vim /etc/modules-load.d/zram.conf
-        zram
-    # vim /etc/modprobe.d/zram.conf
-        options zram num_devicees=1
-    # vim /etc/udev/rules.d/99-zram.rules
-        KERNEL=="zram0", ATTR{disksize}="4G" RUN="/usr/bin/mkswap /dev/zram0", TAG+="systemd"
-    # vim /etc/fstab
-        /dev/zram0 none swap defaults 0 0
+    # pacman -S zram-generator
+    # vim /etc/systemd/zram-generator.conf
+        [zram0]
+    
+    # systemctl enable systemd-oomd
 
 ### Swappiness
 
     # echo "vm.swappiness=10" > /etc/sysctl.d/99-swappiness.conf
 
-### CPUPOWER
+### improve performance for SSDs
+
+    # systemctl enable fstrim.timer
+
+### set cpu gorvernor to performance
 
     # pacman -S cpupower
     # vim /etc/default/cpupower (governor='performance')
@@ -132,7 +125,7 @@ Note that i am using the ZEN kernel
 
 ### Boot
     
-    # pacman -S efibootmgr amd-ucode ntfs-3g
+    # pacman -S efibootmgr amd-ucode
     
     # bootctl --path=/boot install
     
@@ -160,6 +153,10 @@ Note that i am using the ZEN kernel
 
 ## Building up the system
 
+### redo clock sync
+
+    $ sudo timedatectl set-ntp true
+
 ### Git
 
     $ sudo pacman -S git
@@ -167,9 +164,11 @@ Note that i am using the ZEN kernel
     $ git config --global user.email "EMAIL"
     $ git config --global core.editor "vim"
 
+    # can run personal scripts from here on
+
 ### Console tools
 
-    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch procinfo-ng android-tools tree man-db
+    $ sudo pacman -S dmidecode wget picocom lm_sensors neofetch tree man-db
 
 ### AUR Helper
     
@@ -207,7 +206,7 @@ Note that i am using the ZEN kernel
 ### Desktop Enviroment (Gnome)
 
     $ sudo pacman -S gnome dconf-editor gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk
-        (remove: ^ epiphany gnome-contacts gnome-documents gnome-maps gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan) 
+        (remove: ^ epiphany gnome-books gnome-characters gnome-contacts gnome-documents gnome-font-viewer gnome-maps gnome-photos gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan) 
     
     $ sudo systemctl enable gdm
 
@@ -219,11 +218,11 @@ Note that i am using the ZEN kernel
 
 ### Pirewire
 
-    $ sudo pacman -S pipewire lib32-pipewire pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack gst-plugin-pipewire 
+    $ sudo pacman -S pipewire lib32-pipewire pipewire-alsa pipewire-pulse pipewire-jack gst-plugin-pipewire 
 
 ### Gstreamer Hardware Acceleration
 
-    $ sudo pacman -S gstreamer-vaapi
+    $ sudo pacman -S gst-libav gstreamer-vaapi
 
 ### Fonts
     
@@ -231,7 +230,7 @@ Note that i am using the ZEN kernel
 
 ### Deveveloper packages
     
-    $ sudo pacman -S clang llvm electron openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc arm-none-eabi-newlib
+    $ sudo pacman -S clang llvm electron openmp python-pip vulkan-headers arm-none-eabi-gcc arm-none-eabi-newlib
 
 ### JAVA basic support
     
@@ -239,9 +238,9 @@ Note that i am using the ZEN kernel
 
 ### Programs
     
-    $ sudo pacman -S firefox steam blender mpv trasmission-gtk obs-studio gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-gtk obs-studio gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
-    $ yay -S visual-studio-code-bin telegram-desktop-bin discord_arch_electron mangohud downgrade --noconfirm
+    $ yay -S visual-studio-code-bin discord_arch_electron mangohud downgrade --noconfirm
     $ yay -S corectrl --noconfirm
     $ yay -S protontricks --noconfirm
 

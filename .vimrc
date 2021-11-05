@@ -10,9 +10,13 @@ set background=dark
 
 " pratical
 set mouse=a
-set tabstop=4 shiftwidth=4 expandtab
+
+" use tab instead of spaces and tab size
+set tabstop=8 shiftwidth=8 noexpandtab
 filetype indent on
-set hlsearch
+
+" incremental search and hl
+set is hls
 
 set noswapfile
 
@@ -33,3 +37,5 @@ nnoremap <C-s> :w<CR>
 " use ctrl+w to exit
 nnoremap <C-w> :q<CR>
 
+" use ctrl+f to search
+map <C-F> /

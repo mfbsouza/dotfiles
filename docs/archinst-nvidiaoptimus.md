@@ -25,9 +25,7 @@ or generate a new mirrorlist
 
 ### Update system clock
 
-    # timedatectl status
-    # timedatectl set-local-rtc 1
-    # timedatectl set-ntp 1
+    # timedatectl set-ntp true
 
 ## Installing the base system
 
@@ -53,17 +51,12 @@ Note that i am using the ZEN kernel
 ### Chroot and some basic packages (for know)
 
     # arch-chroot /mnt
-    # pacman -Sy networkmanager modemmanager usb_modeswitch terminus-font vim nano
+    # pacman -Sy networkmanager terminus-font vim nano bash-completion
 
 ### Time zone
 
     # ln -sf /usr/share/zoneinfo/America/Recife /etc/localtime
-
-    # timedatectl set-local-rtc 1
-    # timedatectl set-ntp 1
-    # timedatectl status
-
-    # hwclock --systohc --localtime
+    # hwclock --systohc
 
 ### Locale
 
@@ -71,7 +64,7 @@ Note that i am using the ZEN kernel
     # locale-gen
     # echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-### Console
+### TTY
     
     # echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
     # echo "FONT=ter-v24n" >> /etc/vconsole.conf
@@ -101,31 +94,33 @@ Note that i am using the ZEN kernel
     
     # passwd
 
-    # useradd -m -g users -G wheel,storage,power,rfkill,uucp -s /bin/bash USER
+    # useradd -m -g users -G wheel,uucp -s /bin/bash USER
     # passwd USER
-
+    
     # usermod -c 'NAME LASTNAME' USER
     
     # EDITOR=nano visudo
 
-### Ativando ZRAM como swap
+### Ativando ZRAM como swap e ligando OOM handling
     
-    # vim /etc/modules-load.d/zram.conf
-        zram
-    # vim /etc/modprobe.d/zram.conf
-        options zram num_devicees=1
-    # vim /etc/udev/rules.d/99-zram.rules
-        KERNEL=="zram0", ATTR{disksize}="4G" RUN="/usr/bin/mkswap /dev/zram0", TAG+="systemd"
-    # vim /etc/fstab
-        /dev/zram0 none swap defaults 0 0
+    # pacman -S zram-generator
+    # vim /etc/systemd/zram-generator.conf
+        [zram0]
+    
+    # systemctl enable systemd-oomd
 
 ### swappiness
 
     # echo "vm.swappiness=10" > /etc/sysctl.d/99-swappiness.conf
 
-### CPUPOWER
+### improve performance for SSDs
+
+    # systemctl enable fstrim.timer
+
+### set cpu gorvernor to performance
 
     # pacman -S cpupower
+    # vim /etc/default/cpupower (governor='performance')
     # sysmtectl enable cpupower.service
 
 ### Kernel modules
@@ -134,7 +129,7 @@ Note that i am using the ZEN kernel
 
 ### Boot
 
-    # pacman -S efibootmgr intel-ucode ntfs-3g
+    # pacman -S efibootmgr intel-ucode sof-firmware
 
     # bootctl --path=/boot install
 
@@ -200,9 +195,9 @@ Note that i am using the ZEN kernel
 
 ## Building up the system
 
-### Console tools
+### redo clock sync
 
-    $ sudo pacman -S bash-completion dmidecode wget picocom net-tools zip unzip unrar lm_sensors neofetch procinfo-ng android-tools tree man-db
+    $ sudo timedatectl set-ntp true
 
 ### Git
 
@@ -210,6 +205,12 @@ Note that i am using the ZEN kernel
     $ git config --global user.name "USERNAME"
     $ git config --global user.email "EMAIL"
     $ git config --global core.editor "vim"
+
+    # can run personal scripts from here on
+
+### Console tools
+
+    $ sudo pacman -S dmidecode wget picocom lm_sensors neofetch tree man-db
 
 ### AUR Helper
     
@@ -222,15 +223,15 @@ Note that i am using the ZEN kernel
 ### Intel Drivers
 
     $ sudo pacman -Syy
-    $ sudo pacman -S mesa lib32-mesa libva-intel-driver lib32-libva-intel-driver
-
-### NVIDIA Drivers
-    
-    $ sudo pacman -S nvidia-utils lib32-nvidia-utils opencl-nvidia nvidia-settings nvidia-prime
+    $ sudo pacman -S mesa lib32-mesa intel-media-driver libvdpau-va-gl
 
 ### Intel Vulkan Drivers
     
     $ sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel lib32-vulkan-intel
+
+### NVIDIA Drivers
+    
+    $ sudo pacman -S nvidia-utils lib32-nvidia-utils opencl-nvidia nvidia-settings nvidia-prime
 
 ### Vulkan and Mesa Tools
     
@@ -244,30 +245,29 @@ Note that i am using the ZEN kernel
     
     $ sudo pacman -S libva-utils
 
-### Desktop Enviroment
-    
-    $ sudo pacman -S gnome dconf-editor gnome-tweaks
-        (remove: ^ epiphany gnome-contacts gnome-documents gnome-maps gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan) 
-    
-    $ sudo vim /etc/gdm/custom (disable wayland)
+### Desktop Enviroment (Gnome)
 
+    $ sudo pacman -S gnome dconf-editor gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk
+        (remove: ^ epiphany gnome-books gnome-characters gnome-contacts gnome-documents gnome-font-viewer gnome-maps gnome-photos gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan)
+
+    $ sudo pacman -S power-profiles-daemon
+    $ sudo systemctl enable power-profiles-daemon 
+    
     $ sudo systemctl enable gdm
 
     $ yay -S chrome-gnome-shell --noconfirm
 
 ### Network Manager VPN front-ends
 
-    $ sudo pacman -S networkmanager-openvpn networkmanager-l2tp strongswan
+    $ sudo pacman -S networkmanager-openvpn
 
 ### Pirewire
 
-    $ sudo pacman -S pipewire lib32-pipewire pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack
-
-    $ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk gst-plugin-pipewire
+    $ sudo pacman -S pipewire lib32-pipewire pipewire-alsa pipewire-pulse pipewire-jack gst-plugin-pipewire 
 
 ### Gstreamer Hardware Acceleration
 
-    $ sudo pacman -S gstreamer-vaapi
+    $ sudo pacman -S gst-libav gstreamer-vaapi
 
 ### Fonts
     
@@ -275,7 +275,7 @@ Note that i am using the ZEN kernel
 
 ### Deveveloper packages
     
-    $ sudo pacman -S clang llvm electron openmp python-pip vulkan-headers sdl2_image arm-none-eabi-gcc arm-none-eabi-newlib
+    $ sudo pacman -S clang llvm electron openmp python-pip vulkan-headers arm-none-eabi-gcc arm-none-eabi-newlib
 
 ### JAVA basic support
     
@@ -283,9 +283,9 @@ Note that i am using the ZEN kernel
 
 ### Programs
     
-    $ sudo pacman -S firefox steam blender mpv trasmission-gtk obs-studio gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-gtk obs-studio gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
-    $ yay -S visual-studio-code-bin telegram-desktop-bin discord_arch_electron mangohud downgrade --noconfirm
+    $ yay -S visual-studio-code-bin discord_arch_electron mangohud downgrade --noconfirm
     $ yay -S protontricks --noconfirm
 
 ### Virtualization
