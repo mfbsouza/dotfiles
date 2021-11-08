@@ -51,7 +51,7 @@ Note that i am using the ZEN kernel
 ### Chroot and some basic packages (for know)
 
     # arch-chroot /mnt
-    # pacman -Sy networkmanager terminus-font vim nano bash-completion
+    # pacman -Sy networkmanager terminus-font gvim nano bash-completion
 
 ### Time zone
 
@@ -240,7 +240,7 @@ Note that i am using the ZEN kernel
     
     $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-gtk obs-studio gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
-    $ yay -S visual-studio-code-bin discord_arch_electron mangohud downgrade --noconfirm
+    $ yay -S visual-studio-code-bin discord_arch_electron mangohud downgrade vgrep --noconfirm
     $ yay -S corectrl --noconfirm
     $ yay -S protontricks --noconfirm
 

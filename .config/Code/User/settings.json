@@ -2,6 +2,40 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "window.menuBarVisibility": "toggle",
-    "workbench.activityBar.visible": false,
-    "workbench.statusBar.visible": false
+    "workbench.statusBar.visible": false,
+    "[c]": {
+        "editor.wordBasedSuggestions": false,
+        "editor.suggest.insertMode": "replace",
+        "editor.semanticHighlighting.enabled": true,
+        "editor.tabSize": 4,
+        "editor.insertSpaces": false,
+        "editor.guides.indentation": false
+    },
+    "workbench.colorCustomizations": {
+        "[Minimal]": {
+            "editor.background": "#000000",
+            "sideBar.background": "#000000",
+            "sideBarSectionHeader.background": "#000000",
+            "tab.activeBackground": "#000000",
+            "tab.activeForeground": "#ffffff",
+            "tab.inactiveBackground": "#000000",
+            "tab.inactiveForeground": "#888888",
+            "tab.hoverForeground": "#ffffff",
+            "editorGroupHeader.tabsBackground": "#000000"
+        }
+    },
+    "editor.tokenColorCustomizations": {
+        "[Minimal]": {
+            "keywords": "#ace165",
+            "strings": "#1386c4"
+        }
+    },
+    "editor.fontFamily": "'monospace', monospace",
+    "editor.fontSize": 14,
+    "window.title": "${dirty}${activeEditorShort}${separator}${rootName}",
+    "workbench.startupEditor": "none",
+    "editor.scrollbar.verticalScrollbarSize": 0,
+    "workbench.colorTheme": "Minimal",
+    "workbench.iconTheme": "vs-minimal",
+    "workbench.activityBar.visible": false
 }

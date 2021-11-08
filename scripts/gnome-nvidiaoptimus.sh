@@ -28,7 +28,7 @@ lib32-libxslt lib32-libva lib32-gtk3 lib32-gst-plugins-base-libs \
 cups samba dosbox lutris
 
 yay -S chrome-gnome-shell visual-studio-code-bin \
-discord_arch_electron mangohud downgrade --noconfirm
+discord_arch_electron mangohud downgrade vgrep --noconfirm
 
 sudo systemctl enable gdm
 sudo systemctl enable libvirtd.service
@@ -38,3 +38,4 @@ echo "LIBVA_DRIVER_NAME=iHD" | sudo tee -a /etc/environment
 echo "VDPAU_DRIVER=va_gl" | sudo tee -a /etc/environment
 
 echo "yay protontricks"
+

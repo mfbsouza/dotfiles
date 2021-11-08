@@ -27,9 +27,10 @@ lib32-libxslt lib32-libva lib32-gtk3 lib32-gst-plugins-base-libs \
 cups samba dosbox lutris
 
 yay -S opencl-amd chrome-gnome-shell visual-studio-code-bin \
-discord_arch_electron mangohud downgrade --noconfirm
+discord_arch_electron mangohud downgrade vgrep --noconfirm
 
 sudo systemctl enable gdm
 sudo systemctl enable libvirtd.service
 
 echo "yay corectrl and protontricks"
+
