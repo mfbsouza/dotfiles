@@ -168,7 +168,7 @@ Note that i am using the ZEN kernel
 
 ### Console tools
 
-    $ sudo pacman -S dmidecode wget picocom lm_sensors neofetch tree man-db
+    $ sudo pacman -S dmidecode wget screen lm_sensors neofetch tree man-db
 
 ### AUR Helper
     
@@ -238,7 +238,7 @@ Note that i am using the ZEN kernel
 
 ### Programs
     
-    $ sudo pacman -S chromium firefox telegram-desktop steam mpv trasmission-gtk obs-studio gamemode lib32-gamemode kdenlive breeze breeze-gtk
+    $ sudo pacman -S chromium telegram-desktop steam mpv trasmission-gtk obs-studio gamemode lib32-gamemode kdenlive breeze breeze-gtk
 
     $ yay -S visual-studio-code-bin discord_arch_electron mangohud downgrade vgrep --noconfirm
     $ yay -S corectrl --noconfirm
@@ -260,14 +260,6 @@ Enable services
 
     configure the setings (microphone volume, region language, time, terminal color, tweaks, dconf)
     Restart again
-
-### Firefox VAAPI flags
-
-    media.ffmpeg.vaapi.enabled to true
-    media.ffvpx.enabled to false
-    media.rdd-vpx.enabled to false
-    media.navigator.mediadatadecoder_vpx_enabled to true
-    If you experience page crashes, try setting security.sandbox.content.level to 0
 
 ### Wine
    

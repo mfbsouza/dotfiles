@@ -1,3 +1,29 @@
-About
------
-A place to keep my configuration files and scripts for programs that i use on Linux
+# About
+
+A place to keep my configuration files and scripts
+
+## My Everyday Softwares
+
+- Arch Linux
+- Chromium
+- Virt-Manager
+- Transmission
+- mpv
+- vim
+- git
+- tree
+- vgrep
+- cat
+- ssh
+- screen
+
+### Gaming
+
+- Steam
+- Lutris
+- CoreCtrl
+- MangoHud
+- Discord
+- cpupower
+- gamemode
+

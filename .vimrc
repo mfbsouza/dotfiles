@@ -20,8 +20,6 @@ nnoremap <C-Down>  <C-d>
 
 " command to show changes since the last save
 command Changes :w !diff % -
-" command to clear hightlighted matches
-command Clear :noh
 
 " use alt + arrows keys to move between windows
 nnoremap <M-Left>  <C-w>h
