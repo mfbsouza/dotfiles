@@ -21,7 +21,7 @@ A place to keep my configuration files and scripts
 
 - Steam
 - Lutris
-- CoreCtrl
+- fancontrol
 - MangoHud
 - Discord
 - cpupower
