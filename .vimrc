@@ -18,6 +18,12 @@ set is hls
 nnoremap <C-Up>    <C-u>
 nnoremap <C-Down>  <C-d>
 
+" command to convert tabs to 4 spaces
+command ConvertToSpaces set tabstop=4 shiftwidth=4 expandtab | retab | w
+
+" command to convert 4 spaces to tabs
+command ConvertToTabs set tabstop=4 shiftwidth=4 noexpandtab | %retab! | w
+
 " command to show changes since the last save
 command Changes :w !diff % -
 
