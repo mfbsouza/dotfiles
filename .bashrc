@@ -63,20 +63,20 @@ git_prompt() {
     if [[ `git ls-files -u >& /dev/null` == '' ]]; then
       git diff --quiet >& /dev/null
       if [[ $? == 1 ]]; then
-        echo -n $DIRTY" ["
+        echo -n $DIRTY" ("
       else
         git diff --cached --quiet >& /dev/null
         if [[ $? == 1 ]]; then
-          echo -n $DIRTY" ["
+          echo -n $DIRTY" ("
         else
-          echo -n $CLEAN" ["
+          echo -n $CLEAN" ("
         fi
       fi
     else
       echo -n $UNMERGED
     fi
     echo -n `git branch | grep '* ' | sed 's/..//'`
-	echo -n "]"
+	echo -n ")"
   fi
 }
 
