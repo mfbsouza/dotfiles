@@ -267,6 +267,7 @@ can run my install scripts from here on
 - install desktop env 
 (remove: ^ epiphany gnome-books gnome-characters gnome-contacts gnome-font-viewer gnome-maps gnome-photos gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan)
 - install my programs
+- install developer packages
 - install gamming
 - install virtualization
 - install fonts
