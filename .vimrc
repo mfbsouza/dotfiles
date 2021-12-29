@@ -1,22 +1,19 @@
 " my personal vimrc file by github.com/mfbsouza
 
 " encoding
+set fileencodings=utf-8
 set encoding=utf-8
-set fileencoding=utf-8
 
 " use tab instead of spaces and tab size
 set tabstop=4 shiftwidth=4 noexpandtab
 filetype indent on
 
 " visual
+set hidden
 syntax enable
 set number
 set wildmenu
 set is hls
-
-" use ctrl + up and down arrows to move page up/down by half
-nnoremap <C-Up>    <C-u>
-nnoremap <C-Down>  <C-d>
 
 " command to convert tabs to 4 spaces
 command ConvertToSpaces set tabstop=4 shiftwidth=4 expandtab | retab | w
@@ -26,16 +23,4 @@ command ConvertToTabs set tabstop=4 shiftwidth=4 noexpandtab | %retab! | w
 
 " command to show changes since the last save
 command Changes :w !diff % -
-
-" use alt + arrows keys to move between windows
-nnoremap <M-Left>  <C-w>h
-nnoremap <M-Right> <C-w>l
-nnoremap <M-Up>    <C-w>k
-nnoremap <M-Down>  <C-w>j
-
-" use alt + (h,j,k,l) to resize windows
-nnoremap <M-h> :vertical resize -2<CR>
-nnoremap <M-l> :vertical resize +2<CR>
-nnoremap <M-k> :resize -2<CR>
-nnoremap <M-k> :resize +2<CR>
 

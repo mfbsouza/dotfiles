@@ -8,6 +8,7 @@ A place to keep my configuration files and scripts
 - Chromium
 - Virt-Manager
 - Transmission
+- Wireshark
 - mpv
 - vim
 - git
