@@ -5,7 +5,7 @@ A place to keep my configuration files and scripts
 ## My Everyday Softwares
 
 - Arch Linux
-- Chrome
+- Chromium
 - Virt-Manager
 - Transmission
 - Wireshark

@@ -1,6 +1,6 @@
 # My Arch Linux install step by step
 
-**WARING**: this step by step was ment for my use, there may be steps witch are not very clear what it show do (like open the editor in some file and not saying what to change on it),that is because i am used to it. If you wish to follow this, please be aware of the objectives in each step.
+**WARING**: this step by step was ment for my use, there may be steps witch are not very clear what it should do (like open the editor in some file and not saying what to change on it),that is because i am used to it. If you wish to follow this, please be aware of the objectives in each step.
 
 ## Pre-install
 
@@ -8,14 +8,14 @@
 
     # loadkeys br-abnt2
     # ping -c3 google.com
-	# setfont ter-v24n
+    # setfont ter-v24n
 
 ### Configuring pacman mirrorlist
 
-download a pre-built mirrorlist from Brazil servers
+download a pre-built mirrorlist for Brazil servers
 
-    # curl https://pastebin.com/raw/kxfEeJNC -o out.txt
-    # cat out.txt > /etc/pacman.d/mirrorlist
+    # curl https://pastebin.com/raw/kxfEeJNC -o mirrors.txt
+    # cat mirrors.txt > /etc/pacman.d/mirrorlist
     # pacman -Syy
 
 or generate a new mirrorlist
@@ -37,8 +37,8 @@ or generate a new mirrorlist
     # gdisk /dev/nvme0n1
 	(o Y n <enter> <enter> +500M ef00 n <enter> <enter> <enter> <enter> w Y)
 
-    # mkfs.fat -F32 /dev/nvme0n1p1
-    # mkfs.ext4 -L "ARCHLINUX" /dev/nvme0n1p2
+    # mkfs.fat -F32 -L "boot" /dev/nvme0n1p1
+    # mkfs.ext4 -L "rootfs" /dev/nvme0n1p2
     # mount /dev/nvme0n1p2 /mnt
     # mkdir /mnt/boot
     # mount /dev/nvme0n1p1 /mnt/boot
@@ -50,10 +50,22 @@ or generate a new mirrorlist
 
 ## Configuring the base system
 
-### Chroot and some basic packages (for know)
+### Chroot and some basic packages for a minimal system
 
     # arch-chroot /mnt
-    # pacman -Sy networkmanager terminus-font vim nano bash-completion
+
+networking
+
+    # pacman -Sy networkmanager
+
+utilities
+
+    # pacman -S vim nano git tree wget screen man-db dmidecode neofetch bash-completion lm_sensors
+
+fonts
+
+    # pacman -S terminus-font
+    # pacman -S $(pacman -Ssq noto-fonts)
 
 ### Timezone
 
@@ -128,7 +140,7 @@ or generate a new mirrorlist
 ### Boot
 
 - [Boot for Intel or AMD CPU + AMDGPU](#boot-amdgpu)
-- [Boot for laptops with Intel CPU/GPU + Nvidia](#boot-intel-laptops-wth-nvidia-optimus)
+- [Boot for laptops with Intel CPU/GPU + Nvidia](#boot-intel-laptops-with-nvidia-optimus)
 - [Boot for Intel or AMD CPU + NVIDIA](#boot-nvidiagpu)
 
 ### Boot AMDGPU
@@ -251,28 +263,30 @@ or generate a new mirrorlist
 
 ### Git
 
-    $ sudo pacman -Sy git
     $ git config --global user.name "USERNAME"
     $ git config --global user.email "EMAIL"
     $ git config --global core.editor "vim"
 
 ### Building the system up
 
-	scripts/install-env.sh (and reboot)
+	scripts/arch/env.sh (and reboot)
 
 can run my install scripts from here on
 
-- install yay 
-- install video driver
-- install desktop env 
-(remove: ^ epiphany gnome-books gnome-characters gnome-contacts gnome-font-viewer gnome-maps gnome-photos gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan)
-- install my programs
-- install developer packages
-- install gamming
-- install virtualization
-- install fonts
-- install java
-- install wine-deps
+    ./yay.sh
+    ./video-drivers.sh
+    ./multimedia.sh
+    ./de.sh
+    ./toolchains.sh (optional)
+    ./extra-fonts.sh (optional)
+    ./de-programs.sh (optional)
+    ./gaming.sh (optional)
+    ./virt.sh (optional)
+    ./java.sh (optional)
+
+if installing gnome ^ epiphany gnome-books gnome-characters gnome-contacts gnome-font-viewer gnome-maps gnome-photos gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan
+
+and run gnome-settings.sh
 
 ### Finishing Up
 
