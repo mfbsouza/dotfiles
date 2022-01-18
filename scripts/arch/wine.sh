@@ -8,5 +8,5 @@ sudo pacman -S wine-staging winetricks giflib lib32-giflib libpng \
 	libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader \
 	lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 \
 	lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs cups \
-	samba dosbox lutris
+	samba dosbox zenity lutris
 

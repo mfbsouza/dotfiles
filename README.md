@@ -6,22 +6,28 @@ A place to keep my configuration files and scripts
 
 - Arch Linux
 - Chromium
-- Virt-Manager
+- Virt-Manager/QEMU/KVM
 - Transmission
-- Wireshark
 - mpv
+
+# Dev
+
 - vim
 - git
 - tree
-- vgrep
+- ack
+- grep
+- diff
+- patch
 - cat
 - ssh
 - screen
+- Wireshark
 
 ### Gaming
 
 - Steam
-- Lutris
+- Lutris/Wine
 - fancontrol
 - MangoHud
 - Discord

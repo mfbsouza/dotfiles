@@ -60,7 +60,7 @@ networking
 
 utilities
 
-    # pacman -S vim nano git tree wget screen man-db dmidecode neofetch bash-completion lm_sensors
+    # pacman -S vim nano git tree ack wget screen man-db dmidecode neofetch bash-completion lm_sensors
 
 fonts
 
