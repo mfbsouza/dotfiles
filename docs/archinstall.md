@@ -45,7 +45,7 @@ or generate a new mirrorlist
 
 ### Installing
 
-    # pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware
+    # pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware archlinux-keyring
     # genfstab -U /mnt >> /mnt/etc/fstab
 
 ## Configuring the base system
