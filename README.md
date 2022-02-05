@@ -4,13 +4,17 @@ A place to keep my configuration files and scripts
 
 ## My Everyday Softwares
 
-- Arch Linux
-- Chromium
+- Fedora Linux
+- Chromium (freeworld)
 - Virt-Manager/QEMU/KVM
 - Transmission
-- mpv
+- Discord
+- Telegram
+- OBS Studio
+- Kdenlive
+- Mpv
 
-# Dev
+## Dev
 
 - vim
 - git
@@ -22,15 +26,12 @@ A place to keep my configuration files and scripts
 - cat
 - ssh
 - screen
-- Wireshark
 
-### Gaming
+## Gaming
 
 - Steam
 - Lutris/Wine
-- fancontrol
-- MangoHud
-- Discord
-- cpupower
 - gamemode
-
+- MangoHud
+- fancontrol
+- cpupower
