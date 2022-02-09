@@ -26,6 +26,7 @@ A place to keep my configuration files and scripts
 - cat
 - ssh
 - screen
+- ghex
 
 ## Gaming
 
