@@ -48,7 +48,7 @@ Reboot
 Remove old kernels:
 
 	$ rpm -q kernel-core
-	$ sudo dnf remove kernel-core.5.14.10-300.fc35.x86_64
+	$ sudo dnf remove kernel-core-5.14.10-300.fc35.x86_64
 
 Install kernel devel:
 
