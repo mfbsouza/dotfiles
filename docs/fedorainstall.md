@@ -39,6 +39,10 @@ Enable Mesa-git:
 
 	$ sudo dnf copr enable gloriouseggroll/mesa-aco
 
+Enable xxmitsu/game-utils for more up to date gamescope
+
+	$ sudo dnf copr enable xxmitsu/game-utils
+
 Update the system:
 
 	$ sudo dnf update --refresh
@@ -53,6 +57,13 @@ Remove old kernels:
 Install kernel devel:
 
 	$ sudo dnf install kernel-devel
+
+Add boot parameter:
+
+	# grubby --args=amdgpu.ppfeaturemask=0xffffffff --update-kernel /boot/vmlinuz-$(uname -r)
+	# grubby --info /boot/vmlinuz-$(uname -r)
+
+reboot
 
 Install RPM Fusion AppStream metadata:
 
@@ -90,10 +101,3 @@ Enable CPUPOWER for Performance governor:
 Enable Git credentials
 
 	$ git config --global credential.helper store
-
-Configure Steam Play
-
-	$ pip install protonup
-	$ mkdir -p ~/.steam/root/compatibilitytools.d/
-	$ protonup -d "~/.steam/root/compatibilitytools.d/"
-	$ protonup
