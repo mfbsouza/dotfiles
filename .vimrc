@@ -1,26 +1,18 @@
-" my personal vimrc file by github.com/mfbsouza
+" Vundle Config
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+call vundle#end()
+filetype plugin indent on
 
-" encoding
-set fileencodings=utf-8
-set encoding=utf-8
+" YCM config
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_min_num_of_chars_for_completion = 10
+set completeopt-=preview
 
-" use tab instead of spaces and tab size
-set tabstop=4 shiftwidth=4 noexpandtab
-filetype indent on
-
-" visual
-set hidden
-syntax enable
-set number
-set wildmenu
-set is hls
-
-" command to convert tabs to 4 spaces
-command ConvertToSpaces set tabstop=4 shiftwidth=4 expandtab | retab | w
-
-" command to convert 4 spaces to tabs
-command ConvertToTabs set tabstop=4 shiftwidth=4 noexpandtab | %retab! | w
-
-" command to show changes since the last save
-command Changes :w !diff % -
-
+" Popup menu color config
+highlight Pmenu ctermfg=white ctermbg=black
+highlight PmenuSel ctermfg=darkgrey ctermbg=black
