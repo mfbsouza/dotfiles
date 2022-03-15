@@ -39,10 +39,6 @@ Enable Mesa-git:
 
 	$ sudo dnf copr enable gloriouseggroll/mesa-aco
 
-Enable xxmitsu/game-utils for more up to date gamescope
-
-	$ sudo dnf copr enable xxmitsu/game-utils
-
 Update the system:
 
 	$ sudo dnf update --refresh
@@ -58,7 +54,7 @@ Install kernel devel:
 
 	$ sudo dnf install kernel-devel
 
-Add boot parameter:
+Add boot parameter for AMDGPU tweaking:
 
 	# grubby --args=amdgpu.ppfeaturemask=0xffffffff --update-kernel /boot/vmlinuz-$(uname -r)
 	# grubby --info /boot/vmlinuz-$(uname -r)
@@ -77,7 +73,7 @@ Install programs and utilities:
 
 	$ ./workspace/dotfiles/scripts/fedora/utilities.sh
 	$ ./workspace/dotfiles/scripts/fedora/toolchains.sh
-	$ ./workspace/dotfiles/scripts/fedora/de-programs.sh
+	$ sudo dnf install chrome-gnome-shell telegram-desktop mpv transmission-gtk obs-studio steam discord mangohud ghex
 
 Configure WirePlumber bug with the Logitech C270 webcam:
 
