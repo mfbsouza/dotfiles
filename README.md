@@ -4,35 +4,41 @@ A place to keep my configuration files and scripts
 
 ## My Everyday Softwares
 
+### Distro
 - Fedora Linux
-- Chromium (freeworld)
-- Virt-Manager/QEMU/KVM
+
+### Browser
+- Firefox
+
+### Text Editor
+- vim/gedit
+
+### Video/Audio Player
+- mpv
+
+### Virtualization
+- qemu/virt-manager
+
+### Torrent Client
 - Transmission
-- Discord
-- Telegram
-- OBS Studio
-- Kdenlive
-- Mpv
 
-## Dev
+### Video Recording/Streaming
+- obs studio
 
-- vim
-- git
-- tree
-- ack
-- grep
-- diff
-- patch
-- cat
+## Dev tools
 - ssh
 - screen
-- ghex
+- git, diff, patch
+- tree, ack, grep
+- cat, hexdump
+
+### Voice/Messaging
+- discord
+- telegram
 
 ## Gaming
-
-- Steam
-- Lutris/Wine
+- steam
+- wine
 - gamemode
 - MangoHud
-- fancontrol
 - cpupower
