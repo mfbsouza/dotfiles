@@ -32,13 +32,13 @@ A place to keep my configuration files and scripts
 - tree, ack, grep
 - cat, hexdump
 
-### Voice/Messaging
-- discord
-- telegram
-
 ## Gaming
 - steam
 - wine
 - gamemode
 - MangoHud
 - cpupower
+
+### Voice/Messaging
+- discord
+- telegram
