@@ -10,18 +10,18 @@ for both install methods first thing to do is enable rpm fusion
 
 ## Install
 
-- [Fedora Workstation](fedora-workstation)
-- [Fedora Netinstall](fedora-netinstall)
+- [Fedora Workstation](#fedora-workstation)
+- [Fedora Netinstall](#fedora-netinstall)
 
 ## Fedora Workstation
 
 i go with the defaults. anaconda installer it's pretty straight foward
-- [Fedora Workstation setup](fedora-workstation-setup)
+- [Fedora Workstation setup](#fedora-workstation-setup)
 
 ## Fedora Netinstall
 
 I go with the minimal install plus common standard utilities and C development tools
-- [Fedora Netinstall setup](fedora-netinstall-setup)
+- [Fedora Netinstall setup](#fedora-netinstall-setup)
 
 ## Fedora Netinstall setup
 
