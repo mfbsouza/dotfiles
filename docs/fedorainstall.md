@@ -2,98 +2,182 @@
 
 **WARING**: this step by step was ment for my use, there may be steps witch are not very clear what it should do (like open the editor in some file and not saying what to change on it),that is because i am used to it. If you wish to follow this, please be aware of the objectives in each step.
 
+## Enable RPM Fusion
+
+for both install methods first thing to do is enable rpm fusion
+
+	$ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
 ## Install
 
-i go with the defaults. anaconda installer it's pretty straight foward
+- [Fedora Workstation](fedora-workstation)
+- [Fedora Netinstall](fedora-netinstall)
 
-## Pos-install
+## Fedora Workstation
+
+i go with the defaults. anaconda installer it's pretty straight foward
+- [Fedora Workstation setup](fedora-workstation-setup)
+
+## Fedora Netinstall
+
+I go with the minimal install plus common standard utilities and C development tools
+- [Fedora Netinstall setup](fedora-netinstall-setup)
+
+## Fedora Netinstall setup
+
+	$ sudo dnf update
+
+### Installing base xorg packages and pipewire
+
+	$ sudo dnf install @base-x xorg-x11-xinit setxkbmap xkill pipewire
+
+user directories
+
+	$ sudo dnf install xdg-user-dirs
+	$ xdg-user-dirs-update
+
+### dwm window manager
+
+	$ sudo dnf install git
+	$ git clone https://git.suckless.org/dwm
+	$ git clone https://git.suckless.git/st
+
+program launcher
+
+	$ sudo dnf install dmenu
+
+file browser
+
+	$ sudo dnf install pcmanfm gvfs file-roller
+
+applets
+
+	$ sudo dnf install network-manager-applet NetworkManager-openvpn pasystray pavucontrol
+
+compile dependecies
+
+	$ sudo dnf install libX11-devel libXinerama-devel libXft-devel libXext-devel
+
+install dwm and st
+
+	$ cd dwm/ or st/
+	$ make
+	% sudo make install
+
+configure .xinitrc
+
+	$ vi ~/.xinitrc
+	setxkbmap -layout "br"
+	xrandr --output Virtual-0 --mode 1920x1080 --rate 60
+	exec dwm
+
+now can go foward with the "fedora workstation setup" after steps
+
+## Fedora Workstation setup
 
 - I don't enable the Thirdy Party Repositories
 - Disable automatic updates in Software > Update Preferences
 - Disable wayland in /etc/gdm/custom.conf
 - Reboot
 
-## Setting up the system
+configure gnome
 
-Configure git:
+	$ ./workspace/dotfiles/scripts/gnome-settings.sh
 
-	$ git config --global user.name "username"
-	$ git config --global user.email "user@email.com"
-	$ git config --global core.editor "editor"
-
-Configure Gnome:
-
-	$ ./workspace/dotfiles/scripts/arch/gnome-settings.sh
-
-Enable RPM Fusion:
-
-	$ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-
-Enable Custom Kernel:
+### Enable Custom Kernel
 
 	$ sudo dnf copr enable sentry/kernel-fsync
 
 if you don't want any official Fedora kernels and only use this one edit `/etc/yum.repos.d/fedora-updates.repo` and add: `exclude=kernel*` to the bottom of the `[updates]` section.
 
-Enable Mesa-git:
+### Enable Mesa-git
 
 	$ sudo dnf copr enable gloriouseggroll/mesa-aco
 
-Update the system:
+### Update the system
 
 	$ sudo dnf update --refresh
 
 Reboot
 
-Remove old kernels:
+### Remove old kernels
 
 	$ rpm -q kernel-core
 	$ sudo dnf remove kernel-core-5.14.10-300.fc35.x86_64
 
-Install kernel devel:
-
-	$ sudo dnf install kernel-devel
-
-Add boot parameter for AMDGPU tweaking:
+### Add boot parameter for AMDGPU tweaking
 
 	# grubby --args=amdgpu.ppfeaturemask=0xffffffff --update-kernel /boot/vmlinuz-$(uname -r)
 	# grubby --info /boot/vmlinuz-$(uname -r)
 
 reboot
 
-Install RPM Fusion AppStream metadata:
+### Install RPM Fusion AppStream metadata
 
 	$ sudo dnf groupupdate core
 
-Install Multimedia codecs:
+### Install Multimedia codecs
 
 	$ sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
-Install programs and utilities:
 
-	$ ./workspace/dotfiles/scripts/fedora/utilities.sh
-	$ ./workspace/dotfiles/scripts/fedora/toolchains.sh
+### Developement tools
+
+	$ sudo dnf install git vim ack screen
+
+configure git
+
+	$ git config --global user.name "username"
+	$ git config --global user.email "user@email.com"
+	$ git config --global core.editor "editor"
+
+### ADM tools
+
+	$ sudo dnf install htop lm_sensors neofetch kernel-tools kernel-devel
+
+### Compilers, libraries and tools
+
+avr and arm compilers & tools
+
+	$ sudo dnf install arm-none-eabi-gcc avr-gcc avr-lib avrdude
+
+vulkan
+
+	$ sudo dnf install vulkan-headers vulkan-tools
+
+### vim's Vundle and YCM
+
+	$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	$ sudo dnf install python3-pip cmake gcc-c++ python3-devel bear
+
+open vim and do a ":PlugInstall" then exit
+
+	$ cd ~/.vim/bundle/YouCompleteMe
+	$ python3 install.py --clangd-completer
+
+### desktop programs
+
 	$ sudo dnf install chrome-gnome-shell telegram-desktop mpv transmission-gtk obs-studio steam discord mangohud ghex
 
-Configure WirePlumber bug with the Logitech C270 webcam:
+### Configure WirePlumber bug with the Logitech c270 webcam
 
 	$ sudo dnf install pavucontrol (remove de pro mode in the configs, set it to mono)
 
 configure the microphone volume in the gnome settings
 
-Configure sensors and fancontrol:
+### Configure sensors and fancontrol
 
 	# sensors-detect
 	# pwmconfig (mintemp=47 maxtemp=76)
 	$ sudo systemctl enable --now fancontrol.service
 
-Enable CPUPOWER for Performance governor:
+### Enable CPUPOWER for Performance governor
 
 	$ sudo systemctl enable --now cpupower
 	$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
 **Done with the basic. Now Reboot**
 
-Enable Git credentials
+### Enable Git credentials
 
 	$ git config --global credential.helper store
