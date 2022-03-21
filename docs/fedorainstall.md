@@ -176,6 +176,12 @@ configure the microphone volume in the gnome settings
 	$ sudo systemctl enable --now cpupower
 	$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
+### Virtualization
+
+sudo dnf group install --with-optional virtualization
+sudo dnf install qemu-system-arm qemu-system-aarch64 qemu-system-riscv
+sudo systemctl enable --now libvirtd
+
 **Done with the basic. Now Reboot**
 
 ### Enable Git credentials
