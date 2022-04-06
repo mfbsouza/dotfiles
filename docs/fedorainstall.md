@@ -98,12 +98,6 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 
 	$ sudo dnf copr enable gloriouseggroll/game-utils
 
-### Enable patched glibc
-
-	$ sudo dnf copr enable gloriouseggroll/glibc
-
-if you don't want any official Fedora glibc and only use this one edit `/etc/yum.repos.d/fedora-updates.repo` and add: `exclude=glibc` to the bottom of the `[updates]` section.
-
 ### Update the system
 
 	$ sudo dnf update --refresh
@@ -167,19 +161,13 @@ open vim and do a ":PlugInstall" then exit
 
 ### desktop programs
 
-	$ sudo dnf install chrome-gnome-shell telegram-desktop mpv transmission-gtk obs-studio steam discord mangohud vkBasalt gamescope ghex
+	$ sudo dnf install telegram-desktop mpv transmission-gtk obs-studio steam discord mangohud vkBasalt gamescope
 
-### Configure WirePlumber bug with the Logitech c270 webcam
+### Configure WirePlumber "bug" with the Logitech c270 webcam
 
 	$ sudo dnf install pavucontrol (remove de pro mode in the configs, set it to mono)
 
 configure the microphone volume in the gnome settings
-
-### Configure sensors and fancontrol
-
-	# sensors-detect
-	# pwmconfig (mintemp=47 maxtemp=76)
-	$ sudo systemctl enable --now fancontrol.service
 
 ### Enable CPUPOWER for Performance governor
 
