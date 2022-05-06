@@ -109,6 +109,12 @@ Reboot
 	$ rpm -q kernel-core
 	$ sudo dnf remove kernel-core-5.14.10-300.fc35.x86_64
 
+### Add boot parameter for disabling SElinux and Audit
+
+	# grubby --args=selinux=0 --update-kernel /boot/vmlinuz-$(uname -r)
+	# grubby --args=audit=0 --update-kernel /boot/vmlinuz-$(uname -r)
+	# grubby --info /boot/vmlinuz-$(uname -r)
+
 ### Add boot parameter for AMDGPU tweaking
 
 	# grubby --args=amdgpu.ppfeaturemask=0xffffffff --update-kernel /boot/vmlinuz-$(uname -r)
