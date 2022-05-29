@@ -143,9 +143,22 @@ configure git
 
 ### ADM tools
 
-	$ sudo dnf install htop lm_sensors neofetch kernel-tools kernel-devel
+	$ sudo dnf install htop lm_sensors neofetch kernel-tools kernel-devel inxi
 
 ### Compilers, libraries and tools
+
+general
+
+	$ sudo dnf install autoconf gperf texinfo help2man libtool patch ncurses-devel perl-Thread-Queue meson ninja-build python3-pip cmake gcc-c++ python3-devel bear perl fail2ban NetworkManager-l2tp NetworkManager-l2tp-gnome NetworkManager-strongswan
+
+intel VAAPI
+
+	$ sudo dnf install libva-utils intel-media-driver
+	$ echo "LIBVA_DRIVER_NAME=iHD" | sudo tee -a /etc/environment
+
+intel GPGPU
+
+	$ sudo dnf install intel-compute-runtime clinfo
 
 avr and arm compilers & tools
 
@@ -158,7 +171,6 @@ vulkan
 ### vim's Vundle and YCM
 
 	$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-	$ sudo dnf install python3-pip cmake gcc-c++ python3-devel bear
 
 open vim and do a ":PlugInstall" then exit
 
@@ -167,13 +179,7 @@ open vim and do a ":PlugInstall" then exit
 
 ### desktop programs
 
-	$ sudo dnf install telegram-desktop mpv transmission-gtk obs-studio steam discord mangohud vkBasalt gamescope
-
-### Configure WirePlumber "bug" with the Logitech c270 webcam
-
-	$ sudo dnf install pavucontrol (remove de pro mode in the configs, set it to mono)
-
-configure the microphone volume in the gnome settings
+	$ sudo dnf install vlc transmission-gtk obs-studio steam discord mangohud vkBasalt
 
 ### Enable CPUPOWER for Performance governor
 
@@ -182,9 +188,9 @@ configure the microphone volume in the gnome settings
 
 ### Virtualization
 
-sudo dnf group install --with-optional virtualization
-sudo dnf install qemu-system-arm qemu-system-aarch64 qemu-system-riscv
-sudo systemctl enable --now libvirtd
+	sudo dnf group install --with-optional virtualization
+	sudo dnf install qemu-system-arm qemu-system-aarch64 qemu-system-riscv
+	sudo systemctl enable --now libvirtd
 
 **Done with the basic. Now Reboot**
 

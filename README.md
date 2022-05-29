@@ -14,7 +14,7 @@ A place to keep my configuration files and scripts
 - vim/gedit
 
 ### Video/Audio Player
-- mpv
+- VLC
 
 ### Virtualization
 - qemu/virt-manager
@@ -41,4 +41,3 @@ A place to keep my configuration files and scripts
 
 ### Voice/Messaging
 - discord
-- telegram
