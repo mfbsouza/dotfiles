@@ -115,9 +115,14 @@ Reboot
 	# grubby --args=audit=0 --update-kernel /boot/vmlinuz-$(uname -r)
 	# grubby --info /boot/vmlinuz-$(uname -r)
 
-### Add boot parameter for AMDGPU tweaking
+### Add boot parameter for AMDGPU tweaking (optional)
 
 	# grubby --args=amdgpu.ppfeaturemask=0xffffffff --update-kernel /boot/vmlinuz-$(uname -r)
+	# grubby --info /boot/vmlinuz-$(uname -r)
+
+### Add boot parameter for intel tweaking (optional)
+
+	# grubby --args=i915.fastboot=1 --update-kernel /boot/vmlinuz-$(uname -r)
 	# grubby --info /boot/vmlinuz-$(uname -r)
 
 reboot
@@ -135,12 +140,6 @@ reboot
 
 	$ sudo dnf install git vim ack screen
 
-configure git
-
-	$ git config --global user.name "username"
-	$ git config --global user.email "user@email.com"
-	$ git config --global core.editor "editor"
-
 ### ADM tools
 
 	$ sudo dnf install htop lm_sensors neofetch kernel-tools kernel-devel inxi
@@ -149,14 +148,18 @@ configure git
 
 general
 
-	$ sudo dnf install autoconf gperf texinfo help2man libtool patch ncurses-devel perl-Thread-Queue meson ninja-build python3-pip cmake gcc-c++ python3-devel bear perl fail2ban NetworkManager-l2tp NetworkManager-l2tp-gnome NetworkManager-strongswan
+	$ sudo dnf install autoconf gperf texinfo help2man libtool patch ncurses-devel perl-Thread-Queue meson ninja-build python3-pip cmake gcc-c++ python3-devel bear perl NetworkManager-l2tp NetworkManager-l2tp-gnome NetworkManager-strongswan fail2ban
 
 intel VAAPI
 
 	$ sudo dnf install libva-utils intel-media-driver
 	$ echo "LIBVA_DRIVER_NAME=iHD" | sudo tee -a /etc/environment
 
-intel GPGPU
+Firefox VAAPI workaround
+
+	$ echo "MOZ_DISABLE_RDD_SANDBOX=1" | sudo tee -a /etc/environment
+
+intel GPGPU (Not working right now)
 
 	$ sudo dnf install intel-compute-runtime clinfo
 
@@ -179,21 +182,24 @@ open vim and do a ":PlugInstall" then exit
 
 ### desktop programs
 
-	$ sudo dnf install vlc transmission-gtk obs-studio steam discord mangohud vkBasalt
+	$ sudo dnf install vlc transmission-gtk obs-studio mangohud vkBasalt gamescope steam
 
-### Enable CPUPOWER for Performance governor
+### Enable CPUPOWER for Performance governor (optional)
 
 	$ sudo systemctl enable --now cpupower
 	$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
 ### Virtualization
 
-	sudo dnf group install --with-optional virtualization
-	sudo dnf install qemu-system-arm qemu-system-aarch64 qemu-system-riscv
-	sudo systemctl enable --now libvirtd
+	$ sudo dnf group install --with-optional virtualization
+	$ sudo dnf install qemu-system-arm qemu-system-aarch64 qemu-system-riscv
+	$ sudo systemctl enable --now libvirtd
 
 **Done with the basic. Now Reboot**
 
-### Enable Git credentials
+### configure Git
 
+	$ git config --global user.name "username"
+	$ git config --global user.email "user@email.com"
+	$ git config --global core.editor "editor"
 	$ git config --global credential.helper store
