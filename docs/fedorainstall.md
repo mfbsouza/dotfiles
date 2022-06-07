@@ -35,7 +35,7 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 
 	$ sudo dnf update --refresh
 
-**Reboot**
+Reboot
 
 #### Remove old kernels (optional)
 
@@ -58,18 +58,17 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 	# grubby --args=i915.fastboot=1 --update-kernel /boot/vmlinuz-$(uname -r)
 	# grubby --info /boot/vmlinuz-$(uname -r)
 
-**Reboot**
+Reboot
 
-#### Install RPM Fusion AppStream metadata
+## Setting up the basic system tools
+
+#### RPM Fusion AppStream metadata
 
 	$ sudo dnf groupupdate core
 
-#### Install Multimedia codecs
+#### Multimedia codecs
 
 	$ sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
-
-
-## Setting up the basic system tools
 
 #### Development tools
 
@@ -83,7 +82,7 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 
 	$ sudo dnf install vulkan-headers vulkan-tools
 
-#### L2TP Network Manager Vpn support (optional)
+#### L2TP Network Manager VPN support (optional)
 
 	$ sudo dnf install NetworkManager-l2tp NetworkManager-l2tp-gnome NetworkManager-strongswan
 
@@ -95,23 +94,20 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 
 	$ sudo dnf install arm-none-eabi-gcc avr-gcc avr-lib avrdude
 
-## Desktop Programs
+#### Configure Git (optional)
 
-	$ sudo dnf install vlc transmission-gtk obs-studio mangohud vkBasalt gamescope steam
+	$ git config --global user.name "username"
+	$ git config --global user.email "user@email.com"
+	$ git config --global core.editor "editor"
+	$ git config --global credential.helper store
 
-#### Virt Manager
+## Optional Tweaks
 
-	$ sudo dnf group install --with-optional virtualization
-	$ sudo dnf install qemu-system-arm qemu-system-aarch64 qemu-system-riscv
-	$ sudo systemctl enable --now libvirtd
-
-### Tweaking
-
-#### Firefox VAAPI workaround
+#### Firefox VAAPI error workaround
 
 	$ echo "MOZ_DISABLE_RDD_SANDBOX=1" | sudo tee -a /etc/environment
 
-#### intel GPU VAAPI
+#### intel GPU VAAPI support
 
 	$ sudo dnf install libva-utils intel-media-driver
 	$ echo "LIBVA_DRIVER_NAME=iHD" | sudo tee -a /etc/environment
@@ -120,7 +116,7 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 
 	$ echo dev.i915.perf_stream_paranoid=0 | sudo tee -a /etc/sysctl.d/99-i915psp.conf
 
-#### intel GPGPU (Not working right now)
+#### intel GPGPU support (Not working right now)
 
 	$ sudo dnf install intel-compute-runtime clinfo
 
@@ -128,7 +124,7 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 
 	$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-open vim and do a ":PlugInstall" then exit
+install the .vimrc config file and open vim and do a ":PlugInstall" then exit
 
 	$ cd ~/.vim/bundle/YouCompleteMe
 	$ python3 install.py --clangd-completer
@@ -138,9 +134,14 @@ open vim and do a ":PlugInstall" then exit
 	$ sudo systemctl enable --now cpupower
 	$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
-#### Git
+Reboot
 
-	$ git config --global user.name "username"
-	$ git config --global user.email "user@email.com"
-	$ git config --global core.editor "editor"
-	$ git config --global credential.helper store
+## Desktop Programs
+
+	$ sudo dnf install vlc transmission-gtk obs-studio mangohud vkBasalt gamescope steam
+
+#### Virt Manager
+
+	$ sudo dnf group install --with-optional virtualization
+	$ sudo dnf install qemu-system-arm qemu-system-aarch64 qemu-system-riscv
+	$ sudo systemctl enable --now libvirtd
