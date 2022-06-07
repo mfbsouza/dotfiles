@@ -78,6 +78,10 @@ Reboot
 
 	$ sudo dnf install htop lm_sensors neofetch kernel-tools inxi
 
+#### Torrent Client
+
+	$ sudo dnf install transmission-gtk
+
 #### Vulkan Headers and Tools (optional)
 
 	$ sudo dnf install vulkan-headers vulkan-tools
@@ -136,9 +140,17 @@ install the .vimrc config file and open vim and do a ":PlugInstall" then exit
 
 Reboot
 
-## Desktop Programs
+## Desktop Applications
 
-	$ sudo dnf install vlc transmission-gtk obs-studio mangohud vkBasalt gamescope steam
+for desktop applications i use Flatpak, so i add [flathub repository](https://flatpak.org/setup/) and install via the software app
+
+- VLC
+- OBS Studio
+- Discord
+- Telegram
+- Steam
+- Lutris
+- Utils (mangohud, vkbasalt, gamescope)
 
 #### Virt Manager
 
