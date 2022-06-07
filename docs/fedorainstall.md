@@ -6,7 +6,7 @@
 
 i go with the defaults. anaconda installer it's pretty straight foward
 
-### Setting up the base system
+## Setting up the base system
 
 - I don't enable the Thirdy Party Repositories
 - Disable automatic updates in Software > Update Preferences
@@ -69,7 +69,7 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 	$ sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
 
-### Setting up the basic system tools
+## Setting up the basic system tools
 
 #### Development tools
 
@@ -95,11 +95,11 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 
 	$ sudo dnf install arm-none-eabi-gcc avr-gcc avr-lib avrdude
 
-### Desktop Programs
+## Desktop Programs
 
 	$ sudo dnf install vlc transmission-gtk obs-studio mangohud vkBasalt gamescope steam
 
-### Virtualization
+#### Virt Manager
 
 	$ sudo dnf group install --with-optional virtualization
 	$ sudo dnf install qemu-system-arm qemu-system-aarch64 qemu-system-riscv
