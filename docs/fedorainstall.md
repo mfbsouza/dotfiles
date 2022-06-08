@@ -31,6 +31,10 @@ if you don't want any official Fedora kernels and only use this one edit `/etc/y
 
 	$ sudo dnf copr enable gloriouseggroll/mesa-aco
 
+#### Enable more up to date game utils (optional)
+
+	$ sudo dnf copr enable gloriouseggroll/game-utils
+
 #### Update the system packages
 
 	$ sudo dnf update --refresh
@@ -96,7 +100,7 @@ Reboot
 
 #### AVR and ARM cross-compiler and tools (optional)
 
-	$ sudo dnf install arm-none-eabi-gcc avr-gcc avr-lib avrdude
+	$ sudo dnf install arm-none-eabi-gcc avr-gcc avr-libc avrdude
 
 #### Configure Git (optional)
 
@@ -148,9 +152,10 @@ for desktop applications i use Flatpak, so i add [flathub repository](https://fl
 - OBS Studio
 - Discord
 - Telegram
-- Steam
-- Lutris
-- Utils (mangohud, vkbasalt, gamescope)
+
+#### Steam
+
+	$ sudo dnf install gamemode gamescope mangohud vkBasalt steam
 
 #### Virt Manager
 
