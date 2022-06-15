@@ -144,6 +144,8 @@ install the .vimrc config file and open vim and do a ":PlugInstall" then exit
 
 Reboot
 
+#### Add Kstatus Systray in Gnome Extensions
+
 ## Desktop Applications
 
 for desktop applications i use Flatpak, so i add [flathub repository](https://flatpak.org/setup/) and install via the software app
@@ -152,6 +154,8 @@ for desktop applications i use Flatpak, so i add [flathub repository](https://fl
 - OBS Studio
 - Discord
 - Telegram
+- Helvum
+- EasyEffects
 
 #### Steam
 
