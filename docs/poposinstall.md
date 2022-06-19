@@ -85,12 +85,11 @@ Reboot
 
 	$ echo "MOZ_DISABLE_RDD_SANDBOX=1" | sudo tee -a /etc/environment
 
-#### intel GPU VAAPI support TODO:update
+#### intel GPU VAAPI support
 
 	$ sudo apt install vainfo
-	$ echo "LIBVA_DRIVER_NAME=iHD" | sudo tee -a /etc/environment
 
-#### intel GPU Enable performance support TODO:update
+#### intel GPU Enable performance support
 
 	$ echo dev.i915.perf_stream_paranoid=0 | sudo tee -a /etc/sysctl.d/99-i915psp.conf
 
@@ -106,13 +105,6 @@ install the .vimrc config file and open vim and do a ":PlugInstall" then exit
 
 	$ cd ~/.vim/bundle/YouCompleteMe
 	$ python3 install.py --clangd-completer
-
-#### Enable CPUPOWER for Performance governor TODO:update
-
-	$ sudo systemctl enable --now cpupower
-	$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-
-Reboot
 
 ## Desktop Applications
 
