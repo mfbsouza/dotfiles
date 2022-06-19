@@ -44,6 +44,10 @@ Reboot
 
 	$ sudo apt install ack screen autoconf automake gperf texinfo help2man libtool libtool-bin gawk libncurses-dev meson ninja-build python3-pip cmake python3-dev bear
 
+#### Codecs
+
+	$ sudo apt install ubuntu-restricted-extras ffmpegthumbnailer
+
 #### ADM tools
 
 	$ sudo apt install htop lm-sensors neofetch inxi
