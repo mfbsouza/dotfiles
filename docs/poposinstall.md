@@ -31,11 +31,6 @@ also:
 	$ sudo kernelstub -a "amdgpu.ppfeaturemask=0xffffffff"
 	$ sudo kernelstub -p
 
-#### Add boot parameter for intel GPU fastboot (optional)
-
-	$ sudo kernelstub -a "i915.fastboot=1"
-	$ sudo kernelstub -p
-
 Reboot
 
 ## Setting up the basic system tools
@@ -60,18 +55,6 @@ Reboot
 
 	$ sudo apt install libvulkan-dev vulkan-tools
 
-#### L2TP Network Manager VPN support (optional) TODO:update
-
-	$ sudo dnf install NetworkManager-l2tp NetworkManager-l2tp-gnome NetworkManager-strongswan
-
-#### Security for SSH login outside of local network (optional) TODO:update
-
-	$ sudo dnf install fail2ban
-
-#### AVR and ARM cross-compiler and tools (optional) TODO:update
-
-	$ sudo dnf install arm-none-eabi-gcc avr-gcc avr-libc avrdude
-
 #### Configure Git (optional)
 
 	$ git config --global user.name "username"
@@ -81,10 +64,6 @@ Reboot
 
 ## Optional Tweaks
 
-#### Firefox VAAPI error workaround TODO:update
-
-	$ echo "MOZ_DISABLE_RDD_SANDBOX=1" | sudo tee -a /etc/environment
-
 #### intel GPU VAAPI support
 
 	$ sudo apt install vainfo
@@ -92,10 +71,6 @@ Reboot
 #### intel GPU Enable performance support
 
 	$ echo dev.i915.perf_stream_paranoid=0 | sudo tee -a /etc/sysctl.d/99-i915psp.conf
-
-#### intel GPGPU support (Not working right now) TODO:update
-
-	$ sudo dnf install intel-compute-runtime clinfo
 
 #### vim's Vundle and YCM
 
@@ -119,9 +94,3 @@ for desktop applications i use Flatpak
 #### Steam
 
 	$ sudo apt install gamemode mangohud vkbasalt steam
-
-#### Virt Manager TODO:update
-
-	$ sudo dnf group install --with-optional virtualization
-	$ sudo dnf install qemu-system-arm qemu-system-aarch64 qemu-system-riscv
-	$ sudo systemctl enable --now libvirtd
