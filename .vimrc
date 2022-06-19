@@ -1,4 +1,6 @@
 set nocompatible
+set wildmenu
+set scrolloff=3
 
 " Vundle Config
 filetype off
