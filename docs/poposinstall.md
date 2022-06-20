@@ -55,6 +55,10 @@ Reboot
 
 	$ sudo apt install libvulkan-dev vulkan-tools
 
+#### Java (optional)
+
+	$ sudo apt install default-jre default-jdk
+
 #### Configure Git (optional)
 
 	$ git config --global user.name "username"
