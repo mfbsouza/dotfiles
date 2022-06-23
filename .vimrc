@@ -1,6 +1,6 @@
 set nocompatible
 set wildmenu		" show prettier menu completions
-set scrolloff=3		" line margin when scrolling up or down
+set scrolloff=5		" line margin when scrolling up or down
 set is hls		" incremental search and highlight
 
 " Vundle Config
