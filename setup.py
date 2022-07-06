@@ -14,7 +14,7 @@ dest_config_path = join(dest_home_path, '.config')
 
 # List of files and folders to be ignored (not installed)
 
-ignore_list = ['README.md', 'setup.py', 'chromium-flags.conf', 'mpv', '.bashrc']
+ignore_list = ['README.md', 'setup.py']
 
 print(" ----- HOME DIR  ----- ")
 
