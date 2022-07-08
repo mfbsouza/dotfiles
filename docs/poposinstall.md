@@ -37,7 +37,9 @@ Reboot
 
 #### Development tools
 
-	$ sudo apt install ack screen autoconf automake gperf texinfo help2man libtool libtool-bin gawk libncurses-dev meson ninja-build python3-pip cmake python3-dev bear
+	$ sudo apt install ack screen autoconf automake gperf texinfo \
+	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
+	python3-pip cmake python3-dev exuberant-ctags
 
 #### Codecs
 
@@ -50,6 +52,10 @@ Reboot
 #### Torrent Client and Video Player
 
 	$ sudo apt install transmission-gtk vlc
+
+#### L2TP Network Manager VPN support (optional)
+
+	$ sudo apt install network-manager-lt2p network-manager-l2tp-gnome
 
 #### Vulkan Headers and Tools (optional)
 
@@ -75,15 +81,6 @@ Reboot
 #### intel GPU Enable performance support
 
 	$ echo dev.i915.perf_stream_paranoid=0 | sudo tee -a /etc/sysctl.d/99-i915psp.conf
-
-#### vim's Vundle and YCM
-
-	$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-install the .vimrc config file and open vim and do a ":PlugInstall" then exit
-
-	$ cd ~/.vim/bundle/YouCompleteMe
-	$ python3 install.py --clangd-completer
 
 ## Desktop Applications
 

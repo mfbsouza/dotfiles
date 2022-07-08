@@ -1,0 +1,63 @@
+" vimrc by mfbsouza based on 
+" https://www.youtube.com/watch?v=XA2WjJbmmoM
+
+" BASIC SETUP
+
+" don't pretend to be vi
+set nocompatible
+
+" display horizontal menu for tab complete
+set wildmenu
+
+" enable syntax and plugins (for netrw)
+syntax enable
+filetype plugin on
+
+" FINDING FILES
+
+" search down into subfolders
+" provides tab-completion for all file-related tasks
+set path+=**
+
+" now i can hit tab to :find bt partial match
+" and use * to make it fuzzy
+
+" TAG JUMPING
+command! MakeTags !ctags -R .
+
+" now i can ^] to jump to the tag under the cursor
+" and ^t to jump back
+" also g^] for ambiguous tags
+
+" AUTOCOMPLETE
+
+" disable the preview window from onmi-complete 
+set completeopt-=preview
+
+" LEADER KEY
+
+" set the space bar as the leader key
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+" MAPS
+
+" quickly show buffer as wildmenu list after hitting tab
+nnoremap <Leader>b :b<Space>
+
+" navigate buffers
+nnoremap <silent> <S-Right> :bnext<CR>
+nnoremap <silent> <S-Left> :bprevious<CR>
+
+" close buffer
+nnoremap <silent> <leader>c :bd<CR>
+
+" stay in indent mode
+vnoremap <silent> < <gv
+vnoremap <silent> > >gv
+
+" resize splits
+nnoremap <silent> <C-Up> :resize +2<CR>
+nnoremap <silent> <C-Down> :resize -2<CR>
+nnoremap <silent> <C-Left> :vertical resize +2<CR>
+nnoremap <silent> <C-Right> :vertical resize -2<CR>
