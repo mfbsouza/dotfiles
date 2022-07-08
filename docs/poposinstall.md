@@ -39,7 +39,7 @@ Reboot
 
 	$ sudo apt install ack screen autoconf automake gperf texinfo \
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
-	python3-pip cmake python3-dev exuberant-ctags
+	python3-pip cmake python3-dev bear exuberant-ctags
 
 #### Codecs
 
@@ -55,7 +55,7 @@ Reboot
 
 #### L2TP Network Manager VPN support (optional)
 
-	$ sudo apt install network-manager-lt2p network-manager-l2tp-gnome
+	$ sudo apt install network-manager-l2tp network-manager-l2tp-gnome
 
 #### Vulkan Headers and Tools (optional)
 
