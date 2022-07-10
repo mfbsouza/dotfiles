@@ -15,6 +15,9 @@ set is hls
 " navigate through buffers without need for save
 set hidden
 
+" scroll the file when hitting the frame limits
+set scrolloff=5
+
 " enable syntax and plugins (for netrw)
 syntax enable
 filetype plugin on
@@ -39,6 +42,14 @@ command! MakeTags !ctags -R .
 
 " disable the preview window from onmi-complete 
 set completeopt-=preview
+
+" guide:
+" ^n for anything specified by the 'complete' option
+" ^x^n for just this file
+" ^x^f for filenames
+" ^x^] for tags only
+" ^x^o for tags like sctructs and methods
+" and ^n and ^p will go back and forth in the suggestions
 
 " LEADER KEY
 
