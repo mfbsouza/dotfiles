@@ -65,6 +65,11 @@ Reboot
 
 	$ sudo apt install default-jre default-jdk
 
+#### avr cross-compiler, binutils and tools (optional)
+
+	$ sudo aptt install gcc-avr avr-libc avrdude
+	$ sudo usermod -a -G dialout <username>
+
 #### Configure Git (optional)
 
 	$ git config --global user.name "username"
