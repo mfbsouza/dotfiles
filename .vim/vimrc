@@ -51,6 +51,20 @@ set completeopt-=preview
 " ^x^o for tags like sctructs and methods
 " and ^n and ^p will go back and forth in the suggestions
 
+" FILE BROWSING
+
+" tweaks for browsing
+let g:netrw_banner=0        " disable banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_dirhistmax=0    " disable history
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" now i can :edit a folder to open file browser
+" <CR>/v/t to open/v-split/tab
+
 " LEADER KEY
 
 " set the space bar as the leader key
@@ -58,6 +72,12 @@ nnoremap <SPACE> <Nop>
 let mapleader=" "
 
 " MAPS
+
+" open and close netrw
+nnoremap <silent> <Leader>e :Lex 30<CR>
+
+" clear highlight
+nnoremap <silent> <Leader>h :noh<CR>
 
 " quickly show buffer as wildmenu list after hitting tab
 nnoremap <Leader>b :b<Space>
@@ -67,7 +87,7 @@ nnoremap <silent> <S-Right> :bnext<CR>
 nnoremap <silent> <S-Left> :bprevious<CR>
 
 " close buffer
-nnoremap <silent> <leader>c :bd<CR>
+nnoremap <silent> <Leader>c :bd<CR>
 
 " stay in indent mode
 vnoremap <silent> < <gv
