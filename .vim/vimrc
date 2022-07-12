@@ -18,9 +18,18 @@ set hidden
 " scroll the file when hitting the frame limits
 set scrolloff=5
 
+" disable swap file
+set noswapfile
+
+" enable line number
+set number
+
 " enable syntax and plugins (for netrw)
-syntax enable
-filetype plugin on
+syntax on
+filetype plugin indent on
+
+" indent
+set cindent
 
 " FINDING FILES
 
@@ -43,7 +52,6 @@ command! MakeTags !ctags -R .
 " disable the preview window from onmi-complete 
 set completeopt-=preview
 
-" guide:
 " ^n for anything specified by the 'complete' option
 " ^x^n for just this file
 " ^x^f for filenames
@@ -64,6 +72,15 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " now i can :edit a folder to open file browser
 " <CR>/v/t to open/v-split/tab
+
+" LOAD PLUGINS
+command! LoadPlugins :source ~/.vim/plugins.vim 
+
+" HL TWEAKS
+hi Pmenu ctermfg=white ctermbg=black
+hi VertSplit ctermfg=black ctermbg=black
+hi StatusLine ctermbg=white ctermfg=black
+hi StatusLineNC ctermbg=white ctermfg=black
 
 " LEADER KEY
 
