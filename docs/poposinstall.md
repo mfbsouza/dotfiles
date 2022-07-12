@@ -37,7 +37,7 @@ Reboot
 
 #### Development tools
 
-	$ sudo apt install ack screen autoconf automake gperf texinfo \
+	$ sudo apt install vim-gtk3 ack screen autoconf automake gperf texinfo \
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
 	python3-pip cmake python3-dev bear exuberant-ctags
 
