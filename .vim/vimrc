@@ -97,14 +97,19 @@ nnoremap <silent> <Leader>e :Lex 30<CR>
 nnoremap <silent> <Leader>h :noh<CR>
 
 " quickly show buffer as wildmenu list after hitting tab
-nnoremap <Leader>b :b<Space>
+nnoremap <Tab> :b<space>
 
 " navigate buffers
-nnoremap <silent> <S-Right> :bnext<CR>
-nnoremap <silent> <S-Left> :bprevious<CR>
+nnoremap <silent> <S-Tab> :bnext<CR>
+
+" navigate splits
+nnoremap <silent> <C-Left> :wincmd h<CR>
+nnoremap <silent> <C-Up> :wincmd j<CR>
+nnoremap <silent> <C-Down> :wincmd k<CR>
+nnoremap <silent> <C-Right> :wincmd l<CR>
 
 " close buffer
-nnoremap <silent> <Leader>c :bd<CR>
+nnoremap <silent> <Leader>d :bd<CR>
 
 " stay in indent mode
 vnoremap <silent> < <gv
@@ -116,9 +121,3 @@ vnoremap p "_dP
 " system clipboard
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-c> "+y
-
-" resize splits
-nnoremap <silent> <C-Up> :resize +2<CR>
-nnoremap <silent> <C-Down> :resize -2<CR>
-nnoremap <silent> <C-Left> :vertical resize +2<CR>
-nnoremap <silent> <C-Right> :vertical resize -2<CR>
