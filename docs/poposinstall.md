@@ -39,7 +39,7 @@ Reboot
 
 	$ sudo apt install vim-gtk3 ack screen autoconf automake gperf texinfo \
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
-	python3-pip cmake python3-dev bear exuberant-ctags
+	python3-pip cmake python3-dev bear exuberant-ctags nasm qemu-system-x86
 
 #### Codecs
 
