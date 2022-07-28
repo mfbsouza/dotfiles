@@ -139,7 +139,7 @@ fonts
 
 ### Boot AMDGPU
 
-    # pacman -S efibootmgr (amd-ucode or intel-ucode)
+    # pacman -S efibootmgr sof-firmware (amd-ucode or intel-ucode)
     
     # bootctl --path=/boot install
     
@@ -276,14 +276,22 @@ fonts
 
     $ sudo pacman -S xorg gnome pipewire-pulse gnome-themes-extra ffmpegthumbnailer gst-libav
     $ sudo pacman -S gnome-shell-extension-appindicator
-    $ sudo pacman -S networkmanager-openvpn
+    $ sudo pacman -S networkmanager-openvpn usbutils
     $ sudo systemctl enable gdm
     $ sudo vim /etc/gdm/custom.conf
 
 #### Graphics Stack
 
+AMD
+
     $ sudo pacman -S vulkan-icd-loader
     $ sudo pacman -S mesa vulkan-radeon libva-mesa-driver
+    $ sudo pacman -S mesa-utils mesa-demos vulkan-tools libva-utils
+
+INTEL
+
+    $ sudo pacman -S vulkan-icd-loader
+    $ sudo pacman -S mesa vulkan-intel intel-media-driver
     $ sudo pacman -S mesa-utils mesa-demos vulkan-tools libva-utils
 
 #### Desktop Apps
