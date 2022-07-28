@@ -274,7 +274,8 @@ fonts
 
 #### DE
 
-    $ sudo pacman -S xorg gnome pipewire-pulse gnome-themes-extra
+    $ sudo pacman -S xorg gnome pipewire-pulse gnome-themes-extra ffmpegthumbnailer gst-libav
+    $ sudo pacman -S gnome-shell-extension-appindicator
     $ sudo pacman -S networkmanager-openvpn
     $ sudo systemctl enable gdm
     $ sudo vim /etc/gdm/custom.conf
@@ -285,6 +286,10 @@ fonts
     $ sudo pacman -S mesa vulkan-radeon libva-mesa-driver
     $ sudo pacman -S mesa-utils mesa-demos vulkan-tools libva-utils
 
-#### Browser
+#### Desktop Apps
 
-    $ sudo pacman -S firefox
+    $ sudo pacman -S firefox vlc transmission-gtk
+
+#### Qemu stuff
+
+    $ sudo pacman -S qemu-desktop
