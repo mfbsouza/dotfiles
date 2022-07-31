@@ -59,8 +59,8 @@ fi
 ## GIT INFO
 
 git_prompt() {
-  git rev-parse --git-dir >& /dev/null
-  if [[ $? == 0 ]]; then
+  if [ -d ".git" ]
+  then
     echo -ne ""
     if [[ `git ls-files -u >& /dev/null` == '' ]]; then
       git diff --quiet >& /dev/null
@@ -83,9 +83,9 @@ git_prompt() {
 }
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u \[\033[00m\]@ \[\033[33m\]\h\[\033[00m\] in \[\033[01;34m\]\w$(git_prompt)\n\[\033[00m\]\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u \[\033[00m\]@ \[\033[01;33m\]\h\[\033[00m\] in \[\033[01;34m\]\w$(git_prompt)\[\033[00m\]\n$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u @ \h in \w\n$ '
 fi
 unset color_prompt force_color_prompt
 
