@@ -22,7 +22,7 @@ or generate a new mirrorlist
 
     # pacman -Sy reflector
     # cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-    # reflector --verbose --country=CountryName --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+    # reflector --verbose --latest 10 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
     # pacman -Syy
 
 ### Update system clock
@@ -35,17 +35,19 @@ or generate a new mirrorlist
 
     # lsblk
     # gdisk /dev/nvme0n1
-	(o Y n <enter> <enter> +500M ef00 n <enter> <enter> <enter> <enter> w Y)
 
-    # mkfs.fat -F32 -L "boot" /dev/nvme0n1p1
-    # mkfs.ext4 -L "rootfs" /dev/nvme0n1p2
-    # mount /dev/nvme0n1p2 /mnt
+    # mkfs.fat -F32 /dev/nvme0n1p1
+    # mkfs.ext4 -L "rootfs" /dev/nvme0n1p3
+    # mkswap /dev/nvme0n1p2
+    # swapon /dev/nvme0n1p2
+
+    # mount /dev/nvme0n1p3 /mnt
     # mkdir /mnt/boot
     # mount /dev/nvme0n1p1 /mnt/boot
 
 ### Installing
 
-    # pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware
+    # pacstrap /mnt base base-devel linux linux-firmware linux-headers
     # genfstab -U /mnt >> /mnt/etc/fstab
 
 ## Configuring the base system
@@ -60,12 +62,11 @@ networking
 
 utilities
 
-    # pacman -S vim nano git tree ack wget screen man-db dmidecode neofetch bash-completion lm_sensors
+    # pacman -S gvim git tree wget screen man-db dmidecode neofetch bash-completion lm_sensors
 
 fonts
 
-    # pacman -S terminus-font
-    # pacman -S $(pacman -Ssq noto-fonts)
+    # pacman -S ttf-liberation ttf-dejavu $(pacman -Ssq noto-fonts)
 
 ### Timezone
 
@@ -81,7 +82,6 @@ fonts
 ### TTY
     
     # echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
-    # echo "FONT=ter-v24n" >> /etc/vconsole.conf
 
 ### Network
     
@@ -115,7 +115,7 @@ fonts
     
     # EDITOR=vim visudo
 
-### Enable ZRAM as swap and turing on OOM handling
+### Enable ZRAM as swap and turing on OOM handling (if not using disk swap)
     
     # pacman -S zram-generator
     # vim /etc/systemd/zram-generator.conf
@@ -131,12 +131,6 @@ fonts
 
     # systemctl enable fstrim.timer
 
-### set cpu gorvernor to performance
-
-    # pacman -S cpupower
-    # vim /etc/default/cpupower (governor='performance')
-    # sysmtectl enable cpupower.service
-
 ### Boot
 
 - [Boot for Intel or AMD CPU + AMDGPU](#boot-amdgpu)
@@ -145,7 +139,7 @@ fonts
 
 ### Boot AMDGPU
 
-    # pacman -S efibootmgr (amd-ucode or intel-ucode)
+    # pacman -S efibootmgr sof-firmware (amd-ucode or intel-ucode)
     
     # bootctl --path=/boot install
     
@@ -260,6 +254,7 @@ fonts
 ### redo clock sync
 
     $ sudo timedatectl set-ntp true
+    $ sudo hwclock --systohc
 
 ### Git
 
@@ -269,27 +264,40 @@ fonts
 
 ### Building the system up
 
-	scripts/arch/env.sh (and reboot)
+#### AUR
 
-can run my install scripts from here on
+    $ git clone https://aur.archlinux.org/yay.git
+    $ cd yay
+    $ makepkg -si
+    $ cd ..
+    $ rm -rf yay/
 
-    ./yay.sh
-    ./video-drivers.sh
-    ./multimedia.sh
-    ./de.sh
-    ./toolchains.sh (optional)
-    ./extra-fonts.sh (optional)
-    ./de-programs.sh (optional)
-    ./gaming.sh (optional)
-    ./virt.sh (optional)
-    ./java.sh (optional)
+#### DE
 
-if installing gnome ^ epiphany gnome-books gnome-characters gnome-contacts gnome-font-viewer gnome-maps gnome-photos gnome-shell-extensions gnome-software gnome-user-docs gnome-boxes simple-scan
+    $ sudo pacman -S xorg gnome pipewire-pulse gnome-themes-extra ffmpegthumbnailer gst-libav
+    $ sudo pacman -S gnome-shell-extension-appindicator
+    $ sudo pacman -S networkmanager-openvpn usbutils
+    $ sudo systemctl enable gdm
+    $ sudo vim /etc/gdm/custom.conf
 
-and run gnome-settings.sh
+#### Graphics Stack
 
-### Finishing Up
+AMD
 
-    configure the setings (microphone volume, region language, time, terminal color, tweaks, dconf)
-    Restart again
+    $ sudo pacman -S vulkan-icd-loader
+    $ sudo pacman -S mesa vulkan-radeon libva-mesa-driver
+    $ sudo pacman -S mesa-utils mesa-demos vulkan-tools libva-utils
 
+INTEL
+
+    $ sudo pacman -S vulkan-icd-loader
+    $ sudo pacman -S mesa vulkan-intel intel-media-driver
+    $ sudo pacman -S mesa-utils mesa-demos vulkan-tools libva-utils
+
+#### Desktop Apps
+
+    $ sudo pacman -S firefox vlc transmission-gtk
+
+#### Qemu stuff
+
+    $ sudo pacman -S qemu-desktop
