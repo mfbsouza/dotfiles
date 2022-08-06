@@ -5,22 +5,22 @@ A place to keep my configuration files and scripts
 ## My Everyday Softwares
 
 ### Distro
-- Fedora Linux
+- Pop!_OS
 
 ### Browser
-- Firefox
+- firefox
 
 ### Text Editor
-- vim/gedit
+- vim/gvim
 
 ### Video/Audio Player
-- VLC
+- vlc
 
 ### Virtualization
 - qemu/virt-manager
 
 ### Torrent Client
-- Transmission
+- transmission
 
 ### Video Recording/Streaming
 - obs studio
@@ -37,7 +37,6 @@ A place to keep my configuration files and scripts
 - wine
 - gamemode
 - MangoHud
-- cpupower
 
 ### Voice/Messaging
 - discord
