@@ -73,9 +73,6 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " now i can :edit a folder to open file browser
 " <CR>/v/t to open/v-split/tab
 
-" LOAD PLUGINS
-command! LoadPlugins :source ~/.vim/plugins.vim 
-
 " HL TWEAKS
 hi Pmenu ctermfg=white ctermbg=black
 hi VertSplit ctermfg=black ctermbg=black
