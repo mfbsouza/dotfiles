@@ -39,7 +39,7 @@ Reboot
 
 	$ sudo apt install vim-gtk3 ack screen autoconf automake gperf texinfo \
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
-	python3-pip cmake python3-dev bear exuberant-ctags nasm qemu-system-x86
+	python3-pip cmake python3-dev bear tree exuberant-ctags nasm qemu-system-x86
 
 #### Codecs
 
@@ -100,3 +100,13 @@ for desktop applications i use Flatpak
 #### Steam
 
 	$ sudo apt install gamemode mangohud vkbasalt steam
+
+#### TLDR
+
+	sudo apt install vim-gtk screen autoconf automake gperf texinfo help2man libtool \
+	libtool-bin gawk libncurses-dev meson ninja-build clang llvm clang-format \
+	python3-pip cmake exuberant-ctags nasm qemu-system-x86 ubuntu-restricted-extras \
+	ffmpegthumbnailer lm-sensors neofetch mesa-utils htop transmission-gtk vlc \
+	libvulkan-dev vulkan-tools vainfo gcc-avr avr-libc avrdude network-manager-l2tp \
+	network-manager-l2tp-gnome gamemode mangohud vkbasalt tree steam
+
