@@ -105,8 +105,9 @@ for desktop applications i use Flatpak
 
 	sudo apt install vim-gtk screen autoconf automake gperf texinfo help2man libtool \
 	libtool-bin gawk libncurses-dev meson ninja-build clang llvm clang-format \
-	python3-pip cmake universal-ctags nasm qemu-system-x86 ubuntu-restricted-extras \
+	python3-pip cmake tree universal-ctags nasm qemu-system-x86 ubuntu-restricted-extras \
 	ffmpegthumbnailer lm-sensors neofetch mesa-utils htop transmission-gtk vlc \
-	libvulkan-dev vulkan-tools vainfo gcc-avr avr-libc avrdude network-manager-l2tp \
-	network-manager-l2tp-gnome gamemode mangohud vkbasalt tree steam
+	libvulkan-dev vulkan-tools vainfo openssh-server gcc-avr avr-libc avrdude \
+	network-manager-l2tp network-manager-l2tp-gnome gamemode mangohud vkbasalt \
+	steam
 
