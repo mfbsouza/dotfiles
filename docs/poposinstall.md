@@ -10,15 +10,15 @@ i go with the defaults and dont encrypt
 
 #### Update the system packages
 
-	$ sudo apt update && sudo apt upgrade
+open Pop!_Shop update the packages then reboot
 
-reboot
 
 #### configure Gnome Desktop
 
 - Open settings and go tab by tab
 
 also:
+
 	$ gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
 
 #### Add boot parameter for disabling Audit (optional)
@@ -35,40 +35,53 @@ Reboot
 
 ## Setting up the basic system tools
 
-#### Development tools
-
-	$ sudo apt install vim-gtk3 ack screen autoconf automake gperf texinfo \
-	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
-	python3-pip cmake python3-dev bear tree universal-ctags nasm qemu-system-x86
-
 #### Codecs
 
 	$ sudo apt install ubuntu-restricted-extras ffmpegthumbnailer
 
+#### Development tools
+
+	$ sudo apt install vim-gtk ack screen autoconf automake gperf texinfo \
+	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
+	clang llvm clang-format python3-pip cmake bear tree universal-ctags \
+	nasm qemu-system-x86
+
 #### ADM tools
 
-	$ sudo apt install htop lm-sensors neofetch inxi
+	$ sudo apt install lm-sensors neofetch htop inxi
 
 #### Torrent Client and Video Player
 
 	$ sudo apt install transmission-gtk vlc
 
-#### L2TP Network Manager VPN support (optional)
+#### Vulkan Headers and Tools
+
+	$ sudo apt install libvulkan-dev vulkan-tools mesa-utils 
+
+#### GPU VAAPI debug
+
+	$ sudo apt install vainfo
+
+#### SSH Server
+
+	$ sudo apt install openssh-server
+
+#### avr cross-compiler, binutils and tools
+
+	$ sudo apt install gcc-avr avr-libc avrdude
+	$ sudo usermod -a -G dialout <username>
+
+#### L2TP Network Manager VPN support
 
 	$ sudo apt install network-manager-l2tp network-manager-l2tp-gnome
 
-#### Vulkan Headers and Tools (optional)
-
-	$ sudo apt install libvulkan-dev vulkan-tools
-
-#### Java (optional)
+#### Java
 
 	$ sudo apt install default-jre default-jdk
 
-#### avr cross-compiler, binutils and tools (optional)
+#### Steam
 
-	$ sudo aptt install gcc-avr avr-libc avrdude
-	$ sudo usermod -a -G dialout <username>
+	$ sudo apt install gamemode mangohud vkbasalt steam
 
 #### Configure Git (optional)
 
@@ -78,10 +91,6 @@ Reboot
 	$ git config --global credential.helper store
 
 ## Optional Tweaks
-
-#### intel GPU VAAPI support
-
-	$ sudo apt install vainfo
 
 #### intel GPU Enable performance support
 
@@ -97,17 +106,13 @@ for desktop applications i use Flatpak
 - Helvum
 - EasyEffects
 
-#### Steam
-
-	$ sudo apt install gamemode mangohud vkbasalt steam
-
 #### TLDR
 
-	sudo apt install vim-gtk screen autoconf automake gperf texinfo help2man libtool \
-	libtool-bin gawk libncurses-dev meson ninja-build clang llvm clang-format \
-	python3-pip cmake tree universal-ctags nasm qemu-system-x86 ubuntu-restricted-extras \
-	ffmpegthumbnailer lm-sensors neofetch mesa-utils htop transmission-gtk vlc \
-	libvulkan-dev vulkan-tools vainfo openssh-server gcc-avr avr-libc avrdude \
-	network-manager-l2tp network-manager-l2tp-gnome gamemode mangohud vkbasalt \
-	steam
+	sudo apt install vim-gtk screen autoconf automake gperf texinfo help2man \
+	libtool libtool-bin gawk libncurses-dev meson ninja-build clang llvm \
+	clang-format python3-pip cmake tree universal-ctags nasm qemu-system-x86 \
+	ubuntu-restricted-extras ffmpegthumbnailer lm-sensors neofetch htop \
+	transmission-gtk vlc libvulkan-dev vulkan-tools mesa-utils vainfo \
+	openssh-server gcc-avr avr-libc avrdude network-manager-l2tp \
+	network-manager-l2tp-gnome gamemode mangohud vkbasalt steam
 

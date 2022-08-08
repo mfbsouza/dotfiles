@@ -8,35 +8,35 @@ A place to keep my configuration files and scripts
 - Pop!_OS
 
 ### Browser
-- firefox
+- Firefox
 
 ### Text Editor
-- vim/gvim
+- Vim/Gvim
 
 ### Video/Audio Player
-- vlc
+- VLC
 
 ### Virtualization
-- qemu/virt-manager
+- Qemu/Virt-Manager
 
 ### Torrent Client
-- transmission
+- Transmission
 
 ### Video Recording/Streaming
-- obs studio
+- Obs Studio
 
-## Dev tools
+### Dev tools
 - ssh
 - screen
 - git, diff, patch
 - tree, ack, grep
 - cat, hexdump
 
-## Gaming
-- steam
-- wine
-- gamemode
+### Gaming
+- Steam
+- Wine
+- Gamemode
 - MangoHud
 
 ### Voice/Messaging
-- discord
+- Discord
