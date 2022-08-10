@@ -24,12 +24,15 @@ set noswapfile
 " enable line number
 set number
 
+" enable mouse scroll and visual selection
+set mouse=a
+
 " enable syntax and plugins (for netrw)
 syntax on
 filetype plugin indent on
 
 " indent
-set cindent
+set autoindent
 
 " FINDING FILES
 
@@ -99,12 +102,6 @@ nnoremap <Tab> :b<space>
 " navigate buffers
 nnoremap <silent> <S-Tab> :bnext<CR>
 
-" navigate splits
-nnoremap <silent> <C-Left> :wincmd h<CR>
-nnoremap <silent> <C-Up> :wincmd j<CR>
-nnoremap <silent> <C-Down> :wincmd k<CR>
-nnoremap <silent> <C-Right> :wincmd l<CR>
-
 " close buffer
 nnoremap <silent> <Leader>d :bd<CR>
 
@@ -117,4 +114,5 @@ vnoremap p "_dP
 
 " system clipboard
 inoremap <C-v> <ESC>"+pa
+vnoremap <C-v> "+pa
 vnoremap <C-c> "+y
