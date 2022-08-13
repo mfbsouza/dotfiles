@@ -27,6 +27,9 @@ set number
 " enable mouse scroll and visual selection
 set mouse=a
 
+" auto reload file if there was a change in disk
+set autoread
+
 " enable syntax and plugins (for netrw)
 syntax on
 filetype plugin indent on

@@ -44,7 +44,7 @@ Reboot
 	$ sudo apt install vim-gtk ack screen autoconf automake gperf texinfo \
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
 	clang llvm clang-format python3-pip cmake bear tree universal-ctags \
-	nasm qemu-system-x86 valgrind
+	nasm qemu-system-x86 qemu-system-misc valgrind
 
 #### ADM tools
 
@@ -68,7 +68,7 @@ Reboot
 
 #### avr cross-compiler, binutils and tools
 
-	$ sudo apt install gcc-avr avr-libc avrdude
+	$ sudo apt install gcc-avr avr-libc gdb-avr avrdude
 	$ sudo usermod -a -G dialout <username>
 
 #### L2TP Network Manager VPN support
@@ -111,8 +111,9 @@ for desktop applications i use Flatpak
 	sudo apt install vim-gtk screen autoconf automake gperf texinfo help2man \
 	libtool libtool-bin gawk libncurses-dev meson ninja-build clang llvm \
 	clang-format python3-pip cmake tree universal-ctags nasm qemu-system-x86 \
-	valgrind ubuntu-restricted-extras ffmpegthumbnailer lm-sensors neofetch \
-	htop transmission-gtk vlc libvulkan-dev vulkan-tools mesa-utils vainfo \
-	openssh-server gcc-avr avr-libc avrdude network-manager-l2tp \
-	network-manager-l2tp-gnome gamemode mangohud vkbasalt steam
+	qemu-system-misc valgrind ubuntu-restricted-extras ffmpegthumbnailer \
+	lm-sensors neofetch htop transmission-gtk vlc libvulkan-dev vulkan-tools \
+	mesa-utils vainfo openssh-server gcc-avr gdb-avr avr-libc avrdude \
+	network-manager-l2tp network-manager-l2tp-gnome gamemode mangohud \
+	vkbasalt steam
 
