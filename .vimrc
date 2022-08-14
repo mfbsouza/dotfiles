@@ -93,6 +93,10 @@ let mapleader=" "
 
 " MAPS
 
+" scroll up and down
+nnoremap <C-Up> <C-y>
+nnoremap <C-Down> <C-e>
+
 " open and close netrw
 nnoremap <silent> <Leader>e :Lex 30<CR>
 
