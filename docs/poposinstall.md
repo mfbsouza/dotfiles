@@ -79,6 +79,10 @@ Reboot
 
 	$ sudo apt install default-jre default-jdk
 
+#### Rust Language
+
+	$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 #### Steam
 
 	$ sudo apt install gamemode mangohud vkbasalt steam
