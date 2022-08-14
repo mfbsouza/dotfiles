@@ -48,7 +48,7 @@ Reboot
 
 #### ADM tools
 
-	$ sudo apt install lm-sensors neofetch htop inxi
+	$ sudo apt install lm-sensors neofetch htop stress inxi
 
 #### Torrent Client and Video Player
 
@@ -112,8 +112,8 @@ for desktop applications i use Flatpak
 	libtool libtool-bin gawk libncurses-dev meson ninja-build clang llvm \
 	clang-format python3-pip cmake tree universal-ctags nasm qemu-system-x86 \
 	qemu-system-misc valgrind ubuntu-restricted-extras ffmpegthumbnailer \
-	lm-sensors neofetch htop transmission-gtk vlc libvulkan-dev vulkan-tools \
-	mesa-utils vainfo openssh-server gcc-avr gdb-avr avr-libc avrdude \
-	network-manager-l2tp network-manager-l2tp-gnome gamemode mangohud \
+	lm-sensors neofetch htop stress transmission-gtk vlc libvulkan-dev \
+	vulkan-tools mesa-utils vainfo openssh-server gcc-avr gdb-avr avr-libc \
+	avrdude network-manager-l2tp network-manager-l2tp-gnome gamemode mangohud \
 	vkbasalt steam
 
