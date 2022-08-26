@@ -6,8 +6,18 @@
 " don't pretend to be vi
 set nocompatible
 
+" faster faster
+set updatetime=300
+
+" colors
+set termguicolors
+set background=dark
+
 " display horizontal menu for tab complete
 set wildmenu
+
+" always show sign column
+set signcolumn=yes
 
 " go to match while type in search mode
 set is hls
@@ -35,7 +45,7 @@ syntax on
 filetype plugin indent on
 
 " indent
-set autoindent
+set ai si
 
 " FINDING FILES
 
@@ -53,7 +63,7 @@ command! MakeTags !ctags -R .
 " and ^t to jump back
 " also g^] for ambiguous tags
 
-" AUTOCOMPLETE
+" VIM'S BUILDIN AUTOCOMPLETE
 
 " disable the preview window from onmi-complete 
 set completeopt-=preview
@@ -62,28 +72,10 @@ set completeopt-=preview
 " ^x^n for just this file
 " ^x^f for filenames
 " ^x^] for tags only
-" ^x^o for tags like sctructs and methods
+" ^x^o for omnicomplete
 " and ^n and ^p will go back and forth in the suggestions
 
 " FILE BROWSING
-
-" tweaks for browsing
-let g:netrw_banner=0        " disable banner
-let g:netrw_browse_split=4  " open in prior window
-let g:netrw_altv=1          " open splits to the right
-let g:netrw_liststyle=3     " tree view
-let g:netrw_dirhistmax=0    " disable history
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-
-" now i can :edit a folder to open file browser
-" <CR>/v/t to open/v-split/tab
-
-" HL TWEAKS
-hi Pmenu ctermfg=white ctermbg=black
-hi VertSplit ctermfg=black ctermbg=black
-hi StatusLine ctermbg=white ctermfg=black
-hi StatusLineNC ctermbg=white ctermfg=black
 
 " LEADER KEY
 
@@ -104,7 +96,7 @@ nnoremap <silent> <Leader>e :Lex 30<CR>
 nnoremap <silent> <Leader>h :noh<CR>
 
 " quickly show buffer as wildmenu list after hitting tab
-nnoremap <Tab> :b<space>
+"nnoremap <Tab> :b<space>
 
 " navigate buffers
 nnoremap <silent> <S-Tab> :bnext<CR>
@@ -123,3 +115,31 @@ vnoremap p "_dP
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-v> "+pa
 vnoremap <C-c> "+y
+
+" PLUGINS
+
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+call plug#begin()
+  Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clangd-completer --rust-completer' }
+  Plug 'airblade/vim-gitgutter'
+  Plug 'preservim/nerdtree'
+  Plug 'morhetz/gruvbox'
+call plug#end()
+
+" COLORSCHEME
+colorscheme gruvbox
+
+" HL TWEAKS
+hi Normal guibg=NONE ctermbg=NONE
+hi SignColumn guibg=NONE ctermbg=NONE
+hi VertSplit guibg=NONE ctermbg=NONE
+
+" YCM CONFIG
+" <plug>(YCMHover) to trigger
+let g:ycm_auto_hover=''
+let g:ycm_min_num_of_chars_for_completion=10
