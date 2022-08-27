@@ -89,14 +89,8 @@ let mapleader=" "
 nnoremap <C-Up> <C-y>
 nnoremap <C-Down> <C-e>
 
-" open and close netrw
-nnoremap <silent> <Leader>e :Lex 30<CR>
-
 " clear highlight
 nnoremap <silent> <Leader>h :noh<CR>
-
-" quickly show buffer as wildmenu list after hitting tab
-"nnoremap <Tab> :b<space>
 
 " navigate buffers
 nnoremap <silent> <S-Tab> :bnext<CR>
@@ -143,3 +137,8 @@ hi VertSplit guibg=NONE ctermbg=NONE
 " <plug>(YCMHover) to trigger
 let g:ycm_auto_hover=''
 let g:ycm_min_num_of_chars_for_completion=10
+
+" NERDTREE
+let g:NERDTreeMinimalUI=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
