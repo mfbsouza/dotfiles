@@ -146,6 +146,9 @@ hi Normal ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
 hi VertSplit guibg=NONE ctermbg=NONE
 
+" VIM-BUFTABLINE
+let g:buftabline_show=1
+
 " YCM CONFIG
 " <plug>(YCMHover) to trigger
 let g:ycm_auto_hover=''
