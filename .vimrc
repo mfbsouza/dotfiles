@@ -150,9 +150,10 @@ hi VertSplit guibg=NONE ctermbg=NONE
 let g:buftabline_show=1
 
 " YCM CONFIG
-" <plug>(YCMHover) to trigger
 let g:ycm_auto_hover=''
 let g:ycm_min_num_of_chars_for_completion=10
+nnoremap <silent> <Leader>g :YcmCompleter GoToDefinition<CR>
+map <Leader>s <plug>(YCMHover)
 
 " NERDTREE
 let g:NERDTreeMinimalUI=1
