@@ -13,8 +13,18 @@ set updatetime=300
 set termguicolors
 set background=dark
 
+" gvim ui config
+" hide menu bar, tool bar and scroll bar
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+
 " display horizontal menu for tab complete
 set wildmenu
+
+" dont show status line
+set laststatus=0
 
 " always show sign column
 set signcolumn=yes
@@ -75,8 +85,6 @@ set completeopt-=preview
 " ^x^o for omnicomplete
 " and ^n and ^p will go back and forth in the suggestions
 
-" FILE BROWSING
-
 " LEADER KEY
 
 " set the space bar as the leader key
@@ -92,8 +100,12 @@ nnoremap <C-Down> <C-e>
 " clear highlight
 nnoremap <silent> <Leader>h :noh<CR>
 
-" navigate buffers
-nnoremap <silent> <S-Tab> :bnext<CR>
+" jump back and forth buffers
+nnoremap <silent> <S-Tab> <C-^>
+
+" navigate through buffers
+nnoremap <silent> <C-Right> :bnext<CR>
+nnoremap <silent> <C-Left> :bprev<CR>
 
 " close buffer
 nnoremap <silent> <Leader>d :bd<CR>
@@ -122,6 +134,7 @@ call plug#begin()
   Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clangd-completer --rust-completer' }
   Plug 'airblade/vim-gitgutter'
   Plug 'preservim/nerdtree'
+  Plug 'ap/vim-buftabline'
   Plug 'morhetz/gruvbox'
 call plug#end()
 
@@ -129,7 +142,7 @@ call plug#end()
 colorscheme gruvbox
 
 " HL TWEAKS
-hi Normal guibg=NONE ctermbg=NONE
+hi Normal ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
 hi VertSplit guibg=NONE ctermbg=NONE
 
@@ -140,5 +153,14 @@ let g:ycm_min_num_of_chars_for_completion=10
 
 " NERDTREE
 let g:NERDTreeMinimalUI=1
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeShowHidden=1
 nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+augroup nerdtreehidecwd
+  autocmd!
+  autocmd FileType nerdtree setlocal conceallevel=3
+          \ | syntax match NERDTreeHideCWD #^[</].*$# conceal
+          \ | setlocal concealcursor=n
+augroup end
