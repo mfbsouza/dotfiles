@@ -50,6 +50,9 @@ set mouse=a
 " auto reload file if there was a change in disk
 set autoread
 
+" words with '_' will be considered multiple words
+set iskeyword-=_
+
 " enable syntax and plugins (for netrw)
 syntax on
 filetype plugin indent on
@@ -133,6 +136,7 @@ endif
 call plug#begin()
   Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clangd-completer --rust-completer' }
   Plug 'airblade/vim-gitgutter'
+  Plug 'jiangmiao/auto-pairs'
   Plug 'preservim/nerdtree'
   Plug 'ap/vim-buftabline'
   Plug 'morhetz/gruvbox'
@@ -158,6 +162,7 @@ map <Leader>s <plug>(YCMHover)
 " NERDTREE
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.git$', '\.cache$']
 nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
