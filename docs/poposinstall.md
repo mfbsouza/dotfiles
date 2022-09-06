@@ -104,7 +104,6 @@ Reboot
 
 for desktop applications i use Flatpak
 
-- OBS Studio
 - Discord
 - Telegram
 - Helvum
@@ -119,5 +118,5 @@ for desktop applications i use Flatpak
 	ffmpegthumbnailer lm-sensors neofetch htop stress transmission-gtk vlc \
 	libvulkan-dev vulkan-tools mesa-utils vainfo openssh-server gcc-avr \
 	gdb-avr avr-libc avrdude network-manager-l2tp network-manager-l2tp-gnome \
-	virt-manager gamemode mangohud vkbasalt steam
+	virt-manager obs-studio code gamemode mangohud vkbasalt steam
 
