@@ -10,7 +10,9 @@ set nocompatible
 set updatetime=300
 
 " colors
-set termguicolors
+if has("gui_running")
+	set termguicolors
+endif
 set background=dark
 
 " gvim ui config
@@ -143,10 +145,12 @@ call plug#begin()
 call plug#end()
 
 " COLORSCHEME
-colorscheme gruvbox
+if has("gui_running")
+	let g:gruvbox_contrast_dark='hard'
+	colorscheme gruvbox
+endif
 
 " HL TWEAKS
-hi Normal ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
 hi VertSplit guibg=NONE ctermbg=NONE
 
