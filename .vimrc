@@ -151,8 +151,19 @@ if has("gui_running")
 endif
 
 " HL TWEAKS
+
+" gruvbox
 hi SignColumn guibg=NONE ctermbg=NONE
-hi VertSplit guibg=NONE ctermbg=NONE
+hi VertSplit  guibg=NONE ctermbg=NONE
+
+" gitgutter with gruvbox
+hi GitGutterAdd          ctermbg=235
+hi GitGutterChange       ctermbg=235
+hi GitGutterDelete       ctermbg=235
+hi GitGutterChangeDelete ctermbg=235
+
+" YCM with gruvbox
+hi YcmErrorSign          ctermbg=235
 
 " VIM-BUFTABLINE
 let g:buftabline_show=1
