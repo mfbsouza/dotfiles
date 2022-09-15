@@ -7,20 +7,9 @@
 set nocompatible
 
 " faster faster
-set updatetime=300
+set updatetime=100
 
-" colors
-if has("gui_running")
-	set termguicolors
-endif
 set background=dark
-
-" gvim ui config
-" hide menu bar, tool bar and scroll bar
-set guioptions-=m
-set guioptions-=T
-set guioptions-=r
-set guioptions-=L
 
 " display horizontal menu for tab complete
 set wildmenu
@@ -56,7 +45,6 @@ set autoread
 set iskeyword-=_
 
 " enable syntax and plugins (for netrw)
-syntax on
 filetype plugin indent on
 
 " indent
@@ -137,32 +125,35 @@ endif
 
 call plug#begin()
   Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clangd-completer --rust-completer' }
+  Plug 'mfbsouza/preto'
   Plug 'airblade/vim-gitgutter'
   Plug 'jiangmiao/auto-pairs'
   Plug 'preservim/nerdtree'
   Plug 'ap/vim-buftabline'
-  Plug 'morhetz/gruvbox'
 call plug#end()
 
-" COLORSCHEME
+" GUI Configs
 if has("gui_running")
-	let g:gruvbox_contrast_dark='hard'
-	colorscheme gruvbox
+	" colors
+	set termguicolors
+	syntax on
+	colorscheme preto
+	" hide menu bar, tool bar and left scroll bar
+	set guioptions-=m
+	set guioptions-=T
+	set guioptions-=L
+	" font
+	set guifont=Inconsolata\ Medium\ 14
 endif
 
 " HL TWEAKS
 
-" gruvbox
 hi SignColumn guibg=NONE ctermbg=NONE
 hi VertSplit  guibg=NONE ctermbg=NONE
-
-" gitgutter with gruvbox
 hi GitGutterAdd          ctermbg=235
 hi GitGutterChange       ctermbg=235
 hi GitGutterDelete       ctermbg=235
 hi GitGutterChangeDelete ctermbg=235
-
-" YCM with gruvbox
 hi YcmErrorSign          ctermbg=235
 
 " VIM-BUFTABLINE
