@@ -9,6 +9,7 @@ set nocompatible
 " faster faster
 set updatetime=100
 
+" dark background color
 set background=dark
 
 " display horizontal menu for tab complete
@@ -16,9 +17,6 @@ set wildmenu
 
 " dont show status line
 set laststatus=0
-
-" always show sign column
-set signcolumn=yes
 
 " go to match while type in search mode
 set is hls
@@ -44,7 +42,7 @@ set autoread
 " words with '_' will be considered multiple words
 set iskeyword-=_
 
-" enable syntax and plugins (for netrw)
+" enable syntax and plugins
 filetype plugin indent on
 
 " indent
@@ -56,27 +54,11 @@ set ai si
 " provides tab-completion for all file-related tasks
 set path+=**
 
-" now i can hit tab to :find bt partial match
+" now i can hit tab to :find by partial match
 " and use * to make it fuzzy
-
-" TAG JUMPING
-command! MakeTags !ctags -R .
-
-" now i can ^] to jump to the tag under the cursor
-" and ^t to jump back
-" also g^] for ambiguous tags
-
-" VIM'S BUILDIN AUTOCOMPLETE
 
 " disable the preview window from onmi-complete 
 set completeopt-=preview
-
-" ^n for anything specified by the 'complete' option
-" ^x^n for just this file
-" ^x^f for filenames
-" ^x^] for tags only
-" ^x^o for omnicomplete
-" and ^n and ^p will go back and forth in the suggestions
 
 " LEADER KEY
 
@@ -92,9 +74,6 @@ nnoremap <C-Down> <C-e>
 
 " clear highlight
 nnoremap <silent> <Leader>h :noh<CR>
-
-" jump back and forth buffers
-nnoremap <silent> <S-Tab> <C-^>
 
 " navigate through buffers
 nnoremap <silent> <C-Right> :bnext<CR>
@@ -117,19 +96,20 @@ vnoremap <C-c> "+y
 
 " PLUGINS
 
-" Install vim-plug if not found
+" Install vim-plug if not installed
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
+" init plugins
 call plug#begin()
   Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clangd-completer --rust-completer' }
-  Plug 'mfbsouza/preto'
   Plug 'airblade/vim-gitgutter'
   Plug 'jiangmiao/auto-pairs'
   Plug 'preservim/nerdtree'
   Plug 'ap/vim-buftabline'
+  Plug 'mfbsouza/preto'
 call plug#end()
 
 " GUI Configs
@@ -137,11 +117,13 @@ if has("gui_running")
 	" colors
 	set termguicolors
 	syntax on
-	colorscheme preto
+	color preto
 	" hide menu bar, tool bar and left scroll bar
 	set guioptions-=m
 	set guioptions-=T
 	set guioptions-=L
+	" always show sign column
+	set signcolumn=yes
 	" font
 	set guifont=Inconsolata\ Medium\ 14
 endif
@@ -156,23 +138,31 @@ hi GitGutterDelete       ctermbg=235
 hi GitGutterChangeDelete ctermbg=235
 hi YcmErrorSign          ctermbg=235
 
+"  PLUGINS CONFIG
+
 " VIM-BUFTABLINE
+
 let g:buftabline_show=1
 
-" YCM CONFIG
+" YCM 
+
 let g:ycm_auto_hover=''
-let g:ycm_min_num_of_chars_for_completion=10
+let g:ycm_min_num_of_chars_for_completion=5
+
 nnoremap <silent> <Leader>g :YcmCompleter GoToDefinition<CR>
 map <Leader>s <plug>(YCMHover)
 
 " NERDTREE
+
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.git$', '\.cache$']
 nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
 
+" auto close nerdtree is closing the last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" hide cwd in nerdtree
 augroup nerdtreehidecwd
   autocmd!
   autocmd FileType nerdtree setlocal conceallevel=3
