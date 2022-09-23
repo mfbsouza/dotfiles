@@ -94,6 +94,9 @@ inoremap <C-v> <ESC>"+pa
 vnoremap <C-v> "+pa
 vnoremap <C-c> "+y
 
+"double click to highlight all occurrences
+nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
+
 " PLUGINS
 
 " Install vim-plug if not installed

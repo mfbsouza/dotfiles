@@ -87,6 +87,10 @@ Reboot
 
 	$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+#### Graphical Libraries
+
+	$ sudo apt install libsdl2-dev libglew-dev libglm-dev libsdl2-image-dev
+
 #### Steam
 
 	$ sudo apt install gamemode mangohud vkbasalt steam
