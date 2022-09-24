@@ -39,9 +39,6 @@ set mouse=a
 " auto reload file if there was a change in disk
 set autoread
 
-" words with '_' will be considered multiple words
-set iskeyword-=_
-
 " enable syntax and plugins
 filetype plugin indent on
 
@@ -57,8 +54,24 @@ set path+=**
 " now i can hit tab to :find by partial match
 " and use * to make it fuzzy
 
+" TAG JUMPING
+command! MakeTags !ctags -R .
+
+" now i can ^] to jump to the tag under the cursor
+" and ^t to jump back
+" also g^] for ambiguous tags
+
+" VIM'S BUILDIN AUTOCOMPLETE
+
 " disable the preview window from onmi-complete 
 set completeopt-=preview
+
+" ^n for anything specified by the 'complete' option
+" ^x^n for just this file
+" ^x^f for filenames
+" ^x^] for tags only
+" ^x^o for omnicomplete
+" and ^n and ^p will go back and forth in the suggestions
 
 " LEADER KEY
 
@@ -107,7 +120,7 @@ endif
 
 " init plugins
 call plug#begin()
-  Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clangd-completer --rust-completer' }
+  Plug 'ackyshake/VimCompletesMe'
   Plug 'airblade/vim-gitgutter'
   Plug 'jiangmiao/auto-pairs'
   Plug 'preservim/nerdtree'
@@ -139,21 +152,12 @@ hi GitGutterAdd          ctermbg=235
 hi GitGutterChange       ctermbg=235
 hi GitGutterDelete       ctermbg=235
 hi GitGutterChangeDelete ctermbg=235
-hi YcmErrorSign          ctermbg=235
 
 "  PLUGINS CONFIG
 
 " VIM-BUFTABLINE
 
 let g:buftabline_show=1
-
-" YCM 
-
-let g:ycm_auto_hover=''
-let g:ycm_min_num_of_chars_for_completion=5
-
-nnoremap <silent> <Leader>g :YcmCompleter GoToDefinition<CR>
-map <Leader>s <plug>(YCMHover)
 
 " NERDTREE
 
