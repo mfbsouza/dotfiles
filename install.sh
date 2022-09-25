@@ -1,15 +1,17 @@
 #!/bin/bash
 
+GREEN='\033[0;32m'
+CLEAR='\033[0m'
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-echo "Copying vimrc"
-cp $SCRIPT_DIR/.vimrc ~/.vimrc
+echo "$GREEN Copying neovim config folder $CLEAR"
+cp -r $SCRIPT_DIR/.config/nvim ~/.config/
 
-echo "Copying MangoHud config folder"
+echo "$GREEN Copying MangoHud config folder $CLEAR"
 cp -r $SCRIPT_DIR/.config/MangoHud ~/.config/
 
-echo "Copying vkBasalt config folder"
-cp -r $SCRIPT_DIR/.config/MangoHud ~/.config/
+echo "$GREEN Copying vkBasalt config folder $CLEAR"
+cp -r $SCRIPT_DIR/.config/vkBasalt ~/.config/
 
-echo "Done."
+echo "$GREEN Done. $CLEAR"
 

@@ -20,6 +20,7 @@ open Pop!_Shop update the packages then reboot
 also:
 
 	$ gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
+	$ gsettings set org.gnome.Terminal.Legacy.Settings headerbar false
 
 #### Add boot parameter for disabling Audit (optional)
 
@@ -45,7 +46,7 @@ Reboot
 
 #### Development tools
 
-	$ sudo apt install vim-gtk ack screen autoconf automake gperf texinfo \
+	$ sudo apt install xclip ack screen autoconf automake gperf texinfo \
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
 	clang llvm clang-format python3-pip cmake bear tree exuberant-ctags \
 	cscope nasm qemu-system-x86 qemu-system-misc valgrind
@@ -119,7 +120,7 @@ for desktop applications i use Flatpak
 
 #### TLDR
 
-	sudo apt install fonts-inconsolata vim-gtk ack screen autoconf \
+	sudo apt install fonts-inconsolata xclip ack screen autoconf \
 	automake gperf texinfo help2man libtool libtool-bin gawk libncurses-dev \
 	meson ninja-build clang llvm clang-format python3-pip cmake bear tree \
 	exuberant-ctags cscope nasm qemu-system-x86 qemu-system-misc valgrind \
