@@ -114,6 +114,12 @@ Reboot
 
 	$ echo dev.i915.perf_stream_paranoid=0 | sudo tee -a /etc/sysctl.d/99-i915psp.conf
 
+
+#### non buildin packages
+
+- neovim
+- ripgrep
+
 ## Desktop Applications
 
 for desktop applications i use Flatpak
