@@ -47,7 +47,7 @@ vim.opt.splitbelow = true
 
 -- popup menu even if there is only one match
 -- and do not select a match right away in the menu
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 
 -- popup menu height
 vim.opt.pumheight = 10
