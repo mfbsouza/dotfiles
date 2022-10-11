@@ -88,6 +88,11 @@ Reboot
 
 	$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+#### Rust Analyzer (install after Rust)
+
+	$ curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.cargo/bin/rust-analyzer
+	$ chmod +x ~/.cargo/bin/rust-analyzer
+
 #### Graphical Libraries
 
 	$ sudo apt install libsdl2-dev libglew-dev libglm-dev libsdl2-image-dev
