@@ -8,35 +8,45 @@ A place to keep my configuration files and scripts
 - Pop!_OS
 
 ### Browser
-- Firefox
+- firefox
 
-### Text Editor
-- Vim/Gvim
+### Programming
 
-### Video/Audio Player
-- VLC
+- neovim
+- git
+- patch
+- diff
+
+### Debugging
+
+- gdb
+- openocd
+- valgrind
+- qemu
+- hexdump
+
+### SysAdmin 
+
+- ssh
+- tmux
+- vi
 
 ### Virtualization
-- Qemu/Virt-Manager
+- virt-manager
+
+### Video/Audio Player
+- vlc
 
 ### Torrent Client
-- Transmission
+- transmission
 
 ### Video Recording/Streaming
-- Obs Studio
-
-### Dev tools
-- ssh
-- screen
-- git, diff, patch
-- tree, ack, grep
-- cat, hexdump
+- obs studio
 
 ### Gaming
-- Steam
-- Wine
-- Gamemode
-- MangoHud
+- steam
+- mangohud
+- vkbasalt
 
 ### Voice/Messaging
-- Discord
+- discord
