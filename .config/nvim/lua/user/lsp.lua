@@ -1,3 +1,9 @@
+-- safe call to check if lspconfig is installed
+local status_ok, _ = pcall(require, "lspconfig")
+if not status_ok then
+  return
+end
+
 -- config copied from https://github.com/neovim/nvim-lspconfig
 --
 -- Mappings.
@@ -50,3 +56,13 @@ for _, server in ipairs(servers) do
     flags = lsp_flags,
   }
 end
+
+require('lspconfig')['rust_analyzer'].setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {}
+    }
+}
