@@ -66,6 +66,9 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim"
   use "nvim-telescope/telescope.nvim"
 
+  -- git integration
+  use "lewis6991/gitsigns.nvim"
+
   -- treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
