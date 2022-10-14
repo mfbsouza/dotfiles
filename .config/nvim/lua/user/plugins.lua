@@ -67,6 +67,24 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim"
   use "nvim-telescope/telescope.nvim"
 
+  -- treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
+
+  -- autopairs
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+  -- easily comment code out
+  use {
+    "numToStr/Comment.nvim",
+    config = function() require('Comment').setup() end
+  }
+
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
