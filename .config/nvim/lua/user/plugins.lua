@@ -75,6 +75,19 @@ return packer.startup(function(use)
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
 
+  -- bufferline
+  use {
+    "akinsho/bufferline.nvim", tag = "v2.*",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function() require("bufferline").setup {} end
+  }
+
+  -- treeview
+  use {
+    "nvim-tree/nvim-tree.lua",
+    requires = "kyazdani42/nvim-web-devicons"
+  }
+
   -- autopairs
   use {
     "windwp/nvim-autopairs",
