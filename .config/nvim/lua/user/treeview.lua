@@ -3,12 +3,18 @@ if not status_ok then
   return
 end
 
--- disable netrw
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- empty setup using defaults
-treeview.setup()
+treeview.setup({
+  disable_netrw = true,
+  hijack_netrw = true,
+  open_on_setup = false,
+  open_on_tab = false,
+  hijack_cursor = false,
+  view = {
+    hide_root_folder = true,
+    side = "left",
+  },
+})
 
 --keymap
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<cr>", { noremap = true, silent = true })
