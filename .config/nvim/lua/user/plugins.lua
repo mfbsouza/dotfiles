@@ -45,7 +45,7 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim"
 
   -- colorschemes
-  use "lunarvim/colorschemes"
+  use "folke/tokyonight.nvim"
 
   -- completion engine
   use "hrsh7th/nvim-cmp"
