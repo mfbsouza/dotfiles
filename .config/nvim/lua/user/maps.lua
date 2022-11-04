@@ -22,8 +22,8 @@ vim.keymap.set("n", "<C-Left>", ":bprev<CR>", opts)
 -- navigate through windows
 vim.keymap.set("n", "<A-Right>", ":wincmd l<CR>", opts)
 vim.keymap.set("n", "<A-Left>", ":wincmd h<CR>", opts)
-vim.keymap.set("n", "<A-Up>", ":wincmd j<CR>", opts)
-vim.keymap.set("n", "<A-Down>", ":wincmd k<CR>", opts)
+vim.keymap.set("n", "<A-Up>", ":wincmd k<CR>", opts)
+vim.keymap.set("n", "<A-Down>", ":wincmd j<CR>", opts)
 
 -- open file explorer on the left
 vim.keymap.set("n", "<Leader>e", ":Lex 30<CR>", opts)
