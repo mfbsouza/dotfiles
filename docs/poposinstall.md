@@ -49,7 +49,8 @@ Reboot
 	$ sudo apt install xclip ack picocom autoconf automake gperf texinfo \
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
 	clang llvm clang-format python3-pip cmake bear tree exuberant-ctags \
-	cscope nasm qemu-system-x86 qemu-system-misc valgrind tmux clangd lcov
+	cscope nasm qemu-system-x86 qemu-system-misc valgrind tmux clangd lcov \
+	golang lua5.4 luajit
 
 #### ADM tools
 
@@ -92,6 +93,18 @@ Reboot
 
 	$ curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.cargo/bin/rust-analyzer
 	$ chmod +x ~/.cargo/bin/rust-analyzer
+
+### Go Language Server
+
+	$ go install golang.org/x/tools/gopls@latest
+
+	TODO: maybe set a GOPATH before hand
+	.bashrc:
+		export PATH=$PATH:$(go env GOPATH)/bin
+
+### Lua Language Server
+
+	https://github.com/sumneko/lua-language-server/wiki/Getting-Started#command-line
 
 #### Graphical Libraries
 
@@ -139,5 +152,5 @@ for desktop applications i use Flatpak
 	transmission-gtk vlc libvulkan-dev vulkan-tools mesa-utils vainfo \
 	openssh-server gcc-avr gdb-avr avr-libc avrdude network-manager-l2tp \
 	network-manager-l2tp-gnome virt-manager obs-studio tmux clangd lcov \
-	code mangohud vkbasalt steam
+	golang lua5.4 luajit code mangohud vkbasalt steam
 

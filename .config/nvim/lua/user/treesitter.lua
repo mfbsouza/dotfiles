@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = { "c", "cpp", "rust", "python", "lua", "bash", "json", "make", "markdown" },
+  ensure_installed = { "c", "cpp", "rust", "go", "python", "lua", "bash", "json", "make", "markdown" },
   sync_install = false,
   auto_install = true,
   highlight = {
