@@ -22,6 +22,16 @@ also:
 	$ gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
 	$ gsettings set org.gnome.Terminal.Legacy.Settings headerbar false
 
+#### configure enviroment variables
+
+at the end of the `.bashrc` file:
+
+	# env
+	export CPPUTEST_HOME=$HOME/workspace/cpputest
+	export GOPATH=$HOME/.go
+	export PATH=$PATH:$GOPATH/bin
+	export PATH=$PATH:$HOME/workspace/lua-language-server/bin
+
 #### Add boot parameter for disabling Audit (optional)
 
 	$ sudo kernelstub -a "audit=0"
@@ -36,10 +46,6 @@ Reboot
 
 ## Setting up the basic system tools
 
-#### Fonts
-
-	$ sudo apt install fonts-inconsolata
-
 #### Codecs
 
 	$ sudo apt install ubuntu-restricted-extras ffmpegthumbnailer
@@ -48,8 +54,8 @@ Reboot
 
 	$ sudo apt install xclip ack picocom autoconf automake gperf texinfo \
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
-	clang llvm clang-format python3-pip cmake bear tree exuberant-ctags \
-	cscope nasm qemu-system-x86 qemu-system-misc valgrind tmux clangd lcov \
+	clang llvm clang-format python3-pip cmake bear tree cscope nasm \
+	qemu-system-x86 qemu-system-misc valgrind tmux clangd lcov \
 	golang lua5.4 luajit
 
 #### ADM tools
@@ -75,7 +81,6 @@ Reboot
 #### avr cross-compiler, binutils and tools
 
 	$ sudo apt install gcc-avr avr-libc gdb-avr avrdude
-	$ sudo usermod -a -G dialout <username>
 
 #### L2TP Network Manager VPN support
 
@@ -85,7 +90,49 @@ Reboot
 
 	$ sudo apt install default-jre default-jdk
 
-#### Rust Language
+#### Graphical Libraries
+
+	$ sudo apt install libsdl2-dev libglew-dev libglm-dev libsdl2-image-dev
+
+#### Gamming
+
+	$ sudo apt install mangohud vkbasalt steam lutris
+
+## Optional Tweaks
+
+#### intel GPU Enable performance support
+
+	$ echo dev.i915.perf_stream_paranoid=0 | sudo tee -a /etc/sysctl.d/99-i915psp.conf
+
+## Desktop Applications
+
+for desktop applications i use Flatpak
+
+- Discord
+- Telegram
+- Slack
+- Microsoft Teams
+- Postman
+
+## Manual stuff
+
+#### Install from .deb file:
+
+- neovim
+- ripgrep
+
+#### Configure Git (optional)
+
+	$ git config --global user.name "username"
+	$ git config --global user.email "user@email.com"
+	$ git config --global core.editor "editor"
+	$ git config --global credential.helper store
+
+#### Add yourself to the dialout group
+
+	$ sudo usermod -a -G dialout <username>
+
+#### install Rust
 
 	$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -98,59 +145,29 @@ Reboot
 
 	$ go install golang.org/x/tools/gopls@latest
 
-	TODO: maybe set a GOPATH before hand
-	.bashrc:
-		export PATH=$PATH:$(go env GOPATH)/bin
-
 ### Lua Language Server
 
-	https://github.com/sumneko/lua-language-server/wiki/Getting-Started#command-line
+	$ git clone  --depth=1 https://github.com/sumneko/lua-language-server
+	$ cd lua-language-server
+	$ git submodule update --depth 1 --init --recursive
+	$ cd 3rd/luamake
+	$ ./compile/install.sh
+	$ cd ../..
+	$ ./3rd/luamake/luamake rebuild
 
-#### Graphical Libraries
+#### Install configuration files:
 
-	$ sudo apt install libsdl2-dev libglew-dev libglm-dev libsdl2-image-dev
-
-#### Steam
-
-	$ sudo apt install mangohud vkbasalt steam
-
-#### Configure Git (optional)
-
-	$ git config --global user.name "username"
-	$ git config --global user.email "user@email.com"
-	$ git config --global core.editor "editor"
-	$ git config --global credential.helper store
-
-## Optional Tweaks
-
-#### intel GPU Enable performance support
-
-	$ echo dev.i915.perf_stream_paranoid=0 | sudo tee -a /etc/sysctl.d/99-i915psp.conf
-
-
-#### non buildin packages
-
-- neovim
-- ripgrep
-
-## Desktop Applications
-
-for desktop applications i use Flatpak
-
-- Discord
-- Telegram
-- Helvum
-- EasyEffects
+	./install.sh
 
 #### TLDR
 
-	sudo apt install fonts-inconsolata xclip ack picocom autoconf \
-	automake gperf texinfo help2man libtool libtool-bin gawk libncurses-dev \
-	meson ninja-build clang llvm clang-format python3-pip cmake bear tree \
-	exuberant-ctags cscope nasm qemu-system-x86 qemu-system-misc valgrind \
-	ubuntu-restricted-extras ffmpegthumbnailer lm-sensors neofetch htop stress \
+	sudo apt install xclip ack picocom autoconf automake gperf \
+	texinfo help2man libtool libtool-bin gawk libncurses-dev \
+	meson ninja-build clang llvm clang-format python3-pip cmake bear \
+	bear cscope nasm qemu-system-x86 qemu-system-misc valgrind \
+	ubuntu-restricted-extras ffmpegthumbnailer lm-sensors neofetch htop \
 	transmission-gtk vlc libvulkan-dev vulkan-tools mesa-utils vainfo \
 	openssh-server gcc-avr gdb-avr avr-libc avrdude network-manager-l2tp \
 	network-manager-l2tp-gnome virt-manager obs-studio tmux clangd lcov \
-	golang lua5.4 luajit code mangohud vkbasalt steam
+	stress golang lua5.4 luajit code mangohud vkbasalt steam lutris
 
