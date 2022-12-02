@@ -141,11 +141,11 @@ for desktop applications i use Flatpak
 	$ curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.cargo/bin/rust-analyzer
 	$ chmod +x ~/.cargo/bin/rust-analyzer
 
-### Go Language Server
+#### Go Language Server
 
 	$ go install golang.org/x/tools/gopls@latest
 
-### Lua Language Server
+#### Lua Language Server
 
 	$ git clone  --depth=1 https://github.com/sumneko/lua-language-server
 	$ cd lua-language-server
@@ -154,6 +154,22 @@ for desktop applications i use Flatpak
 	$ ./compile/install.sh
 	$ cd ../..
 	$ ./3rd/luamake/luamake rebuild
+
+#### Install CppUTest
+
+	$ git clone https://github.com/cpputest/cpputest
+	$ cd cpputest
+	$ autoreconf . -i
+	$ ./configure
+	$ make tdd -j$(nproc)
+
+#### Install Inconsolata Nerd Fonts
+
+download and extract the fonts and do:
+	
+	$ mkdir -p ~/.fonts
+	$ cp -r . ~/.fonts
+	$ fc-cache -fv
 
 #### Install configuration files:
 
