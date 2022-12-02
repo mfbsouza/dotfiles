@@ -98,6 +98,10 @@ Reboot
 
 	$ sudo apt install mangohud vkbasalt steam lutris
 
+my launch options for Dota 2:
+	
+	ENABLE_VKBASALT=1 MANGOHUD=1 %command% -vulkan -novid -vulkan_disable_steam_shader_cache
+
 ## Optional Tweaks
 
 #### intel GPU Enable performance support
