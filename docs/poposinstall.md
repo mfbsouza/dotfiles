@@ -149,6 +149,10 @@ for desktop applications i use Flatpak
 
 	$ go install golang.org/x/tools/gopls@latest
 
+### Go Doc
+
+	$ sudo apt install golang-golang-x-tools
+
 #### Lua Language Server
 
 	$ git clone  --depth=1 https://github.com/sumneko/lua-language-server
@@ -184,10 +188,11 @@ download and extract the fonts and do:
 	sudo apt install xclip ack picocom autoconf automake gperf \
 	texinfo help2man libtool libtool-bin gawk libncurses-dev \
 	meson ninja-build clang llvm clang-format python3-pip cmake bear \
-	bear cscope nasm qemu-system-x86 qemu-system-misc valgrind \
+	bear tree cscope nasm qemu-system-x86 qemu-system-misc valgrind \
 	ubuntu-restricted-extras ffmpegthumbnailer lm-sensors neofetch htop \
 	transmission-gtk vlc libvulkan-dev vulkan-tools mesa-utils vainfo \
 	openssh-server gcc-avr gdb-avr avr-libc avrdude network-manager-l2tp \
 	network-manager-l2tp-gnome virt-manager obs-studio tmux clangd lcov \
-	stress golang lua5.4 luajit code mangohud vkbasalt steam lutris
+	stress golang golang-golang-x-tools lua5.4 luajit code \
+	mangohud vkbasalt steam lutris
 
