@@ -28,7 +28,7 @@ at the end of the `.bashrc` file:
 
 	# env
 	export WORKSPACE=$HOME/workspace
-	export CPPUTEST_HOME=$HOME/workspace/cpputest
+	export CPPUTEST_HOME=$WORKSPACE/cpputest
 	export GOPATH=$HOME/.go
 	export PATH=$PATH:$GOPATH/bin
 
