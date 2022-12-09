@@ -27,10 +27,10 @@ also:
 at the end of the `.bashrc` file:
 
 	# env
+	export WORKSPACE=$HOME/workspace
 	export CPPUTEST_HOME=$HOME/workspace/cpputest
 	export GOPATH=$HOME/.go
 	export PATH=$PATH:$GOPATH/bin
-	export PATH=$PATH:$HOME/workspace/lua-language-server/bin
 
 #### Add boot parameter for disabling Audit (optional)
 
@@ -56,7 +56,7 @@ Reboot
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
 	clang llvm clang-format python3-pip cmake bear tree cscope nasm \
 	qemu-system-x86 qemu-system-misc valgrind tmux clangd lcov \
-	golang lua5.4 luajit
+	golang golang-golang-x-tools docker
 
 #### ADM tools
 
@@ -108,22 +108,13 @@ my launch options for Dota 2:
 
 	$ echo dev.i915.perf_stream_paranoid=0 | sudo tee -a /etc/sysctl.d/99-i915psp.conf
 
-## Desktop Applications
-
-for desktop applications i use Flatpak
-
-- Discord
-- Telegram
-- Slack
-- Microsoft Teams
-- Postman
-
 ## Manual stuff
 
 #### Install from .deb file:
 
 - neovim
 - ripgrep
+- Teams
 
 #### Configure Git (optional)
 
@@ -148,10 +139,6 @@ for desktop applications i use Flatpak
 #### Go Language Server
 
 	$ go install golang.org/x/tools/gopls@latest
-
-### Go Doc
-
-	$ sudo apt install golang-golang-x-tools
 
 #### Lua Language Server
 
@@ -193,6 +180,7 @@ download and extract the fonts and do:
 	transmission-gtk vlc libvulkan-dev vulkan-tools mesa-utils vainfo \
 	openssh-server gcc-avr gdb-avr avr-libc avrdude network-manager-l2tp \
 	network-manager-l2tp-gnome virt-manager obs-studio tmux clangd lcov \
-	stress golang golang-golang-x-tools lua5.4 luajit code \
-	mangohud vkbasalt steam lutris
+	stress golang golang-golang-x-tools code telegram-desktop discord \
+	libsdl2-dev libglew-dev libglm-dev libsdl2-image-dev slack-destop \
+	docker mangohud vkbasalt steam lutris
 
