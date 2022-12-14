@@ -127,6 +127,10 @@ my launch options for Dota 2:
 
 	$ sudo usermod -a -G dialout <username>
 
+#### Add yourself to the docker group
+
+	$ sudo usermod -a -G docker <username>
+
 #### install Rust
 
 	$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
