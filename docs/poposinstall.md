@@ -56,7 +56,7 @@ Reboot
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
 	clang llvm clang-format python3-pip cmake bear tree cscope nasm \
 	qemu-system-x86 qemu-system-misc valgrind tmux clangd lcov \
-	golang golang-golang-x-tools docker
+	golang golang-golang-x-tools docker.io
 
 #### ADM tools
 
@@ -182,5 +182,5 @@ download and extract the fonts and do:
 	network-manager-l2tp-gnome virt-manager obs-studio tmux clangd lcov \
 	stress golang golang-golang-x-tools code telegram-desktop discord \
 	libsdl2-dev libglew-dev libglm-dev libsdl2-image-dev slack-destop \
-	docker mangohud vkbasalt steam lutris
+	docker.io mangohud vkbasalt steam lutris
 
