@@ -14,6 +14,9 @@ treeview.setup({
     hide_root_folder = true,
     side = "left",
   },
+  filters = {
+    dotfiles = true,
+  },
 })
 
 --keymap
