@@ -64,3 +64,6 @@ vim.opt.fileencoding = "utf-8"
 -- tab view size equals to 4 spaces
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+
+-- colorcolumn
+vim.opt.colorcolumn = "80"
