@@ -56,7 +56,9 @@ Reboot
 	help2man libtool libtool-bin gawk libncurses-dev meson ninja-build \
 	clang llvm clang-format python3-pip cmake bear tree cscope nasm \
 	qemu-system-x86 qemu-system-misc valgrind tmux clangd lcov \
-	golang golang-golang-x-tools docker.io qtcreator
+	golang golang-golang-x-tools docker.io qtcreator diffstat chrpath socat \
+	python3-pexpect python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
+	pylint xterm python3-subunit mesa-common-dev liblz4-tool
 
 #### ADM tools
 
@@ -115,6 +117,8 @@ my launch options for Dota 2:
 - neovim
 - ripgrep
 - Teams
+- AnyDesk
+- Google Chrome
 
 #### Configure Git (optional)
 
@@ -185,6 +189,8 @@ download and extract the fonts and do:
 	openssh-server gcc-avr gdb-avr avr-libc avrdude network-manager-l2tp \
 	network-manager-l2tp-gnome virt-manager obs-studio tmux clangd lcov \
 	stress inxi golang golang-golang-x-tools code telegram-desktop discord \
-	libsdl2-dev libglew-dev libglm-dev libsdl2-image-dev slack-destop \
-	docker.io qtcreator mangohud vkbasalt steam lutris
+	libsdl2-dev libglew-dev libglm-dev libsdl2-image-dev slack-desktop \
+	docker.io qtcreator diffstat chrpath socat python3-pexpect python3-git \
+	python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit \
+	mesa-common-dev liblz4-tool mangohud vkbasalt steam lutris
 
