@@ -5,10 +5,10 @@ A place to keep my configuration files and scripts
 ## My Everyday Softwares
 
 ### Distro
-- Pop!_OS
+- OpenSUSE Tumbleweed
 
 ### Browser
-- firefox
+- Google Chrome
 
 ### Programming
 
@@ -22,7 +22,6 @@ A place to keep my configuration files and scripts
 - gdb
 - openocd
 - valgrind
-- qemu
 - hexdump
 
 ### SysAdmin 
@@ -33,6 +32,7 @@ A place to keep my configuration files and scripts
 
 ### Virtualization
 - virt-manager
+- qemu
 
 ### Video/Audio Player
 - vlc

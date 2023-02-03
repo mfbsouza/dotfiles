@@ -5,9 +5,6 @@ CLEAR='\033[0m'
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-echo -e "$GREEN Copying .bashrc $CLEAR"
-cp -r $SCRIPT_DIR/.bashrc ~/
-
 echo -e "$GREEN Copying neovim config folder $CLEAR"
 cp -r $SCRIPT_DIR/.config/nvim ~/.config/
 
