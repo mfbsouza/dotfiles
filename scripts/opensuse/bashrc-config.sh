@@ -5,6 +5,6 @@ CLEAR='\033[0m'
 
 echo -e "$GREEN Configuring bashrc... $CLEAR"
 
-cat $HOME/workspace/dotfiles/scripts/opensuse/bashrc.template >> $HOME/.bashrc
+cat $HOME/workspace/dotfiles/bashrc.template >> $HOME/.bashrc
 
 echo -e "$GREEN Done! $CLEAR"
