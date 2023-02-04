@@ -5,6 +5,12 @@ RED='\033[0;31m'
 CLEAR='\033[0m'
 
 echo ""
+echo -e "$GREEN Disabling OpenSUSE weird repo... $CLEAR"
+echo ""
+
+sudo zypper mr -d repo-openh264
+
+echo ""
 echo -e "$GREEN Updating the system packages... $CLEAR"
 echo ""
 
@@ -54,7 +60,7 @@ echo ""
 echo -e "$GREEN Printing repo priorities... $CLEAR"
 echo ""
 
-sudo zypper lr -u
+sudo zypper lr -P
 sleep 5
 
 echo ""
