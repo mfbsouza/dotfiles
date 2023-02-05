@@ -8,10 +8,9 @@
 
 ## Clone dotfiles repo
 
-	$ sudo zypper in git
 	$ mkdir workspace && cd workspace
 	$ git clone https://github.com/mfbsouza/dotfiles.git
-	$ cd dotfiles/scripts/opensuse
+	$ cd dotfiles/scripts/pop_os
 
 ## Configure Git
 
