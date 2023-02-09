@@ -32,7 +32,8 @@ sudo apt install xclip ack picocom autoconf automake gperf \
 	libsdl2-dev libglew-dev libglm-dev libsdl2-image-dev default-jre \
 	docker.io diffstat chrpath socat python3-pexpect python3-git default-jdk \
 	python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit \
-	libu2f-udev libgdk-pixbuf-xlib-2.0-0 libgdk-pixbuf2.0-0 \
+	libu2f-udev libgdk-pixbuf-xlib-2.0-0 libgdk-pixbuf2.0-0 vim \
+	bison libssl-dev libelf-dev libpci-dev libiberty-dev \
 	mesa-common-dev liblz4-tool wireshark mangohud vkbasalt steam lutris
 if [ "$?" -ne 0 ]; then
 	echo ""
