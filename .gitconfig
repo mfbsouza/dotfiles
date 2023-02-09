@@ -1,0 +1,10 @@
+[user]
+	name = mfbsouza
+	email = mfbsouza.it@gmail.com
+	signingkey = mfbsouza.it@gmail.com
+[core]
+	editor = nvim
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
