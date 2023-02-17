@@ -2,26 +2,22 @@
 " https://www.youtube.com/watch?v=XA2WjJbmmoM
 
 " BASIC SETUP
-
 " don't pretend to be vi
 set nocompatible
 
 " faster faster
 set updatetime=100
 
-" dark background color
-set background=dark
-
-" display horizontal menu for tab complete
-set wildmenu
-
-" dont show status line
+" disable status line
 set laststatus=0
 
-" go to match while type in search mode
+" hl search and go to match while typing
 set is hls
 
-" navigate through buffers without need for save
+" ignore word case in search mode
+set ignorecase
+
+" navigate through buffer freely
 set hidden
 
 " scroll the file when hitting the frame limits
@@ -39,33 +35,29 @@ set mouse=a
 " auto reload file if there was a change in disk
 set autoread
 
-" enable syntax and plugins
-filetype plugin indent on
+" autoindent and smartindent
+set ai
+set si
 
-" indent
-set ai si
+" always show signcolumn
+"set signcolumn=yes
 
-" FINDING FILES
+" always show tabline
+"set showtabline=2
 
-" search down into subfolders
-" provides tab-completion for all file-related tasks
-set path+=**
+" vsplit to the right and split always below
+set splitright=yes
+set splitbelow=yes
 
-" now i can hit tab to :find by partial match
-" and use * to make it fuzzy
-
-" TAG JUMPING
-command! MakeTags !ctags -R .
-
-" now i can ^] to jump to the tag under the cursor
-" and ^t to jump back
-" also g^] for ambiguous tags
+" display horizontal menu for tab complete
+set wildmenu
 
 " VIM'S BUILDIN AUTOCOMPLETE
-
 " disable the preview window from onmi-complete 
-set completeopt-=preview
-
+"set completeopt-=preview
+set completeopt=menuone
+set completeopt+=noselect
+set completeopt+=noinsert
 " ^n for anything specified by the 'complete' option
 " ^x^n for just this file
 " ^x^f for filenames
@@ -73,7 +65,23 @@ set completeopt-=preview
 " ^x^o for omnicomplete
 " and ^n and ^p will go back and forth in the suggestions
 
-" LEADER KEY
+set shiftwidth=4
+set tabstop=4
+
+" enable syntax and plugins
+filetype plugin indent on
+
+" FINDING FILES
+" search down into subfolders
+" provides tab-completion for all file-related tasks
+set path+=**
+" now i can hit tab to :find by partial match
+" and use * to make it fuzzy
+
+" TAG JUMPING
+" i can ^] to jump to the tag under the cursor
+" and ^t to jump back
+" also g^] for ambiguous tags
 
 " set the space bar as the leader key
 nnoremap <SPACE> <Nop>
@@ -92,8 +100,14 @@ nnoremap <silent> <Leader>h :noh<CR>
 nnoremap <silent> <C-Right> :bnext<CR>
 nnoremap <silent> <C-Left> :bprev<CR>
 
-" close buffer
-nnoremap <silent> <Leader>d :bd<CR>
+" navigate through windows
+nnoremap <silent> <A-Right> :wincmd l<CR>
+nnoremap <silent> <A-Left> :wincmd h<CR>
+nnoremap <silent> <A-Up> :wincmd k<CR>
+nnoremap <silent> <A-Down> :wincmd j<CR>
+
+" open file explorer on the left
+nnoremap <silent> <Leader>e :Lex 30<CR>
 
 " stay in indent mode
 vnoremap <silent> < <gv
@@ -109,70 +123,3 @@ vnoremap <C-c> "+y
 
 "double click to highlight all occurrences
 nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
-
-" PLUGINS
-
-" Install vim-plug if not installed
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
-
-" init plugins
-call plug#begin()
-  Plug 'ackyshake/VimCompletesMe'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'preservim/nerdtree'
-  Plug 'ap/vim-buftabline'
-  Plug 'mfbsouza/preto'
-call plug#end()
-
-" GUI Configs
-if has("gui_running")
-	" colors
-	set termguicolors
-	syntax on
-	color preto
-	" hide menu bar, tool bar and left scroll bar
-	set guioptions-=m
-	set guioptions-=T
-	set guioptions-=L
-	" always show sign column
-	set signcolumn=yes
-	" font
-	set guifont=Inconsolata\ Medium\ 14
-endif
-
-" HL TWEAKS
-
-hi SignColumn guibg=NONE ctermbg=NONE
-hi VertSplit  guibg=NONE ctermbg=NONE
-hi GitGutterAdd          ctermbg=235
-hi GitGutterChange       ctermbg=235
-hi GitGutterDelete       ctermbg=235
-hi GitGutterChangeDelete ctermbg=235
-
-"  PLUGINS CONFIG
-
-" VIM-BUFTABLINE
-
-let g:buftabline_show=1
-
-" NERDTREE
-
-let g:NERDTreeMinimalUI=1
-let g:NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.git$', '\.cache$']
-nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
-
-" auto close nerdtree is closing the last buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" hide cwd in nerdtree
-augroup nerdtreehidecwd
-  autocmd!
-  autocmd FileType nerdtree setlocal conceallevel=3
-          \ | syntax match NERDTreeHideCWD #^[</].*$# conceal
-          \ | setlocal concealcursor=n
-augroup end
