@@ -12,13 +12,6 @@
 	$ git clone https://github.com/mfbsouza/dotfiles.git
 	$ cd dotfiles/scripts/pop_os
 
-## Configure Git
-
-	$ git config --global user.name "username"
-	$ git config --global user.email "user@email.com"
-	$ git config --global core.editor "editor"
-	$ git config --global credential.helper store
-
 ## Configure Kernel Parameters
 
 	$ ./amdgpu_featuremask.sh
