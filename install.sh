@@ -23,5 +23,8 @@ ln -s $SCRIPT_DIR/.config/MangoHud ~/.config/MangoHud
 echo -e "$GREEN Linking vkBasalt config folder $CLEAR"
 ln -s $SCRIPT_DIR/.config/vkBasalt ~/.config/vkBasalt
 
+echo -e "$GREEN Linking Neofetch config folder $CLEAR"
+ln -s $SCRIPT_DIR/.config/neofetch ~/.config/neofetch
+
 echo -e "$GREEN Done. $CLEAR"
 
