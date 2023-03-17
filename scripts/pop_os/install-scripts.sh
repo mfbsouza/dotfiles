@@ -8,7 +8,6 @@ echo -e "$GREEN Creating soft links to perf scripts in $HOME/bin... $CLEAR"
 echo ""
 
 mkdir -p $HOME/bin
-ln -s $HOME/workspace/dotfiles/scripts/perf_tweaks/overclock-rx580.sh $HOME/bin
 ln -s $HOME/workspace/dotfiles/scripts/perf_tweaks/perf_governor.sh $HOME/bin
 
 echo ""
