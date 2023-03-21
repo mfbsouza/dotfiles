@@ -133,26 +133,6 @@ fi
 rm google-chrome-stable_current_amd64.deb
 
 echo ""
-echo -e "$GREEN Installing Microsoft Teams... $CLEAR"
-echo ""
-
-wget "https://teams.microsoft.com/downloads/desktopurl?env=production&plat=linux&arch=x64&download=true&linuxArchiveType=deb" -O teams.deb
-if [ "$?" -ne 0 ]; then
-	echo ""
-	echo -e "$RED Something went wrong! Stopping... $CLEAR"
-	echo ""
-	exit 1
-fi
-sudo dpkg -i teams.deb
-if [ "$?" -ne 0 ]; then
-	echo ""
-	echo -e "$RED Something went wrong! Stopping... $CLEAR"
-	echo ""
-	exit 1
-fi
-rm teams.deb
-
-echo ""
 echo -e "$GREEN Adding user to groups... $CLEAR"
 echo ""
 
