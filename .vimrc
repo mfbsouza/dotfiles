@@ -46,8 +46,8 @@ set si
 "set showtabline=2
 
 " vsplit to the right and split always below
-set splitright=yes
-set splitbelow=yes
+"set splitright=yes
+"set splitbelow=yes
 
 " display horizontal menu for tab complete
 set wildmenu
