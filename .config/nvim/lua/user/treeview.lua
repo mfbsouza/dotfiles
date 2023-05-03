@@ -7,11 +7,12 @@ end
 treeview.setup({
   disable_netrw = true,
   hijack_netrw = true,
-  open_on_setup = false,
   open_on_tab = false,
   hijack_cursor = false,
+  renderer = {
+    root_folder_label = false,
+  },
   view = {
-    hide_root_folder = true,
     side = "left",
   },
   filters = {
