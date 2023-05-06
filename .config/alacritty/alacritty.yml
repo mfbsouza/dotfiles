@@ -152,7 +152,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux attach || tmux new -s main"
+    - "tmux"
 
 # Key bindings
 #
