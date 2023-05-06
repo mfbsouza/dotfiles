@@ -17,8 +17,13 @@ ln -s $SCRIPT_DIR/.tmux.conf ~/.tmux.conf
 echo -e "$GREEN Linking vimrc config to home $CLEAR"
 ln -s $SCRIPT_DIR/.vimrc ~/.vimrc
 
-echo -e "$GREEN Linking Neofetch config folder $CLEAR"
+# config folders
 mkdir -p ~/.config
+
+echo -e "$GREEN Linking Alacritty config folder $CLEAR"
+ln -s $SCRIPT_DIR/.config/alacritty ~/.config/alacritty
+
+echo -e "$GREEN Linking Neofetch config folder $CLEAR"
 ln -s $SCRIPT_DIR/.config/neofetch ~/.config/neofetch
 
 if [ "$ANSWER" == "d" ]; then
