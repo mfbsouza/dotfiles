@@ -6,6 +6,6 @@ CLEAR='\033[0m'
 
 echo -e "$GREEN [ripgrep] Installing... $CLEAR"
 
-cargo install ripgrep
+cargo install ripgrep bat
 
 echo -e "$GREEN [ripgrep] Done! $CLEAR"
