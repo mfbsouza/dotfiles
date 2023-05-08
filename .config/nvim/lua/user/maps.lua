@@ -42,3 +42,7 @@ vim.keymap.set("v", "<C-c>", '"+y', opts)
 
 -- double click to highlight all occurrences
 vim.keymap.set("n", "<2-LeftMouse>", "*N", opts)
+
+-- make sure that the half page jumps set the cursor to the middle
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")

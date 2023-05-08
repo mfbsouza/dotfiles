@@ -6,7 +6,7 @@
 set nocompatible
 
 " faster faster
-set updatetime=100
+set updatetime=50
 
 " disable status line
 set laststatus=0

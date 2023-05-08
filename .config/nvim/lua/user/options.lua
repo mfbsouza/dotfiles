@@ -1,7 +1,7 @@
 -- BASIC SETUP
 
 -- faster faster
-vim.opt.updatetime = 100
+vim.opt.updatetime = 50
 
 -- disable status line
 vim.opt.laststatus = 0
