@@ -16,7 +16,8 @@ fi
 
 echo -e "$GREEN Installing Packages... $CLEAR"
 
-sudo apt install docker.io tree build-essential ninja-build gettext cmake unzip
+sudo apt install docker.io tree tmux build-essential ninja-build \
+	gettext cmake unzip
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
