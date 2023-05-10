@@ -8,8 +8,10 @@ echo -e "$GREEN [neovim] Installing... $CLEAR"
 # clone the source
 git clone -b stable https://github.com/neovim/neovim /tmp/neovim
 
+# dependencies: ninja-build gettext cmake unzip curl
+
 # build
-cd /tmp/nvim
+cd /tmp/neovim
 make CMAKE_BUILD_TYPE=Release
 
 # install
