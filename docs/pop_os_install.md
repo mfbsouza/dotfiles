@@ -2,39 +2,51 @@
 
 **WARING**: this step by step was ment for my use, there may be steps witch are not very clear what it should do (like open the editor in some file and not saying what to change on it),that is because i am used to it. If you wish to follow this, please be aware of the objectives in each step.
 
+## Set up ssh and gpg keys
+
+    $ sudo apt install openssh-server
+
+- [SSH Keys](https://github.com/mfbsouza/docs/blob/main/docs/ssh-key.md)
+- [GPG Keys](https://github.com/mfbsouza/docs/blob/main/docs/gpg-key.md)
+
 ## Clone dotfiles repo
 
 	$ mkdir workspace && cd workspace
-	$ git clone https://github.com/mfbsouza/dotfiles.git
-	$ cd dotfiles/scripts/pop_os
+	$ git clone git@github.com:mfbsouza/dotfiles.git
+	$ cd dotfiles
 
-## Configure Kernel Parameters (amdgpu only)
+## install build dependencies
 
-	$ ./amdgpu_featuremask.sh
+    $ sudo apt install ninja-build gettext cmake
 
-## Configure Gnome
+## install it
 
-	$ ./gnome.sh
-
-## Configure Bashrc
-
-	$ ./bashrc-config.sh
-
-## Install Fonts
-
-	$ ./fonts.sh
+    $ ./install.sh
 
 **reopen terminal at the same folder as previous!**
 
 ## Install Packages
 
-	$ ./packages.sh
+	$ ./scripts/pop_os/packages.sh
 
-## Install Perf Tweaks Scripts
+## Configure Gnome
 
-	$ ./install-scripts.sh
+    $ ./scripts/pop_os/gnome.sh
 
-## Install Dotfiles configs
+## Configure GPU tweaks
 
-	$ cd ../../ && ./install.sh
+for NVIDIA GPUS:
 
+	$ ./scripts/pop_os/nvidia_tweaks.sh
+
+for AMD GPUS:
+
+	$ ./scripts/pop_os/amdgpu_tweaks.sh
+
+for Intel GPUS:
+
+    $ ./scripts/perf_tweaks/intel_gpu_tweak.sh
+
+## Fist time nvim setup
+
+open nvim and do TSUpdate
