@@ -6,9 +6,9 @@ CLEAR='\033[0m'
 ROOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 SCRIPT_DIR=$ROOT_DIR/scripts
 
-echo "$GREEN [dotfiles] $CLEAR \n"
+echo -e "$GREEN [dotfiles] $CLEAR"
 
-echo "$GREEN Install Desktop or Server config files? [d/s] $CLEAR"
+echo -e "$GREEN Install Desktop or Server config files? [d/s] $CLEAR"
 read ANSWER
 
 echo -e "$GREEN Linking gitconfig to home $CLEAR"
@@ -39,11 +39,11 @@ if [ "$ANSWER" == "d" ]; then
 
 fi
 
-echo -e "$GREEN [environment] $CLEAR \n"
+echo -e "\n$GREEN [environment] $CLEAR"
 $SCRIPT_DIR/./env/bashrc-config.sh
 $SCRIPT_DIR/./env/install-scripts.sh
 
-echo -e "$GREEN [programs] $CLEAR \n"
+echo -e "\n$GREEN [programs] $CLEAR"
 $SCRIPT_DIR/./installers/fastfetch.sh
 $SCRIPT_DIR/./installers/fonts.sh
 $SCRIPT_DIR/./installers/nvim.sh
