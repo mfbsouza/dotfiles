@@ -1,0 +1,10 @@
+[Unit]
+Description=Set NVIDIA GPU to Max Performance Mode
+After=graphical.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=1"
+
+[Install]
+WantedBy=graphical.target

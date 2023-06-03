@@ -37,6 +37,24 @@ if [ "$ANSWER" == "d" ]; then
 	echo -e "$GREEN Linking vkBasalt config folder $CLEAR"
 	ln -s $ROOT_DIR/.config/vkBasalt ~/.config/vkBasalt
 
+	echo -e "$GREEN Install Nvidia Max Performance Service? [y/n] $CLEAR"
+	read ANS
+	if [ "$ANS" == "y" ]; then
+		echo -e "$GREEN Linking systemd user services folder $CLEAR"
+		ln -s $ROOT_DIR/.config/systemd ~/.config/systemd
+		echo -e "$GREEN Enabling Nvidia Max Performance service $CLEAR"
+		systemctl --user enable nvidia-max-perf.service
+		echo -e "$GREEN Starting Nvidia Max Performance service $CLEAR"
+		systemctl --user start nvidia-max-perf.service
+	fi
+
+	echo -e "$GREEN Install Intel GPU Tweaks? [y/n] $CLEAR"
+	read ANS
+	if [ "$ANS" == "y" ]; then
+		echo dev.i915.perf_stream_paranoid=0 \
+			| sudo tee -a /etc/sysctl.d/99-i915psp.conf
+	fi
+
 fi
 
 echo -e "\n$GREEN [environment] $CLEAR"
@@ -48,7 +66,6 @@ $SCRIPT_DIR/./installers/fastfetch.sh
 $SCRIPT_DIR/./installers/fonts.sh
 $SCRIPT_DIR/./installers/nvim.sh
 $SCRIPT_DIR/./installers/rust.sh
-$SCRIPT_DIR/./installers/rust-apps.sh
 
 echo -e "$GREEN Done! $CLEAR"
 
