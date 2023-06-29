@@ -1,0 +1,12 @@
+configuration {
+	display-drun: "Applications:";
+	display-windows: "Windows:";
+	drun-display-format: "{icon} {name}";
+	font: "Noto Sans 10";
+	modi: "window,drun";
+	show-icons: true;
+	kb-mode-next: "Tab";
+	kb-element-next: "Control+Tab";
+}
+
+@theme "~/.config/rofi/breeze-dark.rasi"
