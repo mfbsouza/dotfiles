@@ -37,11 +37,26 @@ if [ "$ANSWER" == "d" ]; then
 	echo -e "$GREEN Linking vkBasalt config folder $CLEAR"
 	ln -s $ROOT_DIR/.config/vkBasalt ~/.config/vkBasalt
 
+	echo -e "$GREEN Linking rofi config folder $CLEAR"
+	ln -s $ROOT_DIR/.config/rofi ~/.config/rofi
+
+	echo -e "$GREEN Linking environment.d config folder $CLEAR"
+	ln -s $ROOT_DIR/.config/environment.d ~/.config/environment.d
+
+	echo -e "$GREEN Linking ssh-add.desktop to autostart $CLEAR"
+	mkdir -p ~/.config/autostart
+	ln -s $ROOT_DIR/.config/autostart/ssh-add.desktop \
+		~/.config/autostart/ssh-add.desktop
+
+	echo -e "$GREEN Linking systemd user services folder $CLEAR"
+	ln -s $ROOT_DIR/.config/systemd ~/.config/systemd
+
+	echo -e "$GREEN Enabling ssh-agent user service $CLEAR"
+	systemctl --user enable ssh-agent.service
+
 	echo -e "$GREEN Install Nvidia Max Performance Service? [y/n] $CLEAR"
 	read ANS
 	if [ "$ANS" == "y" ]; then
-		echo -e "$GREEN Linking systemd user services folder $CLEAR"
-		ln -s $ROOT_DIR/.config/systemd ~/.config/systemd
 		echo -e "$GREEN Enabling Nvidia Max Performance service $CLEAR"
 		systemctl --user enable nvidia-max-perf.service
 		echo -e "$GREEN Starting Nvidia Max Performance service $CLEAR"
@@ -64,7 +79,6 @@ $SCRIPT_DIR/./env/install-scripts.sh
 echo -e "\n$GREEN [programs] $CLEAR"
 $SCRIPT_DIR/./installers/fastfetch.sh
 $SCRIPT_DIR/./installers/fonts.sh
-$SCRIPT_DIR/./installers/nvim.sh
 $SCRIPT_DIR/./installers/rust.sh
 
 echo -e "$GREEN Done! $CLEAR"
