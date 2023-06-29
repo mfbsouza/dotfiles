@@ -4,49 +4,68 @@ A place to keep my configuration files and scripts
 
 ## My Everyday Softwares
 
-### Distro
-- Pop!_OS
+### Operating Systems
 
-### Browser
+- Arch Linux (Desktop/Laptop)
+- Proxmox VE (Server)
+- Alpine Linux (VM inside Server)
+- OPNsense (VM inside Server)
+- Windows 11 (VM inside Desktop/Laptop)
+
+### Desktop Enviroment
+
+- KDE Plasma
+
+### Web Browser
+
 - Google Chrome
 
-### Programming
+### Dev stuff
 
 - neovim
 - git
 - patch
 - diff
-
-### Debugging
-
 - gdb
 - openocd
 - valgrind
 - hexdump
 
-### SysAdmin 
+### SysAdmin-like stuff
 
 - ssh
 - tmux
-- vi
+- rsync
+- docker
+- docker-compose
 
 ### Virtualization
+
 - virt-manager
 - qemu
 
 ### Video/Audio Player
+
 - vlc
+- mpv
 
 ### Torrent Client
+
 - transmission
 
 ### Video Recording/Streaming
+
 - obs studio
 
 ### Gaming
+
 - steam
+- wine
+- lutris
 - mangohud
 - vkbasalt
 
 ### Voice/Messaging
+
 - discord
+- telegram
