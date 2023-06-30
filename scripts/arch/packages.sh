@@ -15,7 +15,7 @@ sudo pacman -S plasma dolphin ffmpegthumbs kdegraphics-thumbnailers \
 	networkmanager-openvpn networkmanager-l2tp networkmanager-strongswan \
 	bash-completion usbutils tmux neovim xclip xsel tree wget picocom \
 	nasm valgrind htop rsync stress inxi rofi meson cmake clang llvm openmp \
-	python-pip python-pylint lcov gperf help2man diffstat chrpath \
+	python-pip python-pylint lcov gperf help2man diffstat chrpath go gopls \
 	rpcsvc-proto inetutils spirv-headers krita firefox transmission-qt \
 	vlc mpv discord telegram-desktop obs-studio jre-openjdk wireshark-qt \
 	docker virt-manager qemu-desktop dnsmasq iptables-nft
