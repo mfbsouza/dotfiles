@@ -9,8 +9,8 @@ echo ""
 echo -e "$GREEN Installing Packages... $CLEAR"
 echo ""
 
-sudo pacman -S plasma dolphin ffmpegthumbs kdegraphics-thumbnailers \
-	kwalletmanager spectacle alacritty libva-utils vdpauinfo \
+sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
+	kate okular kwalletmanager spectacle alacritty libva-utils vdpauinfo \
 	systemd-resolvconf usb_modeswitch openssh openvpn wireguard-tools \
 	networkmanager-openvpn networkmanager-l2tp networkmanager-strongswan \
 	bash-completion usbutils tmux neovim xclip xsel tree wget picocom \
@@ -18,7 +18,7 @@ sudo pacman -S plasma dolphin ffmpegthumbs kdegraphics-thumbnailers \
 	python-pip python-pylint lcov gperf help2man diffstat chrpath go gopls \
 	rpcsvc-proto inetutils spirv-headers krita firefox transmission-qt \
 	vlc mpv discord telegram-desktop obs-studio jre-openjdk wireshark-qt \
-	docker virt-manager qemu-desktop dnsmasq iptables-nft
+	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -84,10 +84,16 @@ echo ""
 yay -S google-chrome
 
 echo ""
+echo -e "$GREEN Installing downgrade utility... $CLEAR"
+echo ""
+yay -S downgrade
+
+echo ""
 echo -e "$GREEN enabling systemd services... $CLEAR"
 echo ""
 sudo systemctl enable sddm
 sudo systemctl enable bluetooth
+sudo systemctl enable sshd
 sudo systemctl enable ModemManager
 sudo systemctl enable docker
 sudo systemctl enable libvirtd
