@@ -18,7 +18,8 @@ sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	python-pip python-pylint lcov gperf help2man diffstat chrpath go gopls \
 	rpcsvc-proto inetutils spirv-headers krita firefox transmission-qt \
 	vlc mpv discord telegram-desktop obs-studio jre-openjdk wireshark-qt \
-	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight
+	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight ark \
+	dnsutils
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
