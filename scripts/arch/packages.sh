@@ -11,7 +11,7 @@ echo ""
 
 sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	kate okular kwalletmanager spectacle alacritty libva-utils vdpauinfo \
-	systemd-resolvconf usb_modeswitch openssh openvpn wireguard-tools \
+	openresolv usb_modeswitch openssh openvpn wireguard-tools \
 	networkmanager-openvpn networkmanager-l2tp networkmanager-strongswan \
 	bash-completion usbutils tmux neovim xclip xsel tree wget picocom \
 	nasm valgrind htop rsync stress inxi rofi meson cmake clang llvm openmp \
