@@ -113,6 +113,8 @@ if [ "$ANSWER" == "y" ]; then
 	fi
 	echo -e "$GREEN enabling TLP service... $CLEAR"
 	systemctl enable tlp
+	systemctl mask systemd-rfkill.service
+	systemctl mask systemd-rfkill.socket
 fi
 
 echo ""
