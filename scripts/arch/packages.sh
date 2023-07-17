@@ -19,7 +19,7 @@ sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	rpcsvc-proto inetutils spirv-headers krita firefox transmission-qt \
 	vlc mpv discord telegram-desktop obs-studio jre-openjdk wireshark-qt \
 	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight ark \
-	dnsutils gwenview
+	dnsutils gwenview turbostat ethtool
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -27,35 +27,42 @@ if [ "$?" -ne 0 ]; then
 	exit 1
 fi
 
-echo -e "$GREEN Install nvidia, amd or intel graphic packages? [n/a/i] $CLEAR"
+echo -e "$GREEN Install nvidia graphics packages? [y/n] $CLEAR"
 read ANSWER
-if [ "$ANSWER" == "n" ]; then
-	sudo pacman -S opencl-nvidia cuda nvidia-settings
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S opencl-nvidia cuda nvidia-settings lib32-nvidia-utils
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
 		echo ""
 		exit 1
 	fi
-elif [ "$ANSWER" == "a" ]; then
-	sudo pacman -S mesa vulkan-radeon libva-mesa-driver opencl-mesa
+fi
+
+echo -e "$GREEN Install amd graphics packages? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S mesa vulkan-radeon libva-mesa-driver opencl-mesa \
+		lib32-vulkan-radeon
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
 		echo ""
 		exit 1
 	fi
-elif [ "$ANSWER" == "i" ]; then
-	sudo pacman -S mesa vulkan-intel intel-media-driver intel-compute-runtime
+fi
+
+echo -e "$GREEN Install intel graphics packages? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S mesa vulkan-intel intel-media-driver intel-compute-runtime \
+		lib32-vulkan-intel
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
 		echo ""
 		exit 1
 	fi
-else
-	echo -e "$RED wrong option... $CLEAR"
-	exit 1
 fi
 
 echo -e "$GREEN Install gaming packages? [y/n] $CLEAR"
@@ -68,6 +75,44 @@ if [ "$ANSWER" == "y" ]; then
 		echo ""
 		exit 1
 	fi
+fi
+
+echo -e "$GREEN Install intel undervolt tool? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S intel-undervolt
+	if [ "$?" -ne 0 ]; then
+		echo ""
+		echo -e "$RED Something went wrong! Stopping... $CLEAR"
+		echo ""
+		exit 1
+	fi
+fi
+
+echo -e "$GREEN Install nvidia prime switch tool? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S nvidia-prime
+	if [ "$?" -ne 0 ]; then
+		echo ""
+		echo -e "$RED Something went wrong! Stopping... $CLEAR"
+		echo ""
+		exit 1
+	fi
+fi
+
+echo -e "$GREEN Install battery managment tools? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S cpupower tlp
+	if [ "$?" -ne 0 ]; then
+		echo ""
+		echo -e "$RED Something went wrong! Stopping... $CLEAR"
+		echo ""
+		exit 1
+	fi
+	echo -e "$GREEN enabling TLP service... $CLEAR"
+	systemctl enable tlp
 fi
 
 echo ""

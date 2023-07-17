@@ -1,2 +1,4 @@
 .config/nvim/plugin/*
 *default.target.wants*
+arch-nvidia.conf
+arch-intel.conf
