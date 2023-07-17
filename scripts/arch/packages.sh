@@ -104,7 +104,7 @@ fi
 echo -e "$GREEN Install battery managment tools? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
-	sudo pacman -S cpupower tlp
+	sudo pacman -S cpupower tlp tlp-rdw
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -113,6 +113,7 @@ if [ "$ANSWER" == "y" ]; then
 	fi
 	echo -e "$GREEN enabling TLP service... $CLEAR"
 	systemctl enable tlp
+	systemctl enable NetworkManager-dispatcher.service
 	systemctl mask systemd-rfkill.service
 	systemctl mask systemd-rfkill.socket
 fi
