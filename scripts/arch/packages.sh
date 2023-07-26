@@ -19,7 +19,8 @@ sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	rpcsvc-proto inetutils spirv-headers krita firefox transmission-qt \
 	vlc mpv discord telegram-desktop obs-studio jre-openjdk wireshark-qt \
 	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight ark \
-	dnsutils gwenview turbostat ethtool
+	dnsutils gwenview turbostat ethtool python-setuptools swtpm bear \
+	noto-fonts noto-fonts-cjk noto-fonts-emoji
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
