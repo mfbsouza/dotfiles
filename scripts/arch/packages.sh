@@ -20,7 +20,7 @@ sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	vlc mpv discord telegram-desktop obs-studio jre-openjdk wireshark-qt \
 	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight ark \
 	dnsutils gwenview turbostat ethtool python-setuptools swtpm bear \
-	noto-fonts noto-fonts-cjk noto-fonts-emoji
+	nodejs npm noto-fonts noto-fonts-cjk noto-fonts-emoji
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -113,10 +113,10 @@ if [ "$ANSWER" == "y" ]; then
 		exit 1
 	fi
 	echo -e "$GREEN enabling TLP service... $CLEAR"
-	systemctl enable tlp
-	systemctl enable NetworkManager-dispatcher.service
-	systemctl mask systemd-rfkill.service
-	systemctl mask systemd-rfkill.socket
+	sudo systemctl enable tlp
+	sudo systemctl enable NetworkManager-dispatcher.service
+	sudo systemctl mask systemd-rfkill.service
+	sudo systemctl mask systemd-rfkill.socket
 fi
 
 echo ""

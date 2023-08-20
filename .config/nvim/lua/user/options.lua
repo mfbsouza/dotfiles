@@ -17,7 +17,7 @@ vim.opt.ignorecase = true
 vim.opt.hidden = true
 
 -- scroll the file when hitting frame limits
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 1
 
 -- disable swap file
 vim.opt.swapfile = false
