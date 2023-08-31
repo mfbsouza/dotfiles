@@ -10,7 +10,7 @@ mkdir -p /tmp/fonts
 cd /tmp/fonts
 
 # download
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Inconsolata.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Inconsolata.zip 
 unzip Inconsolata.zip
 
 # "install it"
