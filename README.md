@@ -8,17 +8,23 @@ A place to keep my configuration files and scripts
 
 - Arch Linux (Desktop/Laptop)
 - Proxmox VE (Server)
-- Alpine Linux (VM inside Server)
 - OPNsense (VM inside Server)
+- Ubuntu Server (VM inside Server)
 - Windows 11 (VM inside Desktop/Laptop)
+
+---
 
 ### Desktop Enviroment
 
 - KDE Plasma
 
+---
+
 ### Web Browser
 
 - Google Chrome
+
+---
 
 ### Dev stuff
 
@@ -31,6 +37,8 @@ A place to keep my configuration files and scripts
 - valgrind
 - hexdump
 
+---
+
 ### SysAdmin-like stuff
 
 - ssh
@@ -39,23 +47,33 @@ A place to keep my configuration files and scripts
 - docker
 - docker-compose
 
+---
+
 ### Virtualization
 
 - virt-manager
 - qemu
+
+---
 
 ### Video/Audio Player
 
 - vlc
 - mpv
 
+---
+
 ### Torrent Client
 
 - transmission
 
+---
+
 ### Video Recording/Streaming
 
 - obs studio
+
+---
 
 ### Gaming
 
@@ -64,6 +82,8 @@ A place to keep my configuration files and scripts
 - lutris
 - mangohud
 - vkbasalt
+
+---
 
 ### Voice/Messaging
 
