@@ -10,6 +10,10 @@ env:
   TERM: xterm-256color 
 
 window:
+  # default window dimensions
+  dimensions:
+    columns: 150
+    lines: 45
   # Allow terminal applications to change Alacritty's window title.
   dynamic_title: true
 
