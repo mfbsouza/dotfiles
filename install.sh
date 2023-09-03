@@ -25,20 +25,18 @@ ln -s $ROOT_DIR/.config/nvim ~/.config/nvim
 
 if [ "$ANSWER" == "d" ]; then
 
+	echo -e "$GREEN Linking fonts folder $CLEAR"
+	ln -s $ROOT_DIR/.fonts ~/.fonts
+	fc-cache -fv
+
 	echo -e "$GREEN Linking Alacritty config folder $CLEAR"
 	ln -s $ROOT_DIR/.config/alacritty ~/.config/alacritty
-
-	echo -e "$GREEN Linking i3wm config folder $CLEAR"
-	ln -s $ROOT_DIR/.config/i3 ~/.config/i3
 
 	echo -e "$GREEN Linking MangoHud config folder $CLEAR"
 	ln -s $ROOT_DIR/.config/MangoHud ~/.config/MangoHud
 
 	echo -e "$GREEN Linking vkBasalt config folder $CLEAR"
 	ln -s $ROOT_DIR/.config/vkBasalt ~/.config/vkBasalt
-
-	echo -e "$GREEN Linking rofi config folder $CLEAR"
-	ln -s $ROOT_DIR/.config/rofi ~/.config/rofi
 
 	echo -e "$GREEN Linking environment.d config folder $CLEAR"
 	ln -s $ROOT_DIR/.config/environment.d ~/.config/environment.d
@@ -53,15 +51,6 @@ if [ "$ANSWER" == "d" ]; then
 
 	echo -e "$GREEN Enabling ssh-agent user service $CLEAR"
 	systemctl --user enable ssh-agent.service
-
-	echo -e "$GREEN Install Nvidia Max Performance Service? [y/n] $CLEAR"
-	read ANS
-	if [ "$ANS" == "y" ]; then
-		echo -e "$GREEN Enabling Nvidia Max Performance service $CLEAR"
-		systemctl --user enable nvidia-max-perf.service
-		echo -e "$GREEN Starting Nvidia Max Performance service $CLEAR"
-		systemctl --user start nvidia-max-perf.service
-	fi
 
 	echo -e "$GREEN Install Intel GPU Tweaks? [y/n] $CLEAR"
 	read ANS
@@ -78,8 +67,13 @@ $SCRIPT_DIR/./env/install-scripts.sh
 
 echo -e "\n$GREEN [programs] $CLEAR"
 $SCRIPT_DIR/./installers/fastfetch.sh
-$SCRIPT_DIR/./installers/fonts.sh
 $SCRIPT_DIR/./installers/rust.sh
+rm ~/.cargo/bin/rust-analyzer
+$SCRIPT_DIR/./installers/rust-analyzer.sh
+$SCRIPT_DIR/./installers/vkbasalt.sh
+$SCRIPT_DIR/./installers/sddm-theme-catppuccin.sh
+source ~/.bashrc
+$SCRIPT_DIR/./installers/rust-apps.sh
 
 echo -e "$GREEN Done! $CLEAR"
 
