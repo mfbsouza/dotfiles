@@ -74,6 +74,7 @@ $SCRIPT_DIR/./installers/vkbasalt.sh
 $SCRIPT_DIR/./installers/sddm-theme-catppuccin.sh
 source ~/.bashrc
 $SCRIPT_DIR/./installers/rust-apps.sh
+$SCRIPT_DIR/./installers/plasma-theme-catppuccin.sh
 
 echo -e "$GREEN Done! $CLEAR"
 
