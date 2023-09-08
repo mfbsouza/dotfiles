@@ -47,7 +47,7 @@ if [ "$ANSWER" == "d" ]; then
 		~/.config/autostart/ssh-add.desktop
 
 	echo -e "$GREEN Linking systemd user services folder $CLEAR"
-	ln -s $ROOT_DIR/.config/systemd ~/.config/systemd
+	ln -s $ROOT_DIR/.config/systemd/user/ssh-agent.service ~/.config/systemd/user/ssh-agent.service
 
 	echo -e "$GREEN Enabling ssh-agent user service $CLEAR"
 	systemctl --user enable ssh-agent.service

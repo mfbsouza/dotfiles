@@ -1,4 +1,5 @@
 .config/nvim/plugin/*
 *default.target.wants*
+.fonts/.uuid
 arch-nvidia.conf
 arch-intel.conf
