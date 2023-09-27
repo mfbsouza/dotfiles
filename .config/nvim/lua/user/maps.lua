@@ -26,7 +26,7 @@ vim.keymap.set("n", "<A-Up>", ":wincmd k<CR>", opts)
 vim.keymap.set("n", "<A-Down>", ":wincmd j<CR>", opts)
 
 -- open file explorer on the left
-vim.keymap.set("n", "<Leader>e", ":Lex 30<CR>", opts)
+vim.keymap.set("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- stay in indent mode
 vim.keymap.set("v", "<", "<gv", opts)
