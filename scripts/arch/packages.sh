@@ -20,7 +20,7 @@ sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	vlc mpv discord telegram-desktop obs-studio jre-openjdk wireshark-qt \
 	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight ark \
 	dnsutils gwenview turbostat ethtool python-setuptools swtpm bear \
-	nodejs npm noto-fonts noto-fonts-cjk noto-fonts-emoji
+	nodejs npm noto-fonts noto-fonts-cjk noto-fonts-emoji dhcpcd net-tools
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
