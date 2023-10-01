@@ -67,3 +67,7 @@ vim.opt.tabstop = 4
 
 -- colorcolumn
 vim.opt.colorcolumn = "80"
+
+-- spell check
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
