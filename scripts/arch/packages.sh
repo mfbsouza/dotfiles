@@ -20,7 +20,8 @@ sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	vlc mpv discord telegram-desktop obs-studio jre-openjdk wireshark-qt \
 	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight ark \
 	dnsutils gwenview turbostat ethtool python-setuptools swtpm bear \
-	nodejs npm noto-fonts noto-fonts-cjk noto-fonts-emoji dhcpcd net-tools
+	nodejs npm noto-fonts noto-fonts-cjk noto-fonts-emoji dhcpcd net-tools \
+	cpupower less nmap kdenlive
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -105,7 +106,7 @@ fi
 echo -e "$GREEN Install battery managment tools? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
-	sudo pacman -S cpupower tlp tlp-rdw
+	sudo pacman -S tlp tlp-rdw
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -132,6 +133,16 @@ echo ""
 echo -e "$GREEN Installing Google Chrome... $CLEAR"
 echo ""
 yay -S google-chrome
+
+echo ""
+echo -e "$GREEN Installing Visual Studio Code... $CLEAR"
+echo ""
+yay -S visual-studio-code-bin
+
+echo ""
+echo -e "$GREEN Installing Postman... $CLEAR"
+echo ""
+yay -S postman-bin
 
 echo ""
 echo -e "$GREEN Installing downgrade utility... $CLEAR"
