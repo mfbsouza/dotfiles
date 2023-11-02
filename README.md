@@ -2,90 +2,93 @@
 
 A place to keep my configuration files and scripts
 
+![desktop](./assets/desktop.png)
+
 ## My Everyday Softwares
 
-### Operating Systems
+<details>
+  <summary>Operating Systems</summary>
 
-- Arch Linux (Desktop/Laptop)
-- Proxmox VE (Server)
-- OPNsense (VM inside Server)
-- Ubuntu Server (VM inside Server)
-- Windows 11 (VM inside Desktop/Laptop)
+  - Arch Linux for laptop and desktops
+  - Proxmox VE for server machines with multiple VMs
+  - Debian for most server deployments
+  - OPNsense for DIY routers
+  - Windows VM for cursed softwares that only works in MsTM
+</details>
 
----
+<details>
+  <summary>Desktop Enviroment</summary>
 
-### Desktop Enviroment
+  - KDE Plasma for laptop and desktops
+  - LXDE for weak machines that need a DE
+</details>
 
-- KDE Plasma
+<details>
+  <summary>Web Browser</summary>
 
----
+  - Google Chrome
+  - Firefox
+</details>
 
-### Web Browser
+<details>
+  <summary>Development stuff</summary>
 
-- Google Chrome
+  - Neovim for code editing
+  - Git for version control and creating patches
+  - Ripgrep for fuzzy finding
+  - Diff for viewing diff xd
+  - Gdb for debugging
+  - Hexdump for analyzing binary files
+  - Curl for quick HTTP testing
+  - Netcat for creating and testing TCP connections
+  - Postman for more advanced HTTP testing
+  - VSCode for a few web related things like HTML
+  - Tmux for terminal multiplexer
+  - Ssh for remote shell
+  - Rsync for copying and backing up files between machines
+  - Docker for.. well.. containers lel
+</details>
 
----
+<details>
+  <summary>Virtualization</summary>
 
-### Dev stuff
+  - Virt Manager for creating and managing VMs
+  - bare QEMU for embedded firmware testing
+</details>
 
-- neovim
-- git
-- patch
-- diff
-- gdb
-- openocd
-- valgrind
-- hexdump
+<details>
+  <summary>Video/Audio Player</summary>
 
----
+  - Mpv
+  - Vlc
+</details>
 
-### SysAdmin-like stuff
+<details>
+  <summary>Torrent Client</summary>
 
-- ssh
-- tmux
-- rsync
-- docker
-- docker-compose
+  - Transmission
+</details>
 
----
+<details>
+  <summary>Video recording/Streaming</summary>
 
-### Virtualization
+  - OBS Studio
+</details>
 
-- virt-manager
-- qemu
+<details>
+  <summary>Gaming</summary>
 
----
+  - Steam
+  - Wine
+  - Lutris
+  - MangoHud
+  - VkBasalt
+</details>
 
-### Video/Audio Player
+<details>
+  <summary>Voice Calls/Messaging</summary>
 
-- vlc
-- mpv
-
----
-
-### Torrent Client
-
-- transmission
-
----
-
-### Video Recording/Streaming
-
-- obs studio
-
----
-
-### Gaming
-
-- steam
-- wine
-- lutris
-- mangohud
-- vkbasalt
-
----
-
-### Voice/Messaging
-
-- discord
-- telegram
+  - Discord
+  - Vencord
+  - Telegram
+</details>
