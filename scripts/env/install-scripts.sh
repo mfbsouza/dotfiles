@@ -7,6 +7,5 @@ echo -e "$GREEN [scripts] Creating soft links to perf scripts in $HOME/bin... $C
 
 mkdir -p $HOME/bin
 ln -s $HOME/workspace/dotfiles/scripts/perf_tweaks/perf_governor.sh $HOME/bin
-ln -s $HOME/workspace/dotfiles/scripts/nvidia-switch $HOME/bin/nvidia-switch
-
+ln -s $HOME/workspace/dotfiles/scripts/vm/start.sh $HOME/bin/start-vm.sh
 echo -e "$GREEN [scripts] Done! $CLEAR"
