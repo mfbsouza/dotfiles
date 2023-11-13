@@ -32,7 +32,8 @@ fi
 echo -e "$GREEN Install nvidia graphics packages? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
-	sudo pacman -S opencl-nvidia cuda nvidia-settings lib32-nvidia-utils
+	sudo pacman -S opencl-nvidia cuda nvidia-settings lib32-nvidia-utils \
+		libva-nvidia-driver
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
