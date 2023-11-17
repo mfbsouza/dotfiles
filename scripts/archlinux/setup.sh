@@ -14,14 +14,14 @@ sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	openresolv usb_modeswitch openssh openvpn wireguard-tools perl-json-xs \
 	networkmanager-openvpn networkmanager-l2tp networkmanager-strongswan \
 	bash-completion usbutils tmux neovim xclip xsel tree wget picocom \
-	nasm valgrind htop rsync stress inxi rofi meson cmake clang llvm openmp \
+	nasm valgrind htop rsync stress inxi meson cmake clang llvm openmp \
 	python-pip python-pylint lcov gperf help2man diffstat chrpath go gopls \
 	rpcsvc-proto inetutils spirv-headers krita firefox transmission-qt \
 	vlc mpv discord telegram-desktop obs-studio jre-openjdk wireshark-qt \
 	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight ark \
 	dnsutils gwenview turbostat ethtool python-setuptools swtpm bear \
 	nodejs npm noto-fonts noto-fonts-cjk noto-fonts-emoji dhcpcd net-tools \
-	cpupower less nmap kdenlive
+	cpupower less nmap kdenlive sqlite dbeaver rustup rust-analyzer fastfetch
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -59,7 +59,7 @@ echo -e "$GREEN Install intel graphics packages? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
 	sudo pacman -S mesa vulkan-intel intel-media-driver intel-compute-runtime \
-		lib32-vulkan-intel
+		lib32-vulkan-intel intel-gpu-tools
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -71,7 +71,7 @@ fi
 echo -e "$GREEN Install gaming packages? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
-	sudo pacman -S mangohud steam wine-staging winetricks lutris
+	sudo pacman -S mangohud steam wine-staging winetricks lutris gamescope
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -129,12 +129,6 @@ echo ""
  makepkg -si
  cd -
 
-
-echo ""
-echo -e "$GREEN Installing Google Chrome... $CLEAR"
-echo ""
-yay -S google-chrome
-
 echo ""
 echo -e "$GREEN Installing Visual Studio Code... $CLEAR"
 echo ""
@@ -144,6 +138,16 @@ echo ""
 echo -e "$GREEN Installing Postman... $CLEAR"
 echo ""
 yay -S postman-bin
+
+echo ""
+echo -e "$GREEN Installing Vencord... $CLEAR"
+echo ""
+yay -S vencord-desktop-git
+
+echo ""
+echo -e "$GREEN Installing vkbasalt... $CLEAR"
+echo ""
+yay -S vkbasalt
 
 echo ""
 echo -e "$GREEN Installing downgrade utility... $CLEAR"

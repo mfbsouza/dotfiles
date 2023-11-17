@@ -32,8 +32,14 @@ vim.keymap.set("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 
--- dont save to register when paste in top of something
+-- don't save to register when deleting or changing in following cases
 vim.keymap.set("v", "p", '"_dP', opts)
+vim.keymap.set("v", "d", '"_d', opts)
+vim.keymap.set("n", "x", '"_x', opts)
+vim.keymap.set("n", "d", '"_d', opts)
+vim.keymap.set("n", "c", '"_c', opts)
+vim.keymap.set("n", "D", '"_D', opts)
+vim.keymap.set("n", "C", '"_C', opts)
 
 -- system clipboard
 vim.keymap.set("i", "<C-v>", '<ESC>"+pa', opts)
