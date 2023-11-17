@@ -21,13 +21,39 @@ sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	docker virt-manager qemu-desktop dnsmasq iptables-nft filelight ark \
 	dnsutils gwenview turbostat ethtool python-setuptools swtpm bear \
 	nodejs npm noto-fonts noto-fonts-cjk noto-fonts-emoji dhcpcd net-tools \
-	cpupower less nmap kdenlive sqlite dbeaver rustup rust-analyzer fastfetch
+	cpupower less nmap kdenlive sqlite dbeaver rustup rust-analyzer fastfetch \
+	ttf-liberation plasma-wayland-session helvum
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
 	echo ""
 	exit 1
 fi
+
+echo ""
+echo -e "$GREEN Installing rust default toolchain... $CLEAR"
+echo ""
+
+rustup default stable
+if [ "$?" -ne 0 ]; then
+	echo ""
+	echo -e "$RED Something went wrong! Stopping... $CLEAR"
+	echo ""
+	exit 1
+fi
+
+echo ""
+echo -e "$GREEN Installing rust apps... $CLEAR"
+echo ""
+
+cargo install ripgrep bat fd-find loc
+if [ "$?" -ne 0 ]; then
+	echo ""
+	echo -e "$RED Something went wrong! Stopping... $CLEAR"
+	echo ""
+	exit 1
+fi
+
 
 echo -e "$GREEN Install nvidia graphics packages? [y/n] $CLEAR"
 read ANSWER
@@ -119,6 +145,21 @@ if [ "$ANSWER" == "y" ]; then
 	sudo systemctl enable NetworkManager-dispatcher.service
 	sudo systemctl mask systemd-rfkill.service
 	sudo systemctl mask systemd-rfkill.socket
+fi
+
+echo -e "$GREEN Set cpu to performance governor? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo sed -i "s/#governor='ondemand'/governor='performance'/g" \
+		/etc/default/cpupower
+	if [ "$?" -ne 0 ]; then
+		echo ""
+		echo -e "$RED Something went wrong! Stopping... $CLEAR"
+		echo ""
+		exit 1
+	fi
+	echo -e "$GREEN enabling cpupower service... $CLEAR"
+	sudo systemctl enable cpupower.service
 fi
 
 echo ""

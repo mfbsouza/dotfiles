@@ -75,7 +75,7 @@ if [ "$ANSWER" == "d" ]; then
 	echo -e "$GREEN Install NVIDIA NVDEC config for mpv? [y/n] $CLEAR"
 	read ANS
 	if [ "$ANS" == "y" ]; then
-		mkdir ~/.config/mpv
+		mkdir -p ~/.config/mpv
 		ln -s $ROOT_DIR/.config/mpv/mpv-nvidia.conf \
 			~/.config/mpv/mpv.conf
 	fi
@@ -83,7 +83,7 @@ if [ "$ANSWER" == "d" ]; then
 	echo -e "$GREEN Install Intel VAAPI config for mpv? [y/n] $CLEAR"
 	read ANS
 	if [ "$ANS" == "y" ]; then
-		mkdir ~/.config/mpv
+		mkdir -p ~/.config/mpv
 		ln -s $ROOT_DIR/.config/mpv/mpv-intel.conf \
 			~/.config/mpv/mpv.conf
 	fi

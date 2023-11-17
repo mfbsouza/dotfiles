@@ -35,6 +35,7 @@ vim.keymap.set("v", ">", ">gv", opts)
 -- don't save to register when deleting or changing in following cases
 vim.keymap.set("v", "p", '"_dP', opts)
 vim.keymap.set("v", "d", '"_d', opts)
+vim.keymap.set("n", "S", '"_S', opts)
 vim.keymap.set("n", "x", '"_x', opts)
 vim.keymap.set("n", "d", '"_d', opts)
 vim.keymap.set("n", "c", '"_c', opts)
