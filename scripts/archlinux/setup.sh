@@ -22,7 +22,7 @@ sudo pacman -S plasma dolphin kcalc ffmpegthumbs kdegraphics-thumbnailers \
 	dnsutils gwenview turbostat ethtool python-setuptools swtpm bear \
 	nodejs npm noto-fonts noto-fonts-cjk noto-fonts-emoji dhcpcd net-tools \
 	cpupower less nmap kdenlive sqlite dbeaver rustup rust-analyzer fastfetch \
-	ttf-liberation plasma-wayland-session helvum
+	ttf-liberation plasma-wayland-session helvum fwupd
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
