@@ -9,17 +9,17 @@ echo ""
 echo -e "$GREEN Installing Packages... $CLEAR"
 echo ""
 
-sudo pacman -S gnome flatpak d-spy endeavour file-roller geary gedit ghex \
-	gitg sysprof firefox alacritty tmux neovim openssh wget tree picocom htop \
+sudo pacman -S gnome flatpak ghex \
+	firefox tmux neovim openssh wget tree picocom htop \
 	bash-completion rsync fastfetch stress usbutils ethtool inxi nmap less \
 	cpupower dhcpcd net-tools dnsmasq iptables-nft dnsutils turbostat swtpm \
-	mpv virt-manager wireshark-qt dbeaver qemu-desktop transmission-gtk \
+	mpv virt-manager qemu-desktop transmission-gtk \
 	nasm go gopls valgrind meson cmake clang llvm openmp rustup rust-analyzer \
 	jre-openjdk docker sqlite lcov python-pip python-setuptools python-pylint \
 	bear nodejs npm perl-json-xs fwupd helvum libva-utils vdpauinfo \
-	openvpn wireguard-tools systemd-resolvconf usb_modeswitch \
+	openvpn wireguard-tools systemd-resolvconf usb_modeswitch modemmanager \
 	networkmanager-openvpn networkmanager-l2tp networkmanager-strongswan \
-	wl-clipboard mailcap xclip xsel gperf help2man diffstat chrpath \
+	wl-clipboard mailcap gperf help2man diffstat chrpath \
 	rpcsvc-proto inetutils spirv-headers \
 	noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-liberation
 if [ "$?" -ne 0 ]; then
@@ -57,7 +57,7 @@ fi
 echo -e "$GREEN Install nvidia graphics packages? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
-	sudo pacman -S opencl-nvidia cuda nvidia-settings nvidia-utils \
+	sudo pacman -S opencl-nvidia cuda nvidia-utils \
 		libva-nvidia-driver
 	if [ "$?" -ne 0 ]; then
 		echo ""
