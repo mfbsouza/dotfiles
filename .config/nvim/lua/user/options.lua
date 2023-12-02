@@ -45,11 +45,11 @@ vim.opt.showtabline = 2
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- popup menu even if there is only one match
+-- pop-up menu even if there is only one match
 -- and do not select a match right away in the menu
 vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 
--- popup menu height
+-- pop-up menu height
 vim.opt.pumheight = 10
 
 -- enable system clipboard
@@ -58,15 +58,12 @@ vim.opt.clipboard = "unnamedplus"
 -- more colors
 vim.opt.termguicolors = true
 
--- file enconding
+-- file encoding
 vim.opt.fileencoding = "utf-8"
 
 -- tab view size equals to 4 spaces
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
-
--- colorcolumn
-vim.opt.colorcolumn = "80"
 
 -- spell check
 vim.opt.spelllang = 'en_us'

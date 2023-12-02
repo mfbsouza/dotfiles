@@ -8,7 +8,6 @@ end
 -- configure tokyonight
 require("tokyonight").setup({
   style = "night",
-  transparent = true,
 })
 
 -- enable it

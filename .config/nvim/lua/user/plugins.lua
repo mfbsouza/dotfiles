@@ -45,6 +45,7 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim"
 
   -- colorschemes
+  use "typicode/bg.nvim"
   use "folke/tokyonight.nvim"
 
   -- completion engine
