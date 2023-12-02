@@ -9,19 +9,19 @@ echo ""
 echo -e "$GREEN Installing Packages... $CLEAR"
 echo ""
 
-sudo pacman -S gnome flatpak ghex \
-	firefox tmux neovim openssh wget tree picocom htop \
+sudo pacman -S gnome flatpak ffmpegthumbnailer gst-libav gst-plugins-ugly \
+	ghex alacritty firefox tmux neovim openssh wget tree picocom htop \
 	bash-completion rsync fastfetch stress usbutils ethtool inxi nmap less \
 	cpupower dhcpcd net-tools dnsmasq iptables-nft dnsutils turbostat swtpm \
-	mpv virt-manager qemu-desktop transmission-gtk \
+	gnome-browser-connector mpv virt-manager qemu-desktop transmission-gtk \
 	nasm go gopls valgrind meson cmake clang llvm openmp rustup rust-analyzer \
 	jre-openjdk docker sqlite lcov python-pip python-setuptools python-pylint \
-	bear nodejs npm perl-json-xs fwupd helvum libva-utils vdpauinfo \
-	openvpn wireguard-tools systemd-resolvconf usb_modeswitch modemmanager \
+	bear nodejs npm perl-json-xs fwupd helvum libva-utils vdpauinfo openvpn \
+	wireguard-tools systemd-resolvconf usb_modeswitch modemmanager xsel xclip \
 	networkmanager-openvpn networkmanager-l2tp networkmanager-strongswan \
-	wl-clipboard mailcap gperf help2man diffstat chrpath \
-	rpcsvc-proto inetutils spirv-headers \
-	noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-liberation
+	wl-clipboard mailcap gperf help2man diffstat chrpath rpcsvc-proto \
+	inetutils spirv-headers noto-fonts noto-fonts-cjk noto-fonts-emoji \
+	ttf-liberation
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -57,8 +57,19 @@ fi
 echo -e "$GREEN Install nvidia graphics packages? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
-	sudo pacman -S opencl-nvidia cuda nvidia-utils \
-		libva-nvidia-driver
+	sudo pacman -S opencl-nvidia cuda nvidia-utils libva-nvidia-driver
+	if [ "$?" -ne 0 ]; then
+		echo ""
+		echo -e "$RED Something went wrong! Stopping... $CLEAR"
+		echo ""
+		exit 1
+	fi
+fi
+
+echo -e "$GREEN Install nvidia lib32 packages and nvidia settings? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S nvidia-settings lib32-nvidia-utils
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -85,6 +96,18 @@ read ANSWER
 if [ "$ANSWER" == "y" ]; then
 	sudo pacman -S mesa vulkan-intel intel-media-driver intel-compute-runtime \
 		lib32-vulkan-intel intel-gpu-tools
+	if [ "$?" -ne 0 ]; then
+		echo ""
+		echo -e "$RED Something went wrong! Stopping... $CLEAR"
+		echo ""
+		exit 1
+	fi
+fi
+
+echo -e "$GREEN Install gaming packages? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S mangohud steam wine-staging winetricks lutris
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -163,6 +186,11 @@ echo ""
 yay -S downgrade
 
 echo ""
+echo -e "$GREEN Installing nautilus-open-any-terminal... $CLEAR"
+echo ""
+yay -S nautilus-open-any-terminal
+
+echo ""
 echo -e "$GREEN enabling systemd services... $CLEAR"
 echo ""
 sudo systemctl enable gdm
@@ -177,13 +205,6 @@ echo ""
 echo -e "$GREEN Adding user to groups... $CLEAR"
 echo ""
 
-sudo usermod -a -G wireshark $USER
-if [ "$?" -ne 0 ]; then
-	echo ""
-	echo -e "$RED Something went wrong! Stopping... $CLEAR"
-	echo ""
-	exit 1
-fi
 sudo usermod -a -G docker $USER
 if [ "$?" -ne 0 ]; then
 	echo ""
@@ -191,6 +212,7 @@ if [ "$?" -ne 0 ]; then
 	echo ""
 	exit 1
 fi
+
 sudo usermod -a -G uucp $USER
 if [ "$?" -ne 0 ]; then
 	echo ""
