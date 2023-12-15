@@ -21,7 +21,7 @@ sudo pacman -S gnome flatpak ffmpegthumbnailer gst-libav gst-plugins-ugly \
 	networkmanager-openvpn networkmanager-l2tp networkmanager-strongswan \
 	wl-clipboard mailcap gperf help2man diffstat chrpath rpcsvc-proto \
 	inetutils spirv-headers noto-fonts noto-fonts-cjk noto-fonts-emoji \
-	ttf-liberation
+	ttf-liberation wireshark-qt
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -214,6 +214,14 @@ if [ "$?" -ne 0 ]; then
 fi
 
 sudo usermod -a -G uucp $USER
+if [ "$?" -ne 0 ]; then
+	echo ""
+	echo -e "$RED Something went wrong! Stopping... $CLEAR"
+	echo ""
+	exit 1
+fi
+
+sudo usermod -a -G wireshark $USER
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
