@@ -12,7 +12,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'gopls', 'clangd', 'rust_analyzer', 'cmake', 'htmx'},
+  ensure_installed = {'gopls', 'clangd', 'rust_analyzer'},
   handlers = {
     lsp_zero.default_setup,
   }
