@@ -9,7 +9,7 @@ A place to keep my configuration files and scripts
 <details>
   <summary>Operating Systems</summary>
 
-  - Arch Linux for laptop and desktops
+  - Pop!_OS for laptops and desktops
   - Proxmox VE for server machines with multiple VMs
   - Debian for most server deployments
   - OPNsense for DIY routers
@@ -17,36 +17,34 @@ A place to keep my configuration files and scripts
 </details>
 
 <details>
-  <summary>Desktop Enviroment</summary>
+  <summary>Window Manager</summary>
 
-  - KDE Plasma for laptop and desktops
-  - LXDE for weak machines that need a DE
+  - i3
 </details>
 
 <details>
   <summary>Web Browser</summary>
 
-  - Google Chrome
   - Firefox
+  - Google Chrome
 </details>
 
 <details>
   <summary>Development stuff</summary>
 
   - Neovim for code editing
+  - Tmux for terminal multiplexer
   - Git for version control and creating patches
-  - Ripgrep for fuzzy finding
-  - Diff for viewing diff xd
+  - Ssh for remote shell
+  - Fzf for fuzzy finder
+  - Rsync for copying and backing up files between machines
+  - Ripgrep for line-oriented search tool
   - Gdb for debugging
   - Hexdump for analyzing binary files
   - Curl for quick HTTP testing
   - Netcat for creating and testing TCP connections
   - Postman for more advanced HTTP testing
-  - VSCode for a few web related things like HTML
-  - Tmux for terminal multiplexer
-  - Ssh for remote shell
-  - Rsync for copying and backing up files between machines
-  - Docker for.. well.. containers lel
+  - Docker for.. Well.. Containers
 </details>
 
 <details>
