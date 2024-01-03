@@ -56,8 +56,15 @@ fi
 echo -e "$GREEN Install i3status config? [y/n] $CLEAR"
 read ANS
 if [ "$ANS" == "y" ]; then
-	echo -e "$GREEN Linking i3 config folder $CLEAR"
+	echo -e "$GREEN Linking i3status config folder $CLEAR"
 	ln -s $ROOT_DIR/.config/i3status ~/.config/i3status
+fi
+
+echo -e "$GREEN Install picom config? [y/n] $CLEAR"
+read ANS
+if [ "$ANS" == "y" ]; then
+	echo -e "$GREEN Linking picom config folder $CLEAR"
+	ln -s $ROOT_DIR/.config/picom ~/.config/picom
 fi
 
 echo -e "$GREEN Install MangoHud config? [y/n] $CLEAR"
