@@ -1,0 +1,46 @@
+import = ["/home/bois/.config/alacritty/gnome/gnome-terminal.toml"]
+live_config_reload = true
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "Inconsolata Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Inconsolata Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Inconsolata Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Inconsolata Nerd Font Mono"
+style = "Regular"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = false
+
+[shell]
+program = "/bin/bash"
+
+[window]
+dynamic_title = true
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
