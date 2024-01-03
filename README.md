@@ -9,7 +9,7 @@ A place to keep my configuration files and scripts
 <details>
   <summary>Operating Systems</summary>
 
-  - Pop!_OS for laptops and desktops
+  - Arch Linux for laptops and desktops
   - Proxmox VE for server machines with multiple VMs
   - Debian for most server deployments
   - OPNsense for DIY routers
