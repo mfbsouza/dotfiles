@@ -46,6 +46,20 @@ if [ "$ANS" == "y" ]; then
 	ln -s $ROOT_DIR/.config/alacritty ~/.config/alacritty
 fi
 
+echo -e "$GREEN Install i3 config? [y/n] $CLEAR"
+read ANS
+if [ "$ANS" == "y" ]; then
+	echo -e "$GREEN Linking i3 config folder $CLEAR"
+	ln -s $ROOT_DIR/.config/i3 ~/.config/i3
+fi
+
+echo -e "$GREEN Install i3status config? [y/n] $CLEAR"
+read ANS
+if [ "$ANS" == "y" ]; then
+	echo -e "$GREEN Linking i3 config folder $CLEAR"
+	ln -s $ROOT_DIR/.config/i3status ~/.config/i3status
+fi
+
 echo -e "$GREEN Install MangoHud config? [y/n] $CLEAR"
 read ANS
 if [ "$ANS" == "y" ]; then
@@ -58,38 +72,6 @@ read ANS
 if [ "$ANS" == "y" ]; then
 	echo -e "$GREEN Linking vkBasalt config folder $CLEAR"
 	ln -s $ROOT_DIR/.config/vkBasalt ~/.config/vkBasalt
-fi
-
-echo -e "$GREEN Install ssh and git environment variables? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	echo -e "$GREEN Linking environment configs to environment.d $CLEAR"
-	ln -s $ROOT_DIR/.config/environment.d/ssh_auth_socket.conf \
-		~/.config/environment.d/ssh_auth_socket.conf
-	ln -s $ROOT_DIR/.config/environment.d/ssh_askpass.conf \
-		~/.config/environment.d/ssh_askpass.conf
-	ln -s $ROOT_DIR/.config/environment.d/git_askpass.conf \
-		~/.config/environment.d/git_askpass.conf
-fi
-
-echo -e "$GREEN Install ssh-agent to autostart? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	echo -e "$GREEN Linking ssh-add.desktop to autostart $CLEAR"
-	mkdir -p ~/.config/autostart
-	ln -s $ROOT_DIR/.config/autostart/ssh-add.desktop \
-		~/.config/autostart/ssh-add.desktop
-fi
-
-echo -e "$GREEN Install ssh-agent systemd service? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	echo -e "$GREEN Linking systemd user services folder $CLEAR"
-	ln -s $ROOT_DIR/.config/systemd/user/ssh-agent.service \
-		~/.config/systemd/user/ssh-agent.service
-
-	echo -e "$GREEN Enabling ssh-agent user service $CLEAR"
-	systemctl --user enable ssh-agent.service
 fi
 
 echo -e "$GREEN Install firefox wayland environment variable? [y/n] $CLEAR"
