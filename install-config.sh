@@ -119,12 +119,6 @@ if [ "$ANS" == "y" ]; then
 	$SCRIPT_DIR/./env/bashrc-config.sh
 fi
 
-echo -e "$GREEN Install scripts to the path? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	$SCRIPT_DIR/./env/install-scripts.sh
-fi
-
 echo -e "\n$GREEN [theming] $CLEAR"
 
 echo -e "$GREEN Install sddm catppuccin theme? [y/n] $CLEAR"
