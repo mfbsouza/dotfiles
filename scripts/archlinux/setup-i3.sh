@@ -20,7 +20,7 @@ sudo pacman -S xorg-server xorg-xinit xorg-xinput xorg-setxkbmap \
 	pavucontrol ffmpegthumbnailer gst-libav gst-plugins-ugly xss-lock \
 	libva-utils gpicview xdotool maim brightnessctl transmission-gtk \
 	cpupower docker wireshark-qt virt-manager qemu-desktop jre-openjdk \
-	nm-connection-editor dbeaver \
+	xdg-desktop-portal-gtk nm-connection-editor dbeaver \
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"

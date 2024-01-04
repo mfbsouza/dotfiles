@@ -164,3 +164,5 @@ if [ "$ANS" == "y" ]; then
 fi
 
 echo -e "$GREEN Done! $CLEAR"
+
+echo -e "$GREEN Remeber to configure XDG_CURRENT_DESKTOP to i3 and /usr/share/xdg-desktop-portal/portals/gtk.portal! $CLEAR"
