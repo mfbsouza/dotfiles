@@ -10,18 +10,18 @@ echo -e "$GREEN Installing Packages... $CLEAR"
 echo ""
 
 sudo pacman -S gnome flatpak ffmpegthumbnailer gst-libav gst-plugins-ugly \
-	ghex alacritty firefox tmux neovim openssh wget tree picocom htop \
+	ghex alacritty firefox tmux neovim openssh wget tree picocom htop unzip \
 	bash-completion rsync fastfetch stress usbutils ethtool inxi nmap less \
 	cpupower dhcpcd net-tools dnsmasq iptables-nft dnsutils turbostat swtpm \
 	gnome-browser-connector mpv virt-manager qemu-desktop transmission-gtk \
-	nasm go gopls valgrind meson cmake clang llvm openmp rustup rust-analyzer \
+	nasm go gdb valgrind meson cmake clang llvm openmp rustup fzf fd ripgrep \
 	jre-openjdk docker sqlite lcov python-pip python-setuptools python-pylint \
-	bear nodejs npm perl-json-xs fwupd helvum libva-utils vdpauinfo openvpn \
-	wireguard-tools systemd-resolvconf usb_modeswitch modemmanager xsel xclip \
+	bear fwupd helvum libva-utils vdpauinfo openvpn wireguard-tools xclip \
+	systemd-resolvconf usb_modeswitch modemmanager xsel wl-clipboard gperf \
 	networkmanager-openvpn networkmanager-l2tp networkmanager-strongswan \
-	wl-clipboard mailcap gperf help2man diffstat chrpath rpcsvc-proto \
-	inetutils spirv-headers noto-fonts noto-fonts-cjk noto-fonts-emoji \
-	ttf-liberation wireshark-qt
+	mailcap help2man diffstat chrpath rpcsvc-proto inetutils noto-fonts \
+	noto-fonts-cjk noto-fonts-emoji ttf-liberation ttf-inconsolata-nerd \
+	smartmontools wireshark-qt dbeaver
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -40,19 +40,6 @@ if [ "$?" -ne 0 ]; then
 	echo ""
 	exit 1
 fi
-
-echo ""
-echo -e "$GREEN Installing rust apps... $CLEAR"
-echo ""
-
-cargo install ripgrep bat fd-find loc
-if [ "$?" -ne 0 ]; then
-	echo ""
-	echo -e "$RED Something went wrong! Stopping... $CLEAR"
-	echo ""
-	exit 1
-fi
-
 
 echo -e "$GREEN Install nvidia graphics packages? [y/n] $CLEAR"
 read ANSWER
@@ -81,8 +68,19 @@ fi
 echo -e "$GREEN Install amd graphics packages? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
-	sudo pacman -S mesa vulkan-radeon libva-mesa-driver opencl-mesa \
-		lib32-vulkan-radeon
+	sudo pacman -S mesa vulkan-radeon libva-mesa-driver opencl-mesa
+	if [ "$?" -ne 0 ]; then
+		echo ""
+		echo -e "$RED Something went wrong! Stopping... $CLEAR"
+		echo ""
+		exit 1
+	fi
+fi
+
+echo -e "$GREEN Install amdgpu lib32 packages? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S lib32-vulkan-radeon
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -95,7 +93,19 @@ echo -e "$GREEN Install intel graphics packages? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
 	sudo pacman -S mesa vulkan-intel intel-media-driver intel-compute-runtime \
-		lib32-vulkan-intel intel-gpu-tools
+		intel-gpu-tools
+	if [ "$?" -ne 0 ]; then
+		echo ""
+		echo -e "$RED Something went wrong! Stopping... $CLEAR"
+		echo ""
+		exit 1
+	fi
+fi
+
+echo -e "$GREEN Install intel graphics lib32 packages? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	sudo pacman -S lib32-vulkan-intel
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
