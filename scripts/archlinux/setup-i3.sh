@@ -13,14 +13,14 @@ sudo pacman -S xorg-server xorg-xinit xorg-xinput xorg-setxkbmap \
 	xorg-xrandr xorg-xkill xorg-xbacklight xsel xclip noto-fonts \
 	noto-fonts-cjk noto-fonts-emoji ttf-liberation ttf-inconsolata-nerd \
 	wget unzip htop usbutils rsync less fzf fastfetch i3 j4-dmenu-desktop \
-	feh picom xdg-utils xdg-user-dirs blueman bluez-utils gnome-keyring \
+	feh picom xdg-utils xdg-user-dirs blueberry bluez-utils gnome-keyring \
 	dmenu alacritty tmux gdb fd ripgrep go rustup firefox flatpak mpv \
 	lxrandr pcmanfm lxappearance materia-gtk-theme papirus-icon-theme \
 	gvfs xarchiver udiskie bash-completion ethtool smartmontools \
 	pavucontrol ffmpegthumbnailer gst-libav gst-plugins-ugly xss-lock \
 	libva-utils gpicview xdotool maim brightnessctl transmission-gtk \
 	cpupower docker wireshark-qt virt-manager qemu-desktop jre-openjdk \
-	xdg-desktop-portal-gtk nm-connection-editor dbeaver
+	xdg-desktop-portal-gtk nm-connection-editor dbeaver volumeicon
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
