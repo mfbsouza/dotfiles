@@ -10,7 +10,7 @@ font pango:monospace 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -136,15 +136,16 @@ for_window [class="^.*"] client.focused #77dd77 #285577 #ffffff #2e9ef4 #285577
 # programs
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec --no-startup-id picom -b
+exec --no-startup-id volumeicon
+exec --no-startup-id dunst
 
 # wallpaper
 exec --no-startup-id feh --bg-scale /home/bois/Pictures/wallpapers/1546293070900.png
 
 # screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/screenshot-$(date '+%F-%T').png"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/screenshot-$(date '+%F-%T').png"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/screenshot-$(date '+%F-%T').png"
 
 # clipboard screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png

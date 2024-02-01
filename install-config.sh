@@ -24,19 +24,18 @@ if [ "$ANS" == "y" ]; then
 	ln -s $ROOT_DIR/.tmux.conf ~/.tmux.conf
 fi
 
+echo -e "$GREEN Install .xinitrc? [y/n] $CLEAR"
+read ANS
+if [ "$ANS" == "y" ]; then
+	echo -e "$GREEN Linking xinitrc to home $CLEAR"
+	ln -s $ROOT_DIR/.xinitrc ~/.xinitrc
+fi
+
 echo -e "$GREEN Install neovim config? [y/n] $CLEAR"
 read ANS
 if [ "$ANS" == "y" ]; then
 	echo -e "$GREEN Linking neovim config folder $CLEAR"
 	ln -s $ROOT_DIR/.config/nvim ~/.config/nvim
-fi
-
-echo -e "$GREEN Install custom fonts? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	echo -e "$GREEN Linking fonts folder $CLEAR"
-	ln -s $ROOT_DIR/.fonts ~/.fonts
-	fc-cache -fv
 fi
 
 echo -e "$GREEN Install alacritty config? [y/n] $CLEAR"
@@ -67,6 +66,20 @@ if [ "$ANS" == "y" ]; then
 	ln -s $ROOT_DIR/.config/picom ~/.config/picom
 fi
 
+echo -e "$GREEN Install dunst config? [y/n] $CLEAR"
+read ANS
+if [ "$ANS" == "y" ]; then
+	echo -e "$GREEN Linking dunst config folder $CLEAR"
+	ln -s $ROOT_DIR/.config/dunst ~/.config/dunst
+fi
+
+echo -e "$GREEN Install volumeicon config? [y/n] $CLEAR"
+read ANS
+if [ "$ANS" == "y" ]; then
+	echo -e "$GREEN Linking volumeicon config folder $CLEAR"
+	ln -s $ROOT_DIR/.config/volumeicon ~/.config/volumeicon
+fi
+
 echo -e "$GREEN Install MangoHud config? [y/n] $CLEAR"
 read ANS
 if [ "$ANS" == "y" ]; then
@@ -95,7 +108,7 @@ if [ "$ANS" == "y" ]; then
 		| sudo tee -a /etc/sysctl.d/99-i915psp.conf
 fi
 
-echo -e "$GREEN Install NVIDIA VAAPI config? [y/n] $CLEAR"
+echo -e "$GREEN Install NVIDIA environment VAAPI config? [y/n] $CLEAR"
 read ANS
 if [ "$ANS" == "y" ]; then
 	ln -s $ROOT_DIR/.config/environment.d/nvidia_vaapi.conf \
