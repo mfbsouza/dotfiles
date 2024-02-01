@@ -9,18 +9,25 @@ echo ""
 echo -e "$GREEN Installing Packages... $CLEAR"
 echo ""
 
-sudo pacman -S xorg-server xorg-xinit xorg-xinput xorg-setxkbmap \
-	xorg-xrandr xorg-xkill xorg-xbacklight xsel xclip noto-fonts \
-	noto-fonts-cjk noto-fonts-emoji ttf-liberation ttf-inconsolata-nerd \
-	wget unzip htop usbutils rsync less fzf fastfetch i3 j4-dmenu-desktop \
-	feh picom xdg-utils xdg-user-dirs blueberry bluez-utils gnome-keyring \
+sudo pacman -S xorg xorg-xinit xsel xclip noto-fonts noto-fonts-cjk \
+	noto-fonts-emoji ttf-liberation ttf-inconsolata-nerd wget unzip \
+	htop usbutils rsync less fzf fastfetch i3 j4-dmenu-desktop feh \
+	picom xdg-utils xdg-user-dirs blueberry bluez-utils gnome-keyring \
 	dmenu alacritty tmux gdb fd ripgrep go rustup firefox flatpak mpv \
-	lxrandr pcmanfm lxappearance materia-gtk-theme papirus-icon-theme \
-	gvfs xarchiver udiskie bash-completion ethtool smartmontools \
+	lxrandr pcmanfm lxappearance gnome-themes-extra breeze-gtk gvfs \
+	xarchiver udiskie bash-completion ethtool smartmontools dbeaver \
 	pavucontrol ffmpegthumbnailer gst-libav gst-plugins-ugly xss-lock \
 	libva-utils gpicview xdotool maim brightnessctl transmission-gtk \
 	cpupower docker wireshark-qt virt-manager qemu-desktop jre-openjdk \
-	xdg-desktop-portal-gtk nm-connection-editor dbeaver volumeicon
+	xdg-desktop-portal-gtk nm-connection-editor volumeicon kdenlive \
+	xterm dunst filelight blender kicad
+if [ "$?" -ne 0 ]; then
+	echo ""
+	echo -e "$RED Something went wrong! Stopping... $CLEAR"
+	echo ""
+	exit 1
+fi
+sudo pacman -S --asdeps kicad-library kicad-library-3d
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
@@ -194,6 +201,26 @@ echo -e "$GREEN Installing downgrade utility... $CLEAR"
 echo ""
 yay -S downgrade
 
+echo -e "$GREEN install visual studio code? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	yay -S visual-studio-code-bin
+	# fix mime vscode "bug"
+	# xdg-mime default pcmanfm.desktop inode/directory
+fi
+
+echo -e "$GREEN install google chrome? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	yay -S google-chrome
+fi
+
+echo -e "$GREEN install Saleae Logic2? [y/n] $CLEAR"
+read ANSWER
+if [ "$ANSWER" == "y" ]; then
+	yay -S saleae-logic2
+fi
+
 echo ""
 echo -e "$GREEN enabling systemd services... $CLEAR"
 echo ""
@@ -234,7 +261,10 @@ fi
 echo -e "$GREEN flatpak apps? [y/n] $CLEAR"
 read ANSWER
 if [ "$ANSWER" == "y" ]; then
-	flatpak install discord zoom
+	flatpak install discord zoom telegram postman
+	# postman fix
+	# path: .var/app/com.getpostman.Postman/config/Postman/proxy/
+	# openssl req -subj '/C=US/CN=Postman Proxy' -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -keyout postman-proxy-ca.key -out postman-proxy-ca.crt
 	if [ "$?" -ne 0 ]; then
 		echo ""
 		echo -e "$RED Something went wrong! Stopping... $CLEAR"
