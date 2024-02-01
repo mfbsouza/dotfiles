@@ -30,35 +30,61 @@ A place to keep my configuration files and scripts
 </details>
 
 <details>
-  <summary>Development stuff</summary>
+  <summary>Terminal </summary>
 
-  - Neovim for code editing
-  - Tmux for terminal multiplexer
-  - Git for version control and creating patches
-  - Ssh for remote shell
-  - Fzf for fuzzy finder
-  - Rsync for copying and backing up files between machines
-  - Ripgrep for line-oriented search tool
-  - Gdb for debugging
-  - Hexdump for analyzing binary files
-  - Curl for quick HTTP testing
-  - Netcat for creating and testing TCP connections
-  - Postman for more advanced HTTP testing
-  - Docker for.. Well.. Containers
+  - Alacritty
+</details>
+
+<details>
+  <summary>CLI Tools</summary>
+
+  - Tmux
+  - SSH
+  - Fzf
+  - Rsync
+  - Netcat
+</details>
+
+<details>
+  <summary>Software development </summary>
+
+  - Neovim
+  - Git
+  - Ripgrep
+  - Gdb
+  - Hexdump
+  - PlatformIO
+  - Curl
+  - Postman
+  - Docker
+</details>
+
+<details>
+  <summary>Hardware development </summary>
+
+  - KiCAD
+  - Blender
+  - Saleae Logic2
+</details>
+
+<details>
+  <summary>Video Editor</summary>
+
+  - kdenlive
 </details>
 
 <details>
   <summary>Virtualization</summary>
 
-  - Virt Manager for creating and managing VMs
-  - bare QEMU for embedded firmware testing
+  - Virt Manager
+  - QEMU
 </details>
 
 <details>
   <summary>Video/Audio Player</summary>
 
   - Mpv
-  - Vlc
+  - VLC
 </details>
 
 <details>
@@ -87,6 +113,5 @@ A place to keep my configuration files and scripts
   <summary>Voice Calls/Messaging</summary>
 
   - Discord
-  - Vencord
   - Telegram
 </details>
