@@ -20,7 +20,7 @@ sudo pacman -S xorg xorg-xinit xsel xclip noto-fonts noto-fonts-cjk \
 	libva-utils gpicview xdotool maim brightnessctl transmission-gtk \
 	cpupower docker wireshark-qt virt-manager qemu-desktop jre-openjdk \
 	xdg-desktop-portal-gtk nm-connection-editor volumeicon kdenlive \
-	xterm dunst filelight blender kicad obs-studio
+	xterm dunst filelight blender kicad obs-studio ttf-opensans
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
