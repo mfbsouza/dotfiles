@@ -25,7 +25,7 @@ sudo pacman -S xorg xorg-xinit xsel xclip noto-fonts noto-fonts-cjk \
 	systemd-resolvconf lcov python-pip python-pylint wireguard-tools \
 	valgrind bear fwupd dhcpcd inxi net-tools dnsmasq dnsutils swtpm \
 	openmp helvum gperf help2man diffstat chrpath rpcsvc-proto inetutils \
-	obs-studio ttf-opensans
+	boost obs-studio ttf-opensans
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
