@@ -12,27 +12,20 @@ echo ""
 sudo pacman -S xorg xorg-xinit xsel xclip noto-fonts noto-fonts-cjk \
 	noto-fonts-emoji ttf-liberation ttf-inconsolata-nerd wget unzip \
 	htop usbutils rsync less fzf fastfetch i3 j4-dmenu-desktop feh \
-	picom xdg-utils xdg-user-dirs blueberry bluez-utils gnome-keyring \
+	picom xdg-utils xdg-user-dirs blueman bluez-utils gnome-keyring \
 	dmenu alacritty tmux gdb fd ripgrep go rustup firefox flatpak mpv \
-	lxrandr pcmanfm lxappearance gnome-themes-extra breeze-gtk gvfs \
-	xarchiver udiskie bash-completion ethtool smartmontools dbeaver \
+	thunar thunar-archive-plugin xarchiver tumbler lxrandr lxappearance \
+	gnome-themes-extra gvfs udiskie bash-completion ethtool smartmontools \
 	pavucontrol ffmpegthumbnailer gst-libav gst-plugins-ugly xss-lock \
 	libva-utils gpicview xdotool maim brightnessctl transmission-gtk \
 	cpupower docker wireshark-qt virt-manager qemu-desktop jre-openjdk \
 	xdg-desktop-portal-gtk nm-connection-editor volumeicon kdenlive \
-	xterm dunst filelight blender kicad network-manager-applet openvpn \
+	xterm dunst filelight network-manager-applet openvpn ttf-opensans \
 	networkmanager-openvpn networkmanager-l2tp networkmanager-strongswan \
 	systemd-resolvconf lcov python-pip python-pylint wireguard-tools \
 	valgrind bear fwupd dhcpcd inxi net-tools dnsmasq dnsutils swtpm \
 	openmp helvum gperf help2man diffstat chrpath rpcsvc-proto inetutils \
-	boost obs-studio ttf-opensans
-if [ "$?" -ne 0 ]; then
-	echo ""
-	echo -e "$RED Something went wrong! Stopping... $CLEAR"
-	echo ""
-	exit 1
-fi
-sudo pacman -S --asdeps kicad-library kicad-library-3d
+	breeze breeze-gtk boost
 if [ "$?" -ne 0 ]; then
 	echo ""
 	echo -e "$RED Something went wrong! Stopping... $CLEAR"
