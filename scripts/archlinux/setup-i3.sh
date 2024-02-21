@@ -134,20 +134,21 @@ if [ "$ANS" == "y" ]; then
 	fi
 fi
 
-echo -e "\n$GREEN Install nvidia graphics packages? [y/N] $CLEAR\n"
+echo -e "\n$GREEN Install nvidia graphics packages and nvidia settings? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
-	sudo pacman -S opencl-nvidia cuda nvidia-utils libva-nvidia-driver
+	sudo pacman -S opencl-nvidia cuda nvidia-utils libva-nvidia-driver \
+		nvidia-settings
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
 	fi
 fi
 
-echo -e "\n$GREEN Install nvidia lib32 packages and nvidia settings? [y/N] $CLEAR\n"
+echo -e "\n$GREEN Install nvidia lib32 packages? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
-	sudo pacman -S nvidia-settings lib32-nvidia-utils
+	sudo pacman -S lib32-nvidia-utils
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -228,7 +229,7 @@ fi
 echo -e "\n$GREEN Install TLP for power managment? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
-	sudo pacman -S tlp tlp-rdw
+	sudo pacman -S tlp tlp-rdw smartmontools ethtool
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
