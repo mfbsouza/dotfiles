@@ -139,42 +139,20 @@ if [ "$ANS" == "y" ]; then
 	$SCRIPT_DIR/./env/bashrc-config.sh
 fi
 
-echo -e "\n$GREEN [theming] $CLEAR"
-
-echo -e "$GREEN Install sddm catppuccin theme? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	$SCRIPT_DIR/./installers/sddm-theme-catppuccin.sh
-fi
-
-echo -e "$GREEN Install plasma catppuccin theme? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	$SCRIPT_DIR/./installers/plasma-theme-catppuccin.sh
-fi
-
-echo -e "\n$GREEN [gnome settings] $CLEAR"
-
-echo -e "$GREEN install firefox gnome theme? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme/master/scripts/install-by-curl.sh | bash
-fi
-
-echo -e "$GREEN set resize with right button? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
-fi
-
-echo -e "$GREEN configure nautilus-open-any-terminal? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
-	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
-	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
-	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
-fi
+# echo -e "$GREEN set resize with right button? [y/n] $CLEAR"
+# read ANS
+# if [ "$ANS" == "y" ]; then
+# 	gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
+# fi
+#
+# echo -e "$GREEN configure nautilus-open-any-terminal? [y/n] $CLEAR"
+# read ANS
+# if [ "$ANS" == "y" ]; then
+# 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
+# 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
+# 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
+# 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
+# fi
 
 echo -e "$GREEN Done! $CLEAR"
 
