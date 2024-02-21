@@ -12,7 +12,39 @@ read ANS
 if [ "$ANS" == "y" ]; then
 	sudo pacman -S bash-completion git openssh rsync less fzf \
 		htop tmux fd ripgrep usbutils fastfetch vim wget unzip \
-		inxi net-tools
+		stress tree inxi net-tools
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install GNOME desktop environment? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S gnome gnome-browser-connector firefox alacritty
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+	sudo systemctl enable gdm
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install KDE Plasma desktop environment? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S plasma dolphin kcalc ffmpegthumbs \
+		kdegraphics-thumbnailers kate okular kwalletmanager \
+		spectacle firefox alacritty
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+	sudo systemctl enable sddm
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -51,7 +83,8 @@ echo -e "\n$GREEN Install software development packages? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
 	sudo pacman -S gdb go rustup bear valgrind neovim xsel xclip \
-		python-pip jre-openjdk docker lcov
+		meson cmake clang llvm python-pip jre-openjdk docker lcov \
+		python-setuptools
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -104,10 +137,35 @@ if [ "$ANS" == "y" ]; then
 	fi
 fi
 
+echo -e "\n$GREEN Install transmission-qt package? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S transmission-qt
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
 echo -e "\n$GREEN Install cpupower package? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
 	sudo pacman -S cpupower
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install usb_modeswitch and modem manager? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S usb_modeswitch modemmanager
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+	sudo systemctl enable ModemManager
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -270,8 +328,6 @@ if [ "$ANS" == "y" ]; then
 	yay -S downgrade
 fi
 
-# fix mime vscode "bug"
-# xdg-mime default thunar.desktop inode/directory
 echo -e "\n$GREEN Install visual studio code? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
