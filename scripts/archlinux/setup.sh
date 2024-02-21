@@ -96,6 +96,21 @@ if [ "$ANS" == "y" ]; then
 	fi
 fi
 
+echo -e "\n$GREEN Install KiCad? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S kicad
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+	sudo pacman -S --asdeps kicad-library kicad-library-3d
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
 echo -e "\n$GREEN Install virtualization packages? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
@@ -338,6 +353,12 @@ echo -e "\n$GREEN Install google chrome? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
 	yay -S google-chrome
+fi
+
+echo -e "\n$GREEN Install Postman? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	yay -S postman-bin
 fi
 
 echo -e "\n$GREEN Install Saleae Logic2? [y/N] $CLEAR\n"
