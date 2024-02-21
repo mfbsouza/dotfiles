@@ -19,7 +19,7 @@ A place to keep my configuration files and scripts
 <details>
   <summary>Window Manager</summary>
 
-  - i3
+  - i3wm
 </details>
 
 <details>
