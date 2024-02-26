@@ -65,6 +65,7 @@ return packer.startup(function(use)
   use {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'}
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
+  use "mrcjkb/rustaceanvim"
 
   -- fuzzy finder
   use "nvim-lua/plenary.nvim"
