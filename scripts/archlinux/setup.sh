@@ -12,7 +12,7 @@ read ANS
 if [ "$ANS" == "y" ]; then
 	sudo pacman -S bash-completion git openssh rsync less fzf \
 		htop tmux fd ripgrep usbutils fastfetch vim wget unzip \
-		stress tree inxi net-tools
+		stress tree inxi net-tools dnsutils
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
