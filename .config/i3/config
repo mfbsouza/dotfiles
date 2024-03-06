@@ -168,5 +168,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # Start i3bar to display a workspace bar
 bar {
-        status_command i3status
+	status_command i3status
+	tray_output primary
 }
