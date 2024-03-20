@@ -10,17 +10,17 @@ lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
 end)
 
-vim.g.rustaceanvim = {
-  server = {
-    capabilities = lsp_zero.get_capabilities()
-  },
-}
+-- vim.g.rustaceanvim = {
+--   server = {
+--     capabilities = lsp_zero.get_capabilities()
+--   },
+-- }
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {'gopls', 'clangd', 'rust_analyzer'},
   handlers = {
     lsp_zero.default_setup,
-    rust_analyzer = lsp_zero.noop,
+    -- rust_analyzer = lsp_zero.noop,
   }
 })
