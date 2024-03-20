@@ -25,7 +25,7 @@ vim.keymap.set("n", "<A-Left>", ":wincmd h<CR>", opts)
 vim.keymap.set("n", "<A-Up>", ":wincmd k<CR>", opts)
 vim.keymap.set("n", "<A-Down>", ":wincmd j<CR>", opts)
 
--- open file explorer on the left
+-- open tree view on the left
 vim.keymap.set("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- stay in indent mode
@@ -51,6 +51,3 @@ vim.keymap.set("n", "<2-LeftMouse>", "*N", opts)
 -- make sure that the half page jumps set the cursor to the middle
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-
--- close buffer
-vim.keymap.set("n", "<C-w>", ":bd<CR>", opts)
