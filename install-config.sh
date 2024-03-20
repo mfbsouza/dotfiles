@@ -94,6 +94,15 @@ if [ "$ANS" == "y" ]; then
 	ln -s $ROOT_DIR/.config/vkBasalt ~/.config/vkBasalt
 fi
 
+echo -e "$GREEN Install util scripts in ~/bin? [y/n] $CLEAR"
+read ANS
+if [ "$ANS" == "y" ]; then
+	echo -e "$GREEN Linking util scripts $CLEAR"
+	mkdir -p ~/bin
+	ln -s $ROOT_DIR/scripts/utils/setup-laptop.sh ~/bin/setup-laptop.sh
+	ln -s $ROOT_DIR/scripts/utils/setup-desktop.sh ~/bin/setup-desktop.sh
+fi
+
 echo -e "$GREEN Install firefox wayland environment variable? [y/n] $CLEAR"
 read ANS
 if [ "$ANS" == "y" ]; then
