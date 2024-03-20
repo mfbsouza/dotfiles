@@ -61,7 +61,7 @@ if [ "$ANS" == "y" ]; then
 		xdg-utils xdg-user-dirs xdg-desktop-portal-gtk blueman \
 		bluez-utils gnome-keyring network-manager-applet filelight \
 		nm-connection-editor xss-lock systemd-resolvconf breeze \
-		breeze-gtk breeze-icons brightnessctl
+		breeze-gtk breeze-icons qt6ct brightnessctl
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -121,6 +121,26 @@ if [ "$ANS" == "y" ]; then
 	fi
 fi
 
+echo -e "\n$GREEN Install Kdenlive? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S kdenlive
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install Krita? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S krita
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
 echo -e "\n$GREEN Install mpv and multimedia codecs? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
@@ -162,10 +182,20 @@ if [ "$ANS" == "y" ]; then
 	fi
 fi
 
-echo -e "\n$GREEN Install cpupower package? [y/N] $CLEAR\n"
+echo -e "\n$GREEN Install cpupower? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
 	sudo pacman -S cpupower
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install powertop? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S powertop
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
