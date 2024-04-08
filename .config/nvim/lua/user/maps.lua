@@ -1,5 +1,3 @@
--- MAPS
-
 -- map options
 local opts = { noremap = true, silent = true }
 
@@ -12,25 +10,25 @@ vim.g.maplocalleader = " "
 vim.keymap.set("n", "<C-Up>", "<C-y>", opts)
 vim.keymap.set("n", "<C-Down>", "<C-e>", opts)
 
--- clear highlight
-vim.keymap.set("n", "<Leader>h", ":noh<CR>", opts)
+-- make sure that the half page jumps set the cursor to the middle
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- navigate through buffers
 vim.keymap.set("n", "<C-Right>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<C-Left>", ":bprev<CR>", opts)
 
--- navigate through windows
-vim.keymap.set("n", "<A-Right>", ":wincmd l<CR>", opts)
-vim.keymap.set("n", "<A-Left>", ":wincmd h<CR>", opts)
-vim.keymap.set("n", "<A-Up>", ":wincmd k<CR>", opts)
-vim.keymap.set("n", "<A-Down>", ":wincmd j<CR>", opts)
+-- clear highlight
+vim.keymap.set("n", "<Leader>h", ":noh<CR>", opts)
 
 -- open tree view on the left
 vim.keymap.set("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 
--- stay in indent mode
+-- move text sideways and up-down
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
+vim.keymap.set("v", "<A-,>", ":m '>+1<CR>gv=gv", opts)
+vim.keymap.set("v", "<A-.>", ":m '<-2<CR>gv=gv", opts)
 
 -- don't save to register when deleting or changing in following cases
 vim.keymap.set("v", "p", '"_dP', opts)
@@ -47,7 +45,3 @@ vim.keymap.set("v", "<C-c>", '"+y', opts)
 
 -- double click to highlight all occurrences
 vim.keymap.set("n", "<2-LeftMouse>", "*N", opts)
-
--- make sure that the half page jumps set the cursor to the middle
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")

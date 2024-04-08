@@ -79,6 +79,7 @@ return packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
+  use "nvim-treesitter/nvim-treesitter-context"
 
   -- bufferline
   use {
@@ -92,6 +93,9 @@ return packer.startup(function(use)
     "nvim-tree/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons"
   }
+
+  -- diff view
+  use "sindrets/diffview.nvim"
 
   -- autopairs
   use {

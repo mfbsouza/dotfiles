@@ -8,7 +8,7 @@ vim.opt.laststatus = 0
 
 -- hl search and go to match while typing
 vim.opt.hlsearch = true
-vim.opt.incsearch = true
+vim.opt.incsearch = false
 
 -- ignore word case in search mode
 vim.opt.ignorecase = true
