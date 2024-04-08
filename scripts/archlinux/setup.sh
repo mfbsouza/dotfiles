@@ -202,6 +202,16 @@ if [ "$ANS" == "y" ]; then
 	fi
 fi
 
+echo -e "\n$GREEN Install partitioning packages? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S parted gptfdisk dosfstools exfat-utils ntfs-3g
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
 echo -e "\n$GREEN Install usb_modeswitch and modem manager? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
