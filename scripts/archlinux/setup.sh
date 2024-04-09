@@ -12,7 +12,7 @@ read ANS
 if [ "$ANS" == "y" ]; then
 	sudo pacman -S bash-completion git openssh rsync less fzf \
 		htop tmux fd ripgrep usbutils fastfetch vim wget unzip \
-		stress tree inxi net-tools dnsutils
+		stress tree inxi net-tools dnsutils tcpdump
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -22,7 +22,7 @@ fi
 echo -e "\n$GREEN Install GNOME desktop environment? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
-	sudo pacman -S gnome gnome-browser-connector firefox alacritty
+	sudo pacman -S gnome gnome-browser-connector
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -39,7 +39,7 @@ read ANS
 if [ "$ANS" == "y" ]; then
 	sudo pacman -S plasma dolphin kcalc ffmpegthumbs \
 		kdegraphics-thumbnailers kate okular kwalletmanager \
-		spectacle firefox alacritty
+		spectacle
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -55,13 +55,43 @@ echo -e "\n$GREEN Install i3wm desktop packages? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
 	sudo pacman -S xorg xorg-xinit i3 dmenu j4-dmenu-desktop picom \
-		dunst feh alacritty firefox thunar thunar-archive-plugin \
-		gvfs udiskie tumbler ffmpegthumbnailer xarchiver lxrandr \
+		dunst feh thunar thunar-archive-plugin mousepad \
+		gvfs udiskie tumbler ffmpegthumbnailer xarchiver arandr \
 		lxappearance pavucontrol volumeicon gpicview maim xdotool \
 		xdg-utils xdg-user-dirs xdg-desktop-portal-gtk blueman \
 		bluez-utils gnome-keyring network-manager-applet filelight \
 		nm-connection-editor xss-lock systemd-resolvconf breeze \
 		breeze-gtk breeze-icons qt6ct brightnessctl
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install Firefox? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S firefox
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install Alacritty? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S alacritty
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install btop? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S btop
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -105,6 +135,16 @@ if [ "$ANS" == "y" ]; then
 		exit 1
 	fi
 	sudo pacman -S --asdeps kicad-library kicad-library-3d
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install wireshark? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo pacman -S wireshark-qt
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
