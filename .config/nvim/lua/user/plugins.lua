@@ -1,5 +1,4 @@
 -- automatically install packer
-
 local fn = vim.fn
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -83,25 +82,15 @@ return packer.startup(function(use)
 
   -- bufferline
   use {
-    "akinsho/bufferline.nvim", tag = "v3.*",
-    requires = "kyazdani42/nvim-web-devicons",
+    'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons',
     config = function() require("bufferline").setup {} end
   }
 
   -- treeview
-  use {
-    "nvim-tree/nvim-tree.lua",
-    requires = "kyazdani42/nvim-web-devicons"
-  }
+  use {"nvim-tree/nvim-tree.lua", requires = "nvim-tree/nvim-web-devicons"}
 
   -- diff view
   use "sindrets/diffview.nvim"
-
-  -- autopairs
-  use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  }
 
   -- easily comment code out
   use {

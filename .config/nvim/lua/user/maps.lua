@@ -14,6 +14,10 @@ vim.keymap.set("n", "<C-Down>", "<C-e>", opts)
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- make sure that the search jumps set the cursor to the middle
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
 -- navigate through buffers
 vim.keymap.set("n", "<C-Right>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<C-Left>", ":bprev<CR>", opts)
