@@ -1,4 +1,4 @@
-import = ["/home/bois/.config/alacritty/tokyo-night.toml"]
+import = ["/home/bois/.config/alacritty/gnome-terminal.toml"]
 live_config_reload = true
 
 [cursor.style]

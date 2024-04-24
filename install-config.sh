@@ -7,8 +7,6 @@ ROOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 SCRIPT_DIR=$ROOT_DIR/scripts
 
 echo -e "$GREEN [dotfiles] $CLEAR"
-mkdir -p ~/.config
-mkdir -p ~/.config/environment.d
 
 echo -e "$GREEN Install .gitconfig? [y/n] $CLEAR"
 read ANS
@@ -49,6 +47,7 @@ echo -e "$GREEN Install i3 config? [y/n] $CLEAR"
 read ANS
 if [ "$ANS" == "y" ]; then
 	echo -e "$GREEN Linking i3 config folder $CLEAR"
+	rm -rf ~/.config/i3
 	ln -s $ROOT_DIR/.config/i3 ~/.config/i3
 fi
 
@@ -77,6 +76,7 @@ echo -e "$GREEN Install volumeicon config? [y/n] $CLEAR"
 read ANS
 if [ "$ANS" == "y" ]; then
 	echo -e "$GREEN Linking volumeicon config folder $CLEAR"
+	rm -rf ~/.config/volumeicon
 	ln -s $ROOT_DIR/.config/volumeicon ~/.config/volumeicon
 fi
 
