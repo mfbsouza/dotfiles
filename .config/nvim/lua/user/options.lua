@@ -8,7 +8,7 @@ vim.opt.laststatus = 0
 
 -- hl search and go to match while typing
 vim.opt.hlsearch = true
-vim.opt.incsearch = false
+vim.opt.incsearch = true
 
 -- ignore word case in search mode
 vim.opt.ignorecase = true
@@ -31,15 +31,8 @@ vim.opt.mouse = "a"
 -- autoreload file if there was a change in disk
 vim.opt.autoread = true
 
--- ai and si
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-
 -- always show sign column
 vim.opt.signcolumn = "yes"
-
--- always show tabs
-vim.opt.showtabline = 2
 
 -- vsplit always to the right a split always below
 vim.opt.splitright = true

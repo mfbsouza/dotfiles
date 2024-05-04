@@ -1,14 +1,16 @@
 -- safe call to check if lspconfig is installed
 local status_ok, _ = pcall(require, "lspconfig")
 if not status_ok then
-  return
+    return
 end
 
-local lsp_zero = require('lsp-zero')
+local lsp_zero = require("lsp-zero")
 
-lsp_zero.on_attach(function(client, bufnr)
-  lsp_zero.default_keymaps({buffer = bufnr})
-end)
+lsp_zero.on_attach(
+    function(client, bufnr)
+        lsp_zero.default_keymaps({buffer = bufnr})
+    end
+)
 
 -- vim.g.rustaceanvim = {
 --   server = {
@@ -16,11 +18,13 @@ end)
 --   },
 -- }
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = {'gopls', 'clangd', 'rust_analyzer'},
-  handlers = {
-    lsp_zero.default_setup,
-    -- rust_analyzer = lsp_zero.noop,
-  }
-})
+require("mason").setup({})
+require("mason-lspconfig").setup(
+    {
+        ensure_installed = {"gopls", "clangd", "rust_analyzer"},
+        handlers = {
+            lsp_zero.default_setup
+            -- rust_analyzer = lsp_zero.noop,
+        }
+    }
+)
