@@ -7,39 +7,43 @@ CLEAR='\033[0m'
 
 echo -e "\n$GREEN Fedora i3 spin personal setup script by mfbsouza $CLEAR\n"
 
-echo -e "\n$GREEN enable rpm fusion? [y/N] $CLEAR\n"
+echo -e "\n$GREEN this scripts expects that you have already setup the RPM \
+fusion repos and followed the steps to swap the built-in ffmpeg for the \
+non-free version. Do you want to continue? [Y/n] $CLEAR\n"
 read ANS
-if [ "$ANS" == "y" ]; then
-	sudo dnf install \
-		https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-		https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-	if [ "$?" -ne 0 ]; then
-		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
-		exit 1
-	fi
-	sudo dnf update
-	sudo dnf config-manager --enable fedora-cisco-openh264
-	if [ "$?" -ne 0 ]; then
-		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
-		exit 1
-	fi
-	sudo dnf update
+if [ "$ANS" == "n" ]; then
+	exit 1
 fi
 
-echo -e "\n$GREEN install multimedia codecs? [y/N] $CLEAR\n"
+echo -e "\n$GREEN install AMD multimedia codecs? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
-	sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+	sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
 	fi
-	sudo dnf groupupdate multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+	sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
 	fi
-	sudo dnf groupupdate sound-and-video
+fi
+
+echo -e "\n$GREEN Install ffmpegthumbnailer? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo dnf install ffmpegthumbnailer
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install VAAPI util packages? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo dnf install libva-utils
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -49,7 +53,7 @@ fi
 echo -e "\n$GREEN Install basic terminal packages? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
-	sudo dnf install lm_sensors git htop btop fzf \
+	sudo dnf install vim lm_sensors git htop btop fzf \
 		fd-find ripgrep vim neovim stress fastfetch
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
@@ -77,7 +81,8 @@ if [ "$ANS" == "y" ]; then
 	fi
 fi
 
-echo -e "\n$GREEN Install TLP for power managment? [y/N] $CLEAR\n"
+echo -e "\n$GREEN Install TLP for power managment? Make sure to disable \
+SELinux before installing tlp. [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
 	sudo dnf install tlp tlp-rdw
@@ -93,7 +98,7 @@ fi
 echo -e "\n$GREEN Install software development packages? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
-	sudo dnf install go python3-pip
+	sudo dnf install go python3-pip clang llvm
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
@@ -119,6 +124,48 @@ echo -e "\n$GREEN Install transmission-gtk package? [y/N] $CLEAR\n"
 read ANS
 if [ "$ANS" == "y" ]; then
 	sudo dnf install transmission-gtk
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install discord? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo dnf install discord
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install telegram? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo dnf install telegram
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install google chrome stable? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo dnf install fedora-workstation-repositories
+	sudo dnf config-manager --set-enabled google-chrome
+	sudo dnf install google-chrome-stable
+	if [ "$?" -ne 0 ]; then
+		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
+		exit 1
+	fi
+fi
+
+echo -e "\n$GREEN Install powertop? [y/N] $CLEAR\n"
+read ANS
+if [ "$ANS" == "y" ]; then
+	sudo dnf install powertop
 	if [ "$?" -ne 0 ]; then
 		echo -e "\n$RED Something went wrong! Stopping... $CLEAR\n"
 		exit 1
