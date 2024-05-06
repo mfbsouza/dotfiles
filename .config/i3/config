@@ -144,7 +144,7 @@ client.background       #FFFFFF
 for_window [class="^.*"] border pixel 2
 
 # autostart programs
-exec --no-startup-id dex-autostart --autostart --environment i3
+exec --no-startup-id /usr/libexec/xfce-polkit
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
