@@ -5,26 +5,36 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zshell plugins
+source ~/plugins/powerlevel10k/powerlevel10k.zsh-theme
+source ~/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# history setup
-HISTFILE=$HOME/.zhistory
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
 SAVEHIST=1000
-HISTSIZE=999
+HISTFILE=~/.zsh_history
+
+# zshell options
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
+
+# keybinds
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
-# for ADB
-export ANDROID_HOME=/Users/mfbs/Library/Android/sdk
-export PATH=$ANDROID_HOME/platform-tools:$PATH
-export PATH=$ANDROID_HOME/tools:$PATH
-export PATH=$ANDROID_HOME/tools/bin:$PATH
+# alias
+alias ls='ls --color=auto'
+
+# extra paths
+export PATH=$HOME/.local/bin:$PATH
+export PATH=/opt/nvim/bin:$PATH
+export PATH=/opt/go/bin:$PATH
+
+# enable fzf in the shell
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

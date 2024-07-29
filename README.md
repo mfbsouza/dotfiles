@@ -4,114 +4,42 @@ A place to keep my configuration files and scripts
 
 ![desktop](./assets/desktop.png)
 
-## My Everyday Softwares
+## FAQ (That actually no one asks)
 
-<details>
-  <summary>Operating Systems</summary>
+### Q: Operating System?
 
-  - Fedora for laptops and desktops
-  - Proxmox VE for server machines with multiple VMs
-  - Debian for most server deployments
-  - OPNsense for DIY routers
-  - Windows VM for cursed softwares that only works in MsTM
-</details>
+- Linux Mint 22 for my personal laptop
+- MacOS for work
+- Windows For my gaming PC
+- Ubuntu server for my servers
 
-<details>
-  <summary>Window Manager</summary>
+### Q: Why Linux Mint?
 
-  - i3wm
-</details>
+Because i am getting old. Mint just works and as a DE design
+consistent with what computers looked like when i was starting.
+Simple like that.
 
-<details>
-  <summary>Web Browser</summary>
+### Q: Text Editor/IDE?
 
-  - Firefox
-  - Google Chrome
-</details>
+Neovim, Vim, Zed, VSCode. Why use just one when you can get
+the most of them all.
 
-<details>
-  <summary>Terminal </summary>
+### Q: Shell?
 
-  - Alacritty
-</details>
+Zshell for the plugins
 
-<details>
-  <summary>CLI Tools</summary>
+### Q: Terminal?
 
-  - Tmux
-  - SSH
-  - Fzf
-  - Rsync
-  - Netcat
-</details>
+Alacritty for the GPU acceleration
 
-<details>
-  <summary>Software development </summary>
+### Q: Web Browser?
 
-  - Neovim
-  - Git
-  - Ripgrep
-  - Gdb
-  - Hexdump
-  - PlatformIO
-  - Curl
-  - Postman
-  - Docker
-</details>
+One that can browse the web.
 
-<details>
-  <summary>Hardware development </summary>
+### Q: Education?
 
-  - KiCAD
-  - Blender
-  - Saleae Logic2
-</details>
+BSc in Computer Engineering and MSc in Embedded Systems.
 
-<details>
-  <summary>Video Editor</summary>
+### Q: What do you do for living?
 
-  - kdenlive
-</details>
-
-<details>
-  <summary>Virtualization</summary>
-
-  - Virt Manager
-  - QEMU
-</details>
-
-<details>
-  <summary>Video/Audio Player</summary>
-
-  - Mpv
-  - VLC
-</details>
-
-<details>
-  <summary>Torrent Client</summary>
-
-  - Transmission
-</details>
-
-<details>
-  <summary>Video recording/Streaming</summary>
-
-  - OBS Studio
-</details>
-
-<details>
-  <summary>Gaming</summary>
-
-  - Steam
-  - Wine
-  - Lutris
-  - MangoHud
-  - VkBasalt
-</details>
-
-<details>
-  <summary>Voice Calls/Messaging</summary>
-
-  - Discord
-  - Telegram
-</details>
+Computer Bender.

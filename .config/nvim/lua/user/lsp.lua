@@ -21,7 +21,7 @@ lsp_zero.on_attach(
 require("mason").setup({})
 require("mason-lspconfig").setup(
     {
-        ensure_installed = {"gopls", "clangd", "rust_analyzer"},
+        ensure_installed = {"gopls", "clangd", "rust_analyzer", "pyright"},
         handlers = {
             lsp_zero.default_setup
             -- rust_analyzer = lsp_zero.noop,
