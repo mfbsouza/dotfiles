@@ -10,7 +10,7 @@ A place to keep my configuration files and scripts
 
 - Linux Mint 22 for my personal laptop
 - MacOS for work
-- Windows For my gaming PC
+- Windows for my gaming PC
 - Ubuntu server for my servers
 
 ### Q: Why Linux Mint?
@@ -21,7 +21,7 @@ Simple like that.
 
 ### Q: Text Editor/IDE?
 
-Neovim, Vim, Zed, VSCode. Why use just one when you can get
+Neovim, Vim, Zed, VSCode, Sublime. Why only use one when you can get
 the most of them all.
 
 ### Q: Shell?
@@ -42,4 +42,4 @@ BSc in Computer Engineering and MSc in Embedded Systems.
 
 ### Q: What do you do for living?
 
-Computer Bender.
+I am a computer bender.
