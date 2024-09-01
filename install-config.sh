@@ -140,29 +140,6 @@ if [ "$ANS" == "y" ]; then
 		~/.config/mpv/mpv.conf
 fi
 
-echo -e "\n$GREEN [environment] $CLEAR"
-
-echo -e "$GREEN Install bashrc config? [y/n] $CLEAR"
-read ANS
-if [ "$ANS" == "y" ]; then
-	$SCRIPT_DIR/./env/bashrc-config.sh
-fi
-
-# echo -e "$GREEN set resize with right button? [y/n] $CLEAR"
-# read ANS
-# if [ "$ANS" == "y" ]; then
-# 	gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
-# fi
-#
-# echo -e "$GREEN configure nautilus-open-any-terminal? [y/n] $CLEAR"
-# read ANS
-# if [ "$ANS" == "y" ]; then
-# 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
-# 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
-# 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
-# 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
-# fi
-
 echo -e "$GREEN Done! $CLEAR"
 
-echo -e "$GREEN Remeber to configure XDG_CURRENT_DESKTOP to i3 and /usr/share/xdg-desktop-portal/portals/gtk.portal! $CLEAR"
+echo -e "$GREEN If using i3 remeber to configure XDG_CURRENT_DESKTOP to i3 and /usr/share/xdg-desktop-portal/portals/gtk.portal! $CLEAR"
