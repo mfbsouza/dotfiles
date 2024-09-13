@@ -1,22 +1,37 @@
-# i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# Personal i3wm config file
 
 set $mod Mod1
-
-font pango:monospace 9
-
-# Use Mouse+$mod to drag floating windows to their wanted position
+font pango:Ubuntu Mono 8
 floating_modifier $mod
+tiling_drag modifier titlebar
 
-# start a terminal
+# autostarts
+exec --no-startup-id dex --autostart --environment i3
+
+# hotkeys
 bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#EEEEEE' -fn 'UbuntuMono-10'"
+
+# screenshots
+bindsym Print exec --no-startup-id $HOME/.config/i3/scripts/print-save-fullscreen.sh
+bindsym $mod+Print exec --no-startup-id $HOME/.config/i3/scripts/print-save-window.sh
+bindsym Shift+Print exec --no-startup-id $HOME/.config/i3/scripts/print-save-selection.sh
+bindsym Ctrl+Print exec --no-startup-id $HOME/.config/i3/scripts/print-clip-fullscreen.sh
+bindsym Ctrl+$mod+Print exec --no-startup-id $HOME/.config/i3/scripts/print-clip-window.sh
+bindsym Ctrl+Shift+Print exec --no-startup-id $HOME/.config/i3/scripts/print-clip-selection.sh
+
+# control volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/scripts/vol-raise.sh
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/scripts/vol-lower.sh
+bindsym XF86AudioMute exec --no-startup-id $HOME/.config/i3/scripts/vol-mute.sh
+bindsym XF86AudioMicMute exec --no-startup-id $HOME/.config/i3/scripts/mic-mute.sh
+
+# control display brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#EEEEEE' -fn 'monospace-10'"
 
 # change focus
 bindsym $mod+j focus left
@@ -64,9 +79,6 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -140,39 +152,11 @@ client.unfocused        #4C4C4C #222222 #888888 #292D2E   #222222
 client.urgent           #EC69A0 #DB3279 #FFFFFF #DB3279   #DB3279
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 client.background       #FFFFFF
-# shrink border
 for_window [class="^.*"] border pixel 2
-
-# autostart programs
-exec --no-startup-id /usr/libexec/xfce-polkit
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec --no-startup-id nm-applet
-exec --no-startup-id blueman-applet
-exec --no-startup-id picom -b
-exec --no-startup-id volumeicon -d hw:0
-exec --no-startup-id dunst
-exec --no-startup-id xfsettingsd
-
-# screenshots
-bindsym Print exec --no-startup-id $HOME/.config/i3/scripts/print-save-fullscreen.sh
-bindsym $mod+Print exec --no-startup-id $HOME/.config/i3/scripts/print-save-window.sh
-bindsym Shift+Print exec --no-startup-id $HOME/.config/i3/scripts/print-save-selection.sh
-bindsym Ctrl+Print exec --no-startup-id $HOME/.config/i3/scripts/print-clip-fullscreen.sh
-bindsym Ctrl+$mod+Print exec --no-startup-id $HOME/.config/i3/scripts/print-clip-window.sh
-bindsym Ctrl+Shift+Print exec --no-startup-id $HOME/.config/i3/scripts/print-clip-selection.sh
-
-# control volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/scripts/vol-raise.sh
-bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/scripts/vol-lower.sh
-bindsym XF86AudioMute exec --no-startup-id $HOME/.config/i3/scripts/vol-mute.sh
-bindsym XF86AudioMicMute exec --no-startup-id $HOME/.config/i3/scripts/mic-mute.sh
-
-# control display brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # start i3bar
 bar {
 	status_command i3status
 	tray_output primary
+        tray_padding 0
 }
