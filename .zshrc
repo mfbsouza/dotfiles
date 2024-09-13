@@ -31,10 +31,12 @@ bindkey "^[[B" history-search-forward
 # alias
 alias ls='ls --color=auto'
 
-# extra paths
-export PATH=$HOME/.local/bin:$PATH
-export PATH=/opt/nvim/bin:$PATH
-export PATH=/opt/go/bin:$PATH
+# extra paths for linux system
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  export PATH=$HOME/.local/bin:$PATH
+  export PATH=/opt/nvim/bin:$PATH
+  export PATH=/opt/go/bin:$PATH
+fi
 
 # enable fzf in the shell
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
