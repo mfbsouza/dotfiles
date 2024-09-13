@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
 import subprocess
-#import platform
+import platform
 import os
 import logging
-#from typing import Optional
-
 
 logging.basicConfig(
     level=logging.INFO,
@@ -45,9 +43,11 @@ def cloneGitRepo(reponame: str, repoUrl: str, targetPath: str) -> None:
            targetPath + "/" + reponame)
     runCmd(cmd)
 
+def systemInstallPackage(installcmd: str, packages: str) -> None:
+    cmd = installcmd + " " + packages
+    runCmd(cmd)
+
 if __name__ == "__main__":
-    #OStype = platform.system()
-    
     # paths
     rootDir = os.path.dirname(os.path.abspath(__file__))
     rootCfgDir = rootDir + "/.config"
@@ -55,6 +55,12 @@ if __name__ == "__main__":
     configDir = homeDir + "/.config"
 
     logging.info(f"Dryrun is set to {DRYRUN}")
+
+    logging.info("Installing system packages")
+    OStype = platform.system()
+    if OStype == "Linux":
+        from packages import mint
+        systemInstallPackage(mint.installCmd, mint.packages)
 
     plugins = {
         "powerlevel10k": "https://github.com/romkatv/powerlevel10k.git",
