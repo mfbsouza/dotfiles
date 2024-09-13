@@ -13,8 +13,6 @@ logging.basicConfig(
 
 DRYRUN = True
 
-SUPPORTED_OS = ["Linux", "Darwin"]
-
 def runCmd(cmd: str) -> None:
     if not DRYRUN:
         status = subprocess.run(cmd.split()).returncode
@@ -47,6 +45,16 @@ def systemInstallPackage(installcmd: str, packages: str) -> None:
     cmd = installcmd + " " + packages
     runCmd(cmd)
 
+def installFont(font: str, downUrl: str, targetPath: str) -> None:
+    cmd = "curl -OL " + downUrl + font + ".tar.xz"
+    runCmd(cmd)
+    cmd = "tar -xf " + font + ".tar.xz " + "-C " + targetPath
+    runCmd(cmd)
+    cmd = "fc-cache -fv"
+    runCmd(cmd)
+    cmd = "rm " + font + ".tar.xz"
+    runCmd(cmd)
+
 if __name__ == "__main__":
     # paths
     rootDir = os.path.dirname(os.path.abspath(__file__))
@@ -56,9 +64,10 @@ if __name__ == "__main__":
 
     logging.info(f"Dryrun is set to {DRYRUN}")
 
-    logging.info("Installing system packages")
+    logging.info("Installing system packages...")
     OStype = platform.system()
     if OStype == "Linux":
+        # TODO: actually check the distro in use
         from packages import mint
         systemInstallPackage(mint.installCmd, mint.packages)
 
@@ -99,5 +108,24 @@ if __name__ == "__main__":
         createSymlink(rootDir, "/", file, homeDir)
 
     logging.info("Setting up dotfiles in the config folder...")
+    createDirectory(configDir)
     for file in configDirFiles:
         createSymlink(rootCfgDir, "/", file, configDir)
+
+    fonts = {
+        "Inconsolata": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"
+    }
+
+    logging.info("installing fonts...")
+    fontsDir = homeDir + "/.fonts"
+    createDirectory(fontsDir)
+    for font, repo in fonts.items():
+        installFont(font, repo, fontsDir)
+    
+    logging.info("Copying TLP configuration to /etc...")
+    cmd = "sudo cp " + rootDir + "/etc/tlp.conf " + "/etc/tlp.conf"
+    runCmd(cmd)
+        
+    logging.info("Copying X11 configuration to /etc/X11/xorg.conf.d...")
+    cmd = "sudo cp -r " + rootDir + "/etc/X11/xorg.conf.d/* " + "/etc/X11/xorg.conf.d/"
+    runCmd(cmd)
