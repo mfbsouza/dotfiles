@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import subprocess
-import platform
 import os
 import logging
 
@@ -13,14 +12,23 @@ logging.basicConfig(
 
 DRYRUN = True
 
-def runCmd(cmd: str) -> None:
+def runCmd(cmd: str, piped: bool = False) -> None:
     if not DRYRUN:
-        status = subprocess.run(cmd.split()).returncode
+        if not piped:
+            status = subprocess.run(cmd.split()).returncode
+        else:
+            cmd = cmd.split('|')
+            if len(cmd) == 2:
+                ps = subprocess.Popen(cmd[0].split(), stdout=subprocess.PIPE)
+                status = subprocess.run(cmd[1].split(), stdin=ps.stdout).returncode
+                ps.wait()
+            else:
+                logging.warning(f"length of the piped command is not the expected: len is {len(cmd)}");
+                return
         if status != 0:
             logging.warning(f"Failed while running: {cmd}")
     else:
         logging.info(cmd)
-
 
 def createSymlink(
     basePath: str,
@@ -62,14 +70,33 @@ if __name__ == "__main__":
     homeDir = os.path.expanduser("~")
     configDir = homeDir + "/.config"
 
+    opt = input("Dryrun? [y/n]: ")
+    if opt.lower() == "y":
+        logging.info("Setting dryrun to True.")
+        DRYRUN = True
+    elif opt.lower() == "n":
+        logging.info("Setting dryrun to False.")
+        DRYRUN = False
+    else:
+        logging.info("Unknown option. Exiting.")
+        exit(0)
     logging.info(f"Dryrun is set to {DRYRUN}")
 
     logging.info("Installing system packages...")
-    OStype = platform.system()
-    if OStype == "Linux":
-        # TODO: actually check the distro in use
+
+    opt = input("Select your OS? [mint]: ")
+    if opt.lower() == "mint":
         from packages import mint
-        systemInstallPackage(mint.installCmd, mint.packages)
+        systemInstallPackage(mint.installCmd, mint.basePkgs)
+        opt = input("Install TLP packages? [y/n]: ")
+        if opt.lower() == "y":
+            systemInstallPackage(mint.installCmd, mint.pmPkgs)
+        opt = input("Install I3wm packages? [y/n]: ")
+        if opt.lower() == "y":
+            systemInstallPackage(mint.installCmd, mint.i3wmPkgs)
+    else:
+        logging.info("Unknown option. Exiting.")
+        exit(0)
 
     plugins = {
         "powerlevel10k": "https://github.com/romkatv/powerlevel10k.git",
@@ -92,16 +119,16 @@ if __name__ == "__main__":
     createDirectory(softwaresPath)
     for software, repo in softwares.items():
         cloneGitRepo(software, repo, softwaresPath)
-    
+
     logging.info("Installing fzf...")
     runCmd(softwaresPath + "/fzf/install")
 
     logging.info("Installing pyenv...")
-    runCmd("curl https://pyenv.run | bash")
+    runCmd("curl https://pyenv.run | bash", piped=True)
 
     # files and directories to install
     homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-    configDirFiles = ["nvim", "alacritty", "i3", "i3status", "dunst"]
+    configDirFiles = ["nvim", "alacritty"]
 
     logging.info("Setting up dotfiles in the home folder...")
     for file in homeDirFiles:
@@ -121,11 +148,62 @@ if __name__ == "__main__":
     createDirectory(fontsDir)
     for font, repo in fonts.items():
         installFont(font, repo, fontsDir)
-    
-    logging.info("Copying TLP configuration to /etc...")
-    cmd = "sudo cp " + rootDir + "/etc/tlp.conf " + "/etc/tlp.conf"
-    runCmd(cmd)
-        
-    logging.info("Copying X11 configuration to /etc/X11/xorg.conf.d...")
-    cmd = "sudo cp -r " + rootDir + "/etc/X11/xorg.conf.d/* " + "/etc/X11/xorg.conf.d/"
-    runCmd(cmd)
+
+    opt = input("Install TLP config file? [y/n]: ")
+    if opt.lower() == "y":
+        logging.info("Copying TLP configuration to /etc...")
+        cmd = "sudo cp " + rootDir + "/etc/tlp.conf " + "/etc/tlp.conf"
+        runCmd(cmd)
+
+    opt = input("Install X11 config files? [y/n]: ")
+    if opt.lower() == "y":
+        logging.info("Copying X11 configuration to /etc/X11/xorg.conf.d...")
+        cmd = "sudo cp -r " + rootDir + "/etc/X11/xorg.conf.d/* " + "/etc/X11/xorg.conf.d/"
+        runCmd(cmd)
+
+    opt = input("Install Rust Language Tools? [y,n]: ")
+    if opt.lower() == "y":
+        runCmd("curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh", piped=True)
+
+    opt = input("Install Zed Text Editor? [y,n]: ")
+    if opt.lower() == "y":
+        runCmd("curl -f https://zed.dev/install.sh | sh", piped=True)
+
+    opt = input("Install Flatseal Flatpak? [y/n]: ")
+    if opt.lower() == "y":
+        runCmd("flatpak install flathub com.github.tchx84.Flatseal")
+
+    opt = input("Install Steam Flatpak and Gaming add-ons? [y,n]: ")
+    if opt.lower() == "y":
+        logging.info("ATENTION: install the 23.08 branch for the MangoHud and vkBasalt!")
+        runCmd("flatpak install flathub com.valvesoftware.Steam")
+        runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.MangoHud")
+        runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.vkBasalt")
+
+    opt = input("Install Vesktop Flatpak? [y/n]: ")
+    if opt.lower() == "y":
+        runCmd("flatpak install flathub dev.vencord.Vesktop")
+
+    opt = input("Install DBeaver Flatpak? [y/n]: ")
+    if opt.lower() == "y":
+        runCmd("flatpak install flathub io.dbeaver.DBeaverCommunity")
+
+    opt = input("Install OBS Studio Flatpak? [y/n]: ")
+    if opt.lower() == "y":
+        runCmd("flatpak install flathub com.obsproject.Studio")
+
+    opt = input("Install Heroic Games Flatpak? [y/n]: ")
+    if opt.lower() == "y":
+        runCmd("flatpak install flathub com.heroicgameslauncher.hgl")
+
+    opt = input("Install Postman Flatpak? [y/n]: ")
+    if opt.lower() == "y":
+        runCmd("flatpak install flathub com.getpostman.Postman")
+
+    opt = input("Install Telegram Desktop Flatpak? [y/n]: ")
+    if opt.lower() == "y":
+        runCmd("flatpak install flathub org.telegram.desktop")
+
+    opt = input("Update the default shell to ZSH? [y/n]: ")
+    if opt.lower() == "y":
+        runCmd("chsh -s /usr/bin/zsh")

@@ -36,6 +36,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export PATH=$HOME/.local/bin:$PATH
   export PATH=/opt/nvim/bin:$PATH
   export PATH=/opt/go/bin:$PATH
+  export PATH=$HOME/go/bin:$PATH
 fi
 
 # enable fzf in the shell

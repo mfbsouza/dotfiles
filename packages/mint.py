@@ -13,6 +13,6 @@ buildPkgs = ("build-essential autoconf automake libtool")
 pythonPkgs = ("python3-pip python3-venv")
 serversPkgs = ("openssh-server")
 
-packages = (pmPkgs + " " + sysPkgs + " " + vpnPkgs + " " + cppPkgs + " " +
-            utilPkgs + " " + i3wmPkgs + " " + virtPkgs + " " + javaPkgs + " " +
+basePkgs = (sysPkgs + " " + vpnPkgs + " " + cppPkgs + " " +
+            utilPkgs + " " + virtPkgs + " " + javaPkgs + " " +
             nodePkgs + " " + buildPkgs + " " + pythonPkgs + " " + serversPkgs)
