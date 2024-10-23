@@ -128,7 +128,7 @@ if __name__ == "__main__":
 
     # files and directories to install
     homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-    configDirFiles = ["nvim", "alacritty"]
+    configDirFiles = ["nvim", "alacritty", "mpv"]
 
     logging.info("Setting up dotfiles in the home folder...")
     for file in homeDirFiles:
@@ -179,6 +179,14 @@ if __name__ == "__main__":
         runCmd("flatpak install flathub com.valvesoftware.Steam")
         runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.MangoHud")
         runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.vkBasalt")
+        vkBasaltPath = homeDir + "/.var/app/com.valvesoftware.Steam/config/vkBasalt"
+        MangoHudPath = homeDir + "/.var/app/com.valvesoftware.Steam/config/MangoHud"
+        createDirectory(vkBasaltPath)
+        createDirectory(MangoHudPath)
+        cmd = f"cp {rootCfgDir + '/vkBasalt/vkBasalt.conf'} {vkBasaltPath}/"
+        runCmd(cmd)
+        cmd = f"cp {rootCfgDir + '/MangoHud/MangoHud.conf'} {MangoHudPath}/"
+        runCmd(cmd)
 
     opt = input("Install Vesktop Flatpak? [y/n]: ")
     if opt.lower() == "y":
@@ -207,3 +215,8 @@ if __name__ == "__main__":
     opt = input("Update the default shell to ZSH? [y/n]: ")
     if opt.lower() == "y":
         runCmd("chsh -s /usr/bin/zsh")
+
+    opt = input("Install NVIDIA VAAPI env variables? [y/n]: ")
+    if opt.lower() == "y":
+        cmd = f"cat {rootDir + "/etc/env-nvidia-vaapi"} | sudo tee -a /etc/environment"
+        runCmd(cmd, piped=True)
