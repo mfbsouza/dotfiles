@@ -8,16 +8,15 @@ A place to keep my configuration files and scripts
 
 ### Q: Operating System?
 
-- Linux Mint 22 for my personal laptop
-- MacOS for work
-- Windows for my gaming PC
-- Ubuntu server for my servers
+- Linux Mint for my Personal Computers
+- MacOS for Work Computer
+- Ubuntu for Servers
 
 ### Q: Why Linux Mint?
 
-Because i am getting old. Mint just works and as a DE design
+Because i am getting old. Mint just works and has a DE design
 consistent with what computers looked like when i was starting.
-Simple like that.
+that simple.
 
 ### Q: Text Editor/IDE?
 
@@ -38,7 +37,7 @@ One that can browse the web.
 
 ### Q: Education?
 
-BSc in Computer Engineering and MSc in Embedded Systems.
+BSc in Computer Engineering and MSc in Computer Science.
 
 ### Q: What do you do for living?
 
