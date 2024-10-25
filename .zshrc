@@ -31,12 +31,15 @@ bindkey "^[[B" history-search-forward
 # alias
 alias ls='ls --color=auto'
 
-# extra paths for linux system
+# extra paths and alias
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export PATH=$HOME/.local/bin:$PATH
   export PATH=/opt/nvim/bin:$PATH
   export PATH=/opt/go/bin:$PATH
   export PATH=$HOME/go/bin:$PATH
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH=$HOME/go/bin:$PATH
+  alias zed="open -a /Applications/Zed.app -n"
 fi
 
 # enable fzf in the shell
