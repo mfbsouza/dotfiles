@@ -84,16 +84,16 @@ if __name__ == "__main__":
 
     logging.info("Installing system packages...")
 
-    opt = input("Select your OS? [mint]: ")
-    if opt.lower() == "mint":
-        from packages import mint
-        systemInstallPackage(mint.installCmd, mint.basePkgs)
+    opt = input("Select your OS? [ubuntu]: ")
+    if opt.lower() == "ubuntu":
+        from packages import ubuntu
+        systemInstallPackage(ubuntu.installCmd, ubuntu.basePkgs)
         opt = input("Install TLP packages? [y/n]: ")
         if opt.lower() == "y":
-            systemInstallPackage(mint.installCmd, mint.pmPkgs)
+            systemInstallPackage(ubuntu.installCmd, ubuntu.pmPkgs)
         opt = input("Install I3wm packages? [y/n]: ")
         if opt.lower() == "y":
-            systemInstallPackage(mint.installCmd, mint.i3wmPkgs)
+            systemInstallPackage(ubuntu.installCmd, ubuntu.i3wmPkgs)
     else:
         logging.info("Unknown option. Exiting.")
         exit(0)
