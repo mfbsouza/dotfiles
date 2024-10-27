@@ -28,6 +28,11 @@
           "typeCheckingMode": "off"
         }
       }
+    },
+    "gopls": {
+      "initialization_options": {
+        "usePlaceholders": false
+      }
     }
   },
   "git": {
