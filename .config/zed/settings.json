@@ -21,11 +21,29 @@
     "light": "One Light",
     "dark": "One Dark"
   },
+  "languages": {
+    "Python": {
+      "language_servers": ["basedpyright", "!pyright"],
+      "hard_tabs": true
+    }
+  },
   "lsp": {
+    "basedpyright": {
+      "settings": {
+        "basedpyright.analysis": {
+          "typeCheckingMode": "off",
+          "diagnosticMode": "openFilesOnly",
+          "inlayHints": {
+            "callArgumentNames": false
+          }
+        }
+      }
+    },
     "pyright": {
       "settings": {
         "python.analysis": {
-          "typeCheckingMode": "off"
+          "typeCheckingMode": "off",
+          "diagnosticMode": "openFilesOnly",
         }
       }
     },
