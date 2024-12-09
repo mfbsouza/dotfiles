@@ -41,8 +41,42 @@ end
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {"gopls", "clangd", "rust_analyzer", "pyright"},
+  ensure_installed = {"gopls", "clangd", "rust_analyzer", "basedpyright"},
   handlers = {
     default_setup,
+    ['basedpyright'] = function()
+      require('lspconfig').basedpyright.setup({
+        capabilities = lsp_capabilities,
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = "off",
+              diagnosticMode = "openFilesOnly",
+              useLibraryCodeForTypes = true,
+              inlayHints = {
+                callArgumentNames = false,
+              },
+            },
+          },
+        },
+      })
+    end,
+    ['pyright'] = function()
+      require('lspconfig').pyright.setup({
+        capabilities = lsp_capabilities,
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "off",
+              diagnosticMode = "openFilesOnly",
+              useLibraryCodeForTypes = true,
+              inlayHints = {
+                callArgumentNames = false,
+              },
+            },
+          },
+        },
+      })
+    end,
   },
 })
