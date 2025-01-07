@@ -45,7 +45,7 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim"
   
   use "typicode/bg.nvim"
-  use { "catppuccin/nvim", as = "catppuccin" }
+  use "folke/tokyonight.nvim"
   
   use {
     "neovim/nvim-lspconfig",

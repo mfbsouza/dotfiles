@@ -88,9 +88,6 @@ if __name__ == "__main__":
     if opt.lower() == "ubuntu":
         from packages import ubuntu
         systemInstallPackage(ubuntu.installCmd, ubuntu.basePkgs)
-        opt = input("Install TLP packages? [y/n]: ")
-        if opt.lower() == "y":
-            systemInstallPackage(ubuntu.installCmd, ubuntu.pmPkgs)
         opt = input("Install I3wm packages? [y/n]: ")
         if opt.lower() == "y":
             systemInstallPackage(ubuntu.installCmd, ubuntu.i3wmPkgs)
@@ -123,12 +120,9 @@ if __name__ == "__main__":
     logging.info("Installing fzf...")
     runCmd(softwaresPath + "/fzf/install")
 
-    logging.info("Installing pyenv...")
-    runCmd("curl https://pyenv.run | bash", piped=True)
-
     # files and directories to install
     homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-    configDirFiles = ["nvim", "alacritty", "mpv", "zed", "Code"]
+    configDirFiles = ["nvim", "alacritty", "mpv", "zed", "Code", "ghostty"]
 
     logging.info("Setting up dotfiles in the home folder...")
     for file in homeDirFiles:
@@ -149,22 +143,6 @@ if __name__ == "__main__":
     for font, repo in fonts.items():
         installFont(font, repo, fontsDir)
 
-    opt = input("Install TLP config file? [y/n]: ")
-    if opt.lower() == "y":
-        logging.info("Copying TLP configuration to /etc...")
-        cmd = "sudo cp " + rootDir + "/etc/tlp.conf " + "/etc/tlp.conf"
-        runCmd(cmd)
-
-    opt = input("Install X11 config files? [y/n]: ")
-    if opt.lower() == "y":
-        logging.info("Copying X11 configuration to /etc/X11/xorg.conf.d...")
-        cmd = "sudo cp -r " + rootDir + "/etc/X11/xorg.conf.d/* " + "/etc/X11/xorg.conf.d/"
-        runCmd(cmd)
-
-    opt = input("Install Rust Language Tools? [y,n]: ")
-    if opt.lower() == "y":
-        runCmd("curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh", piped=True)
-
     opt = input("Install Zed Text Editor? [y,n]: ")
     if opt.lower() == "y":
         runCmd("curl -f https://zed.dev/install.sh | sh", piped=True)
@@ -175,7 +153,6 @@ if __name__ == "__main__":
 
     opt = input("Install Steam Flatpak and Gaming add-ons? [y,n]: ")
     if opt.lower() == "y":
-        logging.info("ATENTION: install the 23.08 branch for the MangoHud and vkBasalt!")
         runCmd("flatpak install flathub com.valvesoftware.Steam")
         runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.MangoHud")
         runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.vkBasalt")
