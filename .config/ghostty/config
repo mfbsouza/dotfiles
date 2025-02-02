@@ -1,5 +1,6 @@
 font-family = "Inconsolata Nerd Font Mono"
-font-size = 12
+font-size = 16
+macos-window-shadow = false
 font-feature = -dlig
 gtk-titlebar = false
 gtk-tabs-location = hidden

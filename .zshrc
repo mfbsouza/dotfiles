@@ -32,21 +32,24 @@ bindkey "^[[B" history-search-forward
 alias ls='ls --color=auto'
 
 # extra paths and alias
+export PATH=$HOME/go/bin:$PATH
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export PATH=$HOME/.local/bin:$PATH
   export PATH=/opt/nvim/bin:$PATH
   export PATH=/opt/go/bin:$PATH
-  export PATH=$HOME/go/bin:$PATH
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH=$HOME/go/bin:$PATH
-  alias zed="open -a /Applications/Zed.app -n"
+  alias zed-editor="open -a /Applications/Zed.app -n"
 fi
 
 # enable fzf in the shell
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	source <(fzf --zsh)
+fi
 
-# enable pyenv
-#export PYENV_ROOT="$HOME/.pyenv"
-#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+# enable pyenv for MacOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi
