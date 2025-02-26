@@ -84,17 +84,15 @@ if __name__ == "__main__":
 
     logging.info("Installing system packages...")
 
-    os = input("Select your OS? [ubuntu, macos, arch]: ")
-    if os.lower() == "ubuntu":
-        from packages import ubuntu
-        systemInstallPackage(ubuntu.installCmd, ubuntu.basePkgs)
-        opt = input("Install I3wm packages? [y/n]: ")
-        if opt.lower() == "y":
-            systemInstallPackage(ubuntu.installCmd, ubuntu.i3wmPkgs)
+    os = input("Select your OS? [mint, macos]: ")
+    from packages import brew
+    if os.lower() == "mint":
+        from packages import mint
+        systemInstallPackage(mint.installCmd, mint.sys)
+        systemInstallPackage(brew.installCmd, brew.linuxPkgs)
     elif os.lower() == "macos":
-        from packages import macos
-        systemInstallPackage(macos.installCmd, macos.basePkgs)
-        systemInstallPackage(macos.installCmd + " --cask", macos.caskPkgs)
+        systemInstallPackage(brew.installCmd, brew.macPkgs)
+        systemInstallPackage(brew.installCmd + " --cask", brew.cask)
     else:
         logging.info("Unknown option. Exiting.")
         exit(0)
@@ -111,22 +109,9 @@ if __name__ == "__main__":
     for plugin, repo in plugins.items():
         cloneGitRepo(plugin, repo, pluginsPath)
 
-    opt = input("Install extra softwares? [y,n]: ")
-    if opt.lower() == "y":
-        softwares = {
-            "fzf": "https://github.com/junegunn/fzf.git"
-        }
-        logging.info("Downloading softwares...")
-        softwaresPath = homeDir + "/softwares"
-        createDirectory(softwaresPath)
-        for software, repo in softwares.items():
-            cloneGitRepo(software, repo, softwaresPath)
-        logging.info("Installing fzf...")
-        runCmd(softwaresPath + "/fzf/install")
-
     # files and directories to install
     homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-    configDirFiles = ["nvim", "zed", "Code", "ghostty"]
+    configDirFiles = ["nvim", "zed", "ghostty"]
 
     logging.info("Setting up dotfiles in the home folder...")
     for file in homeDirFiles:
@@ -201,5 +186,5 @@ if __name__ == "__main__":
 
         opt = input("Install NVIDIA VAAPI env variables? [y/n]: ")
         if opt.lower() == "y":
-            cmd = f"cat {rootDir + "/etc/env-nvidia-vaapi"} | sudo tee -a /etc/environment"
+            cmd = f'cat {rootDir + "/etc/env-nvidia-vaapi"} | sudo tee -a /etc/environment'
             runCmd(cmd, piped=True)

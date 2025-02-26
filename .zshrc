@@ -35,21 +35,14 @@ alias ls='ls --color=auto'
 export PATH=$HOME/go/bin:$PATH
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export PATH=$HOME/.local/bin:$PATH
-  export PATH=/opt/nvim/bin:$PATH
-  export PATH=/opt/go/bin:$PATH
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   alias zed-editor="open -a /Applications/Zed.app -n"
 fi
 
 # enable fzf in the shell
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-	source <(fzf --zsh)
-fi
+source <(fzf --zsh)
 
-# enable pyenv for MacOS
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	eval "$(pyenv init -)"
-	eval "$(pyenv virtualenv-init -)"
-fi
+# enable pyenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+

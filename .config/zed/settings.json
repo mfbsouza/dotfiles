@@ -8,14 +8,10 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "telemetry": {
+    "diagnostics": false,
     "metrics": false
   },
   "vim_mode": true,
-  "ui_font_size": 15,
-  "buffer_font_size": 15,
-  "buffer_font_weight": 100,
-  "buffer_line_height": "comfortable",
-  "buffer_font_family": "Inconsolata Nerd Font Mono",
   "theme": {
     "mode": "system",
     "light": "One Light",
