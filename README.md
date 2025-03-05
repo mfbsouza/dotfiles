@@ -29,7 +29,7 @@ Zshell for the plugins
 
 ### Q: Terminal?
 
-Alacritty for the GPU acceleration
+Ghostty because i like the font rendering and the default config
 
 ### Q: Web Browser?
 
