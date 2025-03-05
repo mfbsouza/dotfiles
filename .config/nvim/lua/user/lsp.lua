@@ -40,7 +40,7 @@ end
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {"gopls", "clangd", "rust_analyzer", "basedpyright"},
+  ensure_installed = {"zls", "gopls", "clangd", "rust_analyzer", "basedpyright"},
   handlers = {
     default_setup,
     ['basedpyright'] = function()

@@ -31,6 +31,11 @@ bindkey "^[[B" history-search-forward
 # alias
 alias ls='ls --color=auto'
 
+# enable brew for linux
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # extra paths and alias
 export PATH=$HOME/go/bin:$PATH
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
