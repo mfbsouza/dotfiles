@@ -1,4 +1,3 @@
--- safe call to check if lspconfig is installed
 local status_ok, _ = pcall(require, "lspconfig")
 if not status_ok then
   return
@@ -41,7 +40,7 @@ end
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {"gopls", "clangd", "rust_analyzer", "basedpyright"},
+  ensure_installed = {"zls", "gopls", "clangd", "rust_analyzer", "basedpyright"},
   handlers = {
     default_setup,
     ['basedpyright'] = function()
