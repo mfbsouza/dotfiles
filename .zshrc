@@ -51,3 +51,6 @@ source <(fzf --zsh)
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# initialize compinit for zsh
+autoload -Uz compinit && compinit
+
