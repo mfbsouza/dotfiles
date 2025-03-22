@@ -1,7 +1,7 @@
 {
     "telemetry.telemetryLevel": "off",
-    "window.titleBarStyle": "custom",
+    "update.showReleaseNotes": false,
+    "workbench.colorTheme": "Tokyo Night",
     "editor.minimap.renderCharacters": false,
-    "editor.fontFamily": "'Inconsolata Nerd Font Mono','Droid Sans Mono', 'monospace', monospace",
-    "workbench.colorTheme": "Tokyo Night"
+    "workbench.startupEditor": "none"
 }
