@@ -6,6 +6,7 @@ if not status_ok then
 end
 
 bar.setup {
+  animation = false,
   auto_hide = 1,
   icons = {
     separator = {left = '', right = ''},
