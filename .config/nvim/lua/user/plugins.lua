@@ -77,8 +77,14 @@ return packer.startup(function(use)
     }
   }
   
-  use "lewis6991/gitsigns.nvim"
-  
+  use {
+    "romgrk/barbar.nvim",
+    requires = {
+      {"nvim-tree/nvim-web-devicons"},
+      {"lewis6991/gitsigns.nvim"},
+    }
+  }
+
   use {
     "numToStr/Comment.nvim",
     config = function() require('Comment').setup() end

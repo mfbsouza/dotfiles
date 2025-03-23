@@ -18,10 +18,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- navigate through buffers
-vim.keymap.set("n", "<C-Right>", ":bnext<CR>", opts)
-vim.keymap.set("n", "<C-Left>", ":bprev<CR>", opts)
-
 -- clear highlight
 vim.keymap.set("n", "<Leader>h", ":noh<CR>", opts)
 
