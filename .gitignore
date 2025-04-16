@@ -2,6 +2,7 @@
 *__pycache__*
 .venv/*
 .config/Code/*
+.config/zed/prompts/*
 !.config/Code/User/settings.json
 !.config/Code/User/keybindings.json
 
