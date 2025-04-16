@@ -1,17 +1,6 @@
-# linux gtk config for non gnome desktops
-gtk-adwaita = false
-gtk-titlebar = false
-gtk-wide-tabs = false
-gtk-tabs-location = hidden
-
-# mac config
-macos-window-shadow = false
-
-# font config
-font-size = 10
 font-feature = -calt
 font-feature = -dlig
+font-size = 14
 
-# inner padding
 window-padding-x = 5
 window-padding-y = 5
