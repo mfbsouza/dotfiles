@@ -4,13 +4,5 @@
         "key": "tab",
         "command": "selectNextSuggestion",
         "when": "suggestWidgetVisible && suggestWidgetMultipleSuggestions"
-    },
-    {
-        "key": "ctrl+alt+b",
-        "command": "workbench.action.toggleActivityBarVisibility"
-    },
-    {
-        "key": "ctrl+b",
-        "command": "workbench.action.toggleSidebarVisibility"
-    },
+    }
 ]

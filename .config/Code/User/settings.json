@@ -1,7 +1,7 @@
 {
     "telemetry.telemetryLevel": "off",
     "update.showReleaseNotes": false,
-    "workbench.colorTheme": "Tokyo Night",
     "editor.minimap.renderCharacters": false,
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "security.workspace.trust.untrustedFiles": "open"
 }
