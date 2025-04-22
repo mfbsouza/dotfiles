@@ -13,6 +13,7 @@ ts.setup {
     "c",
     "cpp",
     "rust",
+    "typescript",
     "go",
     "python",
     "lua",
