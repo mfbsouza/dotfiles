@@ -21,9 +21,9 @@
   {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
-      "shift-tab": "editor::ContextMenuPrev",
-      "up": "editor::ContextMenuPrev",
-      "ctrl-p": "editor::ContextMenuPrev",
+      "shift-tab": "editor::ContextMenuPrevious",
+      "up": "editor::ContextMenuPrevious",
+      "ctrl-p": "editor::ContextMenuPrevious",
       "tab": "editor::ContextMenuNext",
       "down": "editor::ContextMenuNext",
       "ctrl-n": "editor::ContextMenuNext",

@@ -31,15 +31,14 @@ bindkey "^[[B" history-search-forward
 # alias
 alias ls='ls --color=auto'
 
-# enable brew for linux
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
 # extra paths and alias
 export PATH=$HOME/go/bin:$PATH
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  export PATH=$HOME/.local/bin:$PATH
+  export PATH=/opt/nvim/bin:$PATH
+  export PATH=/opt/go/bin:$PATH
+  export PATH=/opt/zig:$PATH
+  export PATH=/opt/zls:$PATH
+  export PATH=$HOME/.npm/bin:$PATH
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   alias zed-editor="open -a /Applications/Zed.app -n"
 fi
@@ -47,9 +46,12 @@ fi
 # enable fzf in the shell
 source <(fzf --zsh)
 
+# npm config prefix
+export NPM_CONFIG_PREFIX=~/.npm
+
 # enable pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 # initialize compinit for zsh
 autoload -Uz compinit && compinit

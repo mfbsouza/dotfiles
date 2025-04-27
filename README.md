@@ -8,8 +8,15 @@ A place to keep my configuration files and scripts
 
 ### Q: Operating System?
 
-- MacOS for Personal and Work Computer
+- Linux Mint for my Personal Computers
 - Ubuntu for Servers
+- Windows for Gaming and Home Streaming with Apollo/Artemis
+
+### Q: Why Linux Mint?
+
+Because i am getting old. Mint just works and has a DE design
+consistent with what computers looked like when I was starting.
+that simple.
 
 ### Q: Text Editor/IDE?
 

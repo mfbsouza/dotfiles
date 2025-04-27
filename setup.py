@@ -85,12 +85,12 @@ if __name__ == "__main__":
     logging.info("Installing system packages...")
 
     os = input("Select your OS? [mint, macos]: ")
-    from packages import brew
     if os.lower() == "mint":
         from packages import mint
         systemInstallPackage(mint.installCmd, mint.sys)
-        systemInstallPackage(brew.installCmd, brew.linuxPkgs)
+        print("installing for mint")
     elif os.lower() == "macos":
+        from packages import brew
         systemInstallPackage(brew.installCmd, brew.macPkgs)
         systemInstallPackage(brew.installCmd + " --cask", brew.cask)
     else:
@@ -125,7 +125,8 @@ if __name__ == "__main__":
     opt = input("Install extra fonts? [y,n]: ")
     if opt.lower() == "y":
         fonts = {
-            "Inconsolata": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"
+            "Inconsolata": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/",
+            "JetBrainsMono": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"
         }
         logging.info("installing fonts...")
         fontsDir = homeDir + "/.fonts"
