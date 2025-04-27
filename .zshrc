@@ -50,9 +50,18 @@ source <(fzf --zsh)
 export NPM_CONFIG_PREFIX=~/.npm
 
 # enable pyenv
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # initialize compinit for zsh
 autoload -Uz compinit && compinit
+
+# bun completions
+[ -s "/home/bois/.bun/_bun" ] && source "/home/bois/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
