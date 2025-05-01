@@ -14,9 +14,8 @@ A place to keep my configuration files and scripts
 
 ### Q: Why Linux Mint?
 
-Because i am getting old. Mint just works and has a DE design
-consistent with what computers looked like when I was starting.
-that simple.
+Just works. Stable. Ubuntu/Debian-based. No Snaps + Flatpak by default.
+Easy to hack when wanting to.
 
 ### Q: Text Editor/IDE?
 
