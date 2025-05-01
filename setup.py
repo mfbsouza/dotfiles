@@ -111,7 +111,7 @@ if __name__ == "__main__":
 
     # files and directories to install
     homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-    configDirFiles = ["nvim", "zed", "ghostty"]
+    configDirFiles = ["nvim", "zed", "ghostty", "i3", "dunst", "wezterm"]
 
     logging.info("Setting up dotfiles in the home folder...")
     for file in homeDirFiles:
