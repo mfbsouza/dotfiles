@@ -34,10 +34,7 @@ alias ls='ls --color=auto'
 # extra paths and alias
 export PATH=$HOME/go/bin:$PATH
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  export PATH=/opt/nvim/bin:$PATH
-  export PATH=/opt/go/bin:$PATH
-  export PATH=/opt/zig:$PATH
-  export PATH=/opt/zls:$PATH
+  export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.npm/bin:$PATH
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   alias zed-editor="open -a /Applications/Zed.app -n"
