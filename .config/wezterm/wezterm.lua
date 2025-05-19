@@ -7,7 +7,7 @@ if is_linux then
 end
 
 config.font = wezterm.font 'JetBrains Mono'
-config.font_size = 10.0
+config.font_size = 14.0
 
 -- disable ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
