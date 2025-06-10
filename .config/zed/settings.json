@@ -29,6 +29,7 @@
   "gutter": {
     "code_actions": false
   },
+  "inline_code_actions": false,
   "languages": {
     "Python": {
       "language_servers": ["basedpyright", "!pyright"],
