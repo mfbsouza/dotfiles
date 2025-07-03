@@ -3,7 +3,7 @@
 	email = mfbsouza.it@gmail.com
 	signingkey = mfbsouza.it@gmail.com
 [core]
-	editor = nvim
+	editor = vim
 [commit]
 	gpgsign = true
 [tag]
