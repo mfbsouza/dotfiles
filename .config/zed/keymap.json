@@ -1,5 +1,11 @@
 [
   {
+    "bindings": {
+      "ctrl-e": "workspace::ToggleLeftDock",
+      "ctrl-t": "workspace::ToggleBottomDock"
+    }
+  },
+  {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       "f f": "file_finder::Toggle",
@@ -12,8 +18,7 @@
       "g f": "editor::Format",
       "g d": "editor::GoToDefinition",
       "g t": "editor::GoToTypeDefinition",
-      "space D": "editor::GoToDefinitionSplit",
-      "space e": "workspace::ToggleLeftDock"
+      "space D": "editor::GoToDefinitionSplit"
     }
   },
   {
