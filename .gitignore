@@ -3,6 +3,6 @@
 .venv/*
 .config/Code/*
 .config/zed/prompts/*
+.DS_store
 !.config/Code/User/settings.json
 !.config/Code/User/keybindings.json
-
