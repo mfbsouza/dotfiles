@@ -24,7 +24,6 @@
   },
   "agent": {
     "enabled": false,
-    "version": "2"
   },
   "gutter": {
     "code_actions": false
