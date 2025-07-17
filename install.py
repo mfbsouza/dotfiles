@@ -100,7 +100,7 @@ if __name__ == "__main__":
 		cloneGitRepo(plugin, repo, pluginsPath)
 
 	# files and directories to install
-	homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
+	homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh", ".vimrc"]
 	configDirFiles = ["zed", "wezterm"]
 
 	logging.info("Setting up dotfiles in the home folder...")

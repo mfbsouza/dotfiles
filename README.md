@@ -19,7 +19,7 @@ Easy to hack when wanting to.
 
 ### Q: Text Editor/IDE?
 
-Neovim, Vim, Zed, VSCode, Sublime. Why only use one when you can get
+Zed, Vim, VSCode, Sublime. Why only use one when you can get
 the most of them all.
 
 ### Q: Shell?
@@ -28,7 +28,7 @@ Zshell for the plugins
 
 ### Q: Terminal?
 
-Ghostty because i like the font rendering and the default config
+WezTerm cus i like it
 
 ### Q: Web Browser?
 
@@ -36,7 +36,7 @@ One that can browse the web.
 
 ### Q: Education?
 
-BSc in Computer Engineering and MSc in Computer Science.
+BSc in Computer Engineering.
 
 ### Q: What do you do for living?
 
