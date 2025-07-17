@@ -2,7 +2,7 @@
   {
     "bindings": {
       "ctrl-e": "workspace::ToggleLeftDock",
-      "ctrl-t": "workspace::ToggleBottomDock"
+      "ctrl-tab": "workspace::ToggleBottomDock"
     }
   },
   {
