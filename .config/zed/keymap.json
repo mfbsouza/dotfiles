@@ -18,7 +18,7 @@
       "g f": "editor::Format",
       "g d": "editor::GoToDefinition",
       "g t": "editor::GoToTypeDefinition",
-      "space D": "editor::GoToDefinitionSplit"
+      "g D": "editor::GoToDefinitionSplit"
     }
   },
   {

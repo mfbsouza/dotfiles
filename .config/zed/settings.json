@@ -23,10 +23,7 @@
     "edit_prediction_provider": "none"
   },
   "agent": {
-    "enabled": false,
-  },
-  "gutter": {
-    "code_actions": false
+    "enabled": false
   },
   "inline_code_actions": false,
   "languages": {
