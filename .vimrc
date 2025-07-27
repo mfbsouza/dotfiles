@@ -4,15 +4,12 @@ set updatetime=50
 " disable status line
 set laststatus=0
 
-" enable true color
-set termguicolors
+" enable syntax highlighting
+syntax on
 
 " highlight search and incremental search
 set hlsearch
 set incsearch
-
-" highlight color
-highlight Search guibg='Purple' guifg='NONE'
 
 " ignore case in search
 set ignorecase
