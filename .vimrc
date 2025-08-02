@@ -55,6 +55,9 @@ set completeopt=menuone,noselect,noinsert
 if has("clipboard")
   set clipboard=unnamedplus
 endif
+if has("gui_running")
+  set guioptions=
+endif
 
 " Keybinds
 
