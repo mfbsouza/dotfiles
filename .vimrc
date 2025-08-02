@@ -52,6 +52,9 @@ set tabstop=4
 set softtabstop=4
 set pumheight=10
 set completeopt=menuone,noselect,noinsert
+if has("clipboard")
+  set clipboard=unnamedplus
+endif
 
 " Keybinds
 
