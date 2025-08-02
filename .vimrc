@@ -1,64 +1,62 @@
-" faster faster
-set updatetime=50
+" Minimal plugins
 
-" disable status line
-set laststatus=0
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
 
-" enable syntax highlighting
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+set nocompatible
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'joshdick/onedark.vim'
+call plug#end()
+
+" Colorscheme
+
+set termguicolors
+colorscheme onedark
+set fillchars-=vert:\|
+set fillchars+=vert:\ 
+autocmd ColorScheme * highlight! Normal ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight! EndOfBuffer ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight VertSplit guifg=grey guibg=darkgrey
+
+" Basic configs
+
 syntax on
-
-" highlight search and incremental search
+let g:netrw_banner = 0
+set updatetime=300
+set laststatus=0
 set hlsearch
 set incsearch
-
-" ignore case in search
 set ignorecase
-
-" allow switching buffers without saving
 set hidden
-
-" minimum lines to keep above and below the cursor
-set scrolloff=1
-
-" disable swap files
+set scrolloff=2
 set noswapfile
-
-" show line numbers
 set number
-
-" enable mouse support
 set mouse=a
-
-" autoreload files changed outside vim
 set autoread
-
-" split directions
 set splitright
 set splitbelow
-
-" use system clipboard
-set clipboard=unnamedplus
-
-" tab and indentation settings
+set noexpandtab
 set shiftwidth=4
 set tabstop=4
-
-" completion menu behavior
+set softtabstop=4
+set pumheight=10
 set completeopt=menuone,noselect,noinsert
 
-" popup menu height
-set pumheight=10
-
-" MAP OPTIONS
+" Keybinds
 
 " Use space as leader key
 nnoremap <Space> <Nop>
 let mapleader = " "
 let maplocalleader = " "
-
-" Scroll up and down with keyboard
-nnoremap <C-Up> <C-y>
-nnoremap <C-Down> <C-e>
 
 " Keep cursor in the middle when jumping half pages
 nnoremap <C-d> <C-d>zz
@@ -74,13 +72,14 @@ nnoremap <Leader>h :noh<CR>
 " Open netrw tree view on the left
 nnoremap <Leader>e :Lex 30<CR>
 
-" Move text sideways and keep selection
-vnoremap < <gv
-vnoremap > >gv
+" Move text
+vnoremap <S-Right> >gv
+vnoremap <S-Left> <gv
+vnoremap <S-Up> :m '<-2<CR>gv=gv
+vnoremap <S-Down> :m '>+1<CR>gv=gv
 
-" Move text up/down (Alt + , / Alt + .)
-vnoremap <A-,> :m '>+1<CR>gv=gv
-vnoremap <A-.> :m '<-2<CR>gv=gv
+" Comment block of lines
+vnoremap gc :<C-u>'<,'>norm i
 
 " Avoid yanking when replacing or deleting
 vnoremap p "_dP
@@ -97,3 +96,13 @@ vnoremap <C-c> "+y
 
 " Double click to search and highlight all
 nnoremap <2-LeftMouse> *N
+
+" use tab in the popup menu item selection
+inoremap <expr> <Tab>     pumvisible() ? "\<Down>" : "\<Tab>"
+inoremap <expr> <S-Tab>   pumvisible() ? "\<Up>"   : "\<S-Tab>"
+
+" fzf and ripgrep
+nnoremap <silent> ff :Files!<CR>
+nnoremap <silent> fb :Buffers!<CR>
+nnoremap <silent> fg :Rg!<CR>
+
