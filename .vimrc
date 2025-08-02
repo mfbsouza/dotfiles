@@ -21,11 +21,13 @@ call plug#end()
 
 set termguicolors
 colorscheme onedark
+if !has("gui_running")
+  autocmd ColorScheme * highlight! Normal ctermbg=NONE guibg=NONE
+  autocmd ColorScheme * highlight! EndOfBuffer ctermbg=NONE guibg=NONE
+endif
 set fillchars-=vert:\|
 set fillchars+=vert:\ 
-autocmd ColorScheme * highlight! Normal ctermbg=NONE guibg=NONE
-autocmd ColorScheme * highlight! EndOfBuffer ctermbg=NONE guibg=NONE
-autocmd ColorScheme * highlight VertSplit guifg=grey guibg=darkgrey
+autocmd ColorScheme * highlight VertSplit guibg=#333333
 
 " Basic configs
 
