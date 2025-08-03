@@ -2,15 +2,36 @@
   {
     "bindings": {
       "ctrl-e": "workspace::ToggleLeftDock",
-      "ctrl-tab": "workspace::ToggleBottomDock"
+      "ctrl-tab": "workspace::ToggleBottomDock",
+      "f f": "file_finder::Toggle",
+      "f b": "tab_switcher::Toggle",
+      "f g": "pane::DeploySearch"
+    }
+  },
+  {
+    "context": "VimControl || !Editor && !Terminal",
+    "bindings": {
+      "ctrl-w ctrl-right": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "right" }
+      ],
+      "ctrl-w ctrl-left": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "left" }
+      ],
+      "ctrl-w ctrl-up": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "up" }
+      ],
+      "ctrl-w ctrl-down": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "down" }
+      ]
     }
   },
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
-      "f f": "file_finder::Toggle",
-      "f b": "tab_switcher::Toggle",
-      "f g": "pane::DeploySearch",
       "f o": "outline::Toggle",
       "f r": "editor::FindAllReferences",
       "g r": "editor::Rename",
