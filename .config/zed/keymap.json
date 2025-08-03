@@ -4,8 +4,23 @@
       "ctrl-e": "workspace::ToggleLeftDock",
       "ctrl-tab": "workspace::ToggleBottomDock",
       "f f": "file_finder::Toggle",
-      "f b": "tab_switcher::Toggle",
-      "f g": "pane::DeploySearch"
+      "f g": "pane::DeploySearch",
+      "f b": "tab_switcher::Toggle"
+    }
+  },
+  {
+    "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
+    "bindings": {
+      "ctrl-v": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-g": "search::SelectNextMatch",
+      "ctrl-shift-g": "search::SelectPreviousMatch",
+      "ctrl-right": "pane::SwapItemRight",
+      "ctrl-left": "pane::SwapItemLeft"
     }
   },
   {
