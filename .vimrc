@@ -20,14 +20,17 @@ call plug#end()
 " Colorscheme
 
 set termguicolors
-colorscheme onedark
-if !has("gui_running")
-  autocmd ColorScheme * highlight! Normal ctermbg=NONE guibg=NONE
-  autocmd ColorScheme * highlight! EndOfBuffer ctermbg=NONE guibg=NONE
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white })
+  augroup END
 endif
+autocmd ColorScheme * highlight VertSplit guibg=#333333
+colorscheme onedark
 set fillchars-=vert:\|
 set fillchars+=vert:\ 
-autocmd ColorScheme * highlight VertSplit guibg=#333333
 
 " Basic configs
 
@@ -110,7 +113,7 @@ inoremap <expr> <Tab>     pumvisible() ? "\<Down>" : "\<Tab>"
 inoremap <expr> <S-Tab>   pumvisible() ? "\<Up>"   : "\<S-Tab>"
 
 " fzf and ripgrep
-nnoremap <silent> ff :Files!<CR>
-nnoremap <silent> fb :Buffers!<CR>
-nnoremap <silent> fg :Rg!<CR>
+nnoremap <silent> ff :Files<CR>
+nnoremap <silent> fg :Rg<CR>
+nnoremap <silent> fb :Buffers<CR>
 
