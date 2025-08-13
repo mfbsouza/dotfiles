@@ -2,7 +2,12 @@
   {
     "bindings": {
       "ctrl-e": "workspace::ToggleLeftDock",
-      "ctrl-tab": "workspace::ToggleBottomDock",
+      "ctrl-tab": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "Workspace && !Picker && !ProjectSearchBar && !BufferSearchBar && !(Editor && vim_mode == insert)",
+    "bindings": {
       "f f": "file_finder::Toggle",
       "f g": "pane::DeploySearch",
       "f b": "tab_switcher::Toggle"
@@ -15,7 +20,7 @@
     }
   },
   {
-    "context": "Pane",
+    "context": "BufferSearchBar",
     "bindings": {
       "ctrl-g": "search::SelectNextMatch",
       "ctrl-shift-g": "search::SelectPreviousMatch",
