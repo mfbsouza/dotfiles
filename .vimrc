@@ -50,9 +50,11 @@ set autoread
 set splitright
 set splitbelow
 set noexpandtab
+set copyindent
+set preserveindent
+set softtabstop=0
 set shiftwidth=4
 set tabstop=4
-set softtabstop=4
 set pumheight=10
 set completeopt=menuone,noselect,noinsert
 if has("clipboard")
