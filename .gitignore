@@ -4,5 +4,6 @@
 .config/Code/*
 .config/zed/prompts/*
 .DS_store
+lazy-lock.json
 !.config/Code/User/settings.json
 !.config/Code/User/keybindings.json
