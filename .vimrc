@@ -52,17 +52,13 @@ set mouse=a
 set autoread
 set splitright
 set splitbelow
-set noexpandtab
-set copyindent
-set preserveindent
 set softtabstop=0
 set shiftwidth=4
 set tabstop=4
+set noexpandtab
+set smartindent
 set pumheight=10
 set completeopt=menuone,noselect,noinsert
-if has("clipboard")
-  set clipboard=unnamedplus
-endif
 if has("gui_running")
   set guioptions=
 endif
