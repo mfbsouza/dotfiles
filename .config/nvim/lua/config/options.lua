@@ -12,6 +12,7 @@ vim.opt.autoread = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.termguicolors = true
+vim.opt.softtabstop = 0
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.expandtab = false
@@ -19,6 +20,4 @@ vim.opt.smarttab = true
 vim.opt.pumheight = 10
 vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 vim.opt.clipboard = "unnamedplus"
-
--- always show sign column
--- vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes"

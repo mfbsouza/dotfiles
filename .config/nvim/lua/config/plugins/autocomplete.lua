@@ -1,6 +1,7 @@
 return {
   {
     "saghen/blink.cmp",
+    lazy = false,
     dependencies = { "rafamadriz/friendly-snippets" },
     version = "1.*",
     opts = {
@@ -9,6 +10,7 @@ return {
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ['<CR>'] = { 'accept', 'fallback' },
+        ["<C-i>"] = { "show_signature", "hide_signature" },
       },
       appearance = {
         nerd_font_variant = "mono"

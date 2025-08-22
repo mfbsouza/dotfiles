@@ -1,6 +1,7 @@
 return {
   {
     "navarasu/onedark.nvim",
+    lazy = false,
     priority = 1000,
     dependencies = { "typicode/bg.nvim" },
     config = function()
