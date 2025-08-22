@@ -53,8 +53,7 @@ def installFont(font: str, downUrl: str, targetPath: str) -> None:
 	cmd = "rm " + font + ".tar.xz"
 	runCmd(cmd)
 
-if __name__ == "__main__":
-	# paths
+def main():
 	rootDir = os.path.dirname(os.path.abspath(__file__))
 	rootCfgDir = rootDir + "/.config"
 	homeDir = os.path.expanduser("~")
@@ -179,3 +178,8 @@ if __name__ == "__main__":
 		if opt.lower() == "y":
 			cmd = f'cat {rootDir + "/etc/env-nvidia-vaapi"} | sudo tee -a /etc/environment'
 			runCmd(cmd)
+
+
+if __name__ == "__main__":
+	main()
+
