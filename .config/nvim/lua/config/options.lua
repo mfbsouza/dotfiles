@@ -21,3 +21,4 @@ vim.opt.pumheight = 10
 vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
+vim.opt.winborder = "rounded"
