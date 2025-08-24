@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-import subprocess
 import os
 import logging
+
+DRYRUN = True
 
 logging.basicConfig(
 	level=logging.INFO,
@@ -10,7 +11,7 @@ logging.basicConfig(
 	datefmt="%Y-%m-%d %H:%M:%S %Z",
 )
 
-DRYRUN = True
+SUPPORTED_OS = ["mint", "macos"]
 
 def runCmd(cmd: str) -> None:
 	if not DRYRUN:
@@ -53,39 +54,22 @@ def installFont(font: str, downUrl: str, targetPath: str) -> None:
 	cmd = "rm " + font + ".tar.xz"
 	runCmd(cmd)
 
-def main():
-	rootDir = os.path.dirname(os.path.abspath(__file__))
-	rootCfgDir = rootDir + "/.config"
-	homeDir = os.path.expanduser("~")
-	configDir = homeDir + "/.config"
-
-	opt = input("Dryrun? [y/n]: ")
-	if opt.lower() == "y":
-		logging.info("Setting dryrun to True.")
-		DRYRUN = True
-	elif opt.lower() == "n":
-		logging.info("Setting dryrun to False.")
-		DRYRUN = False
-	else:
-		logging.info("Unknown option. Exiting.")
-		exit(0)
-	logging.info(f"Dryrun is set to {DRYRUN}")
-
-	logging.info("Installing system packages...")
-
-	os = input("Select your OS? [mint, macos]: ")
-	if os.lower() == "mint":
+def installSysPackages(operatingSystem: str) -> None:
+	if operatingSystem.lower() == "mint":
 		from packages import mint
+
+		logging.info("installing system packages for Linux Mint")
 		systemInstallPackage(mint.installCmd, mint.sys)
-		print("installing for mint")
-	elif os.lower() == "macos":
+	elif operatingSystem.lower() == "macos":
 		from packages import brew
+
+		logging.info("installing system packages for MacOS")
 		systemInstallPackage(brew.installCmd, brew.macPkgs)
 		systemInstallPackage(brew.installCmd + " --cask", brew.cask)
 	else:
-		logging.info("Unknown option. Exiting.")
-		exit(0)
+		raise Exception(f"{operatingSystem} not supported for installing system packages")
 
+def installZshPlugins(homeDir: str) -> None:
 	plugins = {
 		"powerlevel10k": "https://github.com/romkatv/powerlevel10k.git",
 		"zsh-autosuggestions": "https://github.com/zsh-users/zsh-autosuggestions",
@@ -98,7 +82,7 @@ def main():
 	for plugin, repo in plugins.items():
 		cloneGitRepo(plugin, repo, pluginsPath)
 
-	# files and directories to install
+def installConfigFiles(rootDir: str, rootCfgDir: str, homeDir: str, configDir: str) -> None:
 	homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
 	configDirFiles = ["zed", "wezterm", "vim", "neovim"]
 
@@ -111,75 +95,104 @@ def main():
 	for file in configDirFiles:
 		createSymlink(rootCfgDir, "/", file, configDir)
 
-	opt = input("Install extra fonts? [y,n]: ")
-	if opt.lower() == "y":
-		fonts = {
-			"Inconsolata": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/",
-			"JetBrainsMono": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"
-		}
-		logging.info("installing fonts...")
-		fontsDir = homeDir + "/.fonts"
-		createDirectory(fontsDir)
-		for font, repo in fonts.items():
-			installFont(font, repo, fontsDir)
+def installNerdFonts(homeDir: str) -> None:
+	fonts = {
+		"Inconsolata": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/",
+		"JetBrainsMono": "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/"
+	}
+	logging.info("downloading fonts...")
+	fontsDir = homeDir + "/.fonts"
+	createDirectory(fontsDir)
+	for font, repo in fonts.items():
+		installFont(font, repo, fontsDir)
 
-	if os.lower() != "macos":
-		opt = input("Install Zed Text Editor? [y,n]: ")
-		if opt.lower() == "y":
-			runCmd("curl -f https://zed.dev/install.sh | sh")
+def flatpakPackagesSetup(homeDir: str, rootCfgDir: str) -> None:
+	option = input("Install Flatseal Flatpak? [y/n]: ")
+	if option.lower() == "y":
+		runCmd("flatpak install flathub com.github.tchx84.Flatseal")
 
-		opt = input("Install Flatseal Flatpak? [y/n]: ")
-		if opt.lower() == "y":
-			runCmd("flatpak install flathub com.github.tchx84.Flatseal")
+	option = input("Install Steam Flatpak and Gaming add-ons? [y,n]: ")
+	if option.lower() == "y":
+		runCmd("flatpak install flathub com.valvesoftware.Steam")
+		runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.MangoHud")
+		runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.vkBasalt")
+		vkBasaltPath = homeDir + "/.var/app/com.valvesoftware.Steam/config/vkBasalt"
+		mangoHudPath = homeDir + "/.var/app/com.valvesoftware.Steam/config/MangoHud"
+		createDirectory(vkBasaltPath)
+		createDirectory(mangoHudPath)
+		cmd = f"cp {rootCfgDir + '/vkBasalt/vkBasalt.conf'} {vkBasaltPath}/"
+		runCmd(cmd)
+		cmd = f"cp {rootCfgDir + '/MangoHud/MangoHud.conf'} {mangoHudPath}/"
+		runCmd(cmd)
 
-		opt = input("Install Steam Flatpak and Gaming add-ons? [y,n]: ")
-		if opt.lower() == "y":
-			runCmd("flatpak install flathub com.valvesoftware.Steam")
-			runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.MangoHud")
-			runCmd("flatpak install org.freedesktop.Platform.VulkanLayer.vkBasalt")
-			vkBasaltPath = homeDir + "/.var/app/com.valvesoftware.Steam/config/vkBasalt"
-			MangoHudPath = homeDir + "/.var/app/com.valvesoftware.Steam/config/MangoHud"
-			createDirectory(vkBasaltPath)
-			createDirectory(MangoHudPath)
-			cmd = f"cp {rootCfgDir + '/vkBasalt/vkBasalt.conf'} {vkBasaltPath}/"
-			runCmd(cmd)
-			cmd = f"cp {rootCfgDir + '/MangoHud/MangoHud.conf'} {MangoHudPath}/"
-			runCmd(cmd)
+	option = input("Install Vesktop Flatpak? [y/n]: ")
+	if option.lower() == "y":
+		runCmd("flatpak install flathub dev.vencord.Vesktop")
 
-		opt = input("Install Vesktop Flatpak? [y/n]: ")
-		if opt.lower() == "y":
-			runCmd("flatpak install flathub dev.vencord.Vesktop")
+	option = input("Install DBeaver Flatpak? [y/n]: ")
+	if option.lower() == "y":
+		runCmd("flatpak install flathub io.dbeaver.DBeaverCommunity")
 
-		opt = input("Install DBeaver Flatpak? [y/n]: ")
-		if opt.lower() == "y":
-			runCmd("flatpak install flathub io.dbeaver.DBeaverCommunity")
+	option = input("Install OBS Studio Flatpak? [y/n]: ")
+	if option.lower() == "y":
+		runCmd("flatpak install flathub com.obsproject.Studio")
 
-		opt = input("Install OBS Studio Flatpak? [y/n]: ")
-		if opt.lower() == "y":
-			runCmd("flatpak install flathub com.obsproject.Studio")
+	option = input("Install Heroic Games Flatpak? [y/n]: ")
+	if option.lower() == "y":
+		runCmd("flatpak install flathub com.heroicgameslauncher.hgl")
 
-		opt = input("Install Heroic Games Flatpak? [y/n]: ")
-		if opt.lower() == "y":
-			runCmd("flatpak install flathub com.heroicgameslauncher.hgl")
+	option = input("Install Postman Flatpak? [y/n]: ")
+	if option.lower() == "y":
+		runCmd("flatpak install flathub com.getpostman.Postman")
 
-		opt = input("Install Postman Flatpak? [y/n]: ")
-		if opt.lower() == "y":
-			runCmd("flatpak install flathub com.getpostman.Postman")
+	option = input("Install Telegram Desktop Flatpak? [y/n]: ")
+	if option.lower() == "y":
+		runCmd("flatpak install flathub org.telegram.desktop")
 
-		opt = input("Install Telegram Desktop Flatpak? [y/n]: ")
-		if opt.lower() == "y":
-			runCmd("flatpak install flathub org.telegram.desktop")
+def main():
+	rootDir = os.path.dirname(os.path.abspath(__file__))
+	rootCfgDir = rootDir + "/.config"
+	homeDir = os.path.expanduser("~")
+	configDir = homeDir + "/.config"
 
-		opt = input("Update the default shell to ZSH? [y/n]: ")
-		if opt.lower() == "y":
+	option = input("Dryrun? [y/n]: ")
+	if option.lower() == "y":
+		DRYRUN = True
+	elif option.lower() == "n":
+		DRYRUN = False
+	else:
+		logging.info("Unknown option. Exiting.")
+		exit(0)
+	logging.info(f"Dryrun is set to {DRYRUN}")
+
+	logging.info("Installing system packages...")
+	operatingSystem = input(f"Select your OS? {SUPPORTED_OS}: ")
+	installSysPackages(operatingSystem)
+
+	logging.info("Installing zshell plugins...")
+	installZshPlugins(homeDir)
+
+	logging.info("Installing config files...")
+	installConfigFiles(rootDir, rootCfgDir, homeDir, configDir)
+
+	option = input("Install extra fonts? [y,n]: ")
+	if option.lower() == "y":
+		logging.info("Installing config files...")
+		installNerdFonts(homeDir)
+
+	if operatingSystem.lower() != "macos":
+		logging.info("Installing nerd fonts...")
+		flatpakPackagesSetup(homeDir, rootCfgDir)
+
+		option = input("Update the default shell to ZSH? [y/n]: ")
+		if option.lower() == "y":
 			runCmd("chsh -s /usr/bin/zsh")
 
-		opt = input("Install NVIDIA VAAPI env variables? [y/n]: ")
-		if opt.lower() == "y":
+		option = input("Install NVIDIA VAAPI env variables? [y/n]: ")
+		if option.lower() == "y":
 			cmd = f'cat {rootDir + "/etc/env-nvidia-vaapi"} | sudo tee -a /etc/environment'
 			runCmd(cmd)
 
 
 if __name__ == "__main__":
 	main()
-

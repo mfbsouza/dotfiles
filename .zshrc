@@ -37,29 +37,20 @@ export NPM_CONFIG_PREFIX=~/.npm
 export PATH=$HOME/.npm/bin:$PATH
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  # my local install path
-  export PATH=$HOME/.local/bin:$PATH
-
-  # pyenv config
-  export PYENV_ROOT="$HOME/.pyenv"
-  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-
   # enable bun
   [ -s "/home/bois/.bun/_bun" ] && source "/home/bois/.bun/_bun"
   export BUN_INSTALL="$HOME/.bun"
   export PATH="$BUN_INSTALL/bin:$PATH"
-
+  # XDG config home
+  export XDG_CONFIG_HOME=$HOME/.config
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  alias zed-editor="open -a /Applications/Zed.app -n"
+  # enable pyenv
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
 # enable fzf in the shell
 source <(fzf --zsh)
 
-# enable pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 # initialize compinit for zsh
 autoload -Uz compinit && compinit
-
