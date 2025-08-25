@@ -23,9 +23,7 @@
     "context": "BufferSearchBar",
     "bindings": {
       "ctrl-g": "search::SelectNextMatch",
-      "ctrl-shift-g": "search::SelectPreviousMatch",
-      "ctrl-right": "pane::SwapItemRight",
-      "ctrl-left": "pane::SwapItemLeft"
+      "ctrl-shift-g": "search::SelectPreviousMatch"
     }
   },
   {
