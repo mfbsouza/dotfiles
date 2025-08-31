@@ -5,6 +5,7 @@
 .config/zed/prompts/*
 .config/vim/autoload/*
 .config/vim/plugged/*
+*.netrwhist*
 .DS_store
 lazy-lock.json
 !.config/Code/User/settings.json

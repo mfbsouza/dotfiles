@@ -1,4 +1,4 @@
-" Minimal plugins
+" bootstrap vim-plug
 
 if empty(glob('~/.config/vim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
@@ -8,6 +8,8 @@ endif
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
+
+" plugins
 
 set nocompatible
 call plug#begin('~/.config/vim/plugged')
@@ -118,4 +120,14 @@ inoremap <expr> <S-Tab>   pumvisible() ? "\<Up>"   : "\<S-Tab>"
 nnoremap <silent> ff :Files<CR>
 nnoremap <silent> fg :Rg<CR>
 nnoremap <silent> fb :Buffers<CR>
+" built-in grep
+nnoremap <expr> <leader>g ':copen \| silent! grep! -HRIn ' . input("Search text: ") . ' .<CR>'
+
+" search and replace
+nnoremap <expr> <leader>s ':%s/' . input("Search: ") . '/' . input("Replace: ") . '/gc'
+" search and replace the current word
+nnoremap <Leader>S :%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>
+
+" fake zoom-in of the current window
+nnoremap <Leader>z :tab split<CR>
 
