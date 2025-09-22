@@ -35,7 +35,8 @@ return {
       })
 
       vim.diagnostic.config({
-        virtual_lines = true,
+        virtual_text = false,
+        virtual_lines = false,
         underline = true,
         update_in_insert = false,
         severity_sort = true,
@@ -51,6 +52,7 @@ return {
           vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
           vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
           vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+          vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.setloclist({bufnr=0})<cr>', opts)
         end
       })
     end
