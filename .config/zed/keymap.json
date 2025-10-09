@@ -6,7 +6,7 @@
     }
   },
   {
-    "context": "Workspace && !Picker && !ProjectSearchBar && !BufferSearchBar && !(Editor && vim_mode == insert)",
+    "context": "Workspace && !Dock && !Picker && !ProjectSearchBar && !BufferSearchBar && !(Editor && vim_mode == insert)",
     "bindings": {
       "f f": "file_finder::Toggle",
       "f g": "pane::DeploySearch",
