@@ -14,6 +14,7 @@ logging.basicConfig(
 SUPPORTED_OS = ["mint", "macos"]
 
 def runCmd(cmd: str) -> None:
+	global DRYRUN
 	if not DRYRUN:
 		status = os.system(cmd)
 		if not status or status != 0:
@@ -84,7 +85,7 @@ def installZshPlugins(homeDir: str) -> None:
 
 def installConfigFiles(rootDir: str, rootCfgDir: str, homeDir: str, configDir: str) -> None:
 	homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-	configDirFiles = ["zed", "wezterm", "vim", "neovim"]
+	configDirFiles = ["zed", "wezterm", "vim", "nvim"]
 
 	logging.info("Setting up dotfiles in the home folder...")
 	for file in homeDirFiles:
@@ -150,6 +151,7 @@ def flatpakPackagesSetup(homeDir: str, rootCfgDir: str) -> None:
 		runCmd("flatpak install flathub org.telegram.desktop")
 
 def main():
+	global DRYRUN
 	rootDir = os.path.dirname(os.path.abspath(__file__))
 	rootCfgDir = rootDir + "/.config"
 	homeDir = os.path.expanduser("~")
