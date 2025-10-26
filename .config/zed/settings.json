@@ -28,8 +28,7 @@
   "inline_code_actions": false,
   "languages": {
     "Python": {
-      "language_servers": ["basedpyright", "!pyright"],
-      "hard_tabs": true
+      "language_servers": ["basedpyright", "!pyright"]
     }
   },
   "lsp": {
@@ -48,13 +47,18 @@
       "settings": {
         "python.analysis": {
           "typeCheckingMode": "off",
-          "diagnosticMode": "openFilesOnly"
+          "diagnosticMode": "openFilesOnly",
+          "inlayHints": {
+            "callArgumentNames": false
+          }
         }
       }
     },
     "gopls": {
-      "initialization_options": {
-        "usePlaceholders": false
+      "settings": {
+        "gopls": {
+          "usePlaceholders": false
+        }
       }
     }
   },
