@@ -1,3 +1,5 @@
-require("config.options")
-require("config.keymap")
-require("config.lazy")
+require("core.options")
+require("core.keymaps")
+require("core.lsp")
+require("manager.lazy")
+
