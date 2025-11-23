@@ -1,5 +1,10 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
+local is_linux <const> = wezterm.target_triple:find("linux") ~= nil
+
+if is_linux then
+  config.default_prog = { '/home/linuxbrew/.linuxbrew/bin/zsh' }
+end
 
 config.font = wezterm.font 'JetBrains Mono'
 config.font_size = 10.0
@@ -14,6 +19,9 @@ config.hide_tab_bar_if_only_one_tab = true
 local custom_theme = wezterm.color.get_builtin_schemes()['midnight-in-mojave'];
 custom_theme.ansi[1] = '#333333'
 custom_theme.brights[1] = '#3d3d3d'
+if is_linux then
+  custom_theme.background = '#222226'
+end
 
 config.color_schemes = {
   ['Midnight in Mojave'] = custom_theme,

@@ -1,11 +1,15 @@
 installCmd = "brew install"
 
-cli = ("git git-lfs tmux tree htop fastfetch neovim vim ripgrep fd fzf nanocom ")
-coding = ("gcc llvm zig go lua python virtualenv pyenv pyenv-virtualenv node "
-	"oven-sh/bun/bun basedpyright ")
+
+dev = ("gcc zig zls go gopls lua python node oven-sh/bun/bun "
+    "fastfetch neovim vim zsh ripgrep fd fzf ")
+
+cli = ("git git-lfs tmux tree htop nanocom pyenv pyenv-virtualenv ")
+
 keyring = ("gpg pinentry-mac ")
+
 cask = ("wezterm dbeaver-community postman slack visual-studio-code zed zoom "
 	"font-jetbrains-mono-nerd-font ")
 
-linuxPkgs = (cli + coding)
-macPkgs = (cli + coding + keyring)
+linuxPkgs = (dev)
+macPkgs = (cli + dev + keyring)

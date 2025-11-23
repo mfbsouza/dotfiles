@@ -37,12 +37,12 @@ export NPM_CONFIG_PREFIX=~/.npm
 export PATH=$HOME/.npm/bin:$PATH
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  # enable bun
-  [ -s "/home/bois/.bun/_bun" ] && source "/home/bois/.bun/_bun"
-  export BUN_INSTALL="$HOME/.bun"
-  export PATH="$BUN_INSTALL/bin:$PATH"
-  # XDG config home
-  export XDG_CONFIG_HOME=$HOME/.config
+  # Enable homebrew
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  # And local bin to PATH
+  export PATH=$HOME/.local/bin:$PATH
+  # vim as default editor
+  export EDITOR=vim
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # enable pyenv
   eval "$(pyenv init -)"

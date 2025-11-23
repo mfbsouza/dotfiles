@@ -8,9 +8,9 @@ A place to keep my configuration files and scripts
 
 ### Q: Operating System?
 
-- Linux Mint for my Personal Computers
-- Ubuntu for Servers
-- Windows for Gaming and Home Streaming with Apollo/Artemis
+- Linux Mint for my Desktop Computer
+- Ubuntu for my Server
+- MacOS for my laptop
 
 ### Q: Why Linux Mint?
 
@@ -29,6 +29,12 @@ Zshell for the plugins
 ### Q: Terminal?
 
 WezTerm cus i like it
+
+### Q: Why brew on linux?
+
+I like having my development tools outside of the base OS installation,
+accessible with a simple PATH manipulation, up-to-date and managed by
+a package manager. Brew gives me all that.
 
 ### Q: Web Browser?
 
