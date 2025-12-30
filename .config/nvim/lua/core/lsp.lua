@@ -1,5 +1,7 @@
 vim.lsp.enable({
   "basedpyright",
+  "gopls",
+  "zls",
 })
 
 vim.diagnostic.config({
