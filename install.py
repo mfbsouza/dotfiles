@@ -11,7 +11,7 @@ logging.basicConfig(
 	datefmt="%Y-%m-%d %H:%M:%S %Z",
 )
 
-SUPPORTED_OS = ["mint", "macos"]
+SUPPORTED_OS = ["fedora", "mint", "macos"]
 
 def runCmd(cmd: str) -> None:
 	global DRYRUN
@@ -56,7 +56,12 @@ def installFont(font: str, downUrl: str, targetPath: str) -> None:
 	runCmd(cmd)
 
 def installSysPackages(operatingSystem: str) -> None:
-	if operatingSystem.lower() == "mint":
+	if operatingSystem.lower() == "fedora":
+		from packages import fedora
+		systemInstallPackage(fedora.installCmd, fedora.base)
+		systemInstallPackage(fedora.installCmd, fedora.pkgs)
+
+	elif operatingSystem.lower() == "mint":
 		from packages import mint
 
 		logging.info("installing system packages for Linux Mint")
@@ -85,7 +90,7 @@ def installZshPlugins(homeDir: str) -> None:
 
 def installConfigFiles(rootDir: str, rootCfgDir: str, homeDir: str, configDir: str) -> None:
 	homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-	configDirFiles = ["zed", "wezterm", "vim", "nvim"]
+	configDirFiles = ["zed", "wezterm", "vim", "nvim", "ghostty"]
 
 	logging.info("Setting up dotfiles in the home folder...")
 	for file in homeDirFiles:

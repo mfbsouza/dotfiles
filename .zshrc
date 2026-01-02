@@ -37,11 +37,13 @@ export NPM_CONFIG_PREFIX=~/.npm
 export PATH=$HOME/.npm/bin:$PATH
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  # Enable homebrew
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  # And local bin to PATH
-  export PATH=$HOME/.local/bin:$PATH
-  # vim as default editor
+  # Enable homebrew if installed
+  if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+	  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+  # Add my local bin files to PATH
+  #export PATH=$HOME/.local/bin:$PATH
+  # Set vim as default editor
   export EDITOR=vim
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # enable pyenv
