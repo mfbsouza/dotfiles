@@ -1,35 +1,42 @@
 {
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "vim_mode": true,
   "vim": {
-    "use_system_clipboard": "always"
+    "use_system_clipboard": "always",
   },
   "ui_font_family": "Noto Sans",
   "ui_font_size": 14,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_size": 13,
   "scrollbar": {
-    "show": "auto"
+    "show": "auto",
   },
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "One Dark",
   },
   "features": {
-    "edit_prediction_provider": "none"
+    "edit_prediction_provider": "none",
   },
   "agent": {
-    "enabled": false
+    "enabled": false,
   },
   "inline_code_actions": false,
   "languages": {
+    "Zig": {
+      "show_edit_predictions": false,
+      "extend_comment_on_newline": false,
+      "inlay_hints": {
+        },
+      "completions": {},
+    },
     "Python": {
-      "language_servers": ["basedpyright", "!pyright"]
-    }
+      "language_servers": ["basedpyright", "!pyright"],
+    },
   },
   "lsp": {
     "basedpyright": {
@@ -38,10 +45,10 @@
           "typeCheckingMode": "off",
           "diagnosticMode": "openFilesOnly",
           "inlayHints": {
-            "callArgumentNames": false
-          }
-        }
-      }
+            "callArgumentNames": false,
+          },
+        },
+      },
     },
     "pyright": {
       "settings": {
@@ -49,22 +56,22 @@
           "typeCheckingMode": "off",
           "diagnosticMode": "openFilesOnly",
           "inlayHints": {
-            "callArgumentNames": false
-          }
-        }
-      }
+            "callArgumentNames": false,
+          },
+        },
+      },
     },
     "gopls": {
       "settings": {
         "gopls": {
-          "usePlaceholders": false
-        }
-      }
-    }
+          "usePlaceholders": false,
+        },
+      },
+    },
   },
   "git": {
     "inline_blame": {
-      "enabled": false
-    }
-  }
+      "enabled": false,
+    },
+  },
 }
