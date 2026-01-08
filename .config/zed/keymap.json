@@ -2,50 +2,50 @@
   {
     "bindings": {
       "ctrl-e": "workspace::ToggleLeftDock",
-      "ctrl-tab": "workspace::ToggleBottomDock"
-    }
+      "ctrl-tab": "workspace::ToggleBottomDock",
+    },
   },
   {
     "context": "Workspace && !Dock && !Picker && !ProjectSearchBar && !BufferSearchBar && !(Editor && vim_mode == insert)",
     "bindings": {
       "f f": "file_finder::Toggle",
       "f g": "pane::DeploySearch",
-      "f b": "tab_switcher::Toggle"
-    }
+      "f b": "tab_switcher::Toggle",
+    },
   },
   {
     "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
     "bindings": {
-      "ctrl-v": "pane::SplitRight"
-    }
+      "ctrl-v": "pane::SplitRight",
+    },
   },
   {
     "context": "BufferSearchBar",
     "bindings": {
       "ctrl-g": "search::SelectNextMatch",
-      "ctrl-shift-g": "search::SelectPreviousMatch"
-    }
+      "ctrl-shift-g": "search::SelectPreviousMatch",
+    },
   },
   {
     "context": "VimControl || !Editor && !Terminal",
     "bindings": {
       "ctrl-w ctrl-right": [
         "workspace::MoveItemToPaneInDirection",
-        { "direction": "right" }
+        { "direction": "right" },
       ],
       "ctrl-w ctrl-left": [
         "workspace::MoveItemToPaneInDirection",
-        { "direction": "left" }
+        { "direction": "left" },
       ],
       "ctrl-w ctrl-up": [
         "workspace::MoveItemToPaneInDirection",
-        { "direction": "up" }
+        { "direction": "up" },
       ],
       "ctrl-w ctrl-down": [
         "workspace::MoveItemToPaneInDirection",
-        { "direction": "down" }
-      ]
-    }
+        { "direction": "down" },
+      ],
+    },
   },
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
@@ -57,8 +57,8 @@
       "g f": "editor::Format",
       "g d": "editor::GoToDefinition",
       "g t": "editor::GoToTypeDefinition",
-      "g D": "editor::GoToDefinitionSplit"
-    }
+      "g D": "editor::GoToDefinitionSplit",
+    },
   },
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
@@ -66,9 +66,24 @@
       "shift-up": "editor::MoveLineUp",
       "shift-down": "editor::MoveLineDown",
       "shift-right": "editor::Indent",
-      "shift-left": "editor::Outdent"
-    }
+      "shift-left": "editor::Outdent",
+    },
   },
+  {
+    "context": "Editor && in_snippet && has_next_tabstop && !showing_completions",
+    "use_key_equivalents": true,
+    "bindings": {
+      "tab": "editor::NextSnippetTabstop",
+    },
+  },
+  {
+    "context": "Editor && in_snippet && has_previous_tabstop && !showing_completions",
+    "use_key_equivalents": true,
+    "bindings": {
+      "shift-tab": "editor::PreviousSnippetTabstop",
+    },
+  },
+
   {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
@@ -79,7 +94,7 @@
       "down": "editor::ContextMenuNext",
       "ctrl-n": "editor::ContextMenuNext",
       "pageup": "editor::ContextMenuFirst",
-      "pagedown": "editor::ContextMenuLast"
-    }
-  }
+      "pagedown": "editor::ContextMenuLast",
+    },
+  },
 ]
