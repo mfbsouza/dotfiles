@@ -138,9 +138,9 @@ let lspOpts = #{autoHighlightDiags: v:true, noNewlineInCompletion: v:true}
 autocmd User LspSetup call LspOptionsSet(lspOpts)
 let lspServers = [
       \ #{
-      \   name: 'rust-analyzer',
-      \   filetype: ['rust'],
-      \   path: 'rust-analyzer',
+      \   name: 'zls',
+      \   filetype: ['zig'],
+      \   path: 'zls',
       \   args: []
       \ },
       \ #{
