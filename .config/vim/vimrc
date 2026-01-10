@@ -132,6 +132,9 @@ nnoremap <Leader>S :%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>
 " fake zoom-in of the current window
 nnoremap <Leader>z :tab split<CR>
 
+" enable man page inside vim
+runtime! ftplugin/man.vim
+
 " lsp settings
 " Enable diagnostics highlighting
 let lspOpts = #{autoHighlightDiags: v:true, noNewlineInCompletion: v:true}
