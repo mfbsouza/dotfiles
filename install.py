@@ -17,8 +17,8 @@ def runCmd(cmd: str) -> None:
 	global DRYRUN
 	if not DRYRUN:
 		status = os.system(cmd)
-		if not status or status != 0:
-			logging.warning(f"Failed while running: {cmd}")
+		if status is None or status != 0:
+			logging.warning(f"Failed running cmd is status code of {status}")
 	else:
 		logging.info(cmd)
 
@@ -58,6 +58,8 @@ def installFont(font: str, downUrl: str, targetPath: str) -> None:
 def installSysPackages(operatingSystem: str) -> None:
 	if operatingSystem.lower() == "fedora":
 		from packages import fedora
+
+		logging.info("installing system packages for Fedora Linux")
 		systemInstallPackage(fedora.installCmd, fedora.base)
 		systemInstallPackage(fedora.installCmd, fedora.pkgs)
 
