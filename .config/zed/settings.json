@@ -1,4 +1,7 @@
 {
+  "edit_predictions": {
+    "provider": "none",
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
@@ -19,9 +22,6 @@
     "light": "One Light",
     "dark": "One Dark",
   },
-  "features": {
-    "edit_prediction_provider": "none",
-  },
   "agent": {
     "enabled": false,
   },
@@ -30,8 +30,7 @@
     "Zig": {
       "show_edit_predictions": false,
       "extend_comment_on_newline": false,
-      "inlay_hints": {
-        },
+      "inlay_hints": {},
       "completions": {},
     },
     "Python": {
@@ -42,17 +41,6 @@
     "basedpyright": {
       "settings": {
         "basedpyright.analysis": {
-          "typeCheckingMode": "off",
-          "diagnosticMode": "openFilesOnly",
-          "inlayHints": {
-            "callArgumentNames": false,
-          },
-        },
-      },
-    },
-    "pyright": {
-      "settings": {
-        "python.analysis": {
           "typeCheckingMode": "off",
           "diagnosticMode": "openFilesOnly",
           "inlayHints": {
