@@ -9,7 +9,7 @@ cli = ("git git-lfs tmux tree nanocom pyenv pyenv-virtualenv ")
 
 keyring = ("gpg pinentry-mac ")
 
-cask = ("wezterm dbeaver-community postman slack visual-studio-code zed zoom "
+cask = ("ghostty dbeaver-community postman slack visual-studio-code zed zoom "
 	"font-jetbrains-mono-nerd-font ")
 
 linuxPkgs = (shell + dev)
