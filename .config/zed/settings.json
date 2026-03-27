@@ -41,6 +41,9 @@
       "language_servers": ["basedpyright", "!pyright"],
     },
   },
+  "file_types": {
+    "C": ["h"],
+  },
   "lsp": {
     "basedpyright": {
       "settings": {
