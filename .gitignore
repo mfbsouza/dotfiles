@@ -7,6 +7,6 @@
 .config/vim/plugged/*
 *.netrwhist*
 .DS_store
-lazy-lock.json
+nvim-pack-lock.json
 !.config/Code/User/settings.json
 !.config/Code/User/keybindings.json
