@@ -2,7 +2,7 @@ vim.pack.add({
   { src = 'https://github.com/ibhagwan/fzf-lua' },
   { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main',
     data = {
       run = function(_) vim.cmd 'TSUpdate' end,
     },
@@ -34,9 +34,18 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 local fzf = require('fzf-lua')
+fzf.setup({
+  winopts = {
+    preview = {
+      layout = "vertical",
+      vertical = "down:65%",
+    },
+  },
+})
 vim.keymap.set('n', 'ff', fzf.files, { desc = 'fzf find files' })
 vim.keymap.set('n', 'fg', fzf.live_grep, { desc = 'fzf live grep' })
 vim.keymap.set('n', 'fb', fzf.buffers, { desc = 'fzf buffers' })
+vim.keymap.set('n', 'fo', fzf.lsp_document_symbols, { desc = 'fzf document symbols' })
 vim.keymap.set('n', 'fz', fzf.builtin, { desc = 'fzf builtin' })
 
 require('blink-cmp').setup({

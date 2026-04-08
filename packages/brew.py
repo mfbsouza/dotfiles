@@ -3,7 +3,7 @@ installCmd = "brew install"
 shell = "zsh "
 
 dev = ("gcc zig zls go gopls lua python node oven-sh/bun/bun "
-    "fastfetch neovim vim ripgrep fd fzf btop bat ")
+    "fastfetch neovim vim ripgrep fd fzf btop bat tree-sitter-cli ")
 
 cli = ("git git-lfs tmux tree nanocom pyenv pyenv-virtualenv ")
 
