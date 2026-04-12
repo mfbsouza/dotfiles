@@ -1,16 +1,18 @@
 installCmd = "brew install"
 
-shell = "zsh "
+c_pkgs      = ("gcc cpputest ")
+python_pkgs = ("python uv ")
+go_pkgs     = ("go gopls ")
+zig_pkgs    = ("zig zls ")
+lua_pkgs    = ("lua ")
+js_pkgs     = ("node oven-sh/bun/bun ")
+ai_pkgs     = ("opencode ")
+editor_pkgs = ("neovim vim ripgrep fd fzf bat tree-sitter-cli ")
+cli         = ("git git-lfs tmux tree fastfetch btop nanocom ")
+keyring     = ("gpg pinentry-mac ")
+cask        = ("ghostty wezterm dbeaver-community postman slack visual-studio-code zed zoom "
+		       "font-jetbrains-mono-nerd-font ")
 
-dev = ("gcc zig zls go gopls lua python node oven-sh/bun/bun "
-    "fastfetch neovim vim ripgrep fd fzf btop bat tree-sitter-cli ")
-
-cli = ("git git-lfs tmux tree nanocom pyenv pyenv-virtualenv ")
-
-keyring = ("gpg pinentry-mac ")
-
-cask = ("ghostty dbeaver-community postman slack visual-studio-code zed zoom "
-	"font-jetbrains-mono-nerd-font ")
-
-linuxPkgs = (shell + dev)
-macPkgs = (cli + dev + keyring)
+dev       = (c_pkgs + python_pkgs + go_pkgs + zig_pkgs + lua_pkgs + js_pkgs + ai_pkgs + editor_pkgs)
+linuxPkgs = (dev)
+macPkgs   = (cli + dev + keyring)

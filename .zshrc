@@ -41,8 +41,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
 	  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   fi
-  # Add my local bin files to PATH
-  #export PATH=$HOME/.local/bin:$PATH
   # Set vim as default editor
   export EDITOR=vim
 elif [[ "$OSTYPE" == "darwin"* ]]; then
