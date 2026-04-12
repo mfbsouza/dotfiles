@@ -2,11 +2,7 @@ vim.pack.add({
   { src = 'https://github.com/ibhagwan/fzf-lua' },
   { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main',
-    data = {
-      run = function(_) vim.cmd 'TSUpdate' end,
-    },
-  },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
   { src = 'https://github.com/numtostr/comment.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
@@ -14,19 +10,6 @@ vim.pack.add({
   { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
   { src = 'https://github.com/typicode/bg.nvim' },
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
-})
-
-local augroup = vim.api.nvim_create_augroup('most_basic_build_system', { clear = false })
-vim.api.nvim_create_autocmd("PackChanged", {
-  group = augroup,
-  pattern = "*",
-  callback = function(e)
-    local p = e.data
-    local run_task = (p.spec.data or {}).run
-    if p.kind ~= "delete" and type(run_task) == 'function' then
-      pcall(run_task, p)
-    end
-  end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -49,17 +32,14 @@ vim.keymap.set('n', 'fo', fzf.lsp_document_symbols, { desc = 'fzf document symbo
 vim.keymap.set('n', 'fz', fzf.builtin, { desc = 'fzf builtin' })
 
 require('blink-cmp').setup({
-  keymap = {
-    preset = "default",
-    ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-    ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-    ['<CR>'] = { 'accept', 'fallback' },
-  },
-  appearance = {
-    nerd_font_variant = "mono"
-  },
   completion = {
     documentation = { auto_show = false },
+    list = {
+      selection = {
+        preselect = false,
+        auto_insert = false,
+      },
+    },
     menu = {
       draw = {
         columns = {
@@ -69,9 +49,20 @@ require('blink-cmp').setup({
     },
   },
   sources = {
-    default = { "lsp", "path", "snippets", "buffer" },
+    default = { "lsp", "path" },
   },
   fuzzy = { implementation = "prefer_rust_with_warning" },
+  keymap = {
+    preset = "default",
+    ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+    ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+    ['<CR>'] = { 'accept', 'fallback' },
+  },
+  cmdline = {
+    keymap = {
+      ['<CR>'] = { 'accept', 'fallback' },
+    },
+  },
 })
 
 require('nvim-treesitter').setup({
@@ -81,13 +72,13 @@ require('nvim-treesitter').setup({
   indent = { enable = true },
 })
 
-require('Comment').setup()
-
-require('gitsigns').setup()
-
 require('ibl').setup({
   indent = { char = "▏" },
   scope = { enabled = false },
 })
 
+require('Comment').setup()
+require('gitsigns').setup()
+
 vim.cmd('colorscheme tokyonight-night')
+

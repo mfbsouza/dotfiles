@@ -18,9 +18,10 @@ vim.opt.tabstop = 4
 vim.opt.expandtab = false
 vim.opt.smarttab = true
 vim.opt.pumheight = 10
-vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
 vim.opt.wrap = false
+vim.opt.winborder = "rounded"
 vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
 
