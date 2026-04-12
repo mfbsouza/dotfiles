@@ -1,6 +1,7 @@
 vim.lsp.enable({
   "basedpyright",
   "gopls",
+  "clangd",
   "zls",
 })
 
