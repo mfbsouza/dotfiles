@@ -15,7 +15,7 @@ keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 
 -- clear highlight
-keymap("n", "<Leader>h", ":noh<CR>", opts)
+keymap('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- netrw on the left side
 keymap("n", "<C-e>", ":Lex 30<CR>", opts)

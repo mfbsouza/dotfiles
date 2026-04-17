@@ -19,10 +19,19 @@ vim.api.nvim_create_autocmd('FileType', {
 local fzf = require('fzf-lua')
 fzf.setup({
   winopts = {
+    border = 'single',
     preview = {
       layout = "vertical",
       vertical = "down:65%",
     },
+  },
+  files = {
+    file_icons = false,
+    previewer = false,
+  },
+  buffers = {
+    file_icons = false,
+    previewer = false,
   },
 })
 vim.keymap.set('n', 'ff', fzf.files, { desc = 'fzf find files' })

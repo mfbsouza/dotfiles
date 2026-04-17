@@ -21,7 +21,7 @@ vim.opt.pumheight = 10
 vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
 vim.opt.wrap = false
-vim.opt.winborder = "rounded"
+vim.opt.winborder = "none"
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 
