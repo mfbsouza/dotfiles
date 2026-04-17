@@ -27,39 +27,9 @@ wezterm.on('update-status', function(window, pane)
   local date = wezterm.strftime('%Y/%m/%d %H:%M:%S')
 
   window:set_left_status(wezterm.format {
-    { Foreground = { Color = '#073642' } },
-    { Background = { Color = '#2aa198' } },
     { Text = '  ' .. workspace .. ' ' },
   })
-
-  window:set_right_status(wezterm.format {
-    { Foreground = { Color = '#c6c6c6' } },
-    { Text = ' ' .. date .. ' ' },
-  })
 end)
-
-config.colors = {
-  tab_bar = {
-    background = 'none',
-    active_tab = {
-      bg_color = 'none',
-      fg_color = '#2aa198',
-      intensity = 'Bold',
-    },
-    inactive_tab = {
-      bg_color = 'none',
-      fg_color = '#c6c6c6',
-    },
-    inactive_tab_hover = {
-      bg_color = '#333333',
-      fg_color = '#c6c6c6',
-    },
-    new_tab = {
-      bg_color = 'none',
-      fg_color = '#888888',
-    },
-  }
-}
 
 config.switch_to_last_active_tab_when_closing_tab = true
 config.hide_tab_bar_if_only_one_tab = false
@@ -113,7 +83,7 @@ config.keys = {
       action = wezterm.action_callback(
         function(window, pane, line)
           if line then
-            mux.rename_workspace(
+            wezterm.mux.rename_workspace(
               window:mux_window():get_workspace(),
               line
             )
