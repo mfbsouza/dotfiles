@@ -3,6 +3,7 @@ vim.pack.add({
   { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
+  { src = 'https://github.com/windwp/nvim-autopairs' },
   { src = 'https://github.com/numtostr/comment.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
@@ -86,6 +87,7 @@ require('ibl').setup({
   scope = { enabled = false },
 })
 
+require('nvim-autopairs').setup()
 require('Comment').setup()
 require('gitsigns').setup()
 
