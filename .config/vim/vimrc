@@ -1,5 +1,4 @@
 " bootstrap vim-plug
-
 if empty(glob('~/.config/vim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -10,37 +9,14 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 \| endif
 
 " plugins
-
 set nocompatible
 call plug#begin('~/.config/vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'joshdick/onedark.vim'
-Plug 'ziglang/zig.vim'
 Plug 'yegappan/lsp'
 call plug#end()
 
-" Colorscheme
-
-set termguicolors
-if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white })
-    let g:onedark_color_overrides = {
-      \ "black": { "gui": "#1E1E1E", "cterm": "234", "cterm16" : "0" },
-    \}
-  augroup END
-endif
-autocmd ColorScheme * highlight VertSplit guibg=#333333
-colorscheme onedark
-set fillchars-=vert:\|
-set fillchars+=vert:\ 
-
 " Basic configs
-
 syntax on
 let g:netrw_banner = 0
 set updatetime=300
@@ -68,7 +44,6 @@ if has("gui_running")
 endif
 
 " Keybinds
-
 " Use space as leader key
 nnoremap <Space> <Nop>
 let mapleader = " "
@@ -83,10 +58,7 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " Clear search highlight
-nnoremap <Leader>h :noh<CR>
-
-" Open netrw tree view on the left
-nnoremap <Leader>e :Lex 30<CR>
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 
 " Move text
 vnoremap <S-Right> >gv
@@ -118,9 +90,9 @@ inoremap <expr> <Tab>     pumvisible() ? "\<Down>" : "\<Tab>"
 inoremap <expr> <S-Tab>   pumvisible() ? "\<Up>"   : "\<S-Tab>"
 
 " fzf and ripgrep
-nnoremap <silent> ff :Files<CR>
-nnoremap <silent> fg :Rg<CR>
-nnoremap <silent> fb :Buffers<CR>
+nnoremap <silent> ff :Files!<CR>
+nnoremap <silent> fg :Rg!<CR>
+nnoremap <silent> fb :Buffers!<CR>
 " built-in grep
 nnoremap <expr> <leader>g ':copen \| silent! grep! -HRIn ' . input("Search text: ") . ' .<CR>'
 
@@ -134,6 +106,16 @@ nnoremap <Leader>z :tab split<CR>
 
 " enable man page inside vim
 runtime! ftplugin/man.vim
+
+" disable fzf preview window
+let g:fzf_preview_window = []
+" disable ripgrep matching file names
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+" netrw tree view
+let g:netrw_liststyle = 3
 
 " lsp settings
 " Enable diagnostics highlighting
@@ -158,10 +140,12 @@ let lspServers = [
 autocmd User LspSetup call LspAddServer(lspServers)
 
 " Key mappings
-nnoremap gd :LspGotoDefinition<CR>
 nnoremap gr :LspShowReferences<CR>
-nnoremap K  :LspHover<CR>
+nnoremap gd :LspGotoDefinition<CR>
+nnoremap gt :LspGotoTypeDef<CR>
 nnoremap gl :LspDiag current<CR>
+nnoremap K  :LspHover<CR>
+inoremap <C-s> <C-o>:LspShowSignature<CR>
 nnoremap <leader>nd :LspDiag next \| LspDiag current<CR>
 nnoremap <leader>pd :LspDiag prev \| LspDiag current<CR>
 inoremap <silent> <C-Space> <C-x><C-o>
