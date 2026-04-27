@@ -1,10 +1,22 @@
 vim.pack.add({
   { src = 'https://github.com/ibhagwan/fzf-lua' },
-  { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
+  {
+    src = 'https://github.com/saghen/blink.cmp',
+    version = 'v1'
+  },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+    version = 'main'
+  },
   { src = 'https://github.com/windwp/nvim-autopairs' },
   { src = 'https://github.com/numtostr/comment.nvim' },
+  {
+    src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
+    version = vim.version.range('3')
+  },
+  { src = "https://github.com/nvim-lua/plenary.nvim" },
+  { src = "https://github.com/MunifTanjim/nui.nvim" },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
   { src = 'https://github.com/folke/tokyonight.nvim' },
@@ -86,6 +98,21 @@ require('ibl').setup({
   indent = { char = "▏" },
   scope = { enabled = false },
 })
+
+require('neo-tree').setup({
+  hide_root_node = true,
+  close_if_last_window = true,
+  enable_diagnostics = false,
+  renderers = {
+    file = {
+      { "indent" },
+      { "name", use_git_status_colors = true },
+      { "bufnr" },
+      { "modified", zindex = 20, align = "right" },
+    },
+  },
+})
+vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>')
 
 require('nvim-autopairs').setup()
 require('Comment').setup()
