@@ -149,7 +149,10 @@ require('lualine').setup({
       },
     },
     lualine_b = {
-      { navic.get_location, cond = navic.is_available, },
+      {
+        function() return navic.get_location() end,
+        cond = function() return navic.is_available() end,
+      },
     },
     lualine_c = {},
     lualine_x = {},
