@@ -15,8 +15,10 @@ vim.pack.add({
     src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
     version = vim.version.range('3')
   },
-  { src = "https://github.com/nvim-lua/plenary.nvim" },
-  { src = "https://github.com/MunifTanjim/nui.nvim" },
+  { src = 'https://github.com/nvim-lua/plenary.nvim' },
+  { src = 'https://github.com/MunifTanjim/nui.nvim' },
+  { src = 'https://github.com/nvim-lualine/lualine.nvim' },
+  { src = 'https://github.com/SmiteshP/nvim-navic' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
   { src = 'https://github.com/folke/tokyonight.nvim' },
@@ -32,8 +34,10 @@ vim.api.nvim_create_autocmd('FileType', {
 local fzf = require('fzf-lua')
 fzf.setup({
   winopts = {
+    title_flags = false,
     border = 'single',
     preview = {
+      title = false,
       layout = "vertical",
       vertical = "down:65%",
     },
@@ -41,10 +45,18 @@ fzf.setup({
   files = {
     file_icons = false,
     previewer = false,
+    winopts = {
+      width = 0.40,
+      height = 0.50,
+    },
   },
   buffers = {
     file_icons = false,
     previewer = false,
+    winopts = {
+      width = 0.40,
+      height = 0.50,
+    },
   },
 })
 vim.keymap.set('n', 'ff', fzf.files, { desc = 'fzf find files' })
@@ -112,7 +124,41 @@ require('neo-tree').setup({
     },
   },
 })
-vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>')
+vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle reveal<CR>')
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "neo-tree",
+  callback = function()
+    vim.opt_local.buflisted = false
+  end,
+  desc = "Prevent neo-tree from appearing in the buffer list",
+})
+
+local navic = require("nvim-navic")
+navic.setup({
+  lsp = {
+    auto_attach = true,
+  },
+})
+require('lualine').setup({
+  tabline = {
+    lualine_a = {
+      { 'filename', path = 1, shorting_target = 40,
+        cond = function()
+          return vim.bo.filetype ~= 'neo-tree' and vim.bo.filetype ~= 'fzf'
+        end
+      },
+    },
+    lualine_b = {
+      { navic.get_location, cond = navic.is_available, },
+    },
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { 'branch' },
+  },
+  sections = {},
+  inactive_sections = {},
+})
 
 require('nvim-autopairs').setup()
 require('Comment').setup()
