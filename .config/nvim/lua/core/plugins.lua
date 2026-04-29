@@ -139,7 +139,30 @@ navic.setup({
     auto_attach = true,
   },
 })
+
+local custom_theme = require('lualine.themes.gruvbox')
+local static_color = { bg = '#282828', fg = '#ebdbb2' }
+
+custom_theme.normal.a = static_color
+custom_theme.normal.b = static_color
+custom_theme.normal.c = static_color
+custom_theme.insert.a = static_color
+custom_theme.insert.b = custom_theme.normal.b
+custom_theme.insert.c = custom_theme.normal.c
+custom_theme.visual.a = static_color
+custom_theme.visual.b = custom_theme.normal.b 
+custom_theme.visual.c = custom_theme.normal.c 
+custom_theme.replace.a = static_color
+custom_theme.replace.b = custom_theme.normal.b
+custom_theme.replace.c = custom_theme.normal.c
+custom_theme.command.a = static_color
+custom_theme.command.b = custom_theme.normal.b
+custom_theme.command.c = custom_theme.normal.c
+
 require('lualine').setup({
+  options = {
+    theme = custom_theme,
+  },
   tabline = {
     lualine_a = {
       { 'filename', path = 1, shorting_target = 40,
@@ -167,5 +190,6 @@ require('nvim-autopairs').setup()
 require('Comment').setup()
 require('gitsigns').setup()
 
-vim.cmd('colorscheme tokyonight-night')
+vim.cmd('colorscheme gruvbox')
+vim.api.nvim_set_hl(0, 'SignColumn', { bg = '#282828' })
 
