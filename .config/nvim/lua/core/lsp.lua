@@ -40,29 +40,38 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
     vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.setloclist({bufnr=0})<cr>', opts)
 
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
-      local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-          buffer = event.buf,
-          group = highlight_augroup,
-          callback = vim.lsp.buf.document_highlight,
+    vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+      callback = function(args)
+        local is_insert = args.event == "InsertEnter"
+        vim.diagnostic.config({
+          underline = not is_insert,
         })
+      end,
+    })
 
-      vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-          buffer = event.buf,
-          group = highlight_augroup,
-          callback = vim.lsp.buf.clear_references,
-        })
-
-      vim.api.nvim_create_autocmd('LspDetach', {
-          group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-          callback = function(event2)
-            vim.lsp.buf.clear_references()
-            vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
-          end,
-        })
-    end
+    vim.cmd([[
+      anoremenu PopUp.Definition <cmd>lua vim.lsp.buf.definition()<CR>
+      anoremenu PopUp.Implementation <cmd>lua vim.lsp.buf.implementation()<CR>
+      anoremenu PopUp.References <cmd>fzfLua lsp_references<CR>
+      anoremenu PopUp.Documentation <cmd>lua vim.lsp.buf.hover()<CR>
+      anoremenu PopUp.Rename <cmd>lua vim.lsp.buf.rename()<CR>
+      anoremenu PopUp.Actions <cmd>lua vim.lsp.buf.code_action()<CR>
+    ]])
+    local group = vim.api.nvim_create_augroup('nvim_popupmenu', { clear = true })
+    vim.api.nvim_create_autocmd('MenuPopup', {
+      pattern = '*',
+      group = group,
+      desc = "Custom PopUp Menu",
+      callback = function()
+        vim.cmd[[
+          amenu disable PopUp.Inspect
+          amenu disable PopUp.Go\ to\ definition
+          amenu disable PopUp.Paste
+          amenu disable PopUp.How-to\ disable\ mouse
+        ]]
+      end,
+    })
+    vim.keymap.set("n", "<leader>m", "<cmd>execute('popup PopUp')<CR>", { silent = true })
   end
 })
 

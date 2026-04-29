@@ -19,6 +19,7 @@ vim.pack.add({
   { src = 'https://github.com/MunifTanjim/nui.nvim' },
   { src = 'https://github.com/nvim-lualine/lualine.nvim' },
   { src = 'https://github.com/SmiteshP/nvim-navic' },
+  { src = 'https://github.com/folke/trouble.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
   { src = 'https://github.com/folke/tokyonight.nvim' },
@@ -38,8 +39,8 @@ fzf.setup({
     border = 'single',
     preview = {
       title = false,
-      layout = "vertical",
-      vertical = "down:65%",
+      layout = 'vertical',
+      vertical = 'down:65%',
     },
   },
   files = {
@@ -77,19 +78,19 @@ require('blink-cmp').setup({
     menu = {
       draw = {
         columns = {
-          { "label", "label_description", gap = 1 },
+          { 'label', 'label_description', gap = 1 },
         },
       }
     },
   },
   sources = {
-    default = { "lsp", "path" },
+    default = { 'lsp', 'path' },
   },
-  fuzzy = { implementation = "prefer_rust_with_warning" },
+  fuzzy = { implementation = 'prefer_rust_with_warning' },
   keymap = {
-    preset = "default",
-    ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-    ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+    preset = 'default',
+    ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+    ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
     ['<CR>'] = { 'accept', 'fallback' },
   },
   cmdline = {
@@ -117,23 +118,28 @@ require('neo-tree').setup({
   enable_diagnostics = false,
   renderers = {
     file = {
-      { "indent" },
-      { "name", use_git_status_colors = true },
-      { "bufnr" },
-      { "modified", zindex = 20, align = "right" },
+      { 'indent' },
+      { 'name', use_git_status_colors = true },
+      { 'bufnr' },
+      { 'modified', zindex = 20, align = 'right' },
     },
   },
 })
 vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle reveal<CR>')
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "neo-tree",
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'neo-tree',
   callback = function()
     vim.opt_local.buflisted = false
   end,
-  desc = "Prevent neo-tree from appearing in the buffer list",
+  desc = 'Prevent neo-tree from appearing in the buffer list',
 })
 
-local navic = require("nvim-navic")
+local trouble = require('trouble')
+trouble.setup({})
+vim.api.nvim_set_hl(0, 'TroubleNormal', { bg = '#282828' })
+vim.api.nvim_set_hl(0, 'TroubleNormalNC', { bg = '#282828' })
+vim.api.nvim_set_hl(0, 'TroubleCount', { bg = '#282828' })
+local navic = require('nvim-navic')
 navic.setup({
   lsp = {
     auto_attach = true,
@@ -162,28 +168,43 @@ custom_theme.command.c = custom_theme.normal.c
 require('lualine').setup({
   options = {
     theme = custom_theme,
+    disabled_filetypes = {
+      statusline = { 'neo-tree', 'fzf' },
+      winbar = { 'neo-tree', 'fzf' },
+    },
   },
-  tabline = {
-    lualine_a = {
+  sections = {
+    lualine_a = { 'mode' },
+    lualine_b = {
       { 'filename', path = 1, shorting_target = 40,
         cond = function()
           return vim.bo.filetype ~= 'neo-tree' and vim.bo.filetype ~= 'fzf'
         end
       },
     },
-    lualine_b = {
+    lualine_c = {
       {
         function() return navic.get_location() end,
         cond = function() return navic.is_available() end,
       },
     },
-    lualine_c = {},
-    lualine_x = {},
+    lualine_x = {
+      { 'lsp_status' },
+      {
+        'diagnostics',
+        on_click = function()
+          trouble.toggle({
+          mode = "diagnostics",
+          filter = {
+            buf = 0,
+          },
+        }) 
+        end,
+      },
+    },
     lualine_y = {},
     lualine_z = { 'branch' },
   },
-  sections = {},
-  inactive_sections = {},
 })
 
 require('nvim-autopairs').setup()
@@ -192,4 +213,5 @@ require('gitsigns').setup()
 
 vim.cmd('colorscheme gruvbox')
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = '#282828' })
+vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#282828' })
 

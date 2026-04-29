@@ -1,5 +1,5 @@
 vim.opt.updatetime = 300
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
