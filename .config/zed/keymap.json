@@ -10,7 +10,7 @@
     "bindings": {
       "f f": "file_finder::Toggle",
       "f g": "pane::DeploySearch",
-      "f b": "tab_switcher::Toggle",
+      "f b": "tab_switcher::ToggleAll",
     },
   },
   {
