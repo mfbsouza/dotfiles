@@ -15,6 +15,7 @@ vim.pack.add({
     src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
     version = vim.version.range('3')
   },
+  { src = 'https://github.com/rafamadriz/friendly-snippets' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/MunifTanjim/nui.nvim' },
   { src = 'https://github.com/nvim-lualine/lualine.nvim' },
@@ -22,11 +23,14 @@ vim.pack.add({
   { src = 'https://github.com/folke/trouble.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
+  { src = 'https://github.com/navarasu/onedark.nvim' },
   { src = 'https://github.com/folke/tokyonight.nvim' },
   { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
   { src = 'https://github.com/typicode/bg.nvim' },
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
 })
+
+local colorscheme = 'onedark'
 
 vim.api.nvim_create_autocmd('FileType', {
   callback = function() pcall(vim.treesitter.start) end,
@@ -83,8 +87,11 @@ require('blink-cmp').setup({
       }
     },
   },
+  snippets = {
+    preset = 'default',
+  },
   sources = {
-    default = { 'lsp', 'path' },
+    default = { 'lsp', 'snippets', 'path' },
   },
   fuzzy = { implementation = 'prefer_rust_with_warning' },
   keymap = {
@@ -136,9 +143,11 @@ vim.api.nvim_create_autocmd('FileType', {
 
 local trouble = require('trouble')
 trouble.setup({})
-vim.api.nvim_set_hl(0, 'TroubleNormal', { bg = '#282828' })
-vim.api.nvim_set_hl(0, 'TroubleNormalNC', { bg = '#282828' })
-vim.api.nvim_set_hl(0, 'TroubleCount', { bg = '#282828' })
+if colorscheme == 'gruvbox' then
+  vim.api.nvim_set_hl(0, 'TroubleNormal', { bg = '#282828' })
+  vim.api.nvim_set_hl(0, 'TroubleNormalNC', { bg = '#282828' })
+  vim.api.nvim_set_hl(0, 'TroubleCount', { bg = '#282828' })
+end
 local navic = require('nvim-navic')
 navic.setup({
   lsp = {
@@ -146,24 +155,26 @@ navic.setup({
   },
 })
 
-local custom_theme = require('lualine.themes.gruvbox')
-local static_color = { bg = '#282828', fg = '#ebdbb2' }
+if colorscheme == 'gruvbox' then
+  local custom_theme = require('lualine.themes.gruvbox')
+  local static_color = { bg = '#282828', fg = '#ebdbb2' }
 
-custom_theme.normal.a = static_color
-custom_theme.normal.b = static_color
-custom_theme.normal.c = static_color
-custom_theme.insert.a = static_color
-custom_theme.insert.b = custom_theme.normal.b
-custom_theme.insert.c = custom_theme.normal.c
-custom_theme.visual.a = static_color
-custom_theme.visual.b = custom_theme.normal.b 
-custom_theme.visual.c = custom_theme.normal.c 
-custom_theme.replace.a = static_color
-custom_theme.replace.b = custom_theme.normal.b
-custom_theme.replace.c = custom_theme.normal.c
-custom_theme.command.a = static_color
-custom_theme.command.b = custom_theme.normal.b
-custom_theme.command.c = custom_theme.normal.c
+  custom_theme.normal.a = static_color
+  custom_theme.normal.b = static_color
+  custom_theme.normal.c = static_color
+  custom_theme.insert.a = static_color
+  custom_theme.insert.b = custom_theme.normal.b
+  custom_theme.insert.c = custom_theme.normal.c
+  custom_theme.visual.a = static_color
+  custom_theme.visual.b = custom_theme.normal.b
+  custom_theme.visual.c = custom_theme.normal.c
+  custom_theme.replace.a = static_color
+  custom_theme.replace.b = custom_theme.normal.b
+  custom_theme.replace.c = custom_theme.normal.c
+  custom_theme.command.a = static_color
+  custom_theme.command.b = custom_theme.normal.b
+  custom_theme.command.c = custom_theme.normal.c
+end
 
 require('lualine').setup({
   options = {
@@ -211,7 +222,16 @@ require('nvim-autopairs').setup()
 require('Comment').setup()
 require('gitsigns').setup()
 
-vim.cmd('colorscheme gruvbox')
-vim.api.nvim_set_hl(0, 'SignColumn', { bg = '#282828' })
-vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#282828' })
+if colorscheme == 'onedark' then
+  require('onedark').setup {
+      style = 'dark'
+  }
+  require('onedark').load()
+else
+  vim.cmd('colorscheme' .. ' ' .. colorscheme)
+  if colorscheme == 'gruvbox' then
+    vim.api.nvim_set_hl(0, 'SignColumn', { bg = '#282828' })
+    vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#282828' })
+  end
+end
 

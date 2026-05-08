@@ -15,6 +15,14 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- clear highlight
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set({ 'i', 's' }, '<Esc>', function()
+  if vim.snippet and vim.snippet.active() then
+    vim.snippet.stop()
+  else
+    vim.cmd('stopinsert')
+  end
+  return '<Esc>'
+end, { expr = true, desc = 'Close snippet or leave insert mode' })
 
 -- move text sideways and up-down
 vim.keymap.set("v", "<S-Right>", ">gv", opts)
