@@ -91,7 +91,7 @@ require('blink-cmp').setup({
     preset = 'default',
   },
   sources = {
-    default = { 'lsp', 'snippets', 'path' },
+    default = { 'lsp', 'path' },
   },
   fuzzy = { implementation = 'prefer_rust_with_warning' },
   keymap = {
@@ -143,11 +143,6 @@ vim.api.nvim_create_autocmd('FileType', {
 
 local trouble = require('trouble')
 trouble.setup({})
-if colorscheme == 'gruvbox' then
-  vim.api.nvim_set_hl(0, 'TroubleNormal', { bg = '#282828' })
-  vim.api.nvim_set_hl(0, 'TroubleNormalNC', { bg = '#282828' })
-  vim.api.nvim_set_hl(0, 'TroubleCount', { bg = '#282828' })
-end
 local navic = require('nvim-navic')
 navic.setup({
   lsp = {
@@ -227,11 +222,17 @@ if colorscheme == 'onedark' then
       style = 'dark'
   }
   require('onedark').load()
+  vim.api.nvim_set_hl(0, 'TroubleNormal', { bg = '#282c34' })
+  vim.api.nvim_set_hl(0, 'TroubleNormalNC', { bg = '#282c34' })
+  vim.api.nvim_set_hl(0, 'TroubleCount', { bg = '#282c34' })
 else
   vim.cmd('colorscheme' .. ' ' .. colorscheme)
   if colorscheme == 'gruvbox' then
     vim.api.nvim_set_hl(0, 'SignColumn', { bg = '#282828' })
     vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#282828' })
+    vim.api.nvim_set_hl(0, 'TroubleNormal', { bg = '#282828' })
+    vim.api.nvim_set_hl(0, 'TroubleNormalNC', { bg = '#282828' })
+    vim.api.nvim_set_hl(0, 'TroubleCount', { bg = '#282828' })
   end
 end
 
