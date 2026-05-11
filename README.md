@@ -8,9 +8,9 @@ A place to keep my configuration files and scripts
 
 ### Q: Operating System?
 
-- Linux Mint for my Desktop Computer
-- Ubuntu for my Server
-- MacOS for my laptop
+- Linux Mint/LMDE for personal computers
+- Debian for servers
+- MacOS because of work
 
 ### Q: Why Linux Mint?
 
@@ -28,7 +28,7 @@ Zshell for the plugins
 
 ### Q: Terminal?
 
-WezTerm cus i like it
+currently ghostty. but i like wezterm lua scripting
 
 ### Q: Why brew on linux?
 
