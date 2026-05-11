@@ -145,6 +145,10 @@ def flatpakPackagesSetup(homeDir: str, rootCfgDir: str) -> None:
 	if option.lower() == "y":
 		runCmd("flatpak install flathub com.obsproject.Studio")
 
+	option = input("Install Bottles Flatpak? [y/n]: ")
+	if option.lower() == "y":
+		runCmd("flatpak install flathub com.usebottles.bottles")
+
 	option = input("Install Heroic Games Flatpak? [y/n]: ")
 	if option.lower() == "y":
 		runCmd("flatpak install flathub com.heroicgameslauncher.hgl")

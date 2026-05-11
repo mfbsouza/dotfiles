@@ -37,9 +37,11 @@ export NPM_CONFIG_PREFIX=~/.npm
 export PATH=$HOME/.npm/bin:$PATH
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  # Enable local installed binaries
+  export PATH=$HOME/.local/bin:$PATH
   # Enable homebrew if installed
   if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-	  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   fi
   # Set vim as default editor
   export EDITOR=vim
