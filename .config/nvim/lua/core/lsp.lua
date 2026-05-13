@@ -15,31 +15,30 @@ vim.diagnostic.config({
   signs = false,
 })
 
-local disable_snippet_capabilities = {
-  textDocument = {
-    completion = {
-      completionItem = {
-        snippetSupport = false
+-- disable snippet capabilities for all lsp servers
+vim.lsp.config("*", {
+  capabilities = {
+    textDocument = {
+      completion = {
+        completionItem = {
+          snippetSupport = false
+        }
       }
     }
   }
-}
-
-vim.lsp.config("*", {
-  capabilities = disable_snippet_capabilities
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
-    local opts = { buffer = event.buf }
-    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.setloclist({bufnr=0})<cr>', opts)
+    local fzf_installed, fzf = pcall(require, 'fzf-lua')
+    if fzf_installed then
+      vim.keymap.set('n', 'fr', fzf.lsp_references, {desc = 'fzf lsp references'})
+      vim.keymap.set('n', 'fo', fzf.lsp_document_symbols, {desc = 'fzf lsp references'})
+    end
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', {desc = 'lsp go to definition'})
+    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', {desc = 'lsp hover documentation'})
 
+    -- dynamically disable lsp underline while in insert mode
     vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
       callback = function(args)
         local is_insert = args.event == "InsertEnter"
@@ -49,10 +48,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end,
     })
 
+    -- create custom popup menu when lsp is available
     vim.cmd([[
       anoremenu PopUp.Definition <cmd>lua vim.lsp.buf.definition()<CR>
       anoremenu PopUp.Implementation <cmd>lua vim.lsp.buf.implementation()<CR>
-      anoremenu PopUp.References <cmd>fzfLua lsp_references<CR>
+      anoremenu PopUp.Declaration <cmd>lua vim.lsp.buf.declaration()<CR>
+      anoremenu PopUp.References <cmd>lua vim.lsp.buf.references()<CR>
       anoremenu PopUp.Documentation <cmd>lua vim.lsp.buf.hover()<CR>
       anoremenu PopUp.Rename <cmd>lua vim.lsp.buf.rename()<CR>
       anoremenu PopUp.Actions <cmd>lua vim.lsp.buf.code_action()<CR>
@@ -71,7 +72,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         ]]
       end,
     })
-    vim.keymap.set("n", "<leader>m", "<cmd>execute('popup PopUp')<CR>", { silent = true })
   end
 })
 
