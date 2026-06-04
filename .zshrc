@@ -45,10 +45,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   fi
   # Set vim as default editor
   export EDITOR=vim
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  # enable pyenv
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
 fi
 
 # enable fzf in the shell
