@@ -10,8 +10,6 @@
   "vim": {
     "use_system_clipboard": "always",
   },
-  "ui_font_family": "Noto Sans",
-  "ui_font_size": 14,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_size": 13,
   "scrollbar": {
@@ -22,6 +20,15 @@
     "light": "One Light",
     "dark": "One Dark",
   },
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
   "agent": {
     "enabled": false,
   },
@@ -29,7 +36,7 @@
   "languages": {
     "C": {
       "format_on_save": "on",
-      "hard_tabs": true
+      "hard_tabs": true,
     },
     "Zig": {
       "show_edit_predictions": false,
@@ -38,6 +45,7 @@
       "completions": {},
     },
     "Python": {
+      "hard_tabs": true,
       "language_servers": ["basedpyright", "!pyright"],
     },
   },
