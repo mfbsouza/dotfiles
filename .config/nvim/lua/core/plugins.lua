@@ -38,6 +38,9 @@ vim.api.nvim_create_autocmd('FileType', {
 
 local fzf = require('fzf-lua')
 fzf.setup({
+  defaults = {
+    formatter = "path.filename_first",
+  },
   winopts = {
     title_flags = false,
     border = 'single',
@@ -47,20 +50,23 @@ fzf.setup({
       vertical = 'down:65%',
     },
   },
+  grep = {
+    file_icons = false,
+  },
   files = {
     file_icons = false,
     previewer = false,
     winopts = {
-      width = 0.40,
-      height = 0.50,
+      width = 0.50,
+      height = 0.60,
     },
   },
   buffers = {
     file_icons = false,
     previewer = false,
     winopts = {
-      width = 0.40,
-      height = 0.50,
+      width = 0.50,
+      height = 0.60,
     },
   },
 })
