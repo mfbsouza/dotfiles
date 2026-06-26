@@ -23,6 +23,7 @@ vim.pack.add({
   { src = 'https://github.com/folke/trouble.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
+  { src = 'https://github.com/rebelot/kanagawa.nvim' },
   { src = 'https://github.com/navarasu/onedark.nvim' },
   { src = 'https://github.com/folke/tokyonight.nvim' },
   { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
@@ -30,7 +31,7 @@ vim.pack.add({
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
 })
 
-local colorscheme = 'onedark'
+local colorscheme = 'kanagawa'
 
 vim.api.nvim_create_autocmd('FileType', {
   callback = function() pcall(vim.treesitter.start) end,
@@ -271,6 +272,19 @@ if colorscheme == 'onedark' then
   vim.api.nvim_set_hl(0, 'TroubleNormal', { bg = '#282c34' })
   vim.api.nvim_set_hl(0, 'TroubleNormalNC', { bg = '#282c34' })
   vim.api.nvim_set_hl(0, 'TroubleCount', { bg = '#282c34' })
+elseif colorscheme == 'kanagawa' then
+  require('kanagawa').setup({
+    colors = {
+      theme = {
+        all = {
+          ui = {
+            bg_gutter = "none"
+          }
+        }
+      }
+    }
+  })
+  vim.cmd('colorscheme kanagawa')
 else
   vim.cmd('colorscheme' .. ' ' .. colorscheme)
   if colorscheme == 'gruvbox' then
