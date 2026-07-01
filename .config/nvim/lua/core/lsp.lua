@@ -30,6 +30,7 @@ vim.lsp.config("*", {
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
+    -- add lsp fzf shortcuts if fzf-lua is available
     local fzf_installed, fzf = pcall(require, 'fzf-lua')
     if fzf_installed then
       vim.keymap.set('n', 'fr', fzf.lsp_references, {desc = 'fzf lsp references'})
@@ -72,6 +73,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
         ]]
       end,
     })
+
+    -- enable code formatting when saving file if lsp is capable
+    local formatting_group = vim.api.nvim_create_augroup("LspAutoFormatting", { clear = true })
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if client:supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = formatting_group, buffer = event.buf })
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = formatting_group,
+        buffer = event.buf,
+        desc = "LSP synchronous format on save",
+        callback = function()
+          vim.lsp.buf.format({ bufnr = event.buf, async = false })
+        end,
+      })
+    end
   end
 })
 
