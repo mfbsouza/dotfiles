@@ -263,6 +263,7 @@ require('lualine').setup({
 require('nvim-autopairs').setup()
 require('Comment').setup()
 require('gitsigns').setup()
+vim.keymap.set('n', '<leader>gl', '<cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'toggle git blame virtual line' })
 
 if colorscheme == 'onedark' then
   require('onedark').setup {
