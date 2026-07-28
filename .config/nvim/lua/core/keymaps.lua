@@ -13,6 +13,10 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- make sure the jump list lands the cursor in the middle
+vim.keymap.set("n", "<C-o>", "<C-o>zz", opts)
+vim.keymap.set("n", "<C-i>", "<C-i>zz", opts)
+
 -- clear highlight
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set({ 'i', 's' }, '<Esc>', function()
