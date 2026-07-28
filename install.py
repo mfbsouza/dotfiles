@@ -92,7 +92,7 @@ def installZshPlugins(homeDir: str) -> None:
 
 def installConfigFiles(rootDir: str, rootCfgDir: str, homeDir: str, configDir: str) -> None:
 	homeDirFiles = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-	configDirFiles = ["zed", "wezterm", "vim", "nvim", "ghostty"]
+	configDirFiles = ["zed", "wezterm", "vim", "nvim", "ghostty", "alacritty"]
 
 	logging.info("Setting up dotfiles in the home folder...")
 	for file in homeDirFiles:
