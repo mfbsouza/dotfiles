@@ -4,6 +4,7 @@ vim.lsp.enable({
   "rust_analyzer",
   "clangd",
   "zls",
+  "lua_ls",
 })
 
 vim.diagnostic.config({
@@ -30,14 +31,8 @@ vim.lsp.config("*", {
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
-    -- add lsp fzf shortcuts if fzf-lua is available
-    local fzf_installed, fzf = pcall(require, 'fzf-lua')
-    if fzf_installed then
-      vim.keymap.set('n', 'fr', fzf.lsp_references, {desc = 'fzf lsp references'})
-      vim.keymap.set('n', 'fo', fzf.lsp_document_symbols, {desc = 'fzf lsp references'})
-    end
-    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', {desc = 'lsp go to definition'})
-    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', {desc = 'lsp hover documentation'})
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { desc = 'lsp go to definition' })
+    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', { desc = 'lsp hover documentation' })
 
     -- dynamically disable lsp underline while in insert mode
     vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
@@ -65,7 +60,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       group = group,
       desc = "Custom PopUp Menu",
       callback = function()
-        vim.cmd[[
+        vim.cmd [[
           amenu disable PopUp.Inspect
           amenu disable PopUp.Go\ to\ definition
           amenu disable PopUp.Paste
@@ -77,7 +72,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- enable code formatting when saving file if lsp is capable
     local formatting_group = vim.api.nvim_create_augroup("LspAutoFormatting", { clear = true })
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client:supports_method("textDocument/formatting") then
+    if client and client:supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = formatting_group, buffer = event.buf })
 
       vim.api.nvim_create_autocmd("BufWritePre", {
@@ -91,4 +86,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end
 })
-

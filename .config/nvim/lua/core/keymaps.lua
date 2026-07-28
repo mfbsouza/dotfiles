@@ -60,4 +60,3 @@ vim.keymap.set('n', '<leader>z', function()
     zoomed_in = true
   end
 end, { desc = "Toggle maximize split" })
-
