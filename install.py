@@ -18,7 +18,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-SUPPORTED_OS = ["fedora", "mint", "macos"]
+SUPPORTED_OS = ["fedora", "mint", "debian", "macos"]
 
 HOME_DIR_FILES = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
 CONFIG_DIR_FILES = ["zed", "wezterm", "vim", "nvim", "ghostty", "alacritty"]
@@ -108,7 +108,11 @@ def install_font(font: str, download_url: str, target_path: str) -> None:
 
 def install_sys_packages(ctx: Context, items=None) -> None:
     if ctx.operating_system is None or ctx.operating_system == "linux":
-        choices = ["fedora", "mint"] if ctx.operating_system == "linux" else None
+        choices = (
+            [os for os in SUPPORTED_OS if os != "macos"]
+            if ctx.operating_system == "linux"
+            else None
+        )
         ctx.operating_system = resolve_operating_system(choices)
 
     if ctx.operating_system.lower() == "fedora":
@@ -123,6 +127,11 @@ def install_sys_packages(ctx: Context, items=None) -> None:
 
         logger.info("installing system packages for Linux Mint")
         system_install_package(mint.install_cmd, mint.sys)
+    elif ctx.operating_system.lower() == "debian":
+        from packages import debian
+
+        logger.info("installing system packages for Debian Linux")
+        system_install_package(debian.install_cmd, debian.sys)
     elif ctx.operating_system.lower() == "macos":
         from packages import brew
 
