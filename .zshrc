@@ -6,9 +6,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # zshell plugins
-source ~/plugins/powerlevel10k/powerlevel10k.zsh-theme
-source ~/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -d ~/plugins/powerlevel10k ]] && source ~/plugins/powerlevel10k/powerlevel10k.zsh-theme
+[[ -d ~/plugins/zsh-autosuggestions ]] && source ~/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -d ~/plugins/zsh-syntax-highlighting ]] && source ~/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -48,7 +48,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 # enable fzf in the shell
-source <(fzf --zsh)
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
 
 # initialize compinit for zsh
 autoload -Uz compinit && compinit
