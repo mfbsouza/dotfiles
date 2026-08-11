@@ -18,7 +18,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-SUPPORTED_OS = ["fedora", "mint", "debian", "macos"]
+SUPPORTED_OS = ["debian", "macos"]
 
 HOME_DIR_FILES = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
 CONFIG_DIR_FILES = ["zed", "wezterm", "vim", "nvim", "ghostty", "alacritty"]
@@ -115,19 +115,7 @@ def install_sys_packages(ctx: Context, items=None) -> None:
         )
         ctx.operating_system = resolve_operating_system(choices)
 
-    if ctx.operating_system.lower() == "fedora":
-        from packages import fedora
-
-        logger.info("installing system packages for Fedora Linux")
-        system_install_package(fedora.install_cmd, fedora.base)
-        system_install_package(fedora.install_cmd, fedora.pkgs)
-
-    elif ctx.operating_system.lower() == "mint":
-        from packages import mint
-
-        logger.info("installing system packages for Linux Mint")
-        system_install_package(mint.install_cmd, mint.sys)
-    elif ctx.operating_system.lower() == "debian":
+    if ctx.operating_system.lower() == "debian":
         from packages import debian
 
         logger.info("installing system packages for Debian Linux")
