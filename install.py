@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 SUPPORTED_OS = ["debian", "macos"]
 
 HOME_DIR_FILES = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-CONFIG_DIR_FILES = ["zed", "wezterm", "vim", "nvim", "ghostty", "alacritty"]
+CONFIG_DIR_FILES = ["vim", "nvim", "ghostty"]
 
 ZSH_PLUGINS = {
     "powerlevel10k": "https://github.com/romkatv/powerlevel10k.git",
