@@ -246,7 +246,38 @@ def flatpak_packages_setup(ctx: Context, items=None) -> None:
         run_cmd("flatpak install flathub org.telegram.desktop")
 
 
-LINUX_ONLY_TASKS = ["flatpak", "fonts"]
+def install_touchpad_resume(ctx: Context, items=None) -> None:
+    logger.info("Enabling touchpad re-enable after system sleep...")
+    system_sleep_dir = "/lib/systemd/system-sleep"
+    create_directory(system_sleep_dir)
+    cmd = f"sudo cp {ctx.root_dir + '/scripts/laptop/touchpad-resume.sh'} {system_sleep_dir}/"
+    run_cmd(cmd)
+    cmd = f"sudo chmod +x {system_sleep_dir}/touchpad-resume.sh"
+    run_cmd(cmd)
+
+
+def install_fingerprint_lid(ctx: Context, items=None) -> None:
+    logger.info("Enabling fingerprint auth only when laptop lid is open...")
+    scripts_dir = "/opt/scripts"
+    create_directory(scripts_dir)
+    cmd = f"sudo cp {ctx.root_dir + '/scripts/laptop/check_lid.sh'} {scripts_dir}/"
+    run_cmd(cmd)
+    cmd = f"sudo chmod +x {scripts_dir}/check_lid.sh"
+    run_cmd(cmd)
+
+    common_auth = "/etc/pam.d/common-auth"
+    cmd = f"sudo cp {common_auth} {common_auth}.bak"
+    run_cmd(cmd)
+
+    pam_line = "pam_exec.so quiet /opt/scripts/check_lid.sh"
+    cmd = (
+        f"sudo grep -qF '{pam_line}' {common_auth}"
+        f" || sudo sed -i '0,/^auth/ s//auth    [success=ignore default=1]    {pam_line}\\n&/' {common_auth}"
+    )
+    run_cmd(cmd)
+
+
+LINUX_ONLY_TASKS = ["flatpak", "fonts", "fingerprint-lid", "touchpad-resume"]
 
 
 def install_all(ctx: Context, items=None) -> None:
@@ -268,6 +299,8 @@ TASKS = {
     "config": install_config_files,
     "fonts": install_nerd_fonts,
     "flatpak": flatpak_packages_setup,
+    "touchpad-resume": install_touchpad_resume,
+    "fingerprint-lid": install_fingerprint_lid,
 }
 
 
