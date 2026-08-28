@@ -8,19 +8,18 @@ A place to keep my configuration files and scripts
 
 ### Q: Operating System?
 
-- Linux Mint/LMDE for personal computers
-- Debian for servers
+- Debian for personal computers and servers
 - MacOS because of work
 
-### Q: Why Linux Mint?
+### Q: Why Debian?
 
-Just works. Stable. Ubuntu/Debian-based. No Snaps + Flatpak by default.
-Easy to hack when wanting to.
+Just works. Stable. Easy to hack when wanting to.
+I don't care if packages are old, I rather have them pretty stable.
+Backports, brew and flatpak can do just fine for getting the software i use every day.
 
 ### Q: Text Editor/IDE?
 
-Zed, Vim, VSCode, Sublime. Why only use one when you can get
-the most of them all.
+Mostly neovim. some times VSCode for git merge conflicts and HTML
 
 ### Q: Shell?
 
@@ -28,7 +27,7 @@ Zshell for the plugins
 
 ### Q: Terminal?
 
-currently ghostty. but i like wezterm lua scripting
+currently ghostty, but anything decent that I can run herdr on top of can do just fine.
 
 ### Q: Why brew on linux?
 
