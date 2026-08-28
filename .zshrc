@@ -45,6 +45,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   fi
   # Set vim as default editor
   export EDITOR=vim
+
+  # bindkeys
+  bindkey "^[[1;3D" backward-word
+  bindkey "^[[1;3C" forward-word
 fi
 
 # enable fzf in the shell
