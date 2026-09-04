@@ -35,10 +35,9 @@ alias ls='ls --color=auto'
 export PATH=$HOME/go/bin:$PATH
 export NPM_CONFIG_PREFIX=~/.npm
 export PATH=$HOME/.npm/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  # Enable local installed binaries
-  export PATH=$HOME/.local/bin:$PATH
   # Enable homebrew if installed
   if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
