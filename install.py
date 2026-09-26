@@ -95,6 +95,11 @@ def system_install_package(install_cmd: str, packages: str) -> None:
     run_cmd(cmd)
 
 
+def install_brew_casks(brew) -> None:
+    logger.info("installing cask packages via Homebrew")
+    system_install_package(brew.install_cmd + " --cask", brew.cask)
+
+
 def install_font(font: str, download_url: str, target_path: str) -> None:
     cmd = "curl -OL " + download_url + font + ".tar.xz"
     run_cmd(cmd)
@@ -125,11 +130,15 @@ def install_sys_packages(ctx: Context, items=None) -> None:
 
         logger.info("installing system packages for MacOS")
         system_install_package(brew.install_cmd, brew.mac_pkgs)
-        system_install_package(brew.install_cmd + " --cask", brew.cask)
+        install_brew_casks(brew)
     else:
         raise UnsupportedOSError(
             f"{ctx.operating_system} not supported for installing system packages"
         )
+
+
+def is_macos(ctx: Context) -> bool:
+    return (ctx.operating_system or detect_platform() or "").lower() == "macos"
 
 
 def install_brew_packages(ctx: Context, items=None) -> None:
@@ -140,7 +149,15 @@ def install_brew_packages(ctx: Context, items=None) -> None:
             "Homebrew not found on PATH. Install it or add it to PATH, then retry."
         )
         return
+
+    if is_macos(ctx):
+        logger.info("Installing system and development packages via Homebrew...")
+        system_install_package(brew.install_cmd, brew.mac_pkgs)
+        install_brew_casks(brew)
+        return
+
     logger.info("Installing development packages via Homebrew...")
+    logger.info("Skipping cask packages: they are macOS only.")
     system_install_package(brew.install_cmd, brew.dev)
 
 
@@ -279,6 +296,8 @@ def install_fingerprint_lid(ctx: Context, items=None) -> None:
 
 LINUX_ONLY_TASKS = ["flatpak", "fonts", "fingerprint-lid", "touchpad-resume"]
 
+OS_DEPENDENT_TASKS = LINUX_ONLY_TASKS + ["system-packages", "brew-packages"]
+
 
 def install_all(ctx: Context, items=None) -> None:
     install_sys_packages(ctx)
@@ -359,9 +378,7 @@ def interactive_menu(ctx) -> None:
         break
 
     os_dependent = {
-        name
-        for name in selected
-        if name == "all" or name in LINUX_ONLY_TASKS or name == "system-packages"
+        name for name in selected if name in OS_DEPENDENT_TASKS or name == "all"
     }
     if os_dependent and ctx.operating_system is None:
         ctx.operating_system = resolve_operating_system()
@@ -422,9 +439,7 @@ def main():
             ctx.operating_system = resolve_operating_system()
         run_tasks(["all"], ctx)
     else:
-        if ctx.operating_system is None and (
-            args.task in LINUX_ONLY_TASKS or args.task == "system-packages"
-        ):
+        if ctx.operating_system is None and args.task in OS_DEPENDENT_TASKS:
             ctx.operating_system = resolve_operating_system()
         run_tasks([args.task], ctx, getattr(args, "items", None))
 
