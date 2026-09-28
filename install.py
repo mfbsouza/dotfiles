@@ -23,6 +23,8 @@ SUPPORTED_OS = ["debian", "macos"]
 HOME_DIR_FILES = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
 CONFIG_DIR_FILES = ["vim", "nvim", "ghostty"]
 
+DEFAULT_BIN_DIR = "~/.local/bin"
+
 ZSH_PLUGINS = {
     "powerlevel10k": "https://github.com/romkatv/powerlevel10k.git",
     "zsh-autosuggestions": "https://github.com/zsh-users/zsh-autosuggestions",
@@ -41,6 +43,7 @@ class Context:
     root_cfg_dir: str
     home_dir: str
     config_dir: str
+    bin_dir: str
     operating_system: str | None = None
 
 
@@ -203,6 +206,25 @@ def install_specific_config_files(ctx: Context, items: list) -> None:
             )
 
 
+def install_scripts(ctx: Context, items=None) -> None:
+    scripts_dir = ctx.root_dir + "/scripts"
+    if not os.path.isdir(scripts_dir):
+        logger.warning(f"Skipping scripts: {scripts_dir} not found.")
+        return
+
+    logger.info(f"Linking scripts from {scripts_dir} into {ctx.bin_dir}...")
+    create_directory(ctx.bin_dir)
+    for entry in sorted(os.listdir(scripts_dir)):
+        if entry.startswith("."):
+            continue
+        source = scripts_dir + "/" + entry
+        if not os.path.isfile(source):
+            continue
+        if not os.access(source, os.X_OK):
+            logger.warning(f"{source} is not executable. Run: chmod +x {source}")
+        create_symlink(ctx.root_dir, "/scripts/", entry, ctx.bin_dir)
+
+
 def install_nerd_fonts(ctx: Context, items=None) -> None:
     logger.info("downloading fonts...")
     fonts_dir = ctx.home_dir + "/.fonts"
@@ -303,6 +325,7 @@ def install_all(ctx: Context, items=None) -> None:
     install_sys_packages(ctx)
     install_zsh_plugins(ctx)
     install_config_files(ctx)
+    install_scripts(ctx)
     if ctx.operating_system is None:
         ctx.operating_system = resolve_operating_system()
     if ctx.operating_system.lower() != "macos":
@@ -316,6 +339,7 @@ TASKS = {
     "brew-packages": install_brew_packages,
     "zsh-plugins": install_zsh_plugins,
     "config": install_config_files,
+    "scripts": install_scripts,
     "fonts": install_nerd_fonts,
     "flatpak": flatpak_packages_setup,
     "touchpad-resume": install_touchpad_resume,
@@ -343,11 +367,13 @@ def resolve_operating_system(choices=None) -> str:
 def build_context(args) -> Context:
     root_dir = os.path.dirname(os.path.abspath(__file__))
     home_dir = os.path.expanduser("~")
+    bin_dir = getattr(args, "bin_dir", None) or DEFAULT_BIN_DIR
     return Context(
         root_dir=root_dir,
         root_cfg_dir=root_dir + "/.config",
         home_dir=home_dir,
         config_dir=home_dir + "/.config",
+        bin_dir=os.path.expanduser(bin_dir),
         operating_system=getattr(args, "os", None) or detect_platform(),
     )
 
@@ -418,6 +444,12 @@ def create_parser() -> argparse.ArgumentParser:
                     "specific config files/dirs to install (default: all). "
                     f"Choices: {', '.join(HOME_DIR_FILES + CONFIG_DIR_FILES)}"
                 ),
+            )
+        if name == "scripts":
+            sub.add_argument(
+                "--bin-dir",
+                default=argparse.SUPPRESS,
+                help=f"PATH dir to link scripts into (default: {DEFAULT_BIN_DIR})",
             )
 
     return parser
