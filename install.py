@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 SUPPORTED_OS = ["debian", "macos"]
 
 HOME_DIR_FILES = [".gitconfig", ".tmux.conf", ".zshrc", ".p10k.zsh"]
-CONFIG_DIR_FILES = ["vim", "nvim", "ghostty"]
+CONFIG_DIR_FILES = ["vim", "nvim", "ghostty", "herdr"]
 
 DEFAULT_BIN_DIR = "~/.local/bin"
 

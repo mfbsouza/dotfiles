@@ -1,0 +1,11 @@
+onboarding = false
+
+[ui.toast]
+delivery = "terminal"
+
+[ui.sidebar.agents]
+row_gap = 0
+rows = [
+  ["state_icon", "machine", "workspace"],
+  ["agent"],
+]
