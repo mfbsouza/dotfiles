@@ -1,6 +1,7 @@
 .config/nvim/plugin/*
 *__pycache__*
 .venv/*
+.ruff_cache/
 .config/Code/*
 .config/zed/prompts/*
 .config/vim/autoload/*
