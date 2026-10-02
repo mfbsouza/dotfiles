@@ -35,7 +35,6 @@ alias ls='ls --color=auto'
 export PATH=$HOME/go/bin:$PATH
 export NPM_CONFIG_PREFIX=~/.npm
 export PATH=$HOME/.npm/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Enable homebrew if installed
@@ -48,6 +47,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # bindkeys
   bindkey "^[[1;3D" backward-word
   bindkey "^[[1;3C" forward-word
+else
+  export PATH=$HOME/.local/bin:$PATH
 fi
 
 # enable fzf in the shell
