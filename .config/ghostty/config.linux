@@ -1,0 +1,3 @@
+command = /home/linuxbrew/.linuxbrew/bin/zsh
+font-size = 10
+keybind = performable:ctrl+c=copy_to_clipboard

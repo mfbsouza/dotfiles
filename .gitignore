@@ -6,6 +6,7 @@
 .config/zed/prompts/*
 .config/vim/autoload/*
 .config/vim/plugged/*
+.config/herdr/*
 *.netrwhist*
 .DS_store
 nvim-pack-lock.json

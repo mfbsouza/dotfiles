@@ -44,6 +44,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Set vim as default editor
   export EDITOR=vim
 
+  # bazzite alias for fastfetch
+  alias fastfetch='/usr/bin/fastfetch --color $(/usr/libexec/bazzite-bling-fastfetch) -c /usr/share/ublue-os/bazzite/fastfetch.jsonc' /usr/bin/fastfetch
+
   # bindkeys
   bindkey "^[[1;3D" backward-word
   bindkey "^[[1;3C" forward-word

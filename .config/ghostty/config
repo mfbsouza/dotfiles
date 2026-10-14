@@ -1,2 +1,3 @@
-font-size = 13
-keybind = performable:ctrl+c=copy_to_clipboard
+theme = Adwaita Dark
+
+config-file = ?config.linux
