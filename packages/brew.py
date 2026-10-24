@@ -10,7 +10,7 @@ editor_pkgs = "neovim ripgrep fd bat tree-sitter-cli "
 cli = "fzf git git-lfs vim tmux tree fastfetch btop nanocom "
 keyring = "gpg pinentry-mac "
 cask = (
-    "ghostty dbeaver-community postman slack visual-studio-code zed zoom "
+    "ghostty obsidian dbeaver-community postman slack visual-studio-code zed zoom "
     "font-jetbrains-mono-nerd-font "
 )
 
